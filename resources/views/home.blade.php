@@ -33,7 +33,7 @@
                                 <div class="cart-toggle hidden-xs hidden-sm">
                                     <div class="cart-overflow">
                                         <div class="cart-entry clearfix">
-                                            <a class="cart-entry-thumbnail" href="#"><img src="img/product-1.png" alt="" /></a>
+                                            <a class="cart-entry-thumbnail" href="#"><img src="{{ asset("public/img/product-1.png") }}" alt="" /></a>
                                             <div class="cart-entry-description">
                                                 <table>
                                                     <tr>
@@ -56,7 +56,7 @@
                                             </div>
                                         </div>
                                         <div class="cart-entry clearfix">
-                                            <a class="cart-entry-thumbnail" href="#"><img src="img/product-2.png" alt="" /></a>
+                                            <a class="cart-entry-thumbnail" href="#"><img src="{{ asset("public/img/product-2.png") }}" alt="" /></a>
                                             <div class="cart-entry-description">
                                                 <table>
                                                     <tr>
@@ -79,7 +79,7 @@
                                             </div>
                                         </div>
                                         <div class="cart-entry clearfix">
-                                            <a class="cart-entry-thumbnail" href="#"><img src="img/product-3.png" alt="" /></a>
+                                            <a class="cart-entry-thumbnail" href="#"><img src="{{ asset("public/img/product-3.png") }}" alt="" /></a>
                                             <div class="cart-entry-description">
                                                 <table>
                                                     <tr>
@@ -133,7 +133,7 @@
                 <div class="content-margins">
                     <div class="row">
                         <div class="col-xs-3 col-sm-1">
-                            <a id="logo" href="index1.html"><img src="img/logo-2.png" alt="" /></a>  
+                            <a id="logo" href="index1.html"><img src="{{ asset("public/img/logo-2.png") }}" alt="" /></a>
                         </div>
                         <div class="col-xs-9 col-sm-11 text-right">
                             <div class="nav-wrapper">
@@ -181,13 +181,73 @@
                                                                         <div class="swiper-button-next style-1"></div>
                                                                         <div class="swiper-wrapper">
                                                                             <div class="swiper-slide">
-                                                                                <img src="img/product-59.jpg" alt="" />
+                                                                                <img src="{{ asset("public/img/product-59.jpg") }}" alt="" />
                                                                             </div>
                                                                             <div class="swiper-slide">
                                                                                 <img src="img/product-61.jpg" alt="" />
                                                                             </div>
                                                                         </div>
-                                                                    </div> 
+                                                                    </div>
+                                                                </div>
+                                                                <div class="content-animate">
+                                                                    <div class="title">
+                                                                        <div class="shortcode-rate-wrapper">
+                                                                            <div class="rate-wrapper align-inline">
+                                                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="h6 animate-to-green"><a href="product.html">modern beat nine</a></div>
+                                                                    </div>
+                                                                    <div class="description">
+                                                                        <div class="simple-article text size-2">Mollis nec consequat at In feugiat molestie tortor a malesuada</div>
+                                                                    </div>
+                                                                    <div class="price">
+                                                                        <div class="simple-article size-4 dark">$630.00</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="preview-buttons">
+                                                                    <div class="buttons-wrapper">
+                                                                        <a class="button size-2 style-2" href="product.html">
+                                                                            <span class="button-wrapper">
+                                                                                <span class="icon"><img src="{{ asset("img/icon-1.png") }}" alt=""></span>
+                                                                                <span class="text">Learn More</span>
+                                                                            </span>
+                                                                        </a>
+                                                                        <a class="button size-2 style-3" href="#">
+                                                                            <span class="button-wrapper">
+                                                                                <span class="icon"><img src="img/icon-3.png" alt=""></span>
+                                                                                <span class="text">Add To Cart</span>
+                                                                            </span>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                            <div class="product-shortcode style-5">
+                                                                <div class="product-label green">best price</div>
+                                                                <div class="icons">
+                                                                    <a class="entry"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                                                    <a class="entry open-popup" data-rel="3"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                                    <a class="entry"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                                                </div>
+                                                                <div class="preview">
+                                                                    <div class="swiper-container" data-loop="1">
+                                                                        <div class="swiper-button-prev style-1"></div>
+                                                                        <div class="swiper-button-next style-1"></div>
+                                                                        <div class="swiper-wrapper">
+                                                                            <div class="swiper-slide">
+                                                                                <img src="img/product-60.jpg" alt="" />
+                                                                            </div>
+                                                                            <div class="swiper-slide">
+                                                                                <img src="img/product-61.jpg" alt="" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="content-animate">
                                                                     <div class="title">
@@ -226,66 +286,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-xs-6">
-                                                            <div class="product-shortcode style-5">
-                                                                <div class="product-label green">best price</div>
-                                                                <div class="icons">
-                                                                    <a class="entry"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                                                    <a class="entry open-popup" data-rel="3"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                                                    <a class="entry"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                                                                </div>
-                                                                <div class="preview">
-                                                                    <div class="swiper-container" data-loop="1">
-                                                                        <div class="swiper-button-prev style-1"></div>
-                                                                        <div class="swiper-button-next style-1"></div>
-                                                                        <div class="swiper-wrapper">
-                                                                            <div class="swiper-slide">
-                                                                                <img src="img/product-60.jpg" alt="" />
-                                                                            </div>
-                                                                            <div class="swiper-slide">
-                                                                                <img src="img/product-61.jpg" alt="" />
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> 
-                                                                </div>
-                                                                <div class="content-animate">
-                                                                    <div class="title">
-                                                                        <div class="shortcode-rate-wrapper">
-                                                                            <div class="rate-wrapper align-inline">
-                                                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="h6 animate-to-green"><a href="product.html">modern beat nine</a></div>
-                                                                    </div>
-                                                                    <div class="description">
-                                                                        <div class="simple-article text size-2">Mollis nec consequat at In feugiat molestie tortor a malesuada</div>
-                                                                    </div>
-                                                                    <div class="price">
-                                                                        <div class="simple-article size-4 dark">$630.00</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="preview-buttons">
-                                                                    <div class="buttons-wrapper">
-                                                                        <a class="button size-2 style-2" href="product.html">
-                                                                            <span class="button-wrapper">
-                                                                                <span class="icon"><img src="img/icon-1.png" alt=""></span>
-                                                                                <span class="text">Learn More</span>
-                                                                            </span>
-                                                                        </a>
-                                                                        <a class="button size-2 style-3" href="#">
-                                                                            <span class="button-wrapper">
-                                                                                <span class="icon"><img src="img/icon-3.png" alt=""></span>
-                                                                                <span class="text">Add To Cart</span>
-                                                                            </span>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>  
                                                         </div>
                                                     </div>
                                                 </div>
@@ -354,7 +354,7 @@
                                                                                 <img src="img/product-59.jpg" alt="" />
                                                                             </div>
                                                                         </div>
-                                                                    </div> 
+                                                                    </div>
                                                                 </div>
                                                                 <div class="content-animate">
                                                                     <div class="title">
@@ -836,4 +836,3 @@
             </div>
         </footer>
     </div> @include('template/footer')
-

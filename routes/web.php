@@ -18,3 +18,9 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('welcome');
 });
+
+Route::resource("order","OrderController");
+
+Route::get("/test/dimas","TestController@dimas"); // HARUS DITAMBAHKAN SEBELUM RESOURCE
+Route::resource("test","TestController");
+//Route::get("/dimas","TestController@dimas");
