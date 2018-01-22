@@ -28,3 +28,7 @@ Route::get("/test/dimas","TestController@dimas"); // HARUS DITAMBAHKAN SEBELUM R
 Route::resource("test","TestController");
 //Route::get("/dimas","TestController@dimas");
 
+// ADMIN 
+//$admin_route = " \App\Http\Controllers\Admin\ "; 
+Route::get("/admin/dashboard","Admin\DashboardController@index");
+
