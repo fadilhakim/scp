@@ -1,4 +1,5 @@
  @include('template/header')
+
  	<div id="content-block">
         <!-- HEADER -->
         <header>
@@ -723,6 +724,12 @@
             </div>
         </div>
 
+<<<<<<< HEAD
+
+    </div> 
+@include('template/footer')
+
+=======
         <!-- FOOTER -->
         <footer>
             <div class="container">
@@ -836,3 +843,4 @@
             </div>
         </footer>
     </div> @include('template/footer')
+
