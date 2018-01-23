@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaymentsTable extends Migration
+class CreateOrderDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,25 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment_tbl', function (Blueprint $table) {
-            $table->increments('payment_id');
+        Schema::create('order_detail_tbl', function (Blueprint $table) {
+            $table->increments('order_detail_id');
 
             $table->ipAddress("ip_address");
             $table->string("user_agent",150);
             //$table->datetime("created_at");
             $table->timestamps("updated_at");
 
-            $table->integer("user_id")->unsigned();
             $table->integer("order_id")->unsigned();
+            $table->integer("product_id")->unsigned();
+            $table->integer("user_id")->unsigned();
 
         });
 
-        Schema::table("payment_tbl",function($table){
-          // foreign key
-          //$table->foreign("user_id")->references("id")->on("users");
+        Schema::table("order_detail_tbl",function($table){
+          //foreign key
           //$table->foreign("order_id")->references("order_id")->on("order_tbl");
+          //$table->foreign("product_id")->references("product_id")->on("product_tbl");
+          $table->foreign("user_id")->references("id")->on("users");
         });
     }
 
@@ -40,6 +42,6 @@ class CreatePaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_tbl');
+        Schema::dropIfExists('order_detail_tbl');
     }
 }

@@ -14,26 +14,12 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/home2', function () {
-    return view('home2');
-});
-
-
 Route::get('/about', function () {
     return view('welcome');
 });
 
-
-Route::get('/product', function () {
-    return view('product');
-});
-
 Route::resource("order","OrderController");
+
 Route::get("/test/dimas","TestController@dimas"); // HARUS DITAMBAHKAN SEBELUM RESOURCE
 Route::resource("test","TestController");
 //Route::get("/dimas","TestController@dimas");
-
-// ADMIN 
-//$admin_route = " \App\Http\Controllers\Admin\ "; 
-Route::get("/admin/dashboard","Admin\DashboardController@index");
-

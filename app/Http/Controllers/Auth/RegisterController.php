@@ -6,7 +6,11 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Http\Request;
+use Redirect;
+use Sentinel;
+use Session;
+use Activation;
 class RegisterController extends Controller
 {
     /*
@@ -39,33 +43,50 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-    }
+   
 
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return User
      */
-    protected function create(array $data)
+    
+    public function showRegistrationForm()
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        return view('auth.register');
     }
+
+    public function register(Request $request){
+
+        $validation = Validator::make($request->all(), [
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => 'required|string|min:6|confirmed',
+            ]);
+
+          if ($validation->fails()) {
+                return Redirect::back()->withErrors($validation)->withInput();
+         }
+
+         $user = Sentinel::register($request->all());
+        //Activate the user ** 
+         $activation = Activation::create($user);
+         $activation = Activation::complete($user, $activation->code);
+        //End activation
+
+        if($user){
+            $user->roles()->sync([2]); // 2 = client
+            Session::flash('message', 'Registration is completed');
+            Session::flash('status', 'success');
+           return redirect('/'); 
+        }
+         Session::flash('message', 'There was an error with the registration' );
+         Session::flash('status', 'error');
+         return Redirect::back();
+    }
+
+
+
 }
