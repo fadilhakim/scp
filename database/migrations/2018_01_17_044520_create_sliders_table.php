@@ -13,12 +13,18 @@ class CreateSlidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('sliders', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('image_name',100);
-            $table->string('url_image',200);
-            $table->timestamps();
-        });
+        if(!Schema::hasTable("sliders"))
+        {
+            Schema::create('sliders', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('image_name',100);
+                $table->string('url_image',200);
+                
+                $table->timestamp("updated_at");
+                $table->datetime("created_at");
+            });
+        }
+       
     }
 
     /**

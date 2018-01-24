@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Order extends Model
 {
     //
-    protected $table = "Order_tbl";
+    protected $table = "order_tbl";
     public $primaryKey = "order_id";
     public $incrementing = TRUE;
     //protected $keyType = "";
