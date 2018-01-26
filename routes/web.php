@@ -35,5 +35,7 @@ Route::resource("test","TestController");
 
 // ADMIN 
 //$admin_route = " \App\Http\Controllers\Admin\ "; 
+Route::get("/admin","Admin\AuthController@login");
+Route::get("/admin/login","Admin\AuthController@login");
 Route::get("/admin/dashboard","Admin\DashboardController@index");
 

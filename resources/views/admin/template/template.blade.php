@@ -7,12 +7,12 @@
 
         @include("admin/template/navbar")
 
-        @include("admin/template/sidebar")
+        @include("admin/template/chat")
 
         <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
                     
-                    @include("admin/template/header")
+                    @include("admin/template/sidebar")
                     
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
