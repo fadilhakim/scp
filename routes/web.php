@@ -20,12 +20,32 @@ Route::get('/home2', function () {
 
 
 Route::get('/about', function () {
-    return view('welcome');
+    return view('about');
 });
 
 
 Route::get('/product', function () {
     return view('product');
+});
+
+Route::get('/cart', function () {
+    return view('cart');
+});
+
+Route::get('/services', function () {
+    return view('services');
+});
+
+Route::get('/cart', function () {
+    return view('cart');
+});
+
+Route::get('/checkout', function () {
+    return view('checkout');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
 });
 
 Route::resource("order","OrderController");

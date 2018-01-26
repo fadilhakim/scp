@@ -1,5 +1,4 @@
 @include('template/header')
-        <div class="header-empty-space"></div>
 
         <div class="slider-wrapper">
             <div class="swiper-button-prev hidden"></div>

@@ -116,7 +116,7 @@
                             </a>  
                         </div>
                     </div>
-                    <div class="popup-or">
+                   <!--  <div class="popup-or">
                         <span>or</span>
                     </div>
                     <div class="row m5">
@@ -144,7 +144,7 @@
                                 </span>
                             </a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="button-close"></div>
             </div>
@@ -180,7 +180,7 @@
                             </a>  
                         </div>
                     </div>
-                    <div class="popup-or">
+                    <!-- <div class="popup-or">
                         <span>or</span>
                     </div>
                     <div class="row m5">
@@ -208,7 +208,7 @@
                                 </span>
                             </a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="button-close"></div>
             </div>
