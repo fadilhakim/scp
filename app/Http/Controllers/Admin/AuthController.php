@@ -14,4 +14,14 @@ class AuthController extends Controller
         $data["title"] = "Login";
         return view ("admin/auth/login",$data);
     }
+
+    function LoginProcess(Request $request)
+    {
+        
+        $email = $request->input("email");
+        $password = $request->input("password");
+
+        dd(\Auth::attempt(["email"=>$email,"password"=>$password]));
+
+    }
 }

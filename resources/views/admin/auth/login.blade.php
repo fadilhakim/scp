@@ -13,7 +13,8 @@
                 <div class="col-sm-12">
                     <!-- Authentication card start -->
                     <div class="login-card card-block auth-body">
-                        <form class="md-float-material">
+                        <form class="md-float-material" method="post" action="<?=url("admin/login/process")?>">
+                            {{ csrf_field() }}
                             <div class="text-center">
                                 <img src="<?=asset(BASE_ADMIN_ASSET."assets/images/logo.png")?>" alt="logo.png">
                             </div>
@@ -30,11 +31,11 @@
                                 
                                 <p class="text-inverse b-b-default text-left p-b-5">Sign in with your regular account</p>
                                 <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="Username">
+                                    <input type="email" class="form-control" placeholder="Username" name="email">
                                     <span class="md-line"></span>
                                 </div>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" placeholder="password">
+                                    <input type="password" class="form-control" placeholder="password" name="password">
                                     <span class="md-line"></span>
                                 </div>
                                 <div class="row m-t-25 text-left">
@@ -53,7 +54,7 @@
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
+                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
                                     </div>
                                 </div>
                                 <!-- <div class="card-footer"> -->
