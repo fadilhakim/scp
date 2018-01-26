@@ -1,37 +1,8 @@
-<?php echo "AAAA"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Mash Able Light</title>
-    <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="Phoenixcoded">
-    <meta name="keywords" content=", Flat ui, Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
-    <meta name="author" content="Phoenixcoded">
-    <!-- Favicon icon -->
-    
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-    <!-- Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-    <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap/dist/css/bootstrap.min.css">
-    <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
-    <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="assets/icon/icofont/css/icofont.css">
-    <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-
+    @include("admin/auth/head")
 </head>
 
 <body class="fix-menu">
@@ -44,7 +15,7 @@
                     <div class="login-card card-block auth-body">
                         <form class="md-float-material">
                             <div class="text-center">
-                                <img src="assets/images/logo.png" alt="logo.png">
+                                <img src="<?=asset(BASE_ADMIN_ASSET."assets/images/logo.png")?>" alt="logo.png">
                             </div>
                             <div class="auth-box">
                                 <div class="row m-b-20">
@@ -55,15 +26,8 @@
                                         <p class="text-inverse m-t-25 text-left">Don't have an account? <a href=""> Register </a> here for free!</p>
                                     </div>
                                 </div>
-                                <p class="text-inverse b-b-default text-left p-b-5">Sign in easily with your social account:</p>
-                                <div class="row m-b-20">
-                                    <div class="col-md-6">
-                                        <button class="btn btn-facebook m-b-20"><i class="icofont icofont-social-facebook"></i>Sign in with facebook</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button class="btn btn-twitter m-b-20"><i class="icofont icofont-social-twitter"></i>Sign in with twitter</button>
-                                    </div>
-                                </div>
+                                <span class='clearfix'></span>
+                                
                                 <p class="text-inverse b-b-default text-left p-b-5">Sign in with your regular account</p>
                                 <div class="input-group">
                                     <input type="email" class="form-control" placeholder="Username">
@@ -155,19 +119,7 @@
 <![endif]-->
     <!-- Warning Section Ends -->
     <!-- Required Jquery -->
-    <script type="text/javascript" src="assets/plugins/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/tether/dist/js/tether.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-    <!-- modernizr js -->
-    <script type="text/javascript" src="assets/plugins/modernizr/modernizr.js"></script>
-    <script type="text/javascript" src="assets/plugins/modernizr/feature-detects/css-scrollbars.js"></script>
-    <!-- Custom js -->
-    <script type="text/javascript" src="assets/js/script.js"></script>
-    <!-- color js -->
-    <script type="text/javascript" src="assets/js/common-pages.js"></script>
+   @include("admin/auth/js_under")
 </body>
 
 </html>
