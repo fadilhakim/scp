@@ -60,3 +60,5 @@ Route::get("/admin/login","Admin\AuthController@login");
 Route::post("/admin/login/process","Admin\AuthController@LoginProcess");
 Route::get("/admin/dashboard","Admin\DashboardController@index");
 
+include "web2.php";
+
