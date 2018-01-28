@@ -60,3 +60,17 @@ Route::get("/admin/login","Admin\AuthController@login");
 Route::post("/admin/login/process","Admin\AuthController@LoginProcess");
 Route::get("/admin/dashboard","Admin\DashboardController@index");
 
+Route::get("/admin/users",function(){
+	$data['content'] = 'admin/users';
+	return view('admin/index',$data);
+});
+
+Route::get("/admin/about_us",function(){
+	$data['content'] = 'admin/about';
+	return view('admin/index',$data);
+});
+
+Route::get("/admin/slider",function(){
+	$data['content'] = 'admin/slider';
+	return view('admin/index',$data);
+});
