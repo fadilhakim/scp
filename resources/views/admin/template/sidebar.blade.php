@@ -30,11 +30,28 @@
                 </a>
             </li>
             <li>
-                <a href="<?=url("admin/user")?>">
+                <a href="<?=url("admin/users")?>">
                     <span class="pcoded-micon"><i class="ti-user"></i></span>
-                    <span class="pcoded-mtext"> Admin User </span>
+                    <span class="pcoded-mtext"> Costumer </span>
                     <span class="pcoded-mcaret"></span>
                 </a>
+            </li>
+
+            <li class="pcoded-hasmenu" dropdown-icon="style1" subitem-icon="style6">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-id-badge"></i></span>
+                    <span class="pcoded-mtext">Pages</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="{{url('admin/about_us')}}" target="_blank">
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext">About Us</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
       
