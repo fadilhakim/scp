@@ -60,6 +60,10 @@ Route::get("/admin/login","Admin\AuthController@login");
 Route::post("/admin/login/process","Admin\AuthController@LoginProcess");
 Route::get("/admin/dashboard","Admin\DashboardController@index");
 
+<<<<<<< HEAD
+include "web2.php";
+
+=======
 Route::get("/admin/users",function(){
 	$data['content'] = 'admin/users';
 	return view('admin/index',$data);
@@ -74,3 +78,4 @@ Route::get("/admin/slider",function(){
 	$data['content'] = 'admin/slider';
 	return view('admin/index',$data);
 });
+>>>>>>> de1304687d101e6b043054ba71192b933bee88c9
