@@ -25,11 +25,7 @@ class RedirectIfNotAdmin
            
             return redirect('admin/login');
         }
-        else
-        {
-            echo "error intinya";
-        }
-        exit;
+        
         return $next($request);
     }
 }

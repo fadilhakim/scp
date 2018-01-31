@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 
 
-
+use Auth;
 use App\Admin_model\User_admin;
 use App\User;
 
@@ -33,8 +33,8 @@ class AuthController extends Controller
     function LoginProcess(Request $request)
     {
         
-        $email = $request->input("email");
-        $password = bcrypt($request->input("password"));
+        $email    = $request->input("email");
+        $password = $request->input("password");
 
         $validation = Validator::make($request->all(),  [
             'email'    => 'required|email',
@@ -45,16 +45,16 @@ class AuthController extends Controller
             return Redirect::back()->withErrors($validation)->withInput();
         }
 
-        
-        
-        if (auth()->guard('admin')->attempt(['email' => $email, 'password' => $password]))
+
+
+        if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password]))
         {
             $user = Auth::guard('admin')->user();
-            dd($user);
+           
             return redirect("admin/dashboard");
         }else{
-            print_r($request->all());
-            dd('your username and password are wrong.');   
+          
+          
             return redirect("admin/login");         
         }
 
