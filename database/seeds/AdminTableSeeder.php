@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Admin\User_admin;
+use App\Admin\User_admin; // ambil dari model
 
 class AdminTableSeeder extends Seeder
 {
@@ -12,6 +12,8 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-        
+        $create = User_admin::firstOrCreate (
+            
+        );
     }
 }

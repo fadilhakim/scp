@@ -1,5 +1,5 @@
 <?php
-    $head_script = !empty($head_script) ? $head_script : "";
+    $head_script = !empty($head_script) ? $head_script : "admin";
     $title       = !empty($title) ? $title : "WebPage";
 ?>
 <title><?=$title ." - ". DESCRIPTION ?></title>
@@ -40,4 +40,3 @@
 <link rel="stylesheet" type="text/css" href="<?=asset("public/flatlite/assets/css/linearicons.css")?>" >
 <link rel="stylesheet" type="text/css" href="<?=asset("public/flatlite/assets/css/simple-line-icons.css")?>">
 <link rel="stylesheet" type="text/css" href="<?=asset("public/flatlite/assets/css/jquery.mCustomScrollbar.css")?>">
-

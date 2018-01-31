@@ -58,24 +58,20 @@ Route::resource("test","TestController");
 Route::get("/admin","Admin\AuthController@login");
 Route::get("/admin/login","Admin\AuthController@login");
 Route::post("/admin/login/process","Admin\AuthController@LoginProcess");
-Route::get("/admin/dashboard","Admin\DashboardController@index");
 
-<<<<<<< HEAD
+Route::group(['middleware' => ['admin']], function () {
+
+    Route::get("/admin/dashboard","Admin\DashboardController@index");
+    Route::get("/admin/product","Admin\ProductController@index");
+    Route::get("/admin/users","Admin\UsersController@index");
+    Route::get("/admin/slider","Admin\SliderController@index");
+    // pages
+    Route::get("/admin/about","Admin\PagesController@about");
+   
+   // Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'AdminController@dashboard']);
+});
+
+// default
+Route::get("default/login","Auth\LoginController@showLoginForm");
+
 include "web2.php";
-
-=======
-Route::get("/admin/users",function(){
-	$data['content'] = 'admin/users';
-	return view('admin/index',$data);
-});
-
-Route::get("/admin/about_us",function(){
-	$data['content'] = 'admin/about';
-	return view('admin/index',$data);
-});
-
-Route::get("/admin/slider",function(){
-	$data['content'] = 'admin/slider';
-	return view('admin/index',$data);
-});
->>>>>>> de1304687d101e6b043054ba71192b933bee88c9

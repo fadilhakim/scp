@@ -3,11 +3,25 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Validator;
+
 use App\Http\Controllers\Controller;
+
+
+
 use App\Admin_model\User_admin;
+use App\User;
 
 class AuthController extends Controller
 {
+   
+    use AuthenticatesUsers;
+    
+    public function __construct()
+    {
+       
+    }
     //
     function login()
     {
@@ -20,22 +34,44 @@ class AuthController extends Controller
     {
         
         $email = $request->input("email");
-        $password = $request->input("password");
+        $password = bcrypt($request->input("password"));
 
-        //dd(\Auth::attempt(["email"=>$email,"password"=>$password]));
+        $validation = Validator::make($request->all(),  [
+            'email'    => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if ($validation->fails()) {
+            return Redirect::back()->withErrors($validation)->withInput();
+        }
+
+        
+        
+        if (auth()->guard('admin')->attempt(['email' => $email, 'password' => $password]))
+        {
+            $user = Auth::guard('admin')->user();
+            dd($user);
+            return redirect("admin/dashboard");
+        }else{
+            print_r($request->all());
+            dd('your username and password are wrong.');   
+            return redirect("admin/login");         
+        }
+
+      
 
     }
 
     function test(Request $request)
     {
-        $adminObj = new User_admin();
+        $adminObj = new User();
 
         $arr = array(
             "username"=>"alhusna901",
             "email"=>"alhusna901@gmail.com",
-            "password"=>md5("999999"),
-            "nama"=>"Aries Dimas Yudhistira",
-            "role_id"=>1,
+            "password"=>bcrypt("999999"),
+            "name"=>"Aries Dimas Yudhistira",
+            "role"=>"customer",
             "status"=>"active",
             "ip_address"=> "127.0.0.0",
             "user_agent"=>"mozilla"

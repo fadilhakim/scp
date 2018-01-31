@@ -5,10 +5,7 @@
 <html lang="en">
     <head> 
         @include("admin/template/head")
-        <?php 
-        
-        
-        ?>
+       
     </head>
     <body> 
          <!-- Pre-loader start -->

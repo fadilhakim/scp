@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PaymentTableTransaction extends Migration
+class UserTableTransaction extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,13 @@ class PaymentTableTransaction extends Migration
      */
     public function up()
     {
-        /*Schema::table("payment_tbl",function($table){
-            
-            
-            $table->datetime("created_at");
+        //
+        Schema::table("users",function(Blueprint $table){
+            $table->string("username");
+            $table->string("status",10);
             $table->ipAddress("ip_address");
             $table->string("user_agent");
-
-            // foreign key
-            $table->foreign("user_id")->references("id")->on("users");
-            $table->foreign("order_id")->references("order_id")->on("order_tbl");
-        });*/
+        });
     }
 
     /**

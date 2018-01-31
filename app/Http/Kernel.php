@@ -49,6 +49,7 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+    // DAFTARKAN MIDDLEWARE BARU DISINI
     protected $routeMiddleware = [
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
@@ -56,5 +57,8 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        // middleware baru yg didaftarkan
+       
+        'admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
     ];
 }
