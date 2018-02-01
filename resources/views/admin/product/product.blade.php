@@ -43,16 +43,16 @@ function add_modal_product()
                                 </tr>
                             </thead>
                             <tbody>
-                               <?php for ($i = 0 ; $i < 9; $i++){ ?>
+                               <?php $i=1; foreach ($product as $row){ ?>
                                 <tr>
                                     <th scope="row"><?php echo $i ?></th>
-                                    <td> <a href="<?=url("admin/product/detail/id")?>"> Product1 </a> </td>
-                                    <td><?=number_format(5000000)?></td>
-                                    <td> 50 </td>
-                                    <td> 100 g</td>
-                                    <td> Category 1</td>
-                                    <td> Pre Order </td>
-                                    <td> Show </td>
+                                    <td> <a href="<?=url("admin/product/detail/".$row->product_id)?>"> {{ $row->product_title }} </a> </td>
+                                    <td><?=number_format($row->price)?></td>
+                                    <td> {{ $row->stock }} </td>
+                                    <td> {{ $row->weight }} g</td>
+                                    <td> {{ $row->product_category }}</td>
+                                    <td> {{ $row->product_availability }} </td>
+                                    <td> {{ $row->status }} </td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,7 +68,7 @@ function add_modal_product()
                                     </td>
                                 </tr>
 
-                                <?php } ?>
+                                <?php $i++; } ?>
                             </tbody>
                         </table>
                     </div>

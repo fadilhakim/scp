@@ -75,6 +75,8 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post("/admin/product/update","Admin\ProductController@modal_product_update");
     Route::post("/admin/product/delete","Admin\ProductController@modal_product_delete");
 
+    Route::post("/admin/product/insert_process","Admin\ProductController@product_insert_process");
+
 
    
    // Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'AdminController@dashboard']);

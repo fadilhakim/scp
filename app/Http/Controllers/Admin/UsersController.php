@@ -15,6 +15,7 @@ class UsersController extends Controller
 
     function index()
     {
+        $data["title"]   = "Users";
         $data['content'] = 'admin/users/users';
         return view('admin/index',$data);
     }
