@@ -16,12 +16,13 @@
                         <form class="md-float-material" method="post" action="<?=url("admin/login/process")?>">
                             {{ csrf_field() }}
                             <div class="text-center">
-                                <img src="<?=asset(BASE_ADMIN_ASSET."assets/images/logo.png")?>" alt="logo.png">
+                                <!-- <img src="<?=asset(BASE_ADMIN_ASSET."assets/images/logo.png")?>" alt="logo.png"> -->
+
                             </div>
                             <div class="auth-box">
                                 <div class="row m-b-20">
                                     <div class="col-md-3">
-                                        <h3 class="text-center txt-primary">Sign In</h3>
+                                        <h3 class="text-center txt-primary">CMS</h3>
                                     </div>
                                     <div class="col-md-9">
                                         <p class="text-inverse m-t-25 text-left">Don't have an account? <a href=""> Register </a> here for free!</p>

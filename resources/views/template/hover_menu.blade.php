@@ -37,13 +37,14 @@
             </li>
             <li class="megamenu-wrapper {{$active_product}}">
                 <a href="{{url('product')}}">products</a>
-                <div class="menu-toggle"></div>
+                <!-- <div class="menu-toggle"></div> -->
                 <div class="megamenu">
                     <div class="links">
-                        <a class="active" href="products1.html">Products Landing 1</a>
-                        <a href="products2.html">Products Landing 2</a>
-                        <a href="products3.html">Products Landing 3</a>
-                        <a href="product.html">Product Detail</a>
+                        <p>Categories</p>
+                        <a class="active" href="#">Category 1</a>
+                        <a href="#">Category 2</a>
+                        <a href="#">Category 3</a>
+                        <a href="#">Category 4</a>
                     </div>
                     <div class="content">
                         <div class="row nopadding">
@@ -60,10 +61,10 @@
                                             <div class="swiper-button-next style-1"></div>
                                             <div class="swiper-wrapper">
                                                 <div class="swiper-slide">
-                                                    <img src="img/product-59.jpg" alt="" />
+                                                    <img src="{{URL::asset('public/img/product-59.jpg')}}"" alt="" />
                                                 </div>
                                                 <div class="swiper-slide">
-                                                    <img src="img/product-61.jpg" alt="" />
+                                                    <img src="{{URL::asset('public/img/product-61.jpg')}}" alt="" />
                                                 </div>
                                             </div>
                                         </div> 
