@@ -30,6 +30,13 @@
                 </a>
             </li>
             <li>
+                <a href="<?=url("admin/product")?>">
+                    <span class="pcoded-micon"><i class="ti-briefcase"></i></span>
+                    <span class="pcoded-mtext"> Product </span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li>
                 <a href="<?=url("admin/users")?>">
                     <span class="pcoded-micon"><i class="ti-user"></i></span>
                     <span class="pcoded-mtext"> Costumer </span>

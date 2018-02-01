@@ -21,6 +21,7 @@ class CreateAdminTbl extends Migration
                 $table->string("username");
                 $table->string("password");
                 $table->string("email");
+                $table->string("name");
                 $table->integer("role_id")->unsigned();
                 $table->integer("status")->unsigned();
                 

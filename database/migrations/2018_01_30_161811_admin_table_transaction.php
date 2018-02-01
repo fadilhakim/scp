@@ -16,7 +16,7 @@ class AdminTableTransaction extends Migration
         //
         Schema::table("admin_tbl",function(Blueprint $table){
             
-          
+           
             $table->string('status', 10)->change();
             $table->string("email",70)->unique()->change();
             
