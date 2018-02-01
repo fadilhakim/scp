@@ -26,9 +26,15 @@ class Category extends Model
     //const UPDATE_AT = "update_at";
     // protected $connection = ""; // connection database name
 
+    function __construct()
+    {
+       
+    }
+
     static function all_category()
     {
-        $category = DB::table("category_tbl")->get()->toArray();
+        
+        $category = DB::table("category_tbl")->get();
         return $category;
     }
 

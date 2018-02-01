@@ -31,9 +31,9 @@ class ProductController extends Controller
     function modal_product_insert()
     {
        
-        $data["category"] = Category::all_category();
-        $data["subcategory"] = Subcategory::all_subcategory();
-        //echo "iam here";
+        $data["category"] = $category = Category::all_category();
+        $data["subcategory"] = $subcategory = Subcategory::all_subcategory();
+      
         return view("admin/product/modal_product_insert",$data);
     }
 

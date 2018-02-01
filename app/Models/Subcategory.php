@@ -26,9 +26,15 @@ class Subcategory extends Model
     //const UPDATE_AT = "update_at";
     // protected $connection = ""; // connection database name
 
+    function __construct()
+    {
+        
+    }
+
     static function all_subcategory()
     {
-        $subcategory = DB::table("subcategory_tbl")->get()->toArray();
+        
+        $subcategory = DB::table("subcategory_tbl")->get();
         return $subcategory;
     }
 }

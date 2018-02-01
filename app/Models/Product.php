@@ -19,11 +19,16 @@ class Product extends Model
         "weight","product_description",
         "ip_address","user_agent"
     ];
-  
+    
+    function __construct()
+    {
+        
+    }
     //
     static function all_product()
     {
-        $product = DB::table("product_tbl")->get()->toArray();
+       
+        $product = DB::table("product_tbl")->get();
         return $product;
     }
 
