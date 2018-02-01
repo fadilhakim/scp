@@ -21,7 +21,7 @@
                                 <div class="page-wrapper">
                                     <div class="page-header">
                                         <div class="page-header-title">
-                                            <h4>Dashboard</h4>
+                                            <h4><?=$title?></h4>
                                         </div>
                                         <div class="page-header-breadcrumb">
                                             <ul class="breadcrumb-title">
@@ -30,7 +30,7 @@
                                                         <i class="icofont icofont-home"></i>
                                                     </a>
                                                 </li>
-                                                <li class="breadcrumb-item"><a href="#!">Dashboard</a>
+                                                <li class="breadcrumb-item"><a href="<?=url("admin/$title")?>"><?=$title?></a>
                                                 </li>
                                             </ul>
                                         </div>

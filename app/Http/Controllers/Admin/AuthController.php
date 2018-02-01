@@ -62,16 +62,24 @@ class AuthController extends Controller
 
     }
 
+    function session()
+    {
+        echo "<h1> Session </h1><hr>";
+        $user = Auth::guard("admin")->user();
+        echo $user->name;
+        print_r($user->original);
+    }
+
     function test(Request $request)
     {
-        $adminObj = new User();
+        $adminObj = new User_admin();
 
         $arr = array(
             "username"=>"alhusna901",
             "email"=>"alhusna901@gmail.com",
             "password"=>bcrypt("999999"),
             "name"=>"Aries Dimas Yudhistira",
-            "role"=>"customer",
+            "role_id"=>1,
             "status"=>"active",
             "ip_address"=> "127.0.0.0",
             "user_agent"=>"mozilla"
