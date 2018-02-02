@@ -6,7 +6,7 @@
 </head>
 
 <body class="fix-menu">
-    <section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+    <section class="login p-fixed d-flex text-center bg-primary">
         <!-- Container-fluid starts -->
         <div class="container-fluid">
             <div class="row">
@@ -29,7 +29,8 @@
                                     </div>
                                 </div>
                                 <span class='clearfix'></span>
-                                
+                                <p class="text-inverse b-b-default text-left p-b-5"> flash: <?= session()->reflash("message") ?></p>
+                                <span class='clearfix'></span>
                                 <p class="text-inverse b-b-default text-left p-b-5">Sign in with your regular account</p>
                                 <div class="input-group">
                                     <input type="email" class="form-control" placeholder="Username" name="email">

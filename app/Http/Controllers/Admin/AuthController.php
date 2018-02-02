@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Validator;
-
 use App\Http\Controllers\Controller;
-
 
 use Auth;
 use App\Admin_model\User_admin;
@@ -45,8 +43,6 @@ class AuthController extends Controller
             return Redirect::back()->withErrors($validation)->withInput();
         }
 
-
-
         if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password]))
         {
             $user = Auth::guard('admin')->user();
@@ -54,7 +50,7 @@ class AuthController extends Controller
             return redirect("admin/dashboard");
         }else{
           
-          
+            $request->session()->flash('message', 'Username or Password are invalid');
             return redirect("admin/login");         
         }
 
