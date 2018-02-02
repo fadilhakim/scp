@@ -89,4 +89,9 @@ class AuthController extends Controller
         $adminObj->save();
         echo "done";
     }
+
+    function logout()
+    {
+        
+    }
 }

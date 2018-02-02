@@ -19,4 +19,6 @@ class UsersController extends Controller
         $data['content'] = 'admin/users/users';
         return view('admin/index',$data);
     }
+
+
 }

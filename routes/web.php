@@ -64,7 +64,12 @@ Route::group(['middleware' => ['admin']], function () {
 
     Route::get("/admin/dashboard","Admin\DashboardController@index");
    
+    // Auth
+    Route::get("/admin/logout","Admin\AuthController@logout");
+
+    // Admin
     Route::get("/admin/users","Admin\UsersController@index");
+
     Route::get("/admin/slider","Admin\SliderController@index");
     // pages
     Route::get("/admin/about","Admin\PagesController@about");
@@ -76,9 +81,9 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post("/admin/product/delete","Admin\ProductController@modal_product_delete");
 
     Route::post("/admin/product/insert_process","Admin\ProductController@product_insert_process");
+    Route::post("/admin/product/update_process","Admin\ProductController@product_update_process");
+    Route::post("/admin/product/delete_process","Admin\ProductController@product_delete_process");
 
-
-   
    // Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'AdminController@dashboard']);
 });
 

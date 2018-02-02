@@ -56,18 +56,9 @@
                                     <i class="ti-user"></i> Profile
                                 </a>
                             </li>
+                            
                             <li>
-                                <a href="#!">
-                                    <i class="ti-email"></i> My Messages
-                                </a>
-                            </li>
-                            <li>
-                                <a href="auth-lock-screen.html">
-                                    <i class="ti-lock"></i> Lock Screen
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#!">
+                                <a href="<?=url("admin/users/logout")?>">
                                     <i class="ti-layout-sidebar-left"></i> Logout
                                 </a>
                             </li>
