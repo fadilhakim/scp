@@ -12,6 +12,35 @@ function add_modal_product()
         }
     });
 }
+
+function update_modal_product(product_id)
+{
+    var _token = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+        type:"POST",
+        url:"<?=url("admin/product/update")?>",
+        data:"_token="+_token+"&product_id="+product_id,
+        success:function(data)
+        {
+            $(".tmp-product").html(data)
+        }
+    });
+}
+
+function delete_modal_product(product_id)
+{
+    var _token = $('meta[name="csrf-token"]').attr('content');
+    
+    $.ajax({
+        type:"POST",
+        url:"<?=url("admin/product/delete")?>",
+        data:"_token="+_token+"&product_id="+product_id,
+        success:function(data)
+        {
+            $(".tmp-product").html(data)
+        }
+    });
+}
 </script>
 <div class="page-body">
     <div class="row">
@@ -27,7 +56,7 @@ function add_modal_product()
                 </div>
                 <div class="card-block table-border-style">
                     <div class="tmp-product"></div>
-                    <div class="table-responsive">
+                    <div class="">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -54,14 +83,14 @@ function add_modal_product()
                                     <td> {{ $row->product_availability }} </td>
                                     <td> {{ $row->status }} </td>
                                     <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div class="dropdown"  data-container="body" >
+                                            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu2"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Setting
                                             </button>
                                             <div align="right" class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
                                           
-                                            <button class="dropdown-item" type="button"> Update</button>
-                                            <button class="dropdown-item" type="button"> Delete </button>
+                                            <button class="dropdown-item" type="button" onclick="update_modal_product(<?=$row->product_id?>)"> Update</button>
+                                            <button class="dropdown-item" type="button" onclick="delete_modal_product(<?=$row->product_id?>)"> Delete </button>
                                             
                                             </div>
                                         </div>
