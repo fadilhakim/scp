@@ -58,7 +58,7 @@
                             </li>
                             
                             <li>
-                                <a href="<?=url("admin/users/logout")?>">
+                                <a href="<?=url("admin/logout")?>">
                                     <i class="ti-layout-sidebar-left"></i> Logout
                                 </a>
                             </li>

@@ -13,7 +13,6 @@ use App\User;
 
 class AuthController extends Controller
 {
-   
     use AuthenticatesUsers;
     
     public function __construct()
@@ -45,12 +44,12 @@ class AuthController extends Controller
 
         if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password]))
         {
-            $user = Auth::guard('admin')->user();
+            $user = Auth::guard('admin')->user();// define session
            
             return redirect("admin/dashboard");
         }else{
           
-            $request->session()->flash('message', 'Username or Password are invalid');
+            $request->session()->with('message', 'Username or Password are invalid');
             return redirect("admin/login");         
         }
 
@@ -88,6 +87,8 @@ class AuthController extends Controller
 
     function logout()
     {
+        Auth::guard("admin")->logout();
         
+        return redirect('/admin');
     }
 }

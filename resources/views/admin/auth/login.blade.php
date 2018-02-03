@@ -29,7 +29,12 @@
                                     </div>
                                 </div>
                                 <span class='clearfix'></span>
-                                <p class="text-inverse b-b-default text-left p-b-5"> flash: <?= session()->reflash("message") ?></p>
+                                <p class="text-inverse b-b-default text-left p-b-5"> 
+                                    @if ($alert = Session::get('alert-success'))
+                                    <div class="alert alert-warning">
+                                        {{ $alert }}
+                                    </div>
+                                    @endif</p>
                                 <span class='clearfix'></span>
                                 <p class="text-inverse b-b-default text-left p-b-5">Sign in with your regular account</p>
                                 <div class="input-group">
