@@ -53,41 +53,5 @@ Route::get("/test/dimas","TestController@dimas"); // HARUS DITAMBAHKAN SEBELUM R
 Route::resource("test","TestController");
 //Route::get("/dimas","TestController@dimas");
 
-// ADMIN 
-//$admin_route = " \App\Http\Controllers\Admin\ "; 
-Route::get("/admin","Admin\AuthController@login");
-Route::get("/admin/login","Admin\AuthController@login");
-Route::get("/admin/session","Admin\AuthController@session");
-Route::post("/admin/login/process","Admin\AuthController@LoginProcess");
-
-Route::group(['middleware' => ['admin']], function () {
-
-    Route::get("/admin/dashboard","Admin\DashboardController@index");
-   
-    // Auth
-    Route::get("/admin/logout","Admin\AuthController@logout");
-
-    // Admin
-    Route::get("/admin/users","Admin\UsersController@index");
-
-    Route::get("/admin/slider","Admin\SliderController@index");
-    // pages
-    Route::get("/admin/about","Admin\PagesController@about");
-    // product
-    Route::get("/admin/product","Admin\ProductController@index");
-    Route::get("/admin/product/detail","Admin\ProductController@detail");
-    Route::post("/admin/product/insert","Admin\ProductController@modal_product_insert");
-    Route::post("/admin/product/update","Admin\ProductController@modal_product_update");
-    Route::post("/admin/product/delete","Admin\ProductController@modal_product_delete");
-
-    Route::post("/admin/product/insert_process","Admin\ProductController@product_insert_process");
-    Route::post("/admin/product/update_process","Admin\ProductController@product_update_process");
-    Route::post("/admin/product/delete_process","Admin\ProductController@product_delete_process");
-
-   // Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'AdminController@dashboard']);
-});
-
-// default
-Route::get("default/login","Auth\LoginController@showLoginForm");
-
+include "admin_route.php";
 include "web2.php";

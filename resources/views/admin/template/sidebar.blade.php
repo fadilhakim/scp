@@ -33,12 +33,30 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-            <li>
-                <a href="<?=url("admin/product")?>">
-                    <span class="pcoded-micon"><i class="ti-briefcase"></i></span>
+            
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                     <span class="pcoded-mtext"> Product </span>
                     <span class="pcoded-mcaret"></span>
                 </a>
+                <ul class="pcoded-submenu">
+                    <li>
+                        <a href="<?=url("admin/product")?>">
+                            <span class="pcoded-micon"><i class="ti-briefcase"></i></span>
+                            <span class="pcoded-mtext"> List Product </span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=url("admin/product/category")?>">
+                            <span class="pcoded-micon"><i class="ti-briefcase"></i></span>
+                            <span class="pcoded-mtext"> Category </span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                   
+                </ul>
             </li>
             <li>
                 <a href="<?=url("admin/users")?>">

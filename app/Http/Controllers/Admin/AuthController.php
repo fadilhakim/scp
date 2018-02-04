@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 
+use App\Libraries\Alert;
 use Auth;
 use App\Admin_model\User_admin;
 use App\User;
@@ -48,8 +49,8 @@ class AuthController extends Controller
            
             return redirect("admin/dashboard");
         }else{
-          
-            $request->session()->with('message', 'Username or Password are invalid');
+            $request->session()->flash('message', "Username or Password are invalid");
+           
             return redirect("admin/login");         
         }
 

@@ -30,11 +30,13 @@
                                 </div>
                                 <span class='clearfix'></span>
                                 <p class="text-inverse b-b-default text-left p-b-5"> 
-                                    @if ($alert = Session::get('alert-success'))
-                                    <div class="alert alert-warning">
-                                        {{ $alert }}
+                                   
+                                   @if(Session::has("message"))
+                                   <div class='alert alert-danger'>
+                                    {{ session("message") }}
                                     </div>
-                                    @endif</p>
+                                   @endif
+                                </p>
                                 <span class='clearfix'></span>
                                 <p class="text-inverse b-b-default text-left p-b-5">Sign in with your regular account</p>
                                 <div class="input-group">

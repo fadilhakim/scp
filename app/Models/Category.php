@@ -33,9 +33,24 @@ class Category extends Model
 
     static function all_category()
     {
-        
         $category = DB::table("category_tbl")->get();
         return $category;
+    }
+
+    static function list_subcategory($category_id)
+    {
+        $subcategory = DB::table("subcategory_tbl")->where("category_id",$category_id)->first();
+        return $subcategory;
+    }
+
+    static function update_category()
+    {
+
+    }
+
+    static function delete_category()
+    {
+
     }
 
 }
