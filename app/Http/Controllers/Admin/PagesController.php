@@ -15,7 +15,15 @@ class PagesController extends Controller
 
     function about()
     {
+    	$data["title"]   = "About";
         $data['content'] = 'admin/about';
+        return view('admin/index',$data);
+    }
+
+    function home()
+    {	
+    	$data["title"]   = "Home Content";
+        $data['content'] = 'admin/home';
         return view('admin/index',$data);
     }
 }

@@ -68,6 +68,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get("/admin/slider","Admin\SliderController@index");
     // pages
     Route::get("/admin/about","Admin\PagesController@about");
+    Route::get("/admin/home","Admin\PagesController@home");
     // product
     Route::get("/admin/product","Admin\ProductController@index");
     Route::get("/admin/product/detail","Admin\ProductController@detail");
@@ -82,5 +83,8 @@ Route::group(['middleware' => ['admin']], function () {
 
 // default
 Route::get("default/login","Auth\LoginController@showLoginForm");
+
+// 404 
+
 
 include "web2.php";

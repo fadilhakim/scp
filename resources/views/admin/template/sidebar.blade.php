@@ -21,22 +21,49 @@
             </div>
         </div>
         <div class="pcoded-navigatio-lavel">Menu</div>
+        <?php 
+            $route = Request::segment(2);
+            $active_about_us = '' ;
+            $active_home = '' ;
+            $active_dashboard = '' ;
+            $active_users = '' ;
+            $active_contact = '' ;
+            $active_product = '' ;
+
+            if($route == 'about'){
+                $active_about = 'active pcoded-trigger' ;
+            }
+            else if($route == 'product'){
+                $active_product = 'active pcoded-trigger' ;
+            }else if($route == 'users'){
+                $active_users = 'active pcoded-trigger' ;
+            }else if($route == 'contact'){
+                $active_contact = 'active' ;
+            }
+            else if($route == 'dashboard'){
+                $active_dashboard = 'active pcoded-trigger' ;
+            }
+            else{
+                $active_home = 'active pcoded-trigger';
+            }
+
+        ?>
         <ul class="pcoded-item pcoded-left-item">
-            <li class="active pcoded-trigger ">
+            <li class="{{ $active_dashboard }}">
                 <a href="<?=url("admin/dashboard")?>">
                     <span class="pcoded-micon"><i class="ti-comments"></i></span>
                     <span class="pcoded-mtext">Dashboard</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-            <li>
+            <li class="{{ $active_product }}">
                 <a href="<?=url("admin/product")?>">
                     <span class="pcoded-micon"><i class="ti-briefcase"></i></span>
                     <span class="pcoded-mtext"> Product </span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-            <li>
+            <li class="{{ $active_users }}">
                 <a href="<?=url("admin/users")?>">
                     <span class="pcoded-micon"><i class="ti-user"></i></span>
                     <span class="pcoded-mtext"> Costumer </span>
@@ -44,15 +71,24 @@
                 </a>
             </li>
 
-            <li class="pcoded-hasmenu" dropdown-icon="style1" subitem-icon="style6">
+            <li class="pcoded-hasmenu {{ $active_home }}" dropdown-icon="style1" subitem-icon="style6">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="ti-id-badge"></i></span>
                     <span class="pcoded-mtext">Pages</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
                 <ul class="pcoded-submenu">
+                    
                     <li class="">
-                        <a href="{{url('admin/about_us')}}" target="_blank">
+                        <a href="{{url('admin/home')}}">
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext">Home Images</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a href="{{url('admin/about')}}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext">About Us</span>
                             <span class="pcoded-mcaret"></span>
