@@ -5,17 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Validator;
-
 use App\Http\Controllers\Controller;
 
-
+use App\Libraries\Alert;
 use Auth;
 use App\Admin_model\User_admin;
 use App\User;
 
 class AuthController extends Controller
 {
-   
     use AuthenticatesUsers;
     
     public function __construct()
@@ -45,16 +43,14 @@ class AuthController extends Controller
             return Redirect::back()->withErrors($validation)->withInput();
         }
 
-
-
         if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password]))
         {
-            $user = Auth::guard('admin')->user();
+            $user = Auth::guard('admin')->user();// define session
            
             return redirect("admin/dashboard");
         }else{
-          
-          
+            $request->session()->flash('message', "Username or Password are invalid");
+           
             return redirect("admin/login");         
         }
 
@@ -88,5 +84,12 @@ class AuthController extends Controller
         $adminObj->fill($arr);
         $adminObj->save();
         echo "done";
+    }
+
+    function logout()
+    {
+        Auth::guard("admin")->logout();
+        
+        return redirect('/admin');
     }
 }

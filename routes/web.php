@@ -53,6 +53,7 @@ Route::get("/test/dimas","TestController@dimas"); // HARUS DITAMBAHKAN SEBELUM R
 Route::resource("test","TestController");
 //Route::get("/dimas","TestController@dimas");
 
+
 // ADMIN 
 //$admin_route = " \App\Http\Controllers\Admin\ "; 
 Route::get("/admin","Admin\AuthController@login");
@@ -87,4 +88,6 @@ Route::get("default/login","Auth\LoginController@showLoginForm");
 // 404 
 
 
+
+include "admin_route.php";
 include "web2.php";

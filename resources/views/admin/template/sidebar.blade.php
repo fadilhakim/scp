@@ -1,11 +1,15 @@
+<?php
+   $session =  Auth::guard("admin")->user();
+   $name_session = $session->name;
+?>
 <nav class="pcoded-navbar" >
     <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
     <div class="pcoded-inner-navbar main-menu">
         <div class="">
             <div class="main-menu-header">
-                <img class="img-40" src="<?=asset(BASE_ADMIN_ASSET."assets/images/user.png")?>" alt="User-Profile-Image">
+                <img class="img-80" src="<?=asset(BASE_ADMIN_ASSET."assets/images/user.png")?>" alt="User-Profile-Image">
                 <div class="user-details">
-                    <span>John Doe</span>
+                    <span>{{ $name_session }}</span>
                     <span id="more-details">UX Designer<i class="ti-angle-down"></i></span>
                 </div>
             </div>
@@ -56,12 +60,31 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-            <li class="{{ $active_product }}">
-                <a href="<?=url("admin/product")?>">
-                    <span class="pcoded-micon"><i class="ti-briefcase"></i></span>
+
+            
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                     <span class="pcoded-mtext"> Product </span>
                     <span class="pcoded-mcaret"></span>
                 </a>
+                <ul class="pcoded-submenu">
+                    <li>
+                        <a href="<?=url("admin/product")?>">
+                            <span class="pcoded-micon"><i class="ti-briefcase"></i></span>
+                            <span class="pcoded-mtext"> List Product </span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=url("admin/product/category")?>">
+                            <span class="pcoded-micon"><i class="ti-briefcase"></i></span>
+                            <span class="pcoded-mtext"> Category </span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                   
+                </ul>
             </li>
             <li class="{{ $active_users }}">
                 <a href="<?=url("admin/users")?>">

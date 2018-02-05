@@ -16,8 +16,8 @@ class Product extends Model
     protected $fillable = [
         'product_title',"product_availability","product_categoty",
         "product_subcategory","status","price","old_price","stock",
-        "weight","product_description",
-        "ip_address","user_agent"
+        "weight","product_description","status",
+        "created_at","ip_address","user_agent"
     ];
     
     function __construct()
@@ -30,6 +30,92 @@ class Product extends Model
        
         $product = DB::table("product_tbl")->get();
         return $product;
+    }
+    
+    function detail_product($product_id)
+    {
+        $product = DB::table($this->table)->where($this->primaryKey,$product_id)->first();
+        return $product;
+    }
+
+    function test()
+    {
+        echo "test";
+    }
+
+    public function insert_product($arr)
+    {
+        $product_title      = $arr["product_title"];
+        $product_description= $arr["product_description"]; 
+        $product_availability = $arr["product_availability"];
+        $status             = $arr["status"];
+        $category           = $arr["category"];
+        $subcategory        = $arr["subcategory"];
+        $old_price          = $arr["stock"];
+        $price              = $arr["price"];
+        $stock              = $arr["stock"];
+        $weight             = $arr["weight"];
+
+        $datetime           = $arr["created_at"];
+        $ip_address         = $arr["ip_address"];
+        $user_agent         = $arr["user_agent"];
+
+        DB::table($this->table)->insert([
+            'product_title' => $product_title, 
+            'product_description' => $product_description,
+            "product_category"=>$category,
+            "product_subcategory"=>$subcategory,
+            "product_availability"=>$product_availability,
+            "status"=>$status,
+            "price"=>$price,
+            "old_price"=>$old_price,
+            "stock"=>$stock,
+            "weight"=>$weight,
+            "created_at"=>$datetime,
+            "ip_address"=>$ip_address,
+            "user_agent"=>$user_agent
+        ]);
+    }
+
+    public function update_product($arr)
+    {
+        $product_id         = $arr["product_id"];
+
+        $product_title      = $arr["product_title"];
+        $product_description= $arr["product_description"]; 
+        $product_availability = $arr["product_availability"];
+        $status             = $arr["status"];
+        $category           = $arr["category"];
+        $subcategory        = $arr["subcategory"];
+        $old_price          = $arr["stock"];
+        $price              = $arr["price"];
+        $stock              = $arr["stock"];
+        $weight             = $arr["weight"];
+
+        $datetime           = $arr["created_at"];
+        $ip_address         = $arr["ip_address"];
+        $user_agent         = $arr["user_agent"];
+
+        DB::table('product_tbl') ->where('product_id', $product_id)->update([
+            'product_title' => $product_title, 
+            'product_description' => $product_description,
+            "product_category"=>$category,
+            "product_subcategory"=>$subcategory,
+            "product_availability"=>$product_availability,
+            "status"=>$status,
+            "price"=>$price,
+            "old_price"=>$old_price,
+            "stock"=>$stock,
+            "weight"=>$weight,
+           
+            "ip_address"=>$ip_address,
+            "user_agent"=>$user_agent
+        ]);
+    }
+
+    function delete_product($product_id)
+    {
+        DB::table($this->table)->where($this->primaryKey, $product_id)->delete();
     }
 
 }
