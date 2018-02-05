@@ -28,6 +28,10 @@ Route::get('/product', function () {
     return view('product');
 });
 
+Route::get('/product/detail/id', function () {
+    return view('product_detail');
+});
+
 Route::get('/cart', function () {
     return view('cart');
 });

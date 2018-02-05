@@ -21,20 +21,20 @@
                                 <div class="swiper-slide">
                                     <div class="product-shortcode style-1 small">
                                         <div class="title">
-                                            <div class="simple-article size-1 color col-xs-b5"><a href="#">Phone</a></div>
-                                            <div class="h6 animate-to-green"><a href="#">Alcatel Crave Pink</a></div>
+                                            <div class="simple-article size-1 color col-xs-b5"><a href="<?=url("product/detail/id")?>">Phone</a></div>
+                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/id")?>">Alcatel Crave Pink</a></div>
                                         </div>
                                         <div class="preview">
                                             <img src="{{URL::asset('/public/products/71fHrYMs2fL._SX575_.jpg')}}" alt="">
                                             <div class="preview-buttons valign-middle">
                                                 <div class="valign-middle-content">
-                                                    <a class="button size-2 style-2" href="#">
+                                                    <a class="button size-2 style-2" href="<?=url("product/detail/id")?>">
                                                         <span class="button-wrapper">
                                                             <span class="icon"><img src="{{URL::asset('/public/img/icon-1.png')}}" alt=""></span>
                                                             <span class="text">Learn More</span>
                                                         </span>
                                                     </a>
-                                                    <a class="button size-2 style-3" href="#">
+                                                    <a class="button size-2 style-3" href="<?=url("product/detail/id")?>">
                                                         <span class="button-wrapper">
                                                             <span class="icon"><img src="{{URL::asset('/public/img/icon-3.png')}}" alt=""></span>
                                                             <span class="text">Add To Cart</span>
@@ -92,24 +92,24 @@
                     <div class="products-content">
                         <div class="products-wrapper">
                             <div class="row nopadding">
-                            <?php for($i = 0; $i < 11; $i++) {?>
+                            <?php for($i = 0; $i < 8; $i++) {?>
                                 <div class="col-sm-4 col-md-3">
                                     <div class="product-shortcode style-1">
                                         <div class="title">
-                                            <div class="simple-article size-1 color col-xs-b5"><a href="#">SMART PHONES</a></div>
-                                            <div class="h6 animate-to-green"><a href="#">Smartphone vibe x2</a></div>
+                                            <div class="simple-article size-1 color col-xs-b5"><a href="<?=url("product/detail/id")?>">SMART PHONES</a></div>
+                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/id")?>">Smartphone vibe x2</a></div>
                                         </div>
                                         <div class="preview">
                                             <img src="{{URL::asset('public/products/test_2.jpg')}}" alt="">
                                             <div class="preview-buttons valign-middle">
                                                 <div class="valign-middle-content">
-                                                    <a class="button size-2 style-2" href="#">
+                                                    <a class="button size-2 style-2" href="<?=url("product/detail/id")?>">
                                                         <span class="button-wrapper">
                                                             <span class="icon"><img src="{{URL::asset('public/img/icon-1.png')}}" alt=""></span>
                                                             <span class="text">Learn More</span>
                                                         </span>
                                                     </a>
-                                                    <a class="button size-2 style-3" href="#">
+                                                    <a class="button size-2 style-3" href="<?=url("product/detail/id")?>">
                                                         <span class="button-wrapper">
                                                             <span class="icon"><img src="{{URL::asset('public/img/icon-3.png')}}" alt=""></span>
                                                             <span class="text">Add To Cart</span>
@@ -119,7 +119,7 @@
                                             </div>
                                         </div>
                                         <div class="price">
-                                            <div class="simple-article size-4 dark">$630.00</div>
+                                            <div class="simple-article size-4 dark">RP 100.630.00</div>
                                         </div>
                                         <div class="description">
                                             <div class="simple-article text size-2">Mollis nec consequat at In feugiat mole stie tortor a malesuada</div>
