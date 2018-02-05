@@ -9,9 +9,11 @@
             </div>
            
             <div class="modal-body">
-                <div id="temp-subcategory"></div>
+                
                 <form id="form-subcategory-update">
-                {{ csrf_field() }}
+                    <div id="temp-subcategory"></div>
+                    {{ csrf_field() }}
+                    
                 </form>
                 
             </div>

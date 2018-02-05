@@ -37,7 +37,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post("/admin/product/delete_process","Admin\ProductController@product_delete_process");
     Route::post("/admin/product/category/insert_process","Admin\CategoryController@insert_category_process");
     Route::post("/admin/product/category/update_process","Admin\CategoryController@update_category_process");
-    Route::post("/admin/product/category/delete_process","Admin\CategoryController@update_category_process");
+    Route::post("/admin/product/category/delete_process","Admin\CategoryController@delete_category_process");
     Route::post("/admin/product/subcategory/insert_process","Admin\CategoryController@insert_subcategory_process");
     Route::post("/admin/product/subcategory/delete_process","Admin\CategoryController@delete_subcategory_process");
     

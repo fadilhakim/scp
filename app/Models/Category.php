@@ -14,7 +14,7 @@ class Category extends Model
     //protected $keyType = "";
     public $timestamps = TRUE;
     protected $fillable = [
-        "category_name","ip_address","user_agent"
+        "category_name","ip_address","user_agent","created_at"
     ];
     /* protected $hidden = [
         'password'
@@ -43,14 +43,37 @@ class Category extends Model
         return $subcategory;
     }
 
-    static function update_category()
+    static function category_detail($category_id)
     {
-
+        $category = DB::table("category_tbl")->where("category_id",$category_id)->first();
+        return $category;
     }
 
-    static function delete_category()
+    static function insert_category($arr)
     {
+        
+        return DB::table("category_tbl")->insert([
+            "category_name"=>$arr["category_name"],
+            "created_at"=>$arr["created_at"],
+            "ip_address"=>$arr["ip_address"],
+            "user_agent"=>$arr["user_agent"]
+        ]);
+    }
 
+    static function update_category($arr)
+    {
+        $category_id = $arr["category_id"];
+        return DB::table("category_tbl")->where('category_id', $category_id)->update([
+            "category_name"=>$arr["category_name"],
+            "created_at"=>$arr["created_at"],
+            "ip_address"=>$arr["ip_address"],
+            "user_agent"=>$arr["user_agent"]
+        ]);
+    }
+
+    static function delete_category($category_id)
+    {
+        return DB::table("category_tbl")->where("category_id", $category_id)->delete();
     }
 
 }
