@@ -39,7 +39,7 @@ class Category extends Model
 
     static function list_subcategory($category_id)
     {
-        $subcategory = DB::table("subcategory_tbl")->where("category_id",$category_id)->first();
+        $subcategory = DB::table("subcategory_tbl")->where("category_id",$category_id)->get();
         return $subcategory;
     }
 
@@ -54,6 +54,17 @@ class Category extends Model
         
         return DB::table("category_tbl")->insert([
             "category_name"=>$arr["category_name"],
+            "created_at"=>$arr["created_at"],
+            "ip_address"=>$arr["ip_address"],
+            "user_agent"=>$arr["user_agent"]
+        ]);
+    }
+
+    static function insert_subcategory($arr)
+    {
+        return DB::table("subcategory_tbl")->insert([
+            "category_id"=>$arr["category_id"],
+            "subcategory_name"=>$arr["subcategory_name"],
             "created_at"=>$arr["created_at"],
             "ip_address"=>$arr["ip_address"],
             "user_agent"=>$arr["user_agent"]

@@ -31,6 +31,9 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post("/admin/product/category/insert","Admin\CategoryController@insert_category_modal");
     Route::post("/admin/product/category/update","Admin\CategoryController@update_category_modal");
     Route::post("/admin/product/category/delete","Admin\CategoryController@delete_category_modal");
+    Route::post("/admin/product/brand/insert","Admin\BrandController@insert_brand_modal");
+    Route::post("/admin/product/brand/update","Admin\BrandController@update_brand_modal");
+    Route::post("/admin/product/brand/delete","Admin\BrandController@delete_brand_modal");
 
     Route::post("/admin/product/insert_process","Admin\ProductController@product_insert_process");
     Route::post("/admin/product/update_process","Admin\ProductController@product_update_process");
@@ -38,6 +41,10 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post("/admin/product/category/insert_process","Admin\CategoryController@insert_category_process");
     Route::post("/admin/product/category/update_process","Admin\CategoryController@update_category_process");
     Route::post("/admin/product/category/delete_process","Admin\CategoryController@delete_category_process");
+
+    Route::post("/admin/product/brand/insert_process","Admin\BrandController@insert_brand_process");
+    Route::post("/admin/product/brand/update_process","Admin\BrandController@update_brand_process");
+    Route::post("/admin/product/brand/delete_process","Admin\BrandController@delete_brand_process");
     Route::post("/admin/product/subcategory/insert_process","Admin\CategoryController@insert_subcategory_process");
     Route::post("/admin/product/subcategory/delete_process","Admin\CategoryController@delete_subcategory_process");
     
