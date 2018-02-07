@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use Validator;
+use App\Libraries\Alert;
+use App\Http\Controllers\Controller;
 use App\Models\Brand;
 
 class BrandController extends Controller
@@ -18,36 +20,116 @@ class BrandController extends Controller
 
     function index()
     {
+        $data["brand"] = Brand::all_brand();
+        $data["title"]   = "Brand";
+        $data['content'] = 'admin/brand/brand';
+        return view("admin/index",$data);
+    }
+
+    function insert_brand_modal()
+    {
+      
+      
+        return view("admin/brand/modal_brand_insert");
+    }
+
+    function update_brand_modal(Request $request)
+    {
+        $brand_id = $request->input("brand_id");
+        $data["brand"]    = $this->objBrand->detail_brand($brand_id);
+        return view("admin/brand/modal_brand_update",$data);
+    }
+
+    function delete_brand_modal(Request $request)
+    {
+        $brand_id = $request->input("brand_id");
+        $data["brand"] = $this->objBrand->detail_brand($brand_id);
+        return view("admin/brand/modal_brand_delete",$data);
+    }
+
+    function insert_brand_process(Request $request)
+    {
+        $datetime           = date("Y-m-d H:i:s");
+        $ip_address         = $request->ip();
+        $user_agent         = $request->header('User-Agent');
+
+        $validator = Validator::make($request->all(),[
+            "brand_name"=>"required|unique:brand_tbl|max:100"
+        ]);
+
+        if($validator)
+        {
+            $arr = array(
+                "brand_name"=>$request->input("brand_name"),
+                "created_at"=>$datetime,
+                "ip_address"=>$ip_address,
+                "user_agent"=>$user_agent
+            );
+
+            $this->objBrand->insert_brand($arr);
+
+            echo Alert::success("You successfully Insert new brand");
+            echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
+        }else
+        {
+            $errors = $validator->errors();
+            
+             $err_text = "";
+             foreach($errors->all() as $err) 
+             {
+                 $err_text .=  "<li> $err </li>";
+             }
+ 
+             echo Alert::danger($err_text);
+        }
+    }
+
+    function update_brand_process(Request $request)
+    {
+        $datetime           = date("Y-m-d H:i:s");
+        $ip_address         = $request->ip();
+        $user_agent         = $request->header('User-Agent');
+
+        $validator = Validator::make($request->all(),[
+            "brand_name"=>"required|unique:brand_tbl|max:100"
+        ]);
+
+        if($validator)
+        {
+            $arr = array(
+                "brand_id"=>$request->input("brand_id"),
+                "brand_name"=>$request->input("brand_name"),
+                "created_at"=>$datetime,
+                "ip_address"=>$ip_address,
+                "user_agent"=>$user_agent
+            );
+
+            $this->objBrand->update_brand($arr);
+
+            echo Alert::success("You successfully Update new brand");
+            echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
+        }else
+        {
+            $errors = $validator->errors();
+            
+             $err_text = "";
+             foreach($errors->all() as $err) 
+             {
+                 $err_text .=  "<li> $err </li>";
+             }
+ 
+             echo Alert::danger($err_text);
+        }
 
     }
 
-    function modal_brand_insert()
+    function delete_brand_process(Request $request)
     {
+        $brand_id         = $request->input("brand_id");
+        
+        $this->objBrand->delete_brand($brand_id);
 
-    }
-
-    function modal_brand_update()
-    {
-
-    }
-
-    function modal_brand_delete()
-    {
-
-    }
-
-    function brand_insert_process()
-    {
-
-    }
-
-    function brand_update_process()
-    {
-
-    }
-
-    function brand_delete_process()
-    {
-
+        echo Alert::success("You successfully Delete brand");
+        echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
     }
 }
