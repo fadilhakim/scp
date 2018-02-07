@@ -55,6 +55,7 @@ class Product extends Model
         $price              = $arr["price"];
         $stock              = $arr["stock"];
         $weight             = $arr["weight"];
+        $brand              = $arr["brand_id"];
 
         $datetime           = $arr["created_at"];
         $ip_address         = $arr["ip_address"];
@@ -65,6 +66,7 @@ class Product extends Model
             'product_description' => $product_description,
             "product_category"=>$category,
             "product_subcategory"=>$subcategory,
+            "brand_id"=>$brand,
             "product_availability"=>$product_availability,
             "status"=>$status,
             "price"=>$price,
@@ -84,6 +86,7 @@ class Product extends Model
         $product_title      = $arr["product_title"];
         $product_description= $arr["product_description"]; 
         $product_availability = $arr["product_availability"];
+        $brand              = $arr["brand_id"];
         $status             = $arr["status"];
         $category           = $arr["category"];
         $subcategory        = $arr["subcategory"];
@@ -102,6 +105,7 @@ class Product extends Model
             "product_category"=>$category,
             "product_subcategory"=>$subcategory,
             "product_availability"=>$product_availability,
+            "brand_id"=>$brand,
             "status"=>$status,
             "price"=>$price,
             "old_price"=>$old_price,

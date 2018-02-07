@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="row"> 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label> Category</label>
                         <select name="category" class="form-control">
                             <option value="">-- Select Category--</option>
@@ -26,12 +26,22 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label> Subcategory </label>
                         <select name="subcategory" class="form-control">
                             <option value="">-- Select Subcategory--</option>
                             <?php if(!empty($subcategory)){foreach($subcategory as $row){ ?>
                                 <option value="<?=$row->subcategory_id?>"><?=$row->subcategory_name?></option>
+                            <?php }} ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label> Brand </label>
+                        <select name="brand" class="form-control">
+                            <option value="">-- Select Brand--</option>
+                            <?php if(!empty($brand)){foreach($brand as $row){ ?>
+                                <option value="<?=$row->brand_id?>"><?=$row->brand_name?></option>
                             <?php }} ?>
                         </select>
                     </div>

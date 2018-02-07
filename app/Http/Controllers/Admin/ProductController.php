@@ -9,16 +9,19 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\Brand;
 
 use App\Libraries\Alert;
 
 class ProductController extends Controller
 {
     private $objProduct;
+    private $objBrand;
 
     function __construct()
     {
         $this->objProduct = new Product();
+        $this->objBrand = new Brand();
     }
     //
     function index()
@@ -43,7 +46,7 @@ class ProductController extends Controller
        
         $data["category"] = $category = Category::all_category();
         $data["subcategory"] = $subcategory = Subcategory::all_subcategory();
-      
+        $data["brand"] = $brand = $this->objBrand->all_brand();
         return view("admin/product/modal_product_insert",$data);
     }
 
@@ -53,6 +56,7 @@ class ProductController extends Controller
         $data["product"] = $this->objProduct->detail_product($product_id);
         $data["category"] = $category = Category::all_category();
         $data["subcategory"] = $subcategory = Subcategory::all_subcategory();
+        $data["brand"] = $brand = $this->objBrand->all_brand();
         return view("admin/product/modal_product_update",$data);
     }
 
@@ -68,6 +72,7 @@ class ProductController extends Controller
         $product_title      = $request->input("product_title");
         $product_description= $request->input("product_description"); 
         $product_availability= $request->input("product_availability"); 
+        $brand_id           = $request->input("brand");
         $status             = $request->input("status");
         $category           = $request->input("category");
         $subcategory        = $request->input("subcategory");
@@ -86,6 +91,7 @@ class ProductController extends Controller
             'product_description'   => 'required|min:10',
             'category'              => 'required',
             'subcategory'           => 'required',
+            "brand"                 => "required",
             'price'                 => 'required|integer',
             'old_price'             => 'nullable|integer',
             'stock'                 => 'nullable|integer',
@@ -101,6 +107,7 @@ class ProductController extends Controller
                 "status"=>$status,
                 "category"=>$category,
                 "subcategory"=>$subcategory,
+                "brand_id"=>$brand_id,
                 "price"=>$price,
                 "old_price"=>$old_price,
                 "stock"=>$stock,
@@ -140,6 +147,7 @@ class ProductController extends Controller
         $status             = $request->input("status");
         $category           = $request->input("category");
         $subcategory        = $request->input("subcategory");
+        $brand_id           = $request->input("brand");
         $old_price          = $request->input("stock",0);
         $price              = $request->input("price",0);
         $stock              = $request->input("stock",0);
@@ -156,6 +164,7 @@ class ProductController extends Controller
             'product_description'   => 'required|min:10',
             'category'              => 'required',
             'subcategory'           => 'required',
+            "brand"                 => "required",
             'price'                 => 'required|integer',
             'old_price'             => 'nullable|integer',
             'stock'                 => 'nullable|integer',
@@ -172,6 +181,7 @@ class ProductController extends Controller
                 "status"=>$status,
                 "category"=>$category,
                 "subcategory"=>$subcategory,
+                "brand"=>$brand_id, 
                 "price"=>$price,
                 "old_price"=>$old_price,
                 "stock"=>$stock,
