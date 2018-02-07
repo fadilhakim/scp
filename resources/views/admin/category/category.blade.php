@@ -4,7 +4,7 @@ function add_modal_category()
     var _token = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
         type:"POST",
-        url:"<?=url("admin/category/insert")?>",
+        url:"<?=url("admin/product/category/insert")?>",
         data:"_token="+_token,
         success:function(data)
         {
@@ -18,7 +18,7 @@ function update_modal_category(category_id)
     var _token = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
         type:"POST",
-        url:"<?=url("admin/category/update")?>",
+        url:"<?=url("admin/product/category/update")?>",
         data:"_token="+_token+"&category_id="+category_id,
         success:function(data)
         {
@@ -33,7 +33,7 @@ function delete_modal_category(category_id)
     
     $.ajax({
         type:"POST",
-        url:"<?=url("admin/category/delete")?>",
+        url:"<?=url("admin/product/category/delete")?>",
         data:"_token="+_token+"&category_id="+category_id,
         success:function(data)
         {

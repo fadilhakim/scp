@@ -83,6 +83,13 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?=url("admin/product/brand")?>">
+                            <span class="pcoded-micon"><i class="ti-briefcase"></i></span>
+                            <span class="pcoded-mtext"> Brand </span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
                    
                 </ul>
             </li>
