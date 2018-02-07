@@ -12,12 +12,8 @@
                 <i class="ti-search"></i>
             </a>
             <a href="#!">
-<<<<<<< HEAD
-                <!-- <img class="img-fluid" src="<?=asset(BASE_ADMIN_ASSET."assets/images/logo.png")?>" alt="Theme-Logo" /> -->
                 <h5>Strawberry CMS</h5>
-=======
-                <img class="img-fluid" src="<?=asset(BASE_ADMIN_ASSET."assets/images/logo.png")?>" alt="Strawberry Cellphone" />
->>>>>>> 2c9a51f8b13703ab8fb7c3fb0a2fb984817b6c4b
+<!--                 <img class="img-fluid" src="<?=asset(BASE_ADMIN_ASSET."assets/images/logo.png")?>" alt="Strawberry Cellphone" /> -->
             </a>
             <a class="mobile-options">
                 <i class="ti-more"></i>
