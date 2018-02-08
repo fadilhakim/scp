@@ -24,13 +24,8 @@ Route::get('/about', function () {
 });
 
 
-Route::get('/product', function () {
-    return view('product');
-});
-
-Route::get('/product/detail/id', function () {
-    return view('product_detail');
-});
+Route::get('/product', 'ProductController@index');
+Route::get('/product/detail/{id}/{product_category}/{product_title}', 'ProductController@detail');
 
 Route::get('/cart', function () {
     return view('cart');
@@ -73,7 +68,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get("/admin/slider","Admin\SliderController@index");
     // pages
     Route::get("/admin/about","Admin\PagesController@about");
-    Route::get("/admin/home","Admin\PagesController@home");
+    Route::get("/admin/home","Admin\PagesController@slider");
     // product
     Route::get("/admin/product","Admin\ProductController@index");
     Route::get("/admin/product/detail","Admin\ProductController@detail");

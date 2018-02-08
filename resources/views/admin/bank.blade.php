@@ -61,9 +61,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             <?php foreach($slider as $row){ ?>
+                             <?php for ($i = 1 ; $i <= 3; $i++){ ?>
                                 <tr>
-                                    <th scope="row"><?php echo $row->id ?></th>
+                                    <th scope="row"><?php echo $i ?></th>
                                     <td> <img src="{{URL::asset('/public/sliders/product-8.jpg')}}">
                                     </td>
                                     <td>Promo Heboh</td>

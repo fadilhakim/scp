@@ -1,11 +1,16 @@
 @include('template/header')
+<?php $i=1; foreach ($product as $row){ 
+     $product_title = $row->product_title;
+     $price = $row->price;
+     $desc = $row->product_description;
+     $product_availability = $row->product_availability;
+} ?>
 <div class="container">
     <div class="empty-space col-xs-b15 col-sm-b30"></div>
     <div class="breadcrumbs">
-        <a href="#">home</a>
-        <a href="#">accessories</a>
-        <a href="#">gadgets</a>
-        <a href="#">sport gadgets</a>
+        <a href="{{url('/')}}">Home</a>
+        <a href="{{url('product')}}">Product</a>
+        <a href="#">{{$product_title}}</a>
     </div>
     <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
     <div class="row">
@@ -98,10 +103,10 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="simple-article size-3 grey col-xs-b5">SMART WATCHES</div>
-                    <div class="h3 col-xs-b25">watch 42mm smartwatch</div>
+                    <div class="h3 col-xs-b25">{{$product_title}}</div>
                     <div class="row col-xs-b25">
                         <div class="col-sm-6">
-                            <div class="simple-article size-5 grey">PRICE: <span class="color">Rp. 120.225</span></div>        
+                            <div class="simple-article size-5 grey">PRICE: <span class="color">Rp. {{$price}}</span></div>        
                         </div>
                         <!-- <div class="col-sm-6 col-sm-text-right">
                             <div class="rate-wrapper align-inline">
@@ -119,10 +124,10 @@
                             <div class="simple-article size-3 col-xs-b5">ITEM NO.: <span class="grey">127-#5238</span></div>
                         </div>
                         <div class="col-sm-6 col-sm-text-right">
-                            <div class="simple-article size-3 col-xs-b20">AVAILABLE.: <span class="grey">YES</span></div>
+                            <div class="simple-article size-3 col-xs-b20">AVAILABLE.: <span class="grey">{{$product_availability}}</span></div>
                         </div>
                     </div>
-                    <div class="simple-article size-3 col-xs-b30">Vivamus in tempor eros. Phasellus rhoncus in nunc sit amet mattis. Integer in ipsum vestibulum, molestie arcu ac, efficitur tellus. Phasellus id vulputate erat.</div>
+                    <div class="simple-article size-3 col-xs-b30">{{$desc}}</div>
                     <div class="row col-xs-b40">
                         <div class="col-sm-3">
                             <div class="h6 detail-data-title size-1">quantity:</div>

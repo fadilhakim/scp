@@ -4,7 +4,8 @@
                 <div class="footer-top">
                     <div class="row">
                         <div class="col-sm-6 col-md-3 col-xs-b30 col-md-b0">
-                            <img src="{{ URL::asset('public/img/logo-1.png')}}" alt="" />
+                            <!-- <img src="{{ URL::asset('public/img/logo-1.png')}}" alt="" /> -->
+                            <h6 class="h6 light">About Us</h6>
                             <div class="empty-space col-xs-b20"></div>
                             <div class="simple-article size-2 light fulltransparent">Integer posuere orci sit amet feugiat pellent que. Suspendisse vel tempor justo, sit amet posuere orci dapibus auctor</div>
                             <div class="empty-space col-xs-b20"></div>
@@ -73,12 +74,8 @@
                         </div>
                         <div class="col-lg-4 col-xs-text-center col-lg-text-right">
                             <div class="footer-payment-icons">
-                                <a class="entry"><img src="{{ URL::asset('public/img/thumbnail-4.jpg')}}" alt="" /></a>
-                                <a class="entry"><img src="{{ URL::asset('public/img/thumbnail-5.jpg')}}" alt="" /></a>
-                                <a class="entry"><img src="{{ URL::asset('public/img/thumbnail-6.jpg')}}" alt="" /></a>
-                                <a class="entry"><img src="{{ URL::asset('public/img/thumbnail-7.jpg')}}" alt="" /></a>
-                                <a class="entry"><img src="{{ URL::asset('public/img/thumbnail-8.jpg')}}" alt="" /></a>
-                                <a class="entry"><img src="{{ URL::asset('public/img/thumbnail-9.jpg')}}" alt="" /></a>
+                                <a class="entry"><img src="{{ URL::asset('public/img/Bank_Central_Asia.png')}}" alt="" /></a>
+                                <a class="entry"><img src="{{ URL::asset('public/img/midtrans.png')}}" alt="" /></a>
                             </div>
                         </div>
                     </div>

@@ -14,7 +14,7 @@ class Product extends Model
     //protected $keyType = "";
     public $timestamps = TRUE;
     protected $fillable = [
-        'product_title',"product_availability","product_categoty",
+        'product_id','product_title',"product_availability","product_categoty",
         "product_subcategory","status","price","old_price","stock",
         "weight","product_description","status",
         "created_at","ip_address","user_agent"
@@ -32,9 +32,15 @@ class Product extends Model
         return $product;
     }
     
-    function detail_product($product_id)
+    static function detail_product($id)
     {
-        $product = DB::table($this->table)->where($this->primaryKey,$product_id)->first();
+        $product = DB::table('product_tbl')->where('product_id',$id)->get();
+        return $product;
+    }
+
+    static function related_product($category)
+    {
+        $product = DB::table('product_tbl')->where('product_category',$category)->get();
         return $product;
     }
 

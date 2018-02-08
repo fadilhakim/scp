@@ -2,12 +2,10 @@
         <div class="container">
             <div class="empty-space col-xs-b15 col-sm-b30"></div>
             <div class="breadcrumbs">
-                <a href="#">home</a>
-                <a href="#">accessories</a>
-                <a href="#">gadgets</a>
-                <a href="#">sport gadgets</a>
+                <a href="{{url('/')}}">Home</a>
+                <a href="{{url('product')}}">Product</a>
             </div>
-            <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
+            <div class="empty-space col-xs-b15 col-sm-b30"></div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="slider-wrapper">
@@ -17,18 +15,18 @@
                             <div class="swiper-button-prev style-1"></div>
                             <div class="swiper-button-next style-1"></div>
                             <div class="swiper-wrapper">
-                            <?php for ($i = 0 ; $i < 9; $i++){ ?>
+                            <?php $i=1; foreach ($product as $row){ ?>
                                 <div class="swiper-slide">
                                     <div class="product-shortcode style-1 small">
                                         <div class="title">
                                             <div class="simple-article size-1 color col-xs-b5"><a href="<?=url("product/detail/id")?>">Phone</a></div>
-                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/id")?>">Alcatel Crave Pink</a></div>
+                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/id")?>">{{$row->product_title}}</a></div>
                                         </div>
                                         <div class="preview">
                                             <img src="{{URL::asset('/public/products/71fHrYMs2fL._SX575_.jpg')}}" alt="">
                                             <div class="preview-buttons valign-middle">
                                                 <div class="valign-middle-content">
-                                                    <a class="button size-2 style-2" href="<?=url("product/detail/id")?>">
+                                                    <a class="button size-2 style-2" href="<?=url("product/detail/{$row->product_id}/{$row->product_category}/{$row->product_title}")?>">
                                                         <span class="button-wrapper">
                                                             <span class="icon"><img src="{{URL::asset('/public/img/icon-1.png')}}" alt=""></span>
                                                             <span class="text">Learn More</span>
@@ -44,7 +42,7 @@
                                             </div>
                                         </div>
                                         <div class="price">
-                                            <div class="simple-article size-4 dark">$630.00</div>
+                                            <div class="simple-article size-4 dark">Rp.{{$row->price}}</div>
                                         </div>
                                     </div>
                                 </div>
