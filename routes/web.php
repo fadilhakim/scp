@@ -83,7 +83,6 @@ Route::group(['middleware' => ['admin']], function () {
 
 // default
 Route::get("default/login","Auth\LoginController@showLoginForm");
-
 // 404 
 
 

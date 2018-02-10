@@ -53,7 +53,7 @@ class ProductController extends Controller
     function modal_product_update(Request $request)
     {
         $product_id = $request->input("product_id");
-        $data["product"] = $this->objProduct->detail_product($product_id);
+        $data["product"] = $product=  $this->objProduct->detail_product($product_id);
         $data["category"] = $category = Category::all_category();
         $data["subcategory"] = $subcategory = Subcategory::all_subcategory();
         $data["brand"] = $brand = $this->objBrand->all_brand();
@@ -84,7 +84,34 @@ class ProductController extends Controller
         $datetime           = date("Y-m-d H:i:s");
         $ip_address         = $request->ip();
         $user_agent         = $request->header('User-Agent');
-       
+        
+        $image1 = $request->file('image1');
+        $image2 = $request->file('image2');
+        $image3 = $request->file('image3');
+        $image4 = $request->file('image4');
+   
+        /* //Display File Name
+        echo 'File Name: '.$file->getClientOriginalName();
+        echo '<br>';
+     
+        //Display File Extension
+        echo 'File Extension: '.$file->getClientOriginalExtension();
+        echo '<br>';
+     
+        //Display File Real Path
+        echo 'File Real Path: '.$file->getRealPath();
+        echo '<br>';
+     
+        //Display File Size
+        echo 'File Size: '.$file->getSize();
+        echo '<br>';
+     
+        //Display File Mime Type
+        echo 'File Mime Type: '.$file->getMimeType();
+        exit;
+        //Move Uploaded File
+        //$destinationPath = 'uploads';
+        //$file->move($destinationPath,$file->getClientOriginalName());*/
 
         $validator = Validator::make($request->all(), [
             'product_title'         => 'required|unique:product_tbl|max:255',
@@ -117,7 +144,51 @@ class ProductController extends Controller
                 "user_agent"=>$user_agent
             );
 
-            $this->objProduct->insert_product($arr);
+            $q = $this->objProduct->insert_product($arr);
+
+            $new_id = $q;
+            $arr_image["product_id"] = $new_id;
+            $arr_image["image_name"] = $file->getClientOriginalName();
+            $arr_image["datetime"]   = $datetime;
+            $arr_image["user_agent"] = $user_agent;
+            $arr_image["ip_address"] = $ip_address;
+
+            if($request->file("image1")->isValid())
+            {
+                $arr_image["image_field"] = "image1";
+                $this->objProduct->insert_product_image($arr_image);
+
+                //Move Uploaded File
+                //$destinationPath = 'uploads';
+                //$file->move($destinationPath,$file->getClientOriginalName());
+            }
+            if($request->file("image2")->isValid())
+            {
+                $arr_image["image_field"] = "image2";
+                $this->objProduct->insert_product_image($arr_image);
+
+                //Move Uploaded File
+                //$destinationPath = 'uploads';
+                //$file->move($destinationPath,$file->getClientOriginalName());
+            }
+            if($request->file("image3")->isValid())
+            {
+                $arr_image["image_field"] = "image3";
+                $this->objProduct->insert_product_image($arr_image);
+
+                //Move Uploaded File
+                //$destinationPath = 'uploads';
+                //$file->move($destinationPath,$file->getClientOriginalName());
+            }
+            if($request->file("image4")->isValid())
+            {
+                $arr_image["image_field"] = "image4";
+                $this->objProduct->insert_product_image($arr_image);
+
+                //Move Uploaded File
+                //$destinationPath = 'uploads';
+                //$file->move($destinationPath,$file->getClientOriginalName());
+            }
 
             echo Alert::success("You successfully Insert new Product");
             echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
