@@ -16,20 +16,22 @@
                     <label> Product Title </label>
                     <input type="text" name="product_title" id="product_title" class="form-control" >
                 </div>
-
+                <label>Upload</label>
+                    <span class="clearfix"></span>
                 <div class="row">
-                <div class="col-md-3">
-                    <input type="file" data-placeholder="hei" name="image1" data-size="sm" class="filestyle" data-text="Image1" data-btnClass="btn-primary">
-                </div>
-                <div class="col-md-3">
-                    <input type="file" data-placeholder="" name="image2" data-size="sm" class="filestyle" data-text="Image2" data-btnClass="btn-primary">
-                </div>
-                <div class="col-md-3">
-                    <input type="file" data-placeholder="" name="image3" data-size="sm" class="filestyle" data-text="Image3" data-btnClass="btn-primary">
-                </div>
-                <div class="col-md-3">
-                    <input type="file" data-placeholder="" name="image4" data-size="sm" class="filestyle" data-text="Image4" data-btnClass="btn-primary">
-                </div>
+                    
+                    <div class="col-md-3">
+                        <input type="file" data-placeholder="hei" name="image1" data-size="sm" class="filestyle" data-text="Image1" data-btnClass="btn-primary">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="file" data-placeholder="" name="image2" data-size="sm" class="filestyle" data-text="Image2" data-btnClass="btn-primary">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="file" data-placeholder="" name="image3" data-size="sm" class="filestyle" data-text="Image3" data-btnClass="btn-primary">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="file" data-placeholder="" name="image4" data-size="sm" class="filestyle" data-text="Image4" data-btnClass="btn-primary">
+                    </div>
                 </div>
 
                 <div class="row"> 

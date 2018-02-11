@@ -12,6 +12,7 @@ use App\Models\Subcategory;
 use App\Models\Brand;
 
 use App\Libraries\Alert;
+use App\Libraries\FolderHelper;
 
 class ProductController extends Controller
 {
@@ -53,6 +54,12 @@ class ProductController extends Controller
     function modal_product_update(Request $request)
     {
         $product_id = $request->input("product_id");
+
+        $data["image1"] = $this->objProduct->detail_photo_product($product_id,"image1");
+        $data["image2"] = $this->objProduct->detail_photo_product($product_id,"image2");
+        $data["image3"] = $this->objProduct->detail_photo_product($product_id,"image3");
+        $data["image4"] = $this->objProduct->detail_photo_product($product_id,"image4");
+
         $data["product"] = $product=  $this->objProduct->detail_product($product_id);
         $data["category"] = $category = Category::all_category();
         $data["subcategory"] = $subcategory = Subcategory::all_subcategory();
@@ -228,10 +235,14 @@ class ProductController extends Controller
         $ip_address         = $request->ip();
         $user_agent         = $request->header('User-Agent');
        
+        $image1 = $request->file('image1');
+        $image2 = $request->file('image2');
+        $image3 = $request->file('image3');
+        $image4 = $request->file('image4');
 
         $validator = Validator::make($request->all(), [
             "product_id"            => "required|integer",
-            'product_title'         => 'required|unique:product_tbl|max:255',
+            'product_title'         => 'required|max:255',
             'product_description'   => 'required|min:10',
             'category'              => 'required',
             'subcategory'           => 'required',
@@ -263,6 +274,96 @@ class ProductController extends Controller
             );
 
             $this->objProduct->update_product($arr);
+
+            $arr_image["product_id"] = $product_id;
+           
+            $arr_image["datetime"]   = $datetime;
+            $arr_image["user_agent"] = $user_agent;
+            $arr_image["ip_address"] = $ip_address;
+
+            if($request->hasFile("image1"))
+            {
+                $arr_image["image_field"] = "image1";
+                $new_image_name = str_replace(" ","-",strtolower($image1->getClientOriginalName()));
+                $arr_image["image_name"] = $new_image_name;
+                $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image1");
+                if(!empty($check_photo1))
+                {
+                    $this->objProduct->update_product_image($arr_image);
+                }
+                else
+                {
+                    $this->objProduct->insert_product_image($arr_image);
+                }
+
+                //Move Uploaded File
+                $destinationPath = "public/products/$product_id";
+                FolderHelper::create_folder_product($product_id);
+                $request->file("image1")->move($destinationPath,$new_image_name);
+                
+            }
+            if($request->hasFile("image2"))
+            {
+                $arr_image["image_field"] = "image2";
+                $new_image_name = str_replace(" ","-",strtolower($image2->getClientOriginalName()));
+                $arr_image["image_name"] = $new_image_name;
+                $check_photo2 = $this->objProduct->detail_photo_product($product_id,"image2");
+                if(!empty($check_photo1))
+                {
+                    $this->objProduct->update_product_image($arr_image);
+                }
+                else
+                {
+                    $this->objProduct->insert_product_image($arr_image);
+                }
+
+                //Move Uploaded File
+                $destinationPath = "public/products/$product_id";
+                FolderHelper::create_folder_product($product_id);
+                $request->file("image2")->move($destinationPath,$new_image_name);
+            }
+            if($request->hasFile("image3"))
+            {
+                $arr_image["image_field"] = "image3";
+                $new_image_name = str_replace(" ","-",strtolower($image3->getClientOriginalName()));
+                $arr_image["image_name"] = $new_image_name;
+                $check_photo3 = $this->objProduct->detail_photo_product($product_id,"image3");
+                if(!empty($check_photo3))
+                {
+                    $this->objProduct->update_product_image($arr_image);
+                }
+                else
+                {
+                    $this->objProduct->insert_product_image($arr_image);
+                }
+
+                //Move Uploaded File
+               //Move Uploaded File
+               $destinationPath = "public/products/$product_id";
+               FolderHelper::create_folder_product($product_id);
+               $request->file("image3")->move($destinationPath,$new_image_name);
+            }
+            if($request->hasFile("image4"))
+            {
+                $arr_image["image_field"] = "image4";
+                $new_image_name = str_replace(" ","-",strtolower($image4->getClientOriginalName()));
+                $arr_image["image_name"] = $new_image_name;
+                $check_photo4 = $this->objProduct->detail_photo_product($product_id,"image4");
+                if(!empty($check_photo4))
+                {
+                    $this->objProduct->update_product_image($arr_image);
+                }
+                else
+                {
+                    $this->objProduct->insert_product_image($arr_image);
+                }
+
+                //Move Uploaded File
+               //Move Uploaded File
+               $destinationPath = "public/products/$product_id";
+               FolderHelper::create_folder_product($product_id);
+               $request->file("image4")->move($destinationPath,$new_image_name);
+            }
 
             echo Alert::success("You successfully Update new Product");
             echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";

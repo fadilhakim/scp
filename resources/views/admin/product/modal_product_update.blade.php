@@ -1,3 +1,4 @@
+<script src="<?=asset("resources/assets/plugins/bootstrap-filestyle/src/bootstrap-filestyle.min.js")?>" ></script>
 <div id="modal_product_update" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -13,6 +14,21 @@
                 <div class="form-group">
                     <label> Product Title </label>
                     <input type="text" name="product_title" id="product_title" class="form-control" value="<?=$product->product_title?>" >
+                </div>
+                <input type="hidden" id="product" name="product_id" value="<?=$product->product_id?>">
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="file" data-placeholder="<?=$image1->image_name?>" name="image1" data-size="sm" class="filestyle" data-text="Image1" data-btnClass="btn-primary">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="file" data-placeholder="<?=$image2->image_name?>" name="image2" data-size="sm" class="filestyle" data-text="Image2" data-btnClass="btn-primary">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="file" data-placeholder="<?=$image3->image_name?>" name="image3" data-size="sm" class="filestyle" data-text="Image3" data-btnClass="btn-primary">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="file" data-placeholder="<?=$image4->image_name?>" name="image4" data-size="sm" class="filestyle" data-text="Image4" data-btnClass="btn-primary">
+                    </div>
                 </div>
 
                 <div class="row"> 
@@ -114,10 +130,17 @@
     });
 
     $("form#form-product-update").submit(function(){
+
+        var formData = new FormData($(this)[0]);
+
         $.ajax({
             type:"POST",
             url:"{{ url('admin/product/update_process') }}",
-            data:$(this).serialize(),
+            //data:$(this).serialize(),
+            data:formData,
+            cache: false,
+            processData: false,
+            contentType	: false,
             success:function(data)
             {
                 $("#temp-product").html(data);
