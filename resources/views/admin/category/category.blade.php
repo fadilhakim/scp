@@ -72,7 +72,7 @@ function list_subcategory(category_id)
                 <div class="card-block table-border-style">
                     <div class="tmp-category"></div>
                     <div class="">
-                        <table class="table table-hover table-bordered">
+                        <table id="category-tbl" class="table table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -115,3 +115,9 @@ function list_subcategory(category_id)
         </div>
     </div>
 </div>
+
+<script>
+    $("#category-tbl").DataTable({
+
+    });
+</script>

@@ -41,9 +41,12 @@
 <link rel="stylesheet" type="text/css" href="<?=asset(BASE_ADMIN_ASSET."assets/css/linearicons.css")?>" >
 <link rel="stylesheet" type="text/css" href="<?=asset(BASE_ADMIN_ASSET."assets/css/simple-line-icons.css")?>">
 <link rel="stylesheet" type="text/css" href="<?=asset(BASE_ADMIN_ASSET."assets/css/jquery.mCustomScrollbar.css")?>">
-
+<!-- Datatables -->
+<script type="text/javascript" src="<?=asset(BASE_ADMIN_ASSET."assets/plugins/DataTables/datatables.min.js")?>"></script>
+<link rel="stylesheet" type="text/css" href="<?=asset("resources/assets/plugins/DataTables/datatables.min.css")?>">
 
 <script type="text/javascript" src="<?=asset(BASE_ADMIN_ASSET."assets/plugins/jquery/dist/jquery.min.js")?>"></script>
 <script type="text/javascript" src="<?=asset(BASE_ADMIN_ASSET."assets/plugins/jquery-ui/jquery-ui.min.js")?>"></script>
 <script type="text/javascript" src="<?=asset(BASE_ADMIN_ASSET."assets/plugins/tether/dist/js/tether.min.js")?>"></script>
 <script type="text/javascript" src="<?=asset(BASE_ADMIN_ASSET."assets/plugins/bootstrap/dist/js/bootstrap.min.js")?>"></script>
+<script type="text/javascript" src="<?=asset("resources/assets/plugins/DataTables/datatables.min.js")?>"></script>

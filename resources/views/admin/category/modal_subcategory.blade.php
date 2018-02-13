@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     
-                    <table class="table table-bordered">
+                    <table id="subcategory-tbl" class="table table-bordered">
                         <thead>
                             <th> Subcategory </th>
                             <th> Action </th>
@@ -55,6 +55,8 @@
     $("#modal_subcategory").modal({
         show:true
     });
+
+    $("#subcategory-tbl").DataTable();
 
     $("form#form-subcategory-insert").submit(function(){
         $.ajax({

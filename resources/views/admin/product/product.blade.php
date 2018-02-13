@@ -57,7 +57,7 @@ function delete_modal_product(product_id)
                 <div class="card-block table-border-style">
                     <div class="tmp-product"></div>
                     <div class="">
-                        <table class="table table-hover">
+                        <table id="product-tbl" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -106,3 +106,9 @@ function delete_modal_product(product_id)
         </div>
     </div>
 </div>
+
+<script>
+    $("#product-tbl").DataTable({
+
+    });
+</script>

@@ -18,16 +18,16 @@
                 <input type="hidden" id="product" name="product_id" value="<?=$product->product_id?>">
                 <div class="row">
                     <div class="col-md-3">
-                        <input type="file" data-placeholder="<?=$image1->image_name?>" name="image1" data-size="sm" class="filestyle" data-text="Image1" data-btnClass="btn-primary">
+                        <input type="file" data-placeholder="<?=!empty($image1) ? $image1->image_name : ""?>" name="image1" data-size="sm" class="filestyle" data-text="Image1" data-btnClass="btn-primary">
                     </div>
                     <div class="col-md-3">
-                        <input type="file" data-placeholder="<?=$image2->image_name?>" name="image2" data-size="sm" class="filestyle" data-text="Image2" data-btnClass="btn-primary">
+                        <input type="file" data-placeholder="<?=!empty($image2) ? $image2->image_name : ""?>" name="image2" data-size="sm" class="filestyle" data-text="Image2" data-btnClass="btn-primary">
                     </div>
                     <div class="col-md-3">
-                        <input type="file" data-placeholder="<?=$image3->image_name?>" name="image3" data-size="sm" class="filestyle" data-text="Image3" data-btnClass="btn-primary">
+                        <input type="file" data-placeholder="<?=!empty($image3) ? $image3->image_name : ""?>" name="image3" data-size="sm" class="filestyle" data-text="Image3" data-btnClass="btn-primary">
                     </div>
                     <div class="col-md-3">
-                        <input type="file" data-placeholder="<?=$image4->image_name?>" name="image4" data-size="sm" class="filestyle" data-text="Image4" data-btnClass="btn-primary">
+                        <input type="file" data-placeholder="<?=!empty($image4) ? $image4->image_name : ""?>" name="image4" data-size="sm" class="filestyle" data-text="Image4" data-btnClass="btn-primary">
                     </div>
                 </div>
 

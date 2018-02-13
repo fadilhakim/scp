@@ -60,6 +60,8 @@ class ProductController extends Controller
         $data["image3"] = $this->objProduct->detail_photo_product($product_id,"image3");
         $data["image4"] = $this->objProduct->detail_photo_product($product_id,"image4");
 
+        
+
         $data["product"] = $product=  $this->objProduct->detail_product($product_id);
         $data["category"] = $category = Category::all_category();
         $data["subcategory"] = $subcategory = Subcategory::all_subcategory();
@@ -154,47 +156,67 @@ class ProductController extends Controller
             $q = $this->objProduct->insert_product($arr);
 
             $new_id = $q;
+            $product_id = $new_id;
             $arr_image["product_id"] = $new_id;
-            $arr_image["image_name"] = $file->getClientOriginalName();
+           
             $arr_image["datetime"]   = $datetime;
             $arr_image["user_agent"] = $user_agent;
             $arr_image["ip_address"] = $ip_address;
 
-            if($request->file("image1")->isValid())
+            if($request->hasFile("image1"))
             {
                 $arr_image["image_field"] = "image1";
-                $this->objProduct->insert_product_image($arr_image);
+                $new_image_name = str_replace(" ","-",strtolower($image1->getClientOriginalName()));
+                $arr_image["image_name"] = $new_image_name;
 
+                $this->objProduct->insert_product_image($arr_image);
+                
                 //Move Uploaded File
-                //$destinationPath = 'uploads';
-                //$file->move($destinationPath,$file->getClientOriginalName());
+                $destinationPath = "public/products/$product_id";
+                FolderHelper::create_folder_product($product_id);
+                $request->file("image1")->move($destinationPath,$new_image_name);
+                
             }
-            if($request->file("image2")->isValid())
+            if($request->hasFile("image2"))
             {
                 $arr_image["image_field"] = "image2";
+                $new_image_name = str_replace(" ","-",strtolower($image2->getClientOriginalName()));
+                $arr_image["image_name"] = $new_image_name;
+                
                 $this->objProduct->insert_product_image($arr_image);
 
                 //Move Uploaded File
-                //$destinationPath = 'uploads';
-                //$file->move($destinationPath,$file->getClientOriginalName());
+                $destinationPath = "public/products/$product_id";
+                FolderHelper::create_folder_product($product_id);
+                $request->file("image2")->move($destinationPath,$new_image_name);
             }
-            if($request->file("image3")->isValid())
+            if($request->hasFile("image3"))
             {
                 $arr_image["image_field"] = "image3";
+                $new_image_name = str_replace(" ","-",strtolower($image3->getClientOriginalName()));
+                $arr_image["image_name"] = $new_image_name;
+                
                 $this->objProduct->insert_product_image($arr_image);
+                
 
                 //Move Uploaded File
-                //$destinationPath = 'uploads';
-                //$file->move($destinationPath,$file->getClientOriginalName());
+               //Move Uploaded File
+               $destinationPath = "public/products/$product_id";
+               FolderHelper::create_folder_product($product_id);
+               $request->file("image3")->move($destinationPath,$new_image_name);
             }
-            if($request->file("image4")->isValid())
+            if($request->hasFile("image4"))
             {
                 $arr_image["image_field"] = "image4";
+                $new_image_name = str_replace(" ","-",strtolower($image4->getClientOriginalName()));
+                $arr_image["image_name"] = $new_image_name;
                 $this->objProduct->insert_product_image($arr_image);
 
                 //Move Uploaded File
-                //$destinationPath = 'uploads';
-                //$file->move($destinationPath,$file->getClientOriginalName());
+               //Move Uploaded File
+               $destinationPath = "public/products/$product_id";
+               FolderHelper::create_folder_product($product_id);
+               $request->file("image4")->move($destinationPath,$new_image_name);
             }
 
             echo Alert::success("You successfully Insert new Product");
@@ -276,7 +298,7 @@ class ProductController extends Controller
             $this->objProduct->update_product($arr);
 
             $arr_image["product_id"] = $product_id;
-           
+
             $arr_image["datetime"]   = $datetime;
             $arr_image["user_agent"] = $user_agent;
             $arr_image["ip_address"] = $ip_address;
