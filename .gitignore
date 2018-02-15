@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /public/flatlite
+/public/products
 /storage/*.key
 /vendor
 /.idea

@@ -34,7 +34,7 @@ class Product extends Model
     
     static function detail_product($id)
     {
-        $product = DB::table('product_tbl')->where('product_id',$id)->get();
+        $product = DB::table('product_tbl')->where('product_id',$id)->first();
         return $product;
     }
 
@@ -44,9 +44,41 @@ class Product extends Model
         return $product;
     }
 
-    function test()
+    public function insert_product_image($arr)
     {
-        echo "test";
+        DB::table("product_image_tbl")->insert([
+            "product_id"=>$arr["product_id"],
+            "image_name"=>$arr["image_name"],
+            "image_field"=>$arr["image_field"],
+            "ip_address"=>$arr["ip_address"],
+            "user_agent"=>$arr["user_agent"],
+            "created_at"=>$arr["datetime"]
+        ]);
+    }
+
+    function update_product_image($arr)
+    {
+        DB::table("product_image_tbl")
+        ->where('product_id', $arr["product_id"])
+        ->where('image_field', $arr["image_field"])
+        ->update([
+            "image_name"=>$arr["image_name"],
+            "ip_address"=>$arr["ip_address"],
+            "user_agent"=>$arr["user_agent"]
+        ]);
+    }
+
+    public function list_photo_product($product_id)
+    {
+        return DB::table("product_image_tbl")->where("product_id",$product_id)->get();
+    }
+
+    public function detail_photo_product($product_id,$image_field)
+    {
+        return DB::table("product_image_tbl")
+        ->where("product_id",$product_id)
+        ->where("image_field",$image_field)
+        ->first();
     }
 
     public function insert_product($arr)
@@ -67,7 +99,7 @@ class Product extends Model
         $ip_address         = $arr["ip_address"];
         $user_agent         = $arr["user_agent"];
 
-        DB::table($this->table)->insert([
+        return DB::table($this->table)->insertGetId([
             'product_title' => $product_title, 
             'product_description' => $product_description,
             "product_category"=>$category,
@@ -92,7 +124,7 @@ class Product extends Model
         $product_title      = $arr["product_title"];
         $product_description= $arr["product_description"]; 
         $product_availability = $arr["product_availability"];
-        $brand              = $arr["brand_id"];
+        $brand              = $arr["brand"];
         $status             = $arr["status"];
         $category           = $arr["category"];
         $subcategory        = $arr["subcategory"];
@@ -105,7 +137,7 @@ class Product extends Model
         $ip_address         = $arr["ip_address"];
         $user_agent         = $arr["user_agent"];
 
-        DB::table('product_tbl') ->where('product_id', $product_id)->update([
+        return DB::table('product_tbl') ->where('product_id', $product_id)->update([
             'product_title' => $product_title, 
             'product_description' => $product_description,
             "product_category"=>$category,

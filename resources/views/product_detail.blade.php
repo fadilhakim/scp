@@ -1,10 +1,10 @@
 @include('template/header')
-<?php $i=1; foreach ($product as $row){ 
+<?php // $i=1; foreach ($product as $row){ 
      $product_title = $row->product_title;
      $price = $row->price;
      $desc = $row->product_description;
      $product_availability = $row->product_availability;
-} ?>
+//} ?>
 <div class="container">
     <div class="empty-space col-xs-b15 col-sm-b30"></div>
     <div class="breadcrumbs">

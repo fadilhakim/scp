@@ -52,5 +52,3 @@ Route::group(['middleware' => ['admin']], function () {
    // Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'AdminController@dashboard']);
 });
 
-// default
-Route::get("default/login","Auth\LoginController@showLoginForm");

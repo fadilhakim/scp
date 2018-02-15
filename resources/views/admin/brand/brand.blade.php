@@ -58,7 +58,7 @@ function delete_modal_brand(brand_id)
                 <div class="card-block table-border-style">
                     <div class="tmp-brand"></div>
                     <div class="">
-                        <table class="table table-hover table-bordered">
+                        <table id="brand-tbl" class="table table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -101,3 +101,9 @@ function delete_modal_brand(brand_id)
         </div>
     </div>
 </div>
+
+<script>
+    $("#brand-tbl").DataTable({
+
+    });
+</script>

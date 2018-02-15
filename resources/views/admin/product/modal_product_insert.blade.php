@@ -1,3 +1,5 @@
+
+<script src="<?=asset("resources/assets/plugins/bootstrap-filestyle/src/bootstrap-filestyle.min.js")?>" ></script>
 <div id="modal_product_insert" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -13,6 +15,23 @@
                 <div class="form-group">
                     <label> Product Title </label>
                     <input type="text" name="product_title" id="product_title" class="form-control" >
+                </div>
+                <label>Upload</label>
+                    <span class="clearfix"></span>
+                <div class="row">
+                    
+                    <div class="col-md-3">
+                        <input type="file" data-placeholder="hei" name="image1" data-size="sm" class="filestyle" data-text="Image1" data-btnClass="btn-primary">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="file" data-placeholder="" name="image2" data-size="sm" class="filestyle" data-text="Image2" data-btnClass="btn-primary">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="file" data-placeholder="" name="image3" data-size="sm" class="filestyle" data-text="Image3" data-btnClass="btn-primary">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="file" data-placeholder="" name="image4" data-size="sm" class="filestyle" data-text="Image4" data-btnClass="btn-primary">
+                    </div>
                 </div>
 
                 <div class="row"> 
@@ -92,7 +111,7 @@
                     <label> Product Description </label>
                     <textarea name="product_description" class="form-control"></textarea>
                 </div>
-                {{ csrf_field() }}
+                <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
             </div>
             <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -107,15 +126,24 @@
         show:true
     });
 
-    $("form#form-product-insert").submit(function(){
+    $("form#form-product-insert").submit(function(e){
+        
+        var formData = new FormData($(this)[0]);
+        //formData.append("_token","{{ csrf_token() }}");
+        //alert($("#_token").val() +" = "+formData.get("_token"));
+
         $.ajax({
-            type:"POST",
+            type:"post",
             url:"{{ url('admin/product/insert_process') }}",
-            data:$(this).serialize(),
+            //data:$(this).serialize(),
+            data:formData,
+            cache: false,
+            processData: false,
+            contentType	: false,
             success:function(data)
             {
                 $("#temp-product").html(data);
-            }
+            },
 
         });
         return false;
