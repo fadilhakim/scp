@@ -34,11 +34,4 @@ class PagesController extends Controller
         return view("/admin/index",$data);
     }
 
-    public function bank()
-    {
-        $data["bank"] = Bank::all_bank();
-        $data["title"]   = "Bank Account";
-        $data['content'] = 'admin/bank_account';
-        return view("/admin/index",$data);
-    }
 }
