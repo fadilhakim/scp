@@ -69,6 +69,7 @@ Route::group(['middleware' => ['admin']], function () {
     // pages
     Route::get("/admin/about","Admin\PagesController@about");
     Route::get("/admin/home","Admin\PagesController@slider");
+    Route::get("/admin/bank_account","Admin\PagesController@bank");
     // product
     Route::get("/admin/product","Admin\ProductController@index");
     Route::get("/admin/product/detail","Admin\ProductController@detail");

@@ -33,12 +33,14 @@
             $active_users = '' ;
             $active_contact = '' ;
             $active_product = '' ;
-
+            $active_bank = '' ;
             if($route == 'about'){
                 $active_about = 'active pcoded-trigger' ;
             }
             else if($route == 'product'){
                 $active_product = 'active pcoded-trigger' ;
+            }else if($route == 'bank_account'){
+                $active_bank = 'active pcoded-trigger' ;
             }else if($route == 'users'){
                 $active_users = 'active pcoded-trigger' ;
             }else if($route == 'contact'){
@@ -97,6 +99,14 @@
                 <a href="<?=url("admin/users")?>">
                     <span class="pcoded-micon"><i class="ti-user"></i></span>
                     <span class="pcoded-mtext"> Costumer </span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+
+            <li class="{{ $active_bank }}">
+                <a href="<?=url("admin/users")?>">
+                    <span class="pcoded-micon"><i class="ti-money"></i></span>
+                    <span class="pcoded-mtext"> Bank Account </span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>

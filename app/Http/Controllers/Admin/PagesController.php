@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Slider;
+use App\Models\Bank;
 
 class PagesController extends Controller
 {
@@ -30,6 +31,14 @@ class PagesController extends Controller
         $data["slider"] = Slider::all_slider();
         $data["title"]   = "home content";
         $data['content'] = 'admin/home';
+        return view("/admin/index",$data);
+    }
+
+    public function bank()
+    {
+        $data["bank"] = Bank::all_bank();
+        $data["title"]   = "Bank Account";
+        $data['content'] = 'admin/bank_account';
         return view("/admin/index",$data);
     }
 }

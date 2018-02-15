@@ -1,3 +1,20 @@
+<script>
+function modal_update_slider(slide_id)
+{
+    var _token = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+        type:"POST",
+        url:"<?=url("admin/product/update")?>",
+        data:"_token="+_token+"&product_id="+product_id,
+        success:function(data)
+        {
+            $(".tmp-product").html(data)
+        }
+    });
+}
+
+
+</script>
 <div class="page-body">
     <div class="row">
         <div class="col-lg-12">
@@ -74,7 +91,7 @@
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2" align="right">
                                           
-                                            <button class="dropdown-item" type="button" onclick="update_modal_product(1)"> Update</button>
+                                            <button class="dropdown-item" type="button" onclick="modal_update_slider(1)"> Update</button>
                                             <button class="dropdown-item" type="button" onclick="delete_modal_product(1)"> Delete </button>
                                             
                                             </div>
