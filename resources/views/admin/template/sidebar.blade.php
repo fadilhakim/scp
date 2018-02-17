@@ -103,6 +103,14 @@
                 </a>
             </li>
 
+            <li class="{{ $active_users }}">
+                <a href="<?=url("admin/order")?>">
+                    <span class="pcoded-micon"><i class="ti-user"></i></span>
+                    <span class="pcoded-mtext"> Order Management </span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+
             <li class="{{ $active_bank }}">
                 <a href="<?=url("admin/users")?>">
                     <span class="pcoded-micon"><i class="ti-money"></i></span>

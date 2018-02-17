@@ -49,5 +49,8 @@ Route::get('/contact', function () {
 
 Route::resource("order","OrderController");
 
+Route::get("auth/login_modal","Auth\LoginController@modal_login");
+Route::post("auth/login_process","Auth\LoginController@login_process");
+
 include "admin_route.php";
 include "web2.php";
