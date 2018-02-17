@@ -411,7 +411,7 @@ class ProductController extends Controller
 
         $this->objProduct->delete_product($product_id);
 
-        echo Alert::success("You successfully Update new Product");
+        echo Alert::success("You successfully Delete Product");
         echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
     }
 

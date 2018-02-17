@@ -48,7 +48,28 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post("/admin/product/brand/delete_process","Admin\BrandController@delete_brand_process");
     Route::post("/admin/product/subcategory/insert_process","Admin\CategoryController@insert_subcategory_process");
     Route::post("/admin/product/subcategory/delete_process","Admin\CategoryController@delete_subcategory_process");
-    
-   // Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'AdminController@dashboard']);
+
+    //Bank
+    Route::get("/admin/bank_account","Admin\BankController@index");
+
+    Route::post("/admin/bank/insert","Admin\BankController@modal_bank_insert");
+    Route::post("/admin/bank/update","Admin\BankController@modal_bank_update");
+    Route::post("/admin/bank/delete","Admin\BankController@modal_bank_delete");
+
+    Route::post("/admin/bank/insert_process","Admin\BankController@bank_insert_process");
+    Route::post("/admin/bank/update_process","Admin\BankController@bank_update_process");
+    Route::post("/admin/bank/delete_process","Admin\BankController@bank_delete_process");
+
+    // Slider
+    Route::get("/admin/slider","Admin\SliderController@index");
+
+    Route::post("/admin/slider/insert","Admin\SliderController@modal_slider_insert");
+    Route::post("/admin/slider/update","Admin\SliderController@modal_slider_update");
+    Route::post("/admin/slider/delete","Admin\SliderController@modal_slider_delete");
+
+    Route::post("/admin/slider/insert_process","Admin\SliderController@slider_insert_process");
+    Route::post("/admin/slider/update_process","Admin\SliderController@slider_update_process");
+    Route::post("/admin/slider/delete_process","Admin\SliderController@slider_delete_process");
+// Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'AdminController@dashboard']);
 });
 

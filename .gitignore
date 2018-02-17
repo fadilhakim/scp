@@ -3,6 +3,7 @@
 /public/storage
 /public/flatlite
 /public/products
+/public/sliders
 /storage/*.key
 /vendor
 /.idea

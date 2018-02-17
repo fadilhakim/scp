@@ -123,7 +123,8 @@
 </div>
 <script>
     $("#modal_product_insert").modal({
-        show:true
+        show:true,
+        backdrop: 'static'
     });
 
     $("form#form-product-insert").submit(function(e){

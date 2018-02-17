@@ -98,15 +98,15 @@
             <li class="{{ $active_users }}">
                 <a href="<?=url("admin/users")?>">
                     <span class="pcoded-micon"><i class="ti-user"></i></span>
-                    <span class="pcoded-mtext"> Costumer </span>
+                    <span class="pcoded-mtext">Costumer</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
 
             <li class="{{ $active_bank }}">
-                <a href="<?=url("admin/users")?>">
+                <a href="<?=url("admin/bank_account")?>">
                     <span class="pcoded-micon"><i class="ti-money"></i></span>
-                    <span class="pcoded-mtext"> Bank Account </span>
+                    <span class="pcoded-mtext">Bank Account</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
@@ -120,9 +120,9 @@
                 <ul class="pcoded-submenu">
                     
                     <li class="">
-                        <a href="{{url('admin/home')}}">
+                        <a href="{{url('admin/slider')}}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext">Home Images</span>
+                            <span class="pcoded-mtext">Home Slider</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>

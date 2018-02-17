@@ -50,7 +50,7 @@ function delete_modal_product(product_id)
                 
                     <h5 class="col-md-10 pull-left"> Product List </h5>
                   
-                        <button onclick="add_modal_product()" class="btn btn-primary btn-sm"><i class="icofont icofont-plus"></i> Add </button>
+                    <button onclick="add_modal_product()" class="btn btn-primary btn-sm"><i     class="icofont icofont-plus"></i> Add </button>
                     <span class="clearfix"></span>
                   
                 </div>
