@@ -18,20 +18,21 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Address</th>
+                                   
                                     <th>Phone Number</th>
                                     <th>User Type</th>
                                     <th>Status</th>
+                                    <th> Action </th>
                                 </tr>
                             </thead>
                             <tbody>
-                             <?php for ($i = 0 ; $i < 9; $i++){ ?>
+                             <?php $i=1; foreach ($user as $row){ ?>
                                 <tr>
                                     <th scope="row"><?php echo $i ?></th>
-                                    <td>John Doe</td>
-                                    <td>john@gmail.com</td>
-                                    <td><a href="#">Address 1</a></td>
-                                    <td>092381231</td>
+                                    <td><?=$row->name?></td>
+                                    <td><?=$row->email?></td>
+                                   
+                                    <td><?=$row->no_telp?></td>
                                     <td>
                                         <select class="form-control">
                                             <option>Regular</option>
@@ -44,9 +45,12 @@
                                             <option>unActive</option>
                                         </select>
                                     </td>
+                                    <td>
+
+                                    </td>
                                 </tr>
 
-                                <?php } ?>
+                                <?php $i++; } ?>
                             </tbody>
                         </table>
                     </div>

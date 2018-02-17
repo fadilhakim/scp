@@ -1,11 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-/*
-    use Illuminate\Database\Eloquent\Model;
-    use Illuminate\Support\Facades\DB;
-*/
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -23,7 +22,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token'
     ];
-    protected $guard = 'admin';
+    protected $guard = 'user';
     protected $guarded = [];
     // default column timestamp
     //const CREATED_AT = "created_at";
@@ -31,5 +30,9 @@ class User extends Authenticatable
     // protected $connection = ""; // connection database name
 
     //
+    function list_user()
+    {
+        return DB::table("users")->get(); 
+    }
    
 }

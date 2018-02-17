@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -56,6 +56,19 @@ class LoginController extends Controller
         return view('default/auth/login');
     }
     
+    public function modal_login()
+    {
+        return view("auth/modal_login");
+    }
+
+    public function login_process(Request $request)
+    {
+        $email = $request->post("email");
+        $password = $request->post("password");
+
+        dd($request->all());
+    }
+
     protected function login(Request $request)
     {
 
