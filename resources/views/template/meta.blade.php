@@ -20,6 +20,10 @@
     <link href="{{ URL::asset('public/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/css/costum.css') }}">
+
+    <script src="{{ URL::asset('public/js/jquery-2.2.4.min.js') }}"></script>
+    <script src="{{ URL::asset('public/js/global.js') }}"></script>
+
     <link rel="shortcut icon" href="img/favicon.ico" />
 </head>
 <body>

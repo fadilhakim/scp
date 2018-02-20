@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 use Illuminate\Http\Request;
 use App\Libraries\Autoload;
+use Auth;
 
 class TestController extends Controller
 {
@@ -12,6 +15,7 @@ class TestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    use AuthenticatesUsers;
     public $autoObj;
     function __construct()
     {
@@ -25,6 +29,16 @@ class TestController extends Controller
         echo "<br>";
         echo url("");
         //echo URL::asset("");
+    }
+
+    function session()
+    {
+        echo "<h1> Session </h1><hr>";
+        $user = Auth::guard("user")->user();
+        dd($user);
+        
+       
+        
     }
 
     function dimas()

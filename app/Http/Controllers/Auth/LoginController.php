@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
-use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
-use Sentinel;
 use Illuminate\Http\Request;
 use Activation;
 use Redirect;
@@ -19,6 +16,7 @@ use Mail;
 use Carbon\Carbon;
 use Mailchimp;
 use App\ZipCode;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -33,7 +31,7 @@ class LoginController extends Controller
     |
     */
 
-   use  ThrottlesLogins;
+    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -63,10 +61,32 @@ class LoginController extends Controller
 
     public function login_process(Request $request)
     {
-        $email = $request->post("email");
-        $password = $request->post("password");
+        $email    = $request->input("email");
+        $password = $request->input("password");
 
-        dd($request->all());
+        $validation = Validator::make($request->all(),  [
+            'email'    => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if ($validation->fails()) {
+            return Redirect::back()->withErrors($validation)->withInput();
+        }
+
+        if (Auth::guard('user')->attempt(['email' => $email, 'password' => $password]))
+        {
+           //dd("bisa gak sih ?");
+            $user = Auth::guard('user')->user();// define session
+           
+           return redirect("");
+        }else{
+            //$request->session()->flash('message', "Username or Password are invalid");
+            
+            //return redirect("admin/login");         
+        }
+
+
+        
     }
 
     protected function login(Request $request)

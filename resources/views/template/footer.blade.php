@@ -355,10 +355,8 @@
 
     </div>
 
-    <script src="{{ URL::asset('public/js/jquery-2.2.4.min.js') }}"></script>
+   
     <script src="{{ URL::asset('public/js/swiper.jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('public/js/global.js') }}"></script>
-
     <!-- styled select -->
     <script src="{{ URL::asset('public/js/jquery.sumoselect.min.js') }}"></script>
 
