@@ -1,4 +1,12 @@
 @include('template/meta')    
+    <?php
+    $session =  Auth::guard("user")->user();
+    if(!empty($session))
+    {
+        $name_session = $session->name;
+    }
+    
+    ?>
     <div id="content-block">
         <!-- HEADER -->
         <header>
@@ -10,7 +18,13 @@
                             <div class="entry"><b>email:</b> <a href="mailto:office@strawberyCell.com">office@sws.com</a></div>
                         </div>
                         <div class="col-md-7 col-md-text-right">
+                            <?php if(empty($session)){ ?>
                             <div class="entry"><a class="open-popup" data-rel="1"><b>login</b></a>&nbsp; or &nbsp;<a class="open-popup" data-rel="2"><b>register</b></a></div>
+                            <?php }else{
+                                echo "<div class='entry'> Hi, $name_session . 
+                                <a href=".url("auth/logout")."> Logout </a>
+                                </div>";
+                            } ?>
                             <div class="entry hidden-xs hidden-sm cart">
                                 <a href="{{url('cart')}}">
                                     <b class="hidden-xs">Your bag</b>

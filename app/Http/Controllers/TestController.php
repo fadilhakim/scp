@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
 use Illuminate\Http\Request;
 use App\Libraries\Autoload;
-use Auth;
 
 class TestController extends Controller
 {

@@ -78,11 +78,12 @@ class LoginController extends Controller
            //dd("bisa gak sih ?");
             $user = Auth::guard('user')->user();// define session
            
-           return redirect("");
+            //return redirect('/');
+            echo "<script> location.reload() </script>";
         }else{
             //$request->session()->flash('message', "Username or Password are invalid");
             
-            //return redirect("admin/login");         
+           echo "<p> Username or password are invalid </p>";      
         }
 
 
@@ -130,7 +131,7 @@ class LoginController extends Controller
 
     protected function logout()
     {
-        Sentinel::logout();
+        Auth::logout();
         return redirect('/');
     }
     protected function activate($id){
