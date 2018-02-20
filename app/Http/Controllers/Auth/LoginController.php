@@ -78,8 +78,10 @@ class LoginController extends Controller
            //dd("bisa gak sih ?");
             $user = Auth::guard('user')->user();// define session
            
-            //return redirect('/');
-            echo "<script> location.reload() </script>";
+            
+            
+            return redirect('/');
+            //header("location:".base_url(""));
         }else{
             //$request->session()->flash('message', "Username or Password are invalid");
             
