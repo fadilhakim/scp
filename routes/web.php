@@ -27,34 +27,29 @@ Route::get('/about', function () {
 Route::get('/product', 'ProductController@index');
 Route::get('/product/detail/{id}/{product_category}/{product_title}', 'ProductController@detail');
 
-Route::get('/cart', function () {
-    return view('cart');
-});
 
 Route::get('/services', function () {
     return view('services');
-});
-
-Route::get('/cart', function () {
-    return view('cart');
-});
-
-Route::get('/checkout', function () {
-    return view('checkout');
 });
 
 Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::resource("order","OrderController");
 
-Route::get("auth/login_modal","Auth\LoginController@modal_login");
+
+
 Route::post("auth/login_process","Auth\LoginController@login_process");
+Route::post("auth/register_process","Auth\RegisterController@register_process");
 
-//Route::group(['middleware' => ['user']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get("auth/logout","Auth\LoginController@logout");
-//});
+    
+    Route::resource("order","OrderController");
+    Route::get('/cart', function () {
+        return view('cart');
+    });
+});
 
 include "admin_route.php";
 include "web2.php";

@@ -57,6 +57,21 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
+    public function register_process(Request $request)
+    {
+        dd($request->all());
+
+        $validation = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if ($validation->fails()) {
+            return Redirect::back()->withErrors($validation)->withInput();
+        }
+    }
+
     public function register(Request $request){
 
         $validation = Validator::make($request->all(), [
