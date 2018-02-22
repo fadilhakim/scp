@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Libraries\Alert;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+
 use Redirect;
 use Sentinel;
 use Session;
 use Activation;
+
 class RegisterController extends Controller
 {
     /*
@@ -25,7 +29,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-
+    private $objUser;
     /**
      * Where to redirect users after registration.
      *
@@ -41,6 +45,8 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->objUser = new User();
+
     }
 
    
@@ -51,28 +57,61 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    
-    public function showRegistrationForm()
-    {
-        return view('auth.register');
-    }
-
     public function register_process(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
+        $name               = $request->input("name");
+        $email              = $request->input("email");
+        $username           = strstr($email, '@', true);
+        $password           = bcrypt($request->input("password"));
+        $datetime           = date("Y-m-d H:i:s");
+        $ip_address         = $request->ip();
+        $user_agent         = $request->header('User-Agent');
 
         $validation = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name'      => 'required|string|max:255',
+            'email'     => 'required|string|email|max:255|unique:users',
+            'password'  => 'required|string|min:6|confirmed',
         ]);
 
         if ($validation->fails()) {
-            return Redirect::back()->withErrors($validation)->withInput();
+            //return Redirect::back()->withErrors($validation)->withInput();
+            $errors = $validator->errors();
+            
+             $err_text = "";
+             foreach($errors->all() as $err) 
+             {
+                 $err_text .=  "<li> $err </li>";
+             }
+ 
+             echo Alert::danger($err_text);
+        }else
+        {
+            $arr["name"]       = $name;
+            $arr["email"]      = $email;
+            $arr["username"]   = $username;
+            $arr["password"]   = $password;
+            $arr["datetime"]   = $datetime;
+            $arr["ip_address"] = $ip_address;
+            $arr["user_agent"] = $user_agent;
+
+            $this->objUser->register_user($arr);
+
+            echo Alert::success("You successfully Register");
         }
     }
 
-    public function register(Request $request){
+    function register()
+    {
+        return view("auth.register");
+    }
+
+    /* public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }*/
+
+    /* public function register(Request $request){
 
         $validation = Validator::make($request->all(), [
                 'first_name' => 'required|string|max:255',
@@ -100,7 +139,7 @@ class RegisterController extends Controller
          Session::flash('message', 'There was an error with the registration' );
          Session::flash('status', 'error');
          return Redirect::back();
-    }
+    }*/
 
 
 

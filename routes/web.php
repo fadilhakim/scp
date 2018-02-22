@@ -38,7 +38,8 @@ Route::get('/contact', function () {
 
 
 
-
+Route::get("login","Auth\LoginController@login");
+Route::get("register","Auth\RegisterController@register");
 Route::post("auth/login_process","Auth\LoginController@login_process");
 Route::post("auth/register_process","Auth\RegisterController@register_process");
 
