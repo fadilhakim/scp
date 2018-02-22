@@ -38,6 +38,7 @@ class User extends Authenticatable
     function register_user($arr)
     {
         return DB::table("users")->insert([
+            "name"=>$arr["name"],
             "email"=>$arr["email"],
             "username"=>$arr["username"],
             "password"=>$arr["password"],
