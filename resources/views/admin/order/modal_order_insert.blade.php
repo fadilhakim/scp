@@ -1,20 +1,20 @@
 
 <script src="<?=asset("resources/assets/plugins/bootstrap-filestyle/src/bootstrap-filestyle.min.js")?>" ></script>
-<div id="modal_product_insert" class="modal" tabindex="-1" role="dialog">
+<div id="modal_order_insert" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-            <h5 class="modal-title text-white"> Product Insert </h5>
+            <h5 class="modal-title text-white"> order Insert </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
-            <form id="form-product-insert">
+            <form id="form-order-insert">
             <div class="modal-body">
-                <div id="temp-product"></div>
+                <div id="temp-order"></div>
                 <div class="form-group">
-                    <label> Product Title </label>
-                    <input type="text" name="product_title" id="product_title" class="form-control" >
+                    <label> order Title </label>
+                    <input type="text" name="order_title" id="order_title" class="form-control" >
                 </div>
                 <label>Upload</label>
                     <span class="clearfix"></span>
@@ -69,8 +69,8 @@
                 <div class="row">
                     
                     <div class="form-group col-md-4">
-                        <label> Product Availability </label>
-                        <select class="form-control" name="product_availability" id="product_availability">
+                        <label> order Availability </label>
+                        <select class="form-control" name="order_availability" id="order_availability">
                             <option value="Ready Stock"> Ready Stock </option>
                             <option value="Pre Order"> Pre Order </option>
                             <option value="Sales Stock"> Sales Stock </option>
@@ -108,8 +108,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label> Product Description </label>
-                    <textarea name="product_description" class="form-control"></textarea>
+                    <label> order Description </label>
+                    <textarea name="order_description" class="form-control"></textarea>
                 </div>
                 <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
             </div>
@@ -122,11 +122,11 @@
     </div>
 </div>
 <script>
-    $("#modal_product_insert").modal({
+    $("#modal_order_insert").modal({
         show:true
     });
 
-    $("form#form-product-insert").submit(function(e){
+    $("form#form-order-insert").submit(function(e){
         
         var formData = new FormData($(this)[0]);
         //formData.append("_token","{{ csrf_token() }}");
@@ -134,7 +134,7 @@
 
         $.ajax({
             type:"post",
-            url:"{{ url('admin/product/insert_process') }}",
+            url:"{{ url('admin/order/insert_process') }}",
             //data:$(this).serialize(),
             data:formData,
             cache: false,
@@ -142,7 +142,7 @@
             contentType	: false,
             success:function(data)
             {
-                $("#temp-product").html(data);
+                $("#temp-order").html(data);
             },
 
         });

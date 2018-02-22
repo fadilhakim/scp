@@ -21,9 +21,10 @@
                             <?php if(empty($session)){ ?>
                             <div class="entry"><a class="open-popup" data-rel="1"><b>login</b></a>&nbsp; or &nbsp;<a class="open-popup" data-rel="2"><b>register</b></a></div>
                             <?php }else{
-                                echo "<div class='entry'> Hi, $name_session . 
+                                echo "<div class='entry' > Hi, $name_session . 
                                 <a href=".url("auth/logout")."> Logout </a>
                                 </div>";
+                               
                             } ?>
                             <div class="entry hidden-xs hidden-sm cart">
                                 <a href="{{url('cart')}}">

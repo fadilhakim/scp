@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/css/costum.css') }}">
 
     <script src="{{ URL::asset('public/js/jquery-2.2.4.min.js') }}"></script>
+    <script src="{{ URL::asset('public/plugins/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <script src="{{ URL::asset('public/js/global.js') }}"></script>
 
     <link rel="shortcut icon" href="img/favicon.ico" />
