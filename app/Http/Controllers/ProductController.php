@@ -31,7 +31,7 @@ class ProductController extends Controller
     {
        
        	$data["product"] = Product::detail_product($id);
-       	$data["related_product"] = Product::related_product($catagory);
+       	$data["related_product"] = Product::related_product($category);
         $data["title"] = "Our Product";
         $data["content"] = "Product";
         return view("product_detail",$data);
