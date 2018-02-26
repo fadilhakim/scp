@@ -318,13 +318,17 @@ $(function() {
 
     //quantity selector
     $(document).on('click', '.quantity-select .minus', function(){
-    	var newValue = parseInt($(this).parent().find('.number').text(), 10);
-    	$(this).parent().find('.number').text(newValue>1?(newValue-1):newValue);
+		var newValue = parseInt($(this).parent().find('.number').val(), 10);
+		//alert( newValue);
+		//$(this).parent().find('.number').text(newValue>1?(newValue-1):newValue);
+		$(this).parent().find('.number').val( newValue>1?(newValue-1):newValue );
+		
     });
 
     $(document).on('click', '.quantity-select .plus', function(){
-    	var newValue = parseInt($(this).parent().find('.number').text(), 10);
-    	$(this).parent().find('.number').text(newValue+1);
+    	var newValue = parseInt($(this).parent().find('.number').val(), 10);
+		//$(this).parent().find('.number').text(newValue+1);
+		$(this).parent().find('.number').val(newValue+1);
     });
 
     //rating

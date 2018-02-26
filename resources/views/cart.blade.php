@@ -8,6 +8,7 @@
             data:$("form#form-update-cart").serialize(),
             success:function(data)
             {
+               
                 $("#cart-info-temp").html(data);
             }
         });
@@ -63,10 +64,10 @@
                     <td data-title="Quantity: ">
 
                         <div class="quantity-select">
-                            <span class="minus"></span>
-                            <span class="number"><?=number_format($row->qty)?></span>
-                            <input type="hidden" class="" name="qty-input[]" value="<?=number_format($row->qty)?>" >
-                            <span class="plus"></span>
+                           
+                            <!-- <span class="number" id="number-id"><?=number_format($row->qty)?></span> -->
+                            <input style='text-align:center' type="number" id="qty-input" name="qty-input[]" value="<?=number_format($row->qty)?>" >
+                           
                            
                         </div>
                     </td>
@@ -104,7 +105,7 @@
                             <span class="text">Update Cart</span>
                         </span>
                     </a>
-                    <a class="button size-2 style-3" href="{{url('checkout')}}">
+                    <a onclick="return confirm('Are you sure want to checkout')" class="button size-2 style-3" href="{{url('checkout')}}">
                         <span class="button-wrapper">
                             <span class="icon"><img src="img/icon-4.png" alt=""></span>
                             <span class="text">proceed to checkout</span>
@@ -193,6 +194,17 @@
 </div>
 
 <script>
+    $("span.minus").click(function(){
+        var num = $("#number-id").html();
+        $("#qty-input").val(num);
+    });
+    $("span.plus").click(function(){
+        var num = $("#number-id").html();
+        $("#qty-input").val(num);
+    });
+    /*$("#number-id").change(function(){
+        $("#qty-input").val($(this).html());
+    });*/
     /* $("#update-cart").click(function(){
        alert("duh");
        $("#form-update-cart").submit(function(){

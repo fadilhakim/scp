@@ -34,4 +34,14 @@ class Order extends Model
       return $order;
     }
 
+    function insert_order($arr)
+    {
+      return DB::table("order_tbl");
+    }
+
+    function insert_order_detail($arr)
+    {
+      return DB::table("order_tbl");
+    }
+
 }
