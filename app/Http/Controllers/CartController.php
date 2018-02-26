@@ -53,7 +53,7 @@ class CartController extends Controller
              //$a = Cart::instance('shopping')->add('192ao14', 'Product 14', 1, 9.99);
             $a = Cart::add($c);
 
-            //return view("cart/modal");
+            return view("cart/modal_info");
             //dd($a);
         }
        
@@ -62,7 +62,7 @@ class CartController extends Controller
 
     function update(Request $request)
     {
-        
+        dd($request->all());
     }
 
     function delete(Request $request)

@@ -49,7 +49,7 @@ Route::resource("order","OrderController@");
 
 Route::get('cart',"CartController@index"); 
 Route::get("cart/add/{product_id}/{product_title}","CartController@add");
-Route::get("cart/update","CartController@update");
+Route::post("cart/update","CartController@update");
 Route::get("cart/delete/{row_id}","CartController@delete");
 Route::get("cart/content","CartController@content");
 Route::get("cart/destroy","CartController@destroy");
