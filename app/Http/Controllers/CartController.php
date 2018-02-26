@@ -53,7 +53,7 @@ class CartController extends Controller
              //$a = Cart::instance('shopping')->add('192ao14', 'Product 14', 1, 9.99);
             $a = Cart::add($c);
 
-            redirect("cart");
+            redirect()->to("cart")->send();
             //return view("cart/modal_info");
             //dd($a);
         }
@@ -72,17 +72,11 @@ class CartController extends Controller
         if(!empty($rowid))
         {
             Cart::remove($rowid);
-
-            // pesan
-           // Redirect::to('login')->send();
-           // header("location:".url("cart"));
-            redirect()->to('cart')->send();
+            redirect()->to("cart")->send();
         }
         else
         {
-            redirect()->to('cart')->send();
-            //Redirect::to('login')->send();
-            //header("location:".url("cart"));
+            redirect()->to("cart")->send();
         }
     }
 
