@@ -74,12 +74,15 @@ class CartController extends Controller
             Cart::remove($rowid);
 
             // pesan
-
-            header("location:".url("cart"));
+           // Redirect::to('login')->send();
+           // header("location:".url("cart"));
+            redirect()->to('cart')->send();
         }
         else
         {
-            header("location:".url("cart"));
+            redirect()->to('cart')->send();
+            //Redirect::to('login')->send();
+            //header("location:".url("cart"));
         }
     }
 
