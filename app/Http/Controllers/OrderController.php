@@ -22,6 +22,8 @@ class OrderController extends Controller
       Order::test();
     }
 
+    
+
     /**
      * Show the form for creating a new resource.
      *

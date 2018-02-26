@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Auth::routes();// penting
+
 Route::get('/', function () {
     return view('home');
 });
@@ -36,20 +38,24 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-
-
-Route::get("login","Auth\LoginController@login");
+Route::get("login",["as"=>"login","uses"=>'Auth\LoginController@showLoginForm']);
 Route::get("register","Auth\RegisterController@register");
 Route::post("auth/login_process","Auth\LoginController@login_process");
 Route::post("auth/register_process","Auth\RegisterController@register_process");
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::get("auth/logout","Auth\LoginController@logout");
+Route::get("auth/logout","Auth\LoginController@logout");
     
-    Route::resource("order","OrderController");
-    Route::get('/cart', function () {
-        return view('cart');
-    });
+Route::resource("order","OrderController@");
+
+Route::get('cart',"CartController@index"); 
+Route::get("cart/add/{product_id}/{product_title}","CartController@add");
+Route::post("cart/update","CartController@update");
+Route::get("cart/delete/{row_id}","CartController@delete");
+Route::get("cart/content","CartController@content");
+Route::get("cart/destroy","CartController@destroy");
+
+Route::group(['middleware' => ['auth']], function () {
+    //Route::get('cart',"CartController@index"); // untuk sementara di comment
 });
 
 include "admin_route.php";
