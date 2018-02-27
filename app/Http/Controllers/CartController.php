@@ -98,9 +98,6 @@ class CartController extends Controller
         if(!empty($rowid))
         {
             Cart::remove($rowid);
-
-            // pesan
-
             redirect()->to("cart")->send();
         }
         else

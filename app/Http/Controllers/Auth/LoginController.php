@@ -51,8 +51,13 @@ class LoginController extends Controller
     }
     public function showLoginForm()
     {
-        echo "<h1>  Login Page </h1> <hr>";
-        //return view('default/auth/login');
+        //echo "<h1>  Login Page </h1> <hr>";
+        
+    }
+
+    function login_form()
+    {
+        return view('default/auth/login');
     }
     
     public function modal_login()

@@ -29,6 +29,8 @@ Route::get('/about', function () {
 Route::get('/product', 'ProductController@index');
 Route::get('/product/detail/{id}/{product_category}/{product_title}', 'ProductController@detail');
 
+Route::get('/memberarea', 'Member\MemberController@index');
+Route::get('/detail_order/{id}', 'Member\MemberController@detail_order');
 
 Route::get('/services', function () {
     return view('services');
@@ -38,8 +40,16 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get("login",["as"=>"login","uses"=>'Auth\LoginController@showLoginForm']);
-Route::get("register","Auth\RegisterController@register");
+Route::get("login",["as"=>"login","uses"=>'Auth\LoginController@login_form']);
+Route::get("register","Auth\RegisterController@register")->name("register");
+Route::get('auth/reset', [
+    'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm',
+    'as' => 'password.reset'
+]);
+Route::get('auth/request', [
+    'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm',
+    'as' => 'password.request'
+]);
 Route::post("auth/login_process","Auth\LoginController@login_process");
 Route::post("auth/register_process","Auth\RegisterController@register_process");
 
