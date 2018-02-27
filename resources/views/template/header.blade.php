@@ -31,11 +31,11 @@
                                     <b class="hidden-xs">Your bag</b>
                                     <span class="cart-icon">
                                         <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                        <span class="cart-label">5</span>
+                                        <span class="cart-label"><?=Cart::count()?></span>
                                     </span>
-                                    <span class="cart-title hidden-xs">Rp 1195.00</span>
+                                    <span class="cart-title hidden-xs">Rp <?=Cart::total(0, 0, ".");?></span>
                                 </a>
-                                <div class="cart-toggle hidden-xs hidden-sm">
+                                <!-- <div class="cart-toggle hidden-xs hidden-sm">
                                     <div class="cart-overflow">
                                         <div class="cart-entry clearfix">
                                             <a class="cart-entry-thumbnail" href="#"><img src="img/product-1.png" alt="" /></a>
@@ -111,7 +111,7 @@
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="cell-view empty-space col-xs-b50">
-                                                <div class="simple-article size-5 grey">TOTAL <span class="color">Rp 1195.00</span></div>
+                                                <div class="simple-article size-5 grey">TOTAL <span class="color">Rp <?=Cart::total(0, 0, ".");?></span></div>
                                             </div>
                                         </div>
                                         <div class="col-xs-6 text-right">
@@ -123,7 +123,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="hamburger-icon">
                                 <span></span>
