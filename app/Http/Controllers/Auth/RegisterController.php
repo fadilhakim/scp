@@ -76,7 +76,7 @@ class RegisterController extends Controller
 
         if ($validation->fails()) {
             //return Redirect::back()->withErrors($validation)->withInput();
-            $errors = $validator->errors();
+            $errors = $validation->errors();
             
              $err_text = "";
              foreach($errors->all() as $err) 
