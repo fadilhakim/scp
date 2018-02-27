@@ -29,6 +29,8 @@ Route::get('/about', function () {
 Route::get('/product', 'ProductController@index');
 Route::get('/product/detail/{id}/{product_category}/{product_title}', 'ProductController@detail');
 
+Route::get('/memberarea', 'Member\MemberController@index');
+Route::get('/detail_order/{id}', 'Member\MemberController@detail_order');
 
 Route::get('/services', function () {
     return view('services');
