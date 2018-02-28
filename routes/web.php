@@ -29,8 +29,6 @@ Route::get('/about', function () {
 Route::get('/product', 'ProductController@index');
 Route::get('/product/detail/{id}/{product_category}/{product_title}', 'ProductController@detail');
 
-Route::get('/memberarea', 'Member\MemberController@index');
-Route::get('/detail_order/{id}', 'Member\MemberController@detail_order');
 
 Route::get('/services', function () {
     return view('services');
@@ -66,6 +64,12 @@ Route::get("cart/destroy","CartController@destroy");
 
 Route::group(['middleware' => ['auth']], function () {
     //Route::get('cart',"CartController@index"); // untuk sementara di comment
+
+// members and order
+
+Route::get('/memberarea', 'Member\MemberController@index');
+Route::get('/detail_order/{id}', 'Member\MemberController@detail_order');
+
 });
 
 include "admin_route.php";

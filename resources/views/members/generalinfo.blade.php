@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="empty-space col-xs-b15 col-sm-b30"></div>
 		<div class="row">
-			@include('../template/member_sidebar')
+			@include('members/member_sidebar')
 			<style type="text/css">
 				.header-lined h1 {
 					    font-weight: 400;
