@@ -6,6 +6,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 use App\Models\Product;
+use App\Libraries\Alert;
 
 class CartController extends Controller
 {
@@ -63,7 +64,32 @@ class CartController extends Controller
 
     function update(Request $request)
     {
-        dd($request->all());
+       
+        $rowId = $request->input("rowid-input");
+        $qty   = $request->input("qty-input");
+
+        $count = count($rowId);
+        
+        if(!empty($rowId))
+        {
+            for($i=0; $i<=$count-1; $i++)
+            {
+                $rowid1 = $rowId[$i];
+
+                Cart::update($rowid1, $qty[$i]); // Will update the quantity
+            }
+
+            echo "<div class='alert alert-success'> You sucessfully updated cart </div>";
+            echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
+        }
+        else
+        {
+            echo "<div  class='alert alert-danger'> You cart is empty </div>";
+            echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
+        }
+        //redirect()->to("cart")->send();
+
+        
     }
 
     function delete(Request $request)
