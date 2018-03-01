@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Libraries\Autoload;
 
+use App\Mail\DemoEmail;
+use Illuminate\Support\Facades\Mail;
+
 class TestController extends Controller
 {
     /**
@@ -12,7 +15,7 @@ class TestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    use AuthenticatesUsers;
+    
     public $autoObj;
     function __construct()
     {
@@ -36,6 +39,17 @@ class TestController extends Controller
         
        
         
+    }
+
+    function send_email()
+    {
+        $objDemo = new \stdClass();
+        $objDemo->demo_one = 'Demo One Value';
+        $objDemo->demo_two = 'Demo Two Value';
+        $objDemo->sender   = 'SenderUserName';
+        $objDemo->receiver = 'ReceiverUserName';
+ 
+        Mail::to("receiver@example.com")->send(new DemoEmail($objDemo));
     }
 
     function dimas()
