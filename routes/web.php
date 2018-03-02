@@ -78,7 +78,7 @@ Route::get("cart/destroy","CartController@destroy");
 Route::get("auth/logout","Auth\LoginController@logout");
     
 Route::resource("order","OrderController@");
-Route::get('/login_checkout', 'OrderController@login_checkout');
+Route::get('/user_form_checkout', 'OrderController@user_form_checkout');
 
 Route::get('cart',"CartController@index"); 
 Route::get("cart/add/{product_id}/{product_title}","CartController@add");
