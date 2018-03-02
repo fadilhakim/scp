@@ -122,6 +122,4 @@ class Order extends Model
         "created_at" =>$arr["created_at"]
       ]);
     }
-
-
 }
