@@ -61,6 +61,17 @@ class TestController extends Controller
         Mail::to("ariesdimasy@gmail.com")->send(new DemoEmail($objDemo));
     }
 
+    function send_email()
+    {
+        $objDemo = new \stdClass();
+        $objDemo->demo_one = 'Demo One Value';
+        $objDemo->demo_two = 'Demo Two Value';
+        $objDemo->sender   = 'SenderUserName';
+        $objDemo->receiver = 'ReceiverUserName';
+ 
+        Mail::to("receiver@example.com")->send(new DemoEmail($objDemo));
+    }
+
     function dimas()
     {
         $obj = new Autoload;

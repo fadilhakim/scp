@@ -104,8 +104,6 @@ class Order extends Model
 
     function update_order($arr)
     {
-     
-
       return DB::table("order_tbl")->where("order_id",$arr["order_id"])->update([
         "user_id"     =>$arr["user_id"],
         "grand_total" =>$arr["grand_total"], 
@@ -125,6 +123,11 @@ class Order extends Model
       ]);
     }
 
-    
+    function insert_order_detail($arr)
+    {
+      return DB::table("order_detail_tbl")->insert([
+          
+      ]);
+    }
 
 }

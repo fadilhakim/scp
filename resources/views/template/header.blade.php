@@ -13,29 +13,35 @@
             <div class="header-top">
                 <div class="content-margins">
                     <div class="row">
-                        <div class="col-md-5 hidden-xs hidden-sm">
+                        <div class="col-md-7 hidden-xs hidden-sm">
                             <div class="entry"><b>contact us:</b> <a href="tel:+35235551238745">+3  (523) 555 123 8745</a></div>
                             <div class="entry"><b>email:</b> <a href="mailto:office@strawberyCell.com">office@sws.com</a></div>
                         </div>
-                        <div class="col-md-7 col-md-text-right">
+                        <div class="col-md-5 col-md-text-right" style="position: relative;">
                             <?php if(empty($session)){ ?>
                             <div class="entry"><a class="open-popup" data-rel="1"><b>login</b></a>&nbsp; or &nbsp;<a class="open-popup" data-rel="2"><b>register</b></a></div>
-                            <?php }else{
-                                echo "<div class='entry' > Hi, $name_session . 
-                                <a href=".url("auth/logout")."> Logout </a>
-                                </div>";
+                            <?php }else{ ?>
+
+                                <div class='entry' id="dropdownMenu2" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 
+                                  <a href='#' >Hi, {{ $name_session }}</a>
+                                </div>
+
+                                <div class="dropdown-menu" style="top: 93%; left: 19%;" aria-labelledby="dropdownMenu2">
+                                    <a class="dropdown-item" href=".url('memberarea')."> Member Area </a>
+                                    <a class="dropdown-item" href=".url('auth/logout')."> Logout </a>
+                                </div>
                                
-                            } ?>
+                            <?php } ?>
                             <div class="entry hidden-xs hidden-sm cart">
                                 <a href="{{url('cart')}}">
                                     <b class="hidden-xs">Your bag</b>
                                     <span class="cart-icon">
                                         <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                        <span class="cart-label">5</span>
+                                        <span class="cart-label"><?=Cart::count()?></span>
                                     </span>
-                                    <span class="cart-title hidden-xs">Rp 1195.00</span>
+                                    <span class="cart-title hidden-xs">Rp <?=Cart::total(0, 0, ".");?></span>
                                 </a>
-                                <div class="cart-toggle hidden-xs hidden-sm">
+                                <!-- <div class="cart-toggle hidden-xs hidden-sm">
                                     <div class="cart-overflow">
                                         <div class="cart-entry clearfix">
                                             <a class="cart-entry-thumbnail" href="#"><img src="img/product-1.png" alt="" /></a>
@@ -111,7 +117,7 @@
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <div class="cell-view empty-space col-xs-b50">
-                                                <div class="simple-article size-5 grey">TOTAL <span class="color">Rp 1195.00</span></div>
+                                                <div class="simple-article size-5 grey">TOTAL <span class="color">Rp <?=Cart::total(0, 0, ".");?></span></div>
                                             </div>
                                         </div>
                                         <div class="col-xs-6 text-right">
@@ -123,7 +129,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="hamburger-icon">
                                 <span></span>

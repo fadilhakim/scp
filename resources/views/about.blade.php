@@ -1,5 +1,5 @@
 @include('template/header')
-        <div class="block-entry fixed-background" style="background-image: url({{URL::asset('/public/img/background-24.jpg')}});">
+        <div class="block-entry fixed-background" style="background-image: url({{URL::asset('/public/img/background-24.jpg')}})">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
