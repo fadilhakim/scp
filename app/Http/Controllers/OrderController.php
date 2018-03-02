@@ -37,7 +37,7 @@ class OrderController extends Controller
       
         if(!empty(Cart::content()))
         {
-            /* if(!empty(Cart::content()))
+            if(!empty(Cart::content()))
             {
                 $user               = Auth::guard("user")->user();
 
@@ -50,14 +50,14 @@ class OrderController extends Controller
                 $arr["user_agent"]  = $user_agent;
 
                 $arr["user_id"]     = $user->id;
-                $arr["grand_total"] = Cart::total();
-                $arr["subtotal"]    = Cart::subtotal();
+                $arr["grand_total"] = Cart::total(".",".",".");
+                $arr["subtotal"]    = floor(Cart::subtotal());
                 $arr["kurir"]       = "";
                 $arr["total_berat"] = "";
                 $arr["kurir_service"] = "";
-                $arr["tax"]         = Cart::tax();
-                $arr["purpose_bank"] = "";
-                $arr["status"]      = "unpaid";
+                $arr["tax"]           = floor(Cart::tax());
+                $arr["purpose_bank"]  = "";
+                $arr["status"]        = "unpaid";
                 $arr["user_addtr_id"] = "";
                 $arr["ongkir"]      = "";
 
@@ -76,7 +76,9 @@ class OrderController extends Controller
                     
                     $this->objOrder->insert_order_detail($arr);
                 }
-            }*/
+            }
+
+            redirect()->to("memberarea")->send();
 
             $objDemo = new \stdClass();
             /* $objDemo->demo_one = 'Demo One Value';

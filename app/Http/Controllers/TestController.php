@@ -38,7 +38,7 @@ class TestController extends Controller
     {
         //$request = new Request();
         echo "<h1> Session </h1><hr>";
-
+        //echo $aaaaaaaaaaaaaaaaa["aaa"];
         //$session = $request->session()->all();
         $user = Auth::guard("user")->user();
         //echo $user->name;
@@ -48,17 +48,6 @@ class TestController extends Controller
     function invoice()
     {
         return view("invoice/invoice-fancy-page-inline");
-    }
-
-    function send_email()
-    {
-        $objDemo = new \stdClass();
-        $objDemo->demo_one = 'Demo One Value';
-        $objDemo->demo_two = 'Demo Two Value';
-        $objDemo->sender   = 'SenderUserName';
-        $objDemo->receiver = 'ReceiverUserName';
- 
-        Mail::to("ariesdimasy@gmail.com")->send(new DemoEmail($objDemo));
     }
 
     function send_email()

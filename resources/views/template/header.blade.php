@@ -27,8 +27,8 @@
                                 </div>
 
                                 <div class="dropdown-menu" style="top: 93%; left: 19%;" aria-labelledby="dropdownMenu2">
-                                    <a class="dropdown-item" href=".url('memberarea')."> Member Area </a>
-                                    <a class="dropdown-item" href=".url('auth/logout')."> Logout </a>
+                                    <a class="dropdown-item" href="{{ url('memberarea') }}"> Member Area </a>
+                                    <a class="dropdown-item" href="{{ url('auth/logout') }}"> Logout </a>
                                 </div>
                                
                             <?php } ?>
