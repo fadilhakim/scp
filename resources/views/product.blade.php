@@ -34,7 +34,7 @@
                                             <div class="h6 animate-to-green"><a href="<?=url("product/detail/id")?>">{{$row->product_title}}</a></div>
                                         </div>
                                         <div class="preview">
-                                            <img src="{{URL::asset('/public/products/71fHrYMs2fL._SX575_.jpg')}}" alt="">
+                                            <img src="{{URL::asset('/public/products/product-125.jpg')}}" alt="">
                                             <div class="preview-buttons valign-middle">
                                                 <div class="valign-middle-content">
                                                     <a class="button size-2 style-2" href="<?=url("product/detail/{$row->product_id}/{$row->product_category}/{$slug}")?>">
@@ -72,10 +72,10 @@
                     <div class="align-inline spacing-1">
                         <div class="simple-article size-1">SHOWING <b class="grey">15</b> OF <b class="grey">2 358</b> RESULTS</div>
                     </div>
-                    <div class="align-inline spacing-1 hidden-xs">
+                    <!-- <div class="align-inline spacing-1 hidden-xs">
                         <a class="pagination toggle-products-view active"><img src="img/icon-14.png" alt="" /><img src="img/icon-15.png" alt="" /></a>
                         <a class="pagination toggle-products-view"><img src="img/icon-16.png" alt="" /><img src="img/icon-17.png" alt="" /></a>
-                    </div>
+                    </div> -->
                     <div class="align-inline spacing-1 filtration-cell-width-1">
                         <select class="SlectBox small">
                             <option disabled="disabled" selected="selected">Most popular products</option>
@@ -109,7 +109,7 @@
                                             <div class="h6 animate-to-green"><a href="<?=url("product/detail/id")?>">Smartphone vibe x2</a></div>
                                         </div>
                                         <div class="preview">
-                                            <img src="{{URL::asset('public/products/test_2.jpg')}}" alt="">
+                                            <img src="{{URL::asset('public/products/product-127.jpg')}}" alt="">
                                             <div class="preview-buttons valign-middle">
                                                 <div class="valign-middle-content">
                                                     <a class="button size-2 style-2" href="<?=url("product/detail/id")?>">
@@ -155,6 +155,11 @@
                             </a>
                         </div>
                         <div class="col-sm-6 text-center">
+                        <style type="text/css">
+                            .pagination {
+                                display: inline-block;
+                            }
+                        </style>
                             <div class="pagination-wrapper">
                                 <a class="pagination active">1</a>
                                 <a class="pagination">2</a>

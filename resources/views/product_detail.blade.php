@@ -25,7 +25,7 @@
                            <div class="swiper-wrapper">
                                <div class="swiper-slide">
                                     <div class="swiper-lazy-preloader"></div>
-                                    <div class="product-big-preview-entry swiper-lazy" data-background="{{URL::asset('/public/img/product-preview-4.jpg')}}"></div>
+                                    <div class="product-big-preview-entry swiper-lazy" data-background="{{URL::asset('/public/img/product-125.jpg')}}"></div>
                                </div>
                                <div class="swiper-slide">
                                     <div class="swiper-lazy-preloader"></div>
