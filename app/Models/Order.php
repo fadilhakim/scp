@@ -123,11 +123,5 @@ class Order extends Model
       ]);
     }
 
-    function insert_order_detail($arr)
-    {
-      return DB::table("order_detail_tbl")->insert([
-          
-      ]);
-    }
 
 }

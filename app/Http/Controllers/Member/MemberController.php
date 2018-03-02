@@ -24,5 +24,4 @@ class MemberController extends Controller
         $data["title"]   = "Order Detail";
         return view('members/orderdetail',$data);
     }
-
 }

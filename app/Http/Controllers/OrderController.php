@@ -143,4 +143,10 @@ class OrderController extends Controller
             }
         }*/
     }
+
+    function login_checkout()
+    {
+        $data["title"]   = "Login Checkout";
+        return view('auth/login_checkout',$data);
+    }
 }
