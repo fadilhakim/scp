@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
+use App\Mail\OrderEmail;
+use App\Models\Order;
+use Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Auth;
 
 class OrderController extends Controller
 {
@@ -12,79 +16,131 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $objOrder;
+    function __construct()
+    {
+        $this->objOrder = new Order();
+    }
 
     public function index()
     {
         //
-      $objOrder = new Order;
-      $objOrder->test2();
+      
+      $this->$objOrder->test2();
       echo "<hr>";
       Order::test();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    function checkout(Request $request)
     {
-        //
+        //return view("checkout");
+      
+        if(!empty(Cart::content()))
+        {
+            /* if(!empty(Cart::content()))
+            {
+                $user               = Auth::guard("user")->user();
+
+                $datetime           = date("Y-m-d H:i:s");
+                $ip_address         = $request->ip();
+                $user_agent         = $request->header('User-Agent');
+
+                $arr["created_at"]  = $datetime;
+                $arr["ip_address"]  = $ip_address;
+                $arr["user_agent"]  = $user_agent;
+
+                $arr["user_id"]     = $user->id;
+                $arr["grand_total"] = Cart::total();
+                $arr["subtotal"]    = Cart::subtotal();
+                $arr["kurir"]       = "";
+                $arr["total_berat"] = "";
+                $arr["kurir_service"] = "";
+                $arr["tax"]         = Cart::tax();
+                $arr["purpose_bank"] = "";
+                $arr["status"]      = "unpaid";
+                $arr["user_addtr_id"] = "";
+                $arr["ongkir"]      = "";
+
+                $q = $this->objOrder->insert_order($arr);
+                $order_id = $q;
+
+                foreach(Cart::content() as $row)
+                {
+                    // and order detail
+                    $arr["qty"]         = $row->qty;
+                    $arr["price"]       = $row->price;
+                    $arr["subtotal"]    = $row->qty * $row->qty;
+                    $arr["order_id"]    = $order_id;
+                    $arr["user_id"]     = $user->id;
+                    $arr["product_id"]  = $row->id;
+                    
+                    $this->objOrder->insert_order_detail($arr);
+                }
+            }*/
+
+            $objDemo = new \stdClass();
+            /* $objDemo->demo_one = 'Demo One Value';
+            $objDemo->demo_two = 'Demo Two Value';
+            $objDemo->sender   = 'SenderUserName';
+            $objDemo->receiver = 'ReceiverUserName';*/
+             // send email 
+            Mail::to(["fadil.nylon@gmail.com","ariesdimasy@gmail.com"])->send(new OrderEmail($objDemo));
+            
+            // clear cart 
+            Cart::destroy();
+
+            // untuk sementara redirect ke memberarea
+            redirect()->to("memberarea")->send();
+        }
+        else
+        {
+            // untuk sementara redirect ke memberarea
+            redirect()->to("cart")->send();
+        }
+       
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    function insert(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        /* if(!empty(Cart::content()))
+        {
+            $user               = Auth::guard("user")->user();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+            $datetime           = date("Y-m-d H:i:s");
+            $ip_address         = $request->ip();
+            $user_agent         = $request->header('User-Agent');
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+            $arr["datetime"]    = $datetime;
+            $arr["ip_address"]  = $ip_address;
+            $arr["user_agent"]  = $user_agent;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+            $arr["user_id"]     = $user->id;
+            $arr["grand_total"] = Cart::total();
+            $arr["subtotal"]    = Cart::subtotal();
+            $arr["kurir"]       = "";
+            $arr["total_berat"] = "";
+            $arr["kurir_service"] = "";
+            $arr["tax"]         = Cart::tax();
+            $arr["purpose_bank"] = "";
+            $arr["status"]      = "unpaid";
+            $arr["user_addtr_id"] = "";
+
+            $q = $this->$objOrder->insert_order($arr);
+            $order_id = $q;
+
+            foreach(Cart::content() as $row)
+            {
+                // and order detail
+                $arr["qty"]         = $row->qty;
+                $arr["price"]       = $row->price;
+                $arr["subtotal"]    = $row->qty * $row->qty;
+                $arr["order_id"]    = $order_id;
+                $arr["user_id"]     = $user->id;
+                $arr["product_id"]  = $row->id;
+                
+                $this->$objOrder->insert_order_detail($arr);
+            }
+        }*/
     }
 }

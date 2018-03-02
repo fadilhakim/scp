@@ -59,8 +59,15 @@ class BrandController extends Controller
 
         if($validator)
         {
+            $brand_image = "";
+            if(!empty($request->input("brand_image")))
+            {
+                $brand_image = $request->input("brand_image");
+            }
+
             $arr = array(
                 "brand_name"=>$request->input("brand_name"),
+                "brand_image"=>$brand_image,
                 "created_at"=>$datetime,
                 "ip_address"=>$ip_address,
                 "user_agent"=>$user_agent
@@ -89,6 +96,9 @@ class BrandController extends Controller
         $datetime           = date("Y-m-d H:i:s");
         $ip_address         = $request->ip();
         $user_agent         = $request->header('User-Agent');
+        $brand_id           = $request->input("brand_id");
+
+        $brand = $this->objBrand->detail_brand($brand_id);
 
         $validator = Validator::make($request->all(),[
             "brand_name"=>"required|unique:brand_tbl|max:100"
