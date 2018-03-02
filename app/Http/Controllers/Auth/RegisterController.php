@@ -84,7 +84,7 @@ class RegisterController extends Controller
                  $err_text .=  "<li> $err </li>";
              }
  
-             echo Alert::danger($err_text);
+             echo  Alert::danger("<ul>".$err_text."</ul>");
         }else
         {
             $arr["name"]       = $name;
@@ -98,6 +98,7 @@ class RegisterController extends Controller
             $this->objUser->register_user($arr);
 
             echo Alert::success("You successfully Register");
+            echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
         }
     }
 

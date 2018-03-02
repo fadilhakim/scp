@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+
 use Illuminate\Http\Request;
 use App\Libraries\Autoload;
 
 use App\Mail\DemoEmail;
 use Illuminate\Support\Facades\Mail;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class TestController extends Controller
 {
@@ -31,14 +34,31 @@ class TestController extends Controller
         //echo URL::asset("");
     }
 
-    function session()
+    function session(Request $request)
     {
+        //$request = new Request();
         echo "<h1> Session </h1><hr>";
+
+        //$session = $request->session()->all();
         $user = Auth::guard("user")->user();
-        dd($user);
-        
-       
-        
+        //echo $user->name;
+        dd($user);        
+    }
+
+    function invoice()
+    {
+        return view("invoice/invoice-fancy-page-inline");
+    }
+
+    function send_email()
+    {
+        $objDemo = new \stdClass();
+        $objDemo->demo_one = 'Demo One Value';
+        $objDemo->demo_two = 'Demo Two Value';
+        $objDemo->sender   = 'SenderUserName';
+        $objDemo->receiver = 'ReceiverUserName';
+ 
+        Mail::to("ariesdimasy@gmail.com")->send(new DemoEmail($objDemo));
     }
 
     function send_email()

@@ -57,7 +57,7 @@ class LoginController extends Controller
 
     function login_form()
     {
-        return view('default/auth/login');
+        return view('auth/login');
     }
     
     public function modal_login()

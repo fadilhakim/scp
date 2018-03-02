@@ -1,13 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
-
 use App\Models\Product;
 use App\Libraries\Alert;
-
 class CartController extends Controller
 {
     private $objCart;
@@ -97,8 +93,18 @@ class CartController extends Controller
         $rowid = $request->segment(3);
         if(!empty($rowid))
         {
-            Cart::remove($rowid);
-            redirect()->to("cart")->send();
+           
+            $find =  Cart::get($rowid);
+
+            if(!empty($find))
+            {
+                Cart::remove($rowid);
+                redirect()->to("cart")->send();
+            }
+            else
+            {
+                redirect()->to("cart")->send();
+            }
         }
         else
         {
