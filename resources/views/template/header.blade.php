@@ -10,6 +10,11 @@
     <div id="content-block">
         <!-- HEADER -->
         <header>
+            <style type="text/css">
+                .header-bottom {
+                    height: 65px;
+                }
+            </style>
             <div class="header-top">
                 <div class="content-margins">
                     <div class="row">
