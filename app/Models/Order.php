@@ -48,7 +48,7 @@ class Order extends Model
         $grand_total = $arr["grand_total"]; 
         $ongkir      = $arr["ongkir"];
         $subtotal    = $arr["subtotal"];
-        $kurir      = $arr["kurir"];
+        //$kurir      = $arr["kurir"];
         $total_berat = $arr["total_berat"];
         $kurir_service = $arr["kurir_service"];
         $tax          = $arr["tax"];
@@ -65,7 +65,7 @@ class Order extends Model
         "grand_total" => $grand_total, 
         "ongkir"      => $ongkir ,
         "subtotal"    => $subtotal,
-        "kurir"       => $kurir,
+        //"kurir"       => $kurir,
         "total_berat" => $total_berat,
         "kurir_service"=> $kurir_service,
         "tax"          => $tax,
@@ -85,6 +85,7 @@ class Order extends Model
       $subtotal      = $arr["subtotal"];
       $order_id      = $arr["order_id"];
       $product_id    = $arr["product_id"];
+      $price         = $arr["price"];
       $user_id       = $arr["user_id"];
       $ip_address    = $arr["ip_address"];
       $user_agent    = $arr["user_agent"];
@@ -92,9 +93,10 @@ class Order extends Model
 
       return DB::table("order_detail_tbl")->insert([
           "qty"           => $qty,
-          "subtotal"      => $subtotal,
+          "sub_total"      => $subtotal,
           "order_id"      => $order_id,
           "product_id"    => $product_id,
+          "price"         => $price,
           "user_id"       => $user_id,
           "ip_address"    => $ip_address,
           "user_agent"    => $user_agent,
