@@ -78,6 +78,7 @@ Route::get("cart/destroy","CartController@destroy");
 Route::get("auth/logout","Auth\LoginController@logout");
     
 Route::resource("order","OrderController@");
+Route::get('/user_form_checkout', 'OrderController@user_form_checkout');
 
 Route::get('cart',"CartController@index"); 
 Route::get("cart/add/{product_id}/{product_title}","CartController@add");
@@ -93,6 +94,7 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get("checkout","OrderController@checkout");
 Route::get('/memberarea', 'Member\MemberController@index');
 Route::get('/detail_order/{id}', 'Member\MemberController@detail_order');
+
 
 });
 

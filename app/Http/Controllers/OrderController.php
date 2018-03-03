@@ -149,4 +149,10 @@ class OrderController extends Controller
             }
         }*/
     }
+
+    function user_form_checkout()
+    {
+        $data["title"]   = "Login Checkout";
+        return view('auth/user_form_checkout',$data);
+    }
 }
