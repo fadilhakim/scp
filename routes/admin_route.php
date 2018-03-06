@@ -22,8 +22,8 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get("/admin/about","Admin\PagesController@about");
 
     //order
-    // Admin
     Route::get("/admin/order","Admin\OrderController@index");
+    Route::post("/admin/order/change_status","Admin\OrderController@change_status");
 
     // product
     Route::get("/admin/product","Admin\ProductController@index");

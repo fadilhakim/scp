@@ -42,6 +42,18 @@ class Order extends Model
       return $order;
     }
 
+    function get_order_user($user_id)
+    {
+      return DB::table("order_tbl")->where("user_id",$user_id)->get();
+    }
+
+    function change_status($arr)
+    {
+      return DB::table("order_tbl")->where("order_id",$arr["order_id"])->update([
+        "status"=>$arr["status"]
+      ]);
+    }
+
     function insert_order($arr)
     {
         $user_id     = $arr["user_id"];
@@ -93,7 +105,7 @@ class Order extends Model
 
       return DB::table("order_detail_tbl")->insert([
           "qty"           => $qty,
-          "sub_total"      => $subtotal,
+          "sub_total"     => $subtotal,
           "order_id"      => $order_id,
           "product_id"    => $product_id,
           "price"         => $price,
