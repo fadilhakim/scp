@@ -41,6 +41,7 @@ Route::get('/about', function () {
 });
 Route::get('/product', 'ProductController@index');
 Route::get('/product/detail/{id}/{product_category}/{product_title}', 'ProductController@detail');
+Route::get('/product/highlight/{id}/{product_title}', 'ProductController@product_highlight');
 
 Route::get('/detail_order/{id}', 'Member\MemberController@detail_order');
 

@@ -36,4 +36,11 @@ class ProductController extends Controller
         $data["content"] = "Product";
         return view("product_detail",$data);
     }
+
+    function product_highlight($product_title,$id)
+    {
+
+        return view("product_highlight");
+        
+    }
 }
