@@ -42,6 +42,16 @@ class Order extends Model
       return $order;
     }
 
+    function get_order_byid($order_id)
+    {
+      return DB::table("order_tbl")->where("order_id",$order_id)->first();
+    }
+
+    function get_order_detail($order_id)
+    {
+      return DB::table("order_detail_tbl")->where("order_id",$order_id)->get();
+    }
+
     function get_order_user($user_id)
     {
       return DB::table("order_tbl")->where("user_id",$user_id)->get();
