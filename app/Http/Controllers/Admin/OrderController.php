@@ -32,6 +32,15 @@ class OrderController extends Controller
       return view("admin/index",$data);
     }
 
+    function detail()
+    {
+      $data["order"]   = $this->objOrder->get_order();
+      $data["title"]   = "Order";
+      $data["content"] = "admin/order/order_detail";
+      
+      return view("admin/index",$data);
+    }
+
     function change_status(Request $request)
     {
       $arr["order_id"] = $request->input("order_id");

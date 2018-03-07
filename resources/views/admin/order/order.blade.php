@@ -33,8 +33,8 @@
                 </div>
                 <div class="card-block table-border-style">
                     <div class="tmp-order"></div>
-                    <div class="">
-                        <table id="order-tbl" class="table table-hover">
+                    <div class="table-responsive">
+                        <table id="order-tbl" class="table table-hover ">
                             <thead>
                                 <tr>
                                     <th>ID Order</th>
@@ -88,27 +88,30 @@
                                         }
                                        
                                        ?>
-                                       <select name="change_status" onChange="javascript:change_status({{ $row->order_id }} , this.value)" class="form-control">
+                                       <div class="form-group">
+                                       <select style="padding:0" name="change_status" onChange="javascript:change_status({{ $row->order_id }} , this.value)" class="form-control">
                                             <option {{ $selected_unpaid }} value="unpaid"> Unpaid </option>
                                             <option {{ $selected_paid }} value="paid"> Paid </option>  
                                             <option {{ $selected_shipping }} value="shipping"> Shipping </option>  
                                             <option {{ $selected_cancel }} value="cancel"> Cancel </option> 
                                             <option {{ $selected_done }} value="done"> Done </option>
                                        </select>
+                                       </div>
                                     </td>
                                     <td> {{ $row->created_at}} </td>
                                     <td>
-                                       
-                                            <button class="btn btn-primary" type="button" id="" data-toggle="dropdown" >
-                                                Detail
-                                            </button>
-                                           
+                                        <a href="{{ url('admin/order/detail') }}" class="btn btn-primary">
+                                        
+                                            Detail
+                                        
+                                        </a>
                                         
                                     </td>
                                 </tr>
                                 <?php } ?>
                             </tbody>
                         </table>
+                        
                     </div>
                 </div>
             </div>
