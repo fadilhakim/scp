@@ -45,21 +45,25 @@ class OrderController extends Controller
                 $ip_address         = $request->ip();
                 $user_agent         = $request->header('User-Agent');
 
+                $total      = Cart::total();
+                $subtotal   = Cart::subtotal();
+                $tax        = Cart::tax();
+
                 $arr["created_at"]  = $datetime;
                 $arr["ip_address"]  = $ip_address;
                 $arr["user_agent"]  = $user_agent;
 
                 $arr["user_id"]     = $user->id;
-                $arr["grand_total"] = Cart::total(".",".",".");
-                $arr["subtotal"]    = floor(Cart::subtotal());
-                $arr["kurir"]       = "";
-                $arr["total_berat"] = "";
+                $arr["grand_total"] = floor($total);
+                $arr["subtotal"]    = $subtotal;
+                //$arr["kurir"]       = "jne";
+                $arr["total_berat"] = 0;
                 $arr["kurir_service"] = "";
-                $arr["tax"]           = floor(Cart::tax());
+                $arr["tax"]           = $tax;
                 $arr["purpose_bank"]  = "";
                 $arr["status"]        = "unpaid";
-                $arr["user_addtr_id"] = "";
-                $arr["ongkir"]      = "";
+                $arr["user_addtr_id"] = 0;
+                $arr["ongkir"]        = 0;
 
                 $q = $this->objOrder->insert_order($arr);
                 $order_id = $q;

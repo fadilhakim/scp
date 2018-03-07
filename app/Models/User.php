@@ -35,6 +35,11 @@ class User extends Authenticatable
         return DB::table("users")->get(); 
     }
 
+    function detail_user($user_id)
+    {
+        return DB::table("users")->where("id",$user_id)->first();
+    }
+
     function register_user($arr)
     {
         return DB::table("users")->insert([

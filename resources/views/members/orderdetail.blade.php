@@ -1,4 +1,7 @@
 @include('../template/header')
+	<?php
+		$user = Auth::guard("user")->user();
+	?>
 	<div class="container">
 		<div class="empty-space col-xs-b15 col-sm-b30"></div>
 		<div class="row">
@@ -6,9 +9,8 @@
 			<div class="col-md-9 pull-md-right">
                 <div class="header-lined">
                 	<div class="alert alert-success" role="alert">
-					 	<h1>Selamat Datang, Muhammad Fadil Hakim</h1>
+					 	<h1>Selamat Datang, <?=$user->name?> </h1>
 					</div>
-
 					<ol class="breadcrumb">
 				        <li>
 			            	<a href="">
@@ -20,7 +22,6 @@
 			            		Member Area
 			            	</a>  
 			            </li>
-
 			            <li class="active">
 			                 Detail Order
 			            </li>
@@ -32,23 +33,18 @@
 			                <i class="fa fa-cart-arrow-down"></i>&nbsp;Detail Order : #912923
                         </h3>
 			        </div>
-
                 	<div class="container">
                 		<div class="row" style="padding-top: 20px;">
-
 						    <div class="form-group col-md-6">
 						      <label for="inputEmail4" >Order ID</label>
 						      <input readonly type="text" class="form-control" id="inputEmail4" value="#1939213" style="margin-top: 10px;">
 						    </div>
-
 						    <div class="form-group col-md-6">
 						      <label for="inputPassword4">Date</label>
 						      <input readonly type="text" class="form-control" id="inputPassword4" value="2018-02-27 14:05:56" style="margin-top: 10px;">
 						    </div>
-
 				  		</div>
                 	</div>
-
                 	<div class="container">
                 		<div class="card" style="width: 18rem;">
 						  <div class="card-body">
@@ -61,10 +57,8 @@
 						</div>
                 	</div>
 
-
     			</div>
     		</div>
 		</div>
 	</div>
 @include('../template/footer')
-

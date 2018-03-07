@@ -1,8 +1,11 @@
 @include('../template/header')
+	<?php
+		$user = Auth::guard("user")->user();
+	?>
 	<div class="container">
 		<div class="empty-space col-xs-b15 col-sm-b30"></div>
 		<div class="row">
-			@include('members/member_sidebar')
+			@include('members/member_sidebar') 
 			<style type="text/css">
 				.header-lined h1 {
 					    font-weight: 400;
@@ -13,7 +16,7 @@
 			<div class="col-md-9 pull-md-right">
                 <div class="header-lined">
                 	<div class="alert alert-success" role="alert">
-					 	<h1>Selamat Datang, Muhammad Fadil Hakim</h1>
+					 	<h1>selamat datang, <?=$user->name?></h1>
 					</div>
 
 					<ol class="breadcrumb">
@@ -47,16 +50,20 @@
 						    </tr>
 						  </thead>
 						  <tbody>
+                          	<?php
+							foreach($order as $row)
+							{
+							?>
 						    <tr>
 						      <th scope="row">1</th>
-						      <td>291090</td>
-						      <td>#931232</td>
+						      <td><?=$row->created_at?></td>
+						      <td><?=$row->order_id?></td>
 						      <td>MidTrans</td>
-						      <td>Rp. 270.000</td>
+						      <td>Rp. <?=number_format($row->grand_total)?></td>
 						      <td>
 						      	<span class="label label-success">Shipping</span>
-						      	<span class="label label-warning">Warning Label</span>
-						      	<span class="label label-default">Expired</span>
+						      	<span class="label label-warning">Paid</span>
+						      	<span class="label label-default">Unpaid</span>
 						      </td>
 						      <td>
 						      	<span class="label label-primary">
@@ -66,10 +73,14 @@
 						      	</span>
 						      </td>
 						    </tr>
+                            <?php
+							}
+							?>
 						  </tbody>
 					</table>	
     			</div>
     		</div>
 		</div>
 	</div>
+    
 @include('../template/footer')
