@@ -48,9 +48,7 @@ class RegisterController extends Controller
         $this->objUser = new User();
 
     }
-
-   
-
+    
     /**
      * Create a new user instance after a valid registration.
      *

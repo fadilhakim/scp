@@ -1,7 +1,7 @@
 @include('template/header')
 
 <div class="container">
-    <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
+    <!-- div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div> -->
    	<center>
         <div class="layer-close"></div>
         <div class="popup-container size-1">
@@ -18,7 +18,7 @@
                 <div class="empty-space col-xs-b10 col-sm-b20"></div>
                 <input class="simple-input" type="password" value="" name="password" placeholder="Enter password" />
                 <div class="empty-space col-xs-b10 col-sm-b20"></div>
-                <input class="simple-input" type="password" value="" name="repassword" placeholder="Repeat password" />
+                <input class="simple-input" type="password" value="" name="password_confirmation" placeholder="Repeat password" />
                 <div class="empty-space col-xs-b10 col-sm-b20"></div>
                 {{ csrf_field() }}
                 <div class="row">
@@ -94,5 +94,5 @@
 	});
 
 </script>
-<div class="header-empty-space"></div>
+ <div class="empty-space col-xs-b30"></div>
 @include('template/footer')
