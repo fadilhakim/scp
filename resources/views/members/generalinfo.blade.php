@@ -26,7 +26,7 @@
 			            	</a>        
 			            </li>
 			            <li class="active">
-			                 Member Area
+			                 <a href="{{ url('memberarea') }}"> Member Area </a> 
 			            </li>
 				    </ol>
                 </div>

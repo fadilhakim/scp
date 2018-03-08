@@ -27,6 +27,12 @@ class MemberController extends Controller
         return view('members/generalinfo',$data);
     }
 
+    function profile()
+    {
+        $data["title"]   = "Profile";
+        return view('members/profile',$data);
+    }
+     
     function detail_order()
     {
         $data["title"]   = "Order Detail";

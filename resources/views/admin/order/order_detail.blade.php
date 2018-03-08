@@ -128,7 +128,7 @@
                                         ?>
                                         <tr>
                                             <td>
-                                                <h6>{{ $product_detail->product_title }}</h6>
+                                                <b>{{ $product_detail->product_title }}</b>
                                                 {{ str_limit( $product_detail->product_description , 30) }}
                                             </td>
                                             <td>{{ $row->qty }}</td>
