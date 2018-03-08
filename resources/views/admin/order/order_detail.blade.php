@@ -61,10 +61,10 @@
                     <div class="col-md-4">
                         <div class="row text-center">
                             <div class="col-sm-12 invoice-btn-group">
-                                <button type="button" class="btn btn-primary btn-print-invoice waves-effect waves-light m-r-20 m-b-10">Print Invoice
+                                <!-- <button type="button" class="btn btn-primary btn-print-invoice waves-effect waves-light m-r-20 m-b-10">Print Invoice
                                 </button>
                                 <button type="button" class="btn btn-danger waves-effect waves-light m-b-10">Cancel Invoice
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,28 @@
                                     <tr>
                                         <th>Status :</th>
                                         <td>
-                                            <span class="label label-warning">{{ $order->status }}</span>
+                                        <?php
+                                            if($order->status == "unpaid")
+                                            {
+                                                echo "<span class='label label-default'>Unpaid</span>";
+                                            }
+                                            else if($order->status == "paid")
+                                            {
+                                                echo "<span class='label label-warning'>Paid</span>";
+                                            }
+                                            else if($order->status == "shipping")
+                                            {
+                                                echo "<span class='label label-primary'>Shipping</span>";
+                                            }
+                                            else if($order->status == "cancel")
+                                            {
+                                                echo "<span class='label label-danger'>Cancel</span>";
+                                            }
+                                            else if($order->status == "success")
+                                            {
+                                                echo "<span class='label label-success'>Done</span>";
+                                            }
+                                        ?>
                                         </td>
                                     </tr>
                                     <tr>
