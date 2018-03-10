@@ -113,8 +113,18 @@
                                             <div class="h6 animate-to-green"><a href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slugProd}")?>">{{$rowProduct->product_title}}</a></div>
                                         </div>
                                         <div class="preview">
-                                        <?php $firstImg =  App\Models\Product::get_first_image($prodId) ;
+                                        <?php 
+                                        
+                                        $firstImg =  App\Models\Product::get_first_image($prodId) ;
+                                           
+                                            if(!empty($firstImg))
+                                            {
                                                 $getImage = $firstImg->image_name;
+                                            }
+                                            else
+                                            {
+                                                $getImage = "";
+                                            }
                                             ?>
                                             <img src="{{URL::asset('public/products/'.$prodId.'/'.$getImage )}}" alt="">
                                             

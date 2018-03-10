@@ -86,7 +86,7 @@
 						      </td>
 						      <td>
 						      	<span class="label label-primary">
-						      		<a class='text-white' href="{{url('detail_order/1')}}">
+						      		<a class='text-white' href="{{url('detail_order/'.$row->order_id)}}">
 						      			Detail Order
 						      		</a>
 						      	</span>
