@@ -89,9 +89,13 @@ class RegisterController extends Controller
             $arr["email"]      = $email;
             $arr["username"]   = $username;
             $arr["password"]   = $password;
-            $arr["datetime"]   = $datetime;
+            $arr["no_telp"]    = "";
+            $arr["remember_token"] = "";
+            $arr["status"]     = "special";
+            $arr["created_at"] = $datetime;
             $arr["ip_address"] = $ip_address;
             $arr["user_agent"] = $user_agent;
+    
 
             $this->objUser->register_user($arr);
 
