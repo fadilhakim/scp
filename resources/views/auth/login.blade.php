@@ -1,6 +1,6 @@
 @include('template/header')
 <div class="container">
-    <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
+    <!-- <div class="empty-space col-xs-b10 col-sm-b20 col-md-b100"></div> -->
     <center >
         <div class="popup-container size-1">
             <div class="popup-align">
@@ -9,6 +9,12 @@
                     <div class="empty-space col-xs-b30">
                         <div id='temp-login'></div>
                     </div>
+                    <div>{!! Session::get("message") !!}</div>
+                    <div>@if ($errors->any())
+                         <div class='alert alert-danger'> 
+                         {!! implode('', $errors->all('<div>:message</div>')) !!}
+                         </div>
+                    @endif</div>
                     <input name="email" class="simple-input" type="text" value="" placeholder="Your email" />
                     {{ csrf_field() }}
                     <div class="empty-space col-xs-b10 col-sm-b20"></div>
@@ -84,5 +90,5 @@
     });*/
     </script>
 </div>
-<div class="header-empty-space"></div>
+<div class="empty-space col-xs-b30"></div>
 @include('template/footer')

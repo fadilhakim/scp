@@ -1,5 +1,8 @@
 
-<?php $objUser = new App\Models\User(); ?>
+<?php 
+    $objUser = new App\Models\User(); 
+    $objProduct = new App\Models\Product();
+?>
 <script>
     function change_status(order_id,status)
     {
@@ -58,10 +61,10 @@
                     <div class="col-md-4">
                         <div class="row text-center">
                             <div class="col-sm-12 invoice-btn-group">
-                                <button type="button" class="btn btn-primary btn-print-invoice waves-effect waves-light m-r-20 m-b-10">Print Invoice
+                                <!-- <button type="button" class="btn btn-primary btn-print-invoice waves-effect waves-light m-r-20 m-b-10">Print Invoice
                                 </button>
                                 <button type="button" class="btn btn-danger waves-effect waves-light m-b-10">Cancel Invoice
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -81,27 +84,48 @@
                                 <tbody>
                                     <tr>
                                         <th>Date :</th>
-                                        <td>November 14</td>
+                                        <td>{{ $order->created_at }}</td>
                                     </tr>
                                     <tr>
                                         <th>Status :</th>
                                         <td>
-                                            <span class="label label-warning">Pending</span>
+                                        <?php
+                                            if($order->status == "unpaid")
+                                            {
+                                                echo "<span class='label label-default'>Unpaid</span>";
+                                            }
+                                            else if($order->status == "paid")
+                                            {
+                                                echo "<span class='label label-warning'>Paid</span>";
+                                            }
+                                            else if($order->status == "shipping")
+                                            {
+                                                echo "<span class='label label-primary'>Shipping</span>";
+                                            }
+                                            else if($order->status == "cancel")
+                                            {
+                                                echo "<span class='label label-danger'>Cancel</span>";
+                                            }
+                                            else if($order->status == "success")
+                                            {
+                                                echo "<span class='label label-success'>Done</span>";
+                                            }
+                                        ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Id :</th>
                                         <td>
-                                            #145698
+                                            #{{ $order->order_id }}
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="col-md-4 col-sm-6">
-                            <h6 class="m-b-20">Invoice Number   <span>#12398521473</span></h6>
+                            <h6 class="m-b-20">Invoice Number   <span>#{{ $order->order_id }}</span></h6>
                             <h6 class="text-uppercase text-primary">Total Due :
-                                <span>$900.00</span>
+                                <span>Rp. {{ number_format($order->grand_total) }}</span>
                             </h6>
                         </div>
                     </div>
@@ -118,33 +142,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php
+                                        foreach($order_detail as $row){
+
+                                            $product_detail = $objProduct->detail_product($row->product_id);
+                                        ?>
                                         <tr>
                                             <td>
-                                                <h6>Logo Design</h6>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
+                                                <b>{{ $product_detail->product_title }}</b>
+                                                {{ str_limit( $product_detail->product_description , 30) }}
                                             </td>
-                                            <td>6</td>
-                                            <td>$200.00</td>
-                                            <td>$1200.00</td>
+                                            <td>{{ $row->qty }}</td>
+                                            <td>Rp. {{ number_format($row->price) }}</td>
+                                            <td>Rp. {{ number_format($row->sub_total) }}</td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <h6>template Design</h6>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
-                                            </td>
-                                            <td>7</td>
-                                            <td>$100.00</td>
-                                            <td>$700.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <h6>rebuild Your Design</h6>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
-                                            </td>
-                                            <td>5</td>
-                                            <td>$150.00</td>
-                                            <td>$750.00</td>
-                                        </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -157,15 +172,15 @@
                                 <tbody>
                                     <tr>
                                         <th>Sub Total :</th>
-                                        <td>$4725.00</td>
+                                        <td>Rp. {{ number_format($order->subtotal) }}</td>
                                     </tr>
                                     <tr>
                                         <th>Taxes (10%) :</th>
-                                        <td>$57.00</td>
+                                        <td>Rp. {{ number_format($order->tax) }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Discount (5%) :</th>
-                                        <td>$45.00</td>
+                                        <th>Discount :</th>
+                                        <td> - </td>
                                     </tr>
                                     <tr class="text-info">
                                         <td>
@@ -174,7 +189,7 @@
                                         </td>
                                         <td>
                                             <hr>
-                                            <h5 class="text-primary">$4827.00</h5>
+                                            <h5 class="text-primary">Rp. {{ number_format($order->grand_total) }}</h5>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -37,51 +37,8 @@ class OrderController extends Controller
       
         if(!empty(Cart::content()))
         {
-            if(!empty(Cart::content()))
-            {
-                $user               = Auth::guard("user")->user();
-
-                $datetime           = date("Y-m-d H:i:s");
-                $ip_address         = $request->ip();
-                $user_agent         = $request->header('User-Agent');
-
-                $total      = Cart::total();
-                $subtotal   = Cart::subtotal();
-                $tax        = Cart::tax();
-
-                $arr["created_at"]  = $datetime;
-                $arr["ip_address"]  = $ip_address;
-                $arr["user_agent"]  = $user_agent;
-
-                $arr["user_id"]     = $user->id;
-                $arr["grand_total"] = floor($total);
-                $arr["subtotal"]    = $subtotal;
-                //$arr["kurir"]       = "jne";
-                $arr["total_berat"] = 0;
-                $arr["kurir_service"] = "";
-                $arr["tax"]           = $tax;
-                $arr["purpose_bank"]  = "";
-                $arr["status"]        = "unpaid";
-                $arr["user_addtr_id"] = 0;
-                $arr["ongkir"]        = 0;
-
-                $q = $this->objOrder->insert_order($arr);
-                $order_id = $q;
-
-                foreach(Cart::content() as $row)
-                {
-                    // and order detail
-                    $arr["qty"]         = $row->qty;
-                    $arr["price"]       = $row->price;
-                    $arr["subtotal"]    = $row->qty * $row->qty;
-                    $arr["order_id"]    = $order_id;
-                    $arr["user_id"]     = $user->id;
-                    $arr["product_id"]  = $row->id;
-                    
-                    $this->objOrder->insert_order_detail($arr);
-                }
-            }
-
+            
+            $this->insert(); 
             redirect()->to("memberarea")->send();
 
             $objDemo = new \stdClass();
@@ -106,9 +63,52 @@ class OrderController extends Controller
        
     }
 
-    function insert(Request $request)
+    private function insert(Request $request)
     {
+        if(!empty(Cart::content()))
+        {
+            $user               = Auth::guard("user")->user();
 
+            $datetime           = date("Y-m-d H:i:s");
+            $ip_address         = $request->ip();
+            $user_agent         = $request->header('User-Agent');
+
+            $total      = Cart::total();
+            $subtotal   = Cart::subtotal();
+            $tax        = Cart::tax();
+
+            $arr["created_at"]  = $datetime;
+            $arr["ip_address"]  = $ip_address;
+            $arr["user_agent"]  = $user_agent;
+
+            $arr["user_id"]     = $user->id;
+            $arr["grand_total"] = floor($total);
+            $arr["subtotal"]    = $subtotal;
+            //$arr["kurir"]       = "jne";
+            $arr["total_berat"] = 0;
+            $arr["kurir_service"] = "";
+            $arr["tax"]           = $tax;
+            $arr["purpose_bank"]  = "";
+            $arr["status"]        = "unpaid";
+            $arr["user_addtr_id"] = 0;
+            $arr["ongkir"]        = 0;
+
+            $q = $this->objOrder->insert_order($arr);
+            $order_id = $q;
+
+            foreach(Cart::content() as $row)
+            {
+                // and order detail
+                $arr["qty"]         = $row->qty;
+                $arr["price"]       = $row->price;
+                $arr["subtotal"]    = $row->qty * $row->price;
+                $arr["order_id"]    = $order_id;
+                $arr["user_id"]     = $user->id;
+                $arr["product_id"]  = $row->id;
+                
+                $this->objOrder->insert_order_detail($arr);
+            }
+        }
         /* if(!empty(Cart::content()))
         {
             $user               = Auth::guard("user")->user();

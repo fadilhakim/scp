@@ -100,7 +100,7 @@
                                     </td>
                                     <td> {{ $row->created_at}} </td>
                                     <td>
-                                        <a href="{{ url('admin/order/detail') }}" class="btn btn-primary">
+                                        <a href="{{ url('admin/order/detail/'.$row->order_id) }}" class="btn btn-primary">
                                         
                                             Detail
                                         

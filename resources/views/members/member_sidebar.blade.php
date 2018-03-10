@@ -10,12 +10,12 @@
         </div>
 
         <div class="panel-body">
-            <p><strong>hakim.inc</strong><br><strong><?=$user->name?></strong></p>
+            <p><strong><?=$user->name?></strong></p>
             <p>Jl Puspa Blok no 12 Kelurahanan Sukadamai<br>Kecamatan Tanah Sareal<br>Bogor<br>Jawa Barat<br>12014<br>Indonesia</p>
         </div>
 
         <div class="panel-footer clearfix">
-	        <a href="#" class="btn btn-success btn-sm btn-block">
+	        <a href="{{ url('memberarea/profile') }}" class="btn btn-success btn-sm btn-block">
 	        	<i class="fa fa-pencil"></i> Update
 	    	</a>
         </div>

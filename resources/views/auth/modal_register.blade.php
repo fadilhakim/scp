@@ -15,7 +15,7 @@
             <div class="empty-space col-xs-b10 col-sm-b20"></div>
             <input class="simple-input" type="password" value="" name="password" placeholder="Enter password" />
             <div class="empty-space col-xs-b10 col-sm-b20"></div>
-            <input class="simple-input" type="password" value="" name="repassword" placeholder="Repeat password" />
+            <input class="simple-input" type="password" value="" name="password_confirmation" placeholder="Repeat password" />
             <div class="empty-space col-xs-b10 col-sm-b20"></div>
             {{ csrf_field() }}
             <div class="row">

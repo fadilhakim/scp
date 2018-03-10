@@ -26,7 +26,7 @@
 			            	</a>        
 			            </li>
 			            <li class="active">
-			                 Member Area
+			                 <a href="{{ url('memberarea') }}"> Member Area </a> 
 			            </li>
 				    </ol>
                 </div>
@@ -61,13 +61,32 @@
 						      <td>MidTrans</td>
 						      <td>Rp. <?=number_format($row->grand_total)?></td>
 						      <td>
-						      	<span class="label label-success">Shipping</span>
-						      	<span class="label label-warning">Paid</span>
-						      	<span class="label label-default">Unpaid</span>
+								<?php
+									if($row->status == "unpaid")
+									{
+										echo "<span class='label label-default'>Unpaid</span>";
+									}
+									else if($row->status == "paid")
+									{
+										echo "<span class='label label-warning'>Paid</span>";
+									}
+									else if($row->status == "shipping")
+									{
+										echo "<span class='label label-primary'>Shipping</span>";
+									}
+									else if($row->status == "cancel")
+									{
+										echo "<span class='label label-danger'>Cancel</span>";
+									}
+									else if($row->status == "success")
+									{
+										echo "<span class='label label-success'>Done</span>";
+									}
+								?>
 						      </td>
 						      <td>
 						      	<span class="label label-primary">
-						      		<a href="{{url('detail_order/1')}}">
+						      		<a class='text-white' href="{{url('detail_order/1')}}">
 						      			Detail Order
 						      		</a>
 						      	</span>

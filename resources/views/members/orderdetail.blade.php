@@ -5,60 +5,87 @@
 	<div class="container">
 		<div class="empty-space col-xs-b15 col-sm-b30"></div>
 		<div class="row">
-			@include('../template/member_sidebar')
+			@include('members/member_sidebar')
+			<style type="text/css">
+				.header-lined h1 {
+					    font-weight: 400;
+					    font-family: 'Raleway', sans-serif;
+					    text-transform: uppercase;
+				}
+			</style>
 			<div class="col-md-9 pull-md-right">
-                <div class="header-lined">
-                	<div class="alert alert-success" role="alert">
-					 	<h1>Selamat Datang, <?=$user->name?> </h1>
-					</div>
+					<!-- <div class="header-lined">
+						<div class="alert alert-success" role="alert">
+						<h1>Selamat Datang, <?=$user->name?> </h1>
+					</div> -->
+		
 					<ol class="breadcrumb">
-				        <li>
-			            	<a href="">
-			            		Home
-			            	</a>        
-			            </li>
-			            <li>
-			                 <a href="{{url('memberarea')}}">
-			            		Member Area
-			            	</a>  
-			            </li>
-			            <li class="active">
-			                 Detail Order
-			            </li>
-				    </ol>
-                </div>
-                <div menuitemname="Client Details" class="panel panel-default">
-                	<div class="panel-heading">
-			            <h3 class="panel-title">
-			                <i class="fa fa-cart-arrow-down"></i>&nbsp;Detail Order : #912923
-                        </h3>
-			        </div>
-                	<div class="container">
-                		<div class="row" style="padding-top: 20px;">
-						    <div class="form-group col-md-6">
-						      <label for="inputEmail4" >Order ID</label>
-						      <input readonly type="text" class="form-control" id="inputEmail4" value="#1939213" style="margin-top: 10px;">
-						    </div>
-						    <div class="form-group col-md-6">
-						      <label for="inputPassword4">Date</label>
-						      <input readonly type="text" class="form-control" id="inputPassword4" value="2018-02-27 14:05:56" style="margin-top: 10px;">
-						    </div>
-				  		</div>
-                	</div>
-                	<div class="container">
-                		<div class="card" style="width: 18rem;">
-						  <div class="card-body">
-						    <h5 class="card-title">Shipping detail</h5>
-						    <h6 class="card-subtitle mb-2 text-muted">Shipping Address :</h6>
-						    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						    <a href="#" class="card-link">Card link</a>
-						    <a href="#" class="card-link">Another link</a>
-						  </div>
+						<li>
+							<a href="">
+								Home
+							</a>        
+						</li>
+						<li>
+							<a href="{{url('memberarea')}}">
+								Member Area
+							</a>  
+						</li>
+						<li class="active">
+									Detail Order
+						</li>
+					</ol>
+					<div menuitemname="Client Details" class="panel panel-default">
+						<div class="panel-heading">
+								<h3 class="panel-title">
+										<i class="fa fa-cart-arrow-down"></i>&nbsp;Detail Order : #912923
+								</h3>
 						</div>
-                	</div>
+						<div class="panel-body">
 
-    			</div>
-    		</div>
+							<div class="col-md-5">
+								lorem ipsum sit dolor amet 	lorem ipsum sit dolor amet 	lorem ipsum sit dolor amet 	lorem ipsum sit dolor amet
+
+							</div>
+							<div class="col-md-1">
+
+							</div>
+							<div class="col-md-5">
+								lorem ipsum sit dolor amet	lorem ipsum sit dolor amet	lorem ipsum sit dolor amet	lorem ipsum sit dolor amet	lorem ipsum sit dolor amet
+
+							</div>
+							<span class="clearfix"></span>
+							<div class="empty-space col-xs-b15 col-sm-b30"></div>
+							<table class="table table-bordered">
+								<thead>
+										<th> Description </th>
+										<th> Quantity </th>
+										<th> Amount </th>
+										<th> Total </th>
+								</thead>
+								<tbody>
+										<tr>	
+											<td> &nbsp; </td>
+											<td> &nbsp; </td> 
+											<td> &nbsp; </td>
+											<td> &nbsp; </td> 
+										<tr>
+								</tbody>
+								<tfoot>
+										<tr>	
+											<td> &nbsp; </td>
+											<td> &nbsp; </td> 
+											<td> &nbsp; </td>
+											<td> &nbsp; </td> 
+										<tr>
+
+								</tfoot>
+
+							</table>
+
+						</div>
+					</div>
+			</div>
+      </div>
 		</div>
-	</div>
+</div>
 @include('../template/footer')

@@ -23,7 +23,7 @@ Route::group(['middleware' => ['admin']], function () {
 
     //order
     Route::get("/admin/order","Admin\OrderController@index");
-    Route::get("/admin/order/detail","Admin\OrderController@detail");
+    Route::get("/admin/order/detail/{order_id}","Admin\OrderController@detail");
     Route::post("/admin/order/change_status","Admin\OrderController@change_status");
 
     // product
