@@ -6,13 +6,12 @@
      $product_availability = $product->product_availability;
 //} ?>
 <div class="container">
-    <div class="empty-space col-xs-b15 col-sm-b30"></div>
     <div class="breadcrumbs">
         <a href="{{url('/')}}">Home</a>
         <a href="{{url('product')}}">Product</a>
-        <a href="#">{{$product_title}}</a>
+        <a href="#">{{$category->category_name}}</a>
     </div>
-    <div class="empty-space col-xs-b15 col-sm-b50 col-md-b100"></div>
+    <div class="empty-space col-xs-b15 col-sm-b30"></div>
     <div class="row">
         <div class="col-md-9 col-md-push-3">
             <div class="row">
@@ -23,34 +22,12 @@
                            <div class="swiper-button-prev hidden"></div>
                            <div class="swiper-button-next hidden"></div>
                            <div class="swiper-wrapper">
+                           <?php foreach ($image as $rowImage) { ?>
                                <div class="swiper-slide">
                                     <div class="swiper-lazy-preloader"></div>
-                                    <div class="product-big-preview-entry swiper-lazy" data-background="{{URL::asset('/public/img/product-125.jpg')}}"></div>
-                               </div>
-                               <div class="swiper-slide">
-                                    <div class="swiper-lazy-preloader"></div>
-                                    <div class="product-big-preview-entry swiper-lazy" data-background="{{URL::asset('/public/img/product-preview-5.jpg')}}"></div>
-                               </div>
-                               <div class="swiper-slide">
-                                    <div class="swiper-lazy-preloader"></div>
-                                    <div class="product-big-preview-entry swiper-lazy" data-background="{{URL::asset('/public/img/product-preview-6.jpg')}}"></div>
-                               </div>
-                               <div class="swiper-slide">
-                                    <div class="swiper-lazy-preloader"></div>
-                                    <div class="product-big-preview-entry swiper-lazy" data-background="{{URL::asset('/public/img/product-preview-7.jpg')}}"></div>
-                               </div>
-                               <div class="swiper-slide">
-                                    <div class="swiper-lazy-preloader"></div>
-                                    <div class="product-big-preview-entry swiper-lazy" data-background="{{URL::asset('/public/img/product-preview-8.jpg')}}"></div>
-                               </div>
-                               <div class="swiper-slide">
-                                    <div class="swiper-lazy-preloader"></div>
-                                    <div class="product-big-preview-entry swiper-lazy" data-background="{{URL::asset('/public/img/product-preview-9.jpg')}}"></div>
-                               </div>
-                               <div class="swiper-slide">
-                                    <div class="swiper-lazy-preloader"></div>
-                                    <div class="product-big-preview-entry swiper-lazy" data-background="{{URL::asset('/public/img/product-preview-10.jpg')}}"></div>
-                               </div>
+                                    <div class="product-big-preview-entry swiper-lazy" data-background="{{URL::asset('/public/products/'.$rowImage->product_id.'/'.$rowImage->image_name)}}"></div>
+                               </div> 
+                          <?php } ?>
                            </div>
                         </div>
 
@@ -60,49 +37,22 @@
                            <div class="swiper-button-prev hidden"></div>
                            <div class="swiper-button-next hidden"></div>
                            <div class="swiper-wrapper">
+
+                           <?php foreach ($image as $rowImage) { ?>
+
                                <div class="swiper-slide">
                                     <div class="product-small-preview-entry">
-                                        <img src="{{URL::asset('/public/img/product-preview-4_.jpg')}}" alt="" />
+                                        <img class="img-responsive" src="{{URL::asset('/public/products/'.$rowImage->product_id.'/'.$rowImage->image_name)}}" alt="" />
                                     </div>
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="product-small-preview-entry">
-                                        <img src="{{URL::asset('/public/img/product-preview-5_.jpg')}}" alt="" />
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="product-small-preview-entry">
-                                        <img src="{{URL::asset('/public/img/product-preview-6_.jpg')}}" alt="" />
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="product-small-preview-entry">
-                                        <img src="{{URL::asset('/public/img/product-preview-7_.jpg')}}" alt="" />
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="product-small-preview-entry">
-                                        <img src="{{URL::asset('/public/img/product-preview-8_.jpg')}}" alt="" />
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="product-small-preview-entry">
-                                        <img src="{{URL::asset('/public/img/product-preview-9_.jpg')}}" alt="" />
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="product-small-preview-entry">
-                                        <img src="{{URL::asset('/public/img/product-preview-10_.jpg')}}" alt="" />
-                                    </div>
-                               </div>
-
+                            <?php } ?>
                            </div>
                         </div>
                     </div>
 
                 </div>
                 <div class="col-sm-6">
-                    <div class="simple-article size-3 grey col-xs-b5">SMART WATCHES</div>
+                    <div class="simple-article size-3 grey col-xs-b5">{{$category->category_name}}</div>
                     <div class="h3 col-xs-b25">{{$product_title}}</div>
                     <div class="row col-xs-b25">
                         <div class="col-sm-6">
@@ -150,12 +100,7 @@
                             </a>
                         </div>
                         <div class="col-sm-6">
-                            <a class="button size-2 style-1 block noshadow" href="#">
-                            <span class="button-wrapper">
-                                <span class="icon"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
-                                <span class="text">add to favourites</span>
-                            </span>
-                        </a>
+                    
                         </div>
                     </div>
                     <div class="row">
@@ -442,7 +387,7 @@
 
         </div>
         <div class="col-md-3 col-md-pull-9">
-            <div class="h4 col-xs-b10">popular categories</div>
+            <div class="h4 col-xs-b10">categories</div>
             <ul class="categories-menu transparent">
                 <li>
                     <a href="#">laptops &amp; computers</a>
@@ -703,8 +648,6 @@
 
             <div class="empty-space col-xs-b25 col-sm-b50"></div>
 
-            <div class="empty-space col-xs-b25 col-sm-b50"></div>
-
             <div class="h4 col-xs-b25">Brands</div>
             <label class="checkbox-entry">
                 <input type="checkbox"><span>LG</span>
@@ -726,20 +669,6 @@
                 <input type="checkbox"><span>Google</span>
             </label>
 
-            <div class="empty-space col-xs-b25 col-sm-b50"></div>
-
-            <div class="h4 col-xs-b25">Operation System</div>
-            <label class="checkbox-entry">
-                <input type="checkbox"><span>Android</span>
-            </label>
-            <div class="empty-space col-xs-b10"></div>
-            <label class="checkbox-entry">
-                <input type="checkbox"><span>IOS</span>
-            </label>
-            <div class="empty-space col-xs-b10"></div>
-            <label class="checkbox-entry">
-                <input type="checkbox"><span>Windows Phone</span>
-            </label>
             <div class="empty-space col-xs-b10"></div>
             <label class="checkbox-entry">
                 <input type="checkbox"><span>Symbian</span>
@@ -772,8 +701,9 @@
         <div class="swiper-button-prev style-1"></div>
         <div class="swiper-button-next style-1"></div>
         <div class="swiper-wrapper">
-        	<?php for($i = 0; $i <= 7; $i++){ ?>
-            <div class="swiper-slide">
+        	<?php foreach ($related_product as $rltedProd) { ?>
+             
+                <div class="swiper-slide">
                 <div class="product-shortcode style-1 small">
                     <div class="title">
                         <div class="simple-article size-1 color col-xs-b5"><a href="#">ACCESSORIES</a></div>
@@ -802,7 +732,7 @@
                         <div class="simple-article size-4 dark">Rp 10.630.00</div>
                     </div>
                 </div>
-            </div>
+                </div>
             <?php } ?>
         </div>
         <div class="swiper-pagination relative-pagination visible-xs"></div>

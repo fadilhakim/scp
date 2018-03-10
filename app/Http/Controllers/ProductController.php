@@ -22,6 +22,7 @@ class ProductController extends Controller
     function index()
     {
      	$data["product"] = Product::all_product();
+        $data["popular"] = Product::get_popular_product();
         $data["title"]   = "Product List";
         $data['content'] = 'admin/product/product';
         return view("product",$data);
@@ -32,6 +33,8 @@ class ProductController extends Controller
        
        	$data["product"] = Product::detail_product($id);
        	$data["related_product"] = Product::related_product($category);
+        $data["image"] = Product::find_product_img($id);
+        $data["category"] = Product::get_product_category($category);
         $data["title"] = "Our Product";
         $data["content"] = "Product";
         return view("product_detail",$data);
@@ -41,6 +44,6 @@ class ProductController extends Controller
     {
 
         return view("product_highlight");
-        
+
     }
 }
