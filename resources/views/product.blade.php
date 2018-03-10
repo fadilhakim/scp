@@ -22,22 +22,22 @@
                             <div class="swiper-button-prev style-1"></div>
                             <div class="swiper-button-next style-1"></div>
                             <div class="swiper-wrapper">
-                            <?php $i=1; foreach ($product as $row){ 
+                            <?php $i=1; foreach ($popular as $rowPopular){ 
 
-                                    $slug = str_slug($row->product_title, '-');
-                                    $id   = $row->product_id;
+                                    $slug = str_slug($rowPopular->product_title, '-');
+                                    $id   = $rowPopular->product_id;
                                 ?>
                                 <div class="swiper-slide">
                                     <div class="product-shortcode style-1 small">
                                         <div class="title">
-                                            <div class="simple-article size-1 color col-xs-b5"><a href="<?=url("product/detail/$id/$slug")?>">Phone</a></div>
-                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/id")?>">{{$row->product_title}}</a></div>
+                                            <div class="simple-article size-1 color col-xs-b5"><a href="#">Phone</a></div>
+                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/$id/$slug")?>">{{$rowPopular->product_title}}</a></div>
                                         </div>
                                         <div class="preview">
                                             <img src="{{URL::asset('/public/products/product-125.jpg')}}" alt="">
                                             <div class="preview-buttons valign-middle">
                                                 <div class="valign-middle-content">
-                                                    <a class="button size-2 style-2" href="<?=url("product/detail/{$row->product_id}/{$row->product_category}/{$slug}")?>">
+                                                    <a class="button size-2 style-2" href="<?=url("product/detail/{$rowPopular->product_id}/{$rowPopular->product_category}/{$slug}")?>">
                                                         <span class="button-wrapper">
                                                             <span class="icon"><img src="{{URL::asset('/public/img/icon-1.png')}}" alt=""></span>
                                                             <span class="text">Learn More</span>
@@ -53,7 +53,7 @@
                                             </div>
                                         </div>
                                         <div class="price">
-                                            <div class="simple-article size-4 dark">Rp.{{ number_format($row->price) }}</div>
+                                            <div class="simple-article size-4 dark">Rp.{{ number_format($rowPopular->price) }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -101,12 +101,12 @@
                     <div class="products-content">
                         <div class="products-wrapper">
                             <div class="row nopadding">
-                            <?php for($i = 0; $i < 8; $i++) {?>
+                            <?php foreach($product as $rowProduct) {?>
                                 <div class="col-sm-4 col-md-3">
                                     <div class="product-shortcode style-1">
                                         <div class="title">
                                             <div class="simple-article size-1 color col-xs-b5"><a href="<?=url("product/detail/id")?>">SMART PHONES</a></div>
-                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/id")?>">Smartphone vibe x2</a></div>
+                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slug}")?>">{{$rowProduct->product_title}}</a></div>
                                         </div>
                                         <div class="preview">
                                             <img src="{{URL::asset('public/products/product-127.jpg')}}" alt="">

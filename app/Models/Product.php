@@ -71,17 +71,35 @@ class Product extends Model
     }
 
 
-
     static function related_product($category)
-
     {
-
         $product = DB::table('product_tbl')->where('product_category',$category)->get();
-
         return $product;
-
     }
 
+    static function find_product_img($id)
+    {
+        $image = DB::table('product_image_tbl')->where('product_id',$id)->get();
+        return $image;
+    }
+
+    static function product_result($product_title)
+    {
+        $product = DB::table('product_tbl')->where('product_title',$product_title)->get();
+        return $product;
+    }
+
+    static function get_product_category($category)
+    {
+        $category = DB::table('category_tbl')->where('category_id',$category)->first();
+        return $category;
+    }
+
+    static function get_popular_product()
+    {
+        $popular = DB::table('product_tbl')->where('popular','1')->get();
+        return $popular;
+    }
 
 
     public function insert_product_image($arr)
