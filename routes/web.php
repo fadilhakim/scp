@@ -31,8 +31,6 @@ Route::get('/product', 'ProductController@index');
 Route::get('/product/detail/{id}/{product_category}/{product_title}', 'ProductController@detail');
 Route::get('/product/highlight/{id}/{product_title}', 'ProductController@product_highlight');
 
-Route::get('/detail_order/{id}', 'Member\MemberController@detail_order');
-
 Route::get('/services', function () {
     return view('services');
 });
@@ -76,9 +74,6 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-
-
 include "admin_route.php";
-
 include "web2.php";
 

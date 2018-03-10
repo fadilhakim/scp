@@ -34,6 +34,9 @@
             $active_contact = '' ;
             $active_product = '' ;
             $active_bank = '' ;
+            $active_order = "";
+            $active_voucher = "";
+
             if($route == 'about'){
                 $active_about = 'active pcoded-trigger' ;
             }
@@ -103,10 +106,18 @@
                 </a>
             </li>
 
-            <li class="{{ $active_users }}">
+            <li class="{{ $active_order }}">
                 <a href="<?=url("admin/order")?>">
-                    <span class="pcoded-micon"><i class="ti-user"></i></span>
+                    <span class="pcoded-micon"><i class="ti-briefcase"></i></span>
                     <span class="pcoded-mtext"> Order Management </span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            
+            <li class="{{ $active_voucher }}">
+                <a href="<?=url("admin/voucher")?>">
+                    <span class="pcoded-micon"><i class="ti-coupon"></i></span>
+                    <span class="pcoded-mtext"> Voucher / Coupon </span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>

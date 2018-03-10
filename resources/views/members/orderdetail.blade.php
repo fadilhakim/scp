@@ -2,6 +2,7 @@
 	<?php
 		$user = Auth::guard("user")->user();
 		$objProduct = new App\Models\Product();
+		$objUser 	  = "";
 	?>
 	<div class="container">
 		<div class="empty-space col-xs-b15 col-sm-b30"></div>
@@ -94,6 +95,12 @@
 											<td> &nbsp; </td> 
 											<td> Tax </td>
 											<td>Rp. {{ number_format($order->tax) }} </td> 
+										<tr>
+										<tr>	
+											<td> &nbsp; </td>
+											<td> &nbsp; </td> 
+											<td> Discount </td>
+											<td> </td> 
 										<tr>
 										<tr>	
 											<td> &nbsp; </td>
