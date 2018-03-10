@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
@@ -47,15 +45,9 @@ class Product extends Model
     //
 
     static function all_product()
-
     {
-
-       
-
-        $product = DB::table("product_tbl")->get();
-
+        $product = DB::table("product_tbl")->paginate(3);
         return $product;
-
     }
 
     
@@ -80,6 +72,12 @@ class Product extends Model
     static function find_product_img($id)
     {
         $image = DB::table('product_image_tbl')->where('product_id',$id)->get();
+        return $image;
+    }
+
+    static function get_first_image($id)
+    {
+        $image = DB::table('product_image_tbl')->where('product_id',$id)->first();
         return $image;
     }
 

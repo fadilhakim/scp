@@ -102,23 +102,31 @@
                         <div class="products-wrapper">
                             <div class="row nopadding">
                             <?php foreach($product as $rowProduct) {?>
+                                <?php $slugProd = str_slug($rowProduct->product_title, '-'); 
+                                $prodId = $rowProduct->product_id;
+                                
+                                ?>
                                 <div class="col-sm-4 col-md-3">
                                     <div class="product-shortcode style-1">
                                         <div class="title">
-                                            <div class="simple-article size-1 color col-xs-b5"><a href="<?=url("product/detail/id")?>">SMART PHONES</a></div>
-                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slug}")?>">{{$rowProduct->product_title}}</a></div>
+                                            <div class="simple-article size-1 color col-xs-b5"><a href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slugProd}")?>">SMART PHONES</a></div>
+                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slugProd}")?>">{{$rowProduct->product_title}}</a></div>
                                         </div>
                                         <div class="preview">
-                                            <img src="{{URL::asset('public/products/product-127.jpg')}}" alt="">
+                                        <?php $firstImg =  App\Models\Product::get_first_image($prodId) ;
+                                                $getImage = $firstImg->image_name;
+                                            ?>
+                                            <img src="{{URL::asset('public/products/'.$prodId.'/'.$getImage )}}" alt="">
+                                            
                                             <div class="preview-buttons valign-middle">
                                                 <div class="valign-middle-content">
-                                                    <a class="button size-2 style-2" href="<?=url("product/detail/id")?>">
+                                                    <a class="button size-2 style-2" href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slug}")?>">
                                                         <span class="button-wrapper">
                                                             <span class="icon"><img src="{{URL::asset('public/img/icon-1.png')}}" alt=""></span>
                                                             <span class="text">Learn More</span>
                                                         </span>
                                                     </a>
-                                                    <a class="button size-2 style-3" href="<?=url("product/detail/id")?>">
+                                                    <a class="button size-2 style-3" href="<?=url("cart/add/$prodId/$slugProd")?>"">
                                                         <span class="button-wrapper">
                                                             <span class="icon"><img src="{{URL::asset('public/img/icon-3.png')}}" alt=""></span>
                                                             <span class="text">Add To Cart</span>
@@ -128,10 +136,10 @@
                                             </div>
                                         </div>
                                         <div class="price">
-                                            <div class="simple-article size-4 dark">RP 100.630.00</div>
+                                            <div class="simple-article size-4 dark">Rp {{$rowProduct->price}}</div>
                                         </div>
                                         <div class="description">
-                                            <div class="simple-article text size-2">Mollis nec consequat at In feugiat mole stie tortor a malesuada</div>
+                                            <div class="simple-article text size-2">{{$rowProduct->product_description}}</div>
                                             <div class="icons">
                                                 <a class="entry"><i class="fa fa-check" aria-hidden="true"></i></a>
                                                 <a class="entry open-popup" data-rel="3"><i class="fa fa-eye" aria-hidden="true"></i></a>
@@ -146,37 +154,7 @@
                     </div>
                     <div class="empty-space col-xs-b35 col-sm-b0"></div>
                     <div class="row">
-                        <div class="col-sm-3 hidden-xs">
-                            <a class="button size-1 style-5" href="#">
-                                <span class="button-wrapper">
-                                    <span class="icon"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
-                                    <span class="text">prev page</span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="col-sm-6 text-center">
-                        <style type="text/css">
-                            .pagination {
-                                display: inline-block;
-                            }
-                        </style>
-                            <div class="pagination-wrapper">
-                                <a class="pagination active">1</a>
-                                <a class="pagination">2</a>
-                                <a class="pagination">3</a>
-                                <a class="pagination">4</a>
-                                <span class="pagination">...</span>
-                                <a class="pagination">23</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 hidden-xs text-right">
-                            <a class="button size-1 style-5" href="#">
-                                <span class="button-wrapper">
-                                    <span class="icon"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                    <span class="text">prev page</span>
-                                </span>
-                            </a>
-                        </div>
+                        {{$product->links()}}
                     </div>
                     <div class="empty-space col-md-b70"></div>
                 </div>
