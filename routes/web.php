@@ -31,8 +31,6 @@ Route::get('/product', 'ProductController@index');
 Route::get('/product/detail/{id}/{product_category}/{product_title}', 'ProductController@detail');
 Route::get('/product/highlight/{id}/{product_title}', 'ProductController@product_highlight');
 
-Route::get('/detail_order/{id}', 'Member\MemberController@detail_order');
-
 Route::get('/services', function () {
     return view('services');
 });
@@ -70,15 +68,12 @@ Route::group(['middleware' => ['auth']], function () {
     // members and order
     Route::get("checkout","OrderController@checkout");
     Route::get('/memberarea', 'Member\MemberController@index');
-    Route::get('/memberarea/profile', 'Member\MemberController@profile');
+    Route::get('/memberarea/account', 'Member\MemberController@account');
     Route::get('/detail_order/{id}', 'Member\MemberController@detail_order');
     Route::get("auth/logout","Auth\LoginController@logout");
 
 });
 
-
-
 include "admin_route.php";
-
 include "web2.php";
 

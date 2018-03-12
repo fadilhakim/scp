@@ -15,7 +15,7 @@
         </div>
 
         <div class="panel-footer clearfix">
-	        <a href="{{ url('memberarea/profile') }}" class="btn btn-success btn-sm btn-block">
+	        <a href="{{ url('memberarea/account') }}" class="btn btn-success btn-sm btn-block">
 	        	<i class="fa fa-pencil"></i> Update
 	    	</a>
         </div>

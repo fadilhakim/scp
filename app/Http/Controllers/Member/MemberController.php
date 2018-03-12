@@ -27,14 +27,17 @@ class MemberController extends Controller
         return view('members/generalinfo',$data);
     }
 
-    function profile()
+    function account()
     {
-        $data["title"]   = "Profile";
-        return view('members/profile',$data);
+        $data["title"]   = "Account";
+        return view('members/account',$data);
     }
      
-    function detail_order()
+    function detail_order(Request $request)
     {
+        $order_id = $request->segment(2);
+        $data["order"]        = $this->objOrder->get_order_byid($order_id);
+        $data["order_detail"] = $this->objOrder->get_order_detail($order_id);
         $data["title"]   = "Order Detail";
         return view('members/orderdetail',$data);
     }

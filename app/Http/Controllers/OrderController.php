@@ -47,8 +47,7 @@ class OrderController extends Controller
             $objDemo->sender   = 'SenderUserName';
             $objDemo->receiver = 'ReceiverUserName';*/
              // send email 
-            Mail::to(["fadil.nylon@gmail.com","ariesdimasy@gmail.com"])->send(new OrderEmail($objDemo));
-            
+             Mail::to([$user->email,"fadil.nylon@gmail.com","ariesdimasy@gmail.com"])->send(new OrderEmail($objDemo));
             // clear cart 
             Cart::destroy();
 
