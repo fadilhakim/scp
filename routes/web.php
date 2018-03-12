@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth']], function () {
     // members and order
     Route::get("checkout","OrderController@checkout");
     Route::get('/memberarea', 'Member\MemberController@index');
-    Route::get('/memberarea/profile', 'Member\MemberController@profile');
+    Route::get('/memberarea/account', 'Member\MemberController@account');
     Route::get('/detail_order/{id}', 'Member\MemberController@detail_order');
     Route::get("auth/logout","Auth\LoginController@logout");
 

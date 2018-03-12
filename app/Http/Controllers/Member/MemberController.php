@@ -27,10 +27,10 @@ class MemberController extends Controller
         return view('members/generalinfo',$data);
     }
 
-    function profile()
+    function account()
     {
-        $data["title"]   = "Profile";
-        return view('members/profile',$data);
+        $data["title"]   = "Account";
+        return view('members/account',$data);
     }
      
     function detail_order(Request $request)
