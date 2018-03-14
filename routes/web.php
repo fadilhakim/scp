@@ -72,6 +72,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/detail_order/{id}', 'Member\MemberController@detail_order');
     Route::get("auth/logout","Auth\LoginController@logout");
 
+    Route::post("/account/profile_edit_process","Member\MemberController@profile_edit_process");
+    Route::post("/account/change_password_process","Member\MemberController@change_password_process");
+    Route::post("/account/add_address_book_process","Member\MemberController@add_address_book_process");
+    Route::post("/account/delete_address_book_process","Member\MemberController@delete_address_book_process");
+
 });
 
 include "admin_route.php";

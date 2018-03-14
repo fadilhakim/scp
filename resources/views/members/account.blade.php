@@ -6,6 +6,7 @@
 		.tab-content {
 			border-left: 1px solid #ddd;
 			border-right: 1px solid #ddd;
+			border-bottom: 1px solid #ddd;
 			padding: 10px;
 		}
 
@@ -56,6 +57,16 @@
 								<div class="col-md-6">
 									@include('members/profile')
 								</div>
+								<div class="col-md-6">
+									@include('members/change_password')
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="clearfix"><hr></div>
+							<div class="row">
+								<br>
+								@include("members/address_book")
+
 							</div>
 						</div>
                     </div>

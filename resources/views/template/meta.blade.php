@@ -14,6 +14,7 @@
 
     <link href="{{ URL::asset('public/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('public/css/bootstrap.extension.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('public/plugins/jqueryui/jquery-ui.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('public/css/style.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('public/css/swiper.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('public/css/sumoselect.css') }}" rel="stylesheet" type="text/css" />
@@ -23,6 +24,7 @@
 
     <script src="{{ URL::asset('public/js/jquery-2.2.4.min.js') }}"></script>
     <script src="{{ URL::asset('public/plugins/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{ URL::asset('public/plugins/jqueryui/jquery-ui.min.js')}}"></script>
     <script src="{{ URL::asset('public/js/global.js') }}"></script>
 
     <link rel="shortcut icon" href="img/favicon.ico" />
