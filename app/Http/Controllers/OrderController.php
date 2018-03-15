@@ -39,7 +39,8 @@ class OrderController extends Controller
         {
             
             $this->insert($request); 
-            redirect()->to("memberarea")->send();
+            //redirect()->to("memberarea")->send();
+            $user              = Auth::guard("user")->user();
 
             $objDemo = new \stdClass();
             /* $objDemo->demo_one = 'Demo One Value';
@@ -47,7 +48,7 @@ class OrderController extends Controller
             $objDemo->sender   = 'SenderUserName';
             $objDemo->receiver = 'ReceiverUserName';*/
              // send email 
-             Mail::to([$user->email,"fadil.nylon@gmail.com","ariesdimasy@gmail.com"])->send(new OrderEmail($objDemo));
+            Mail::to([$user->email,"fadil.nylon@gmail.com","ariesdimasy@gmail.com"])->send(new OrderEmail($objDemo));
             // clear cart 
             Cart::destroy();
 
