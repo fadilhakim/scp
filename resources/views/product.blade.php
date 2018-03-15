@@ -102,7 +102,9 @@
                         <div class="products-wrapper">
                             <div class="row nopadding">
                             <?php foreach($product as $rowProduct) {?>
-                                <?php $slugProd = str_slug($rowProduct->product_title, '-'); 
+                                <?php 
+                                
+                                $slugProd = str_slug($rowProduct->product_title, '-'); 
                                 $prodId = $rowProduct->product_id;
                                 
                                 ?>
@@ -130,7 +132,7 @@
                                             
                                             <div class="preview-buttons valign-middle">
                                                 <div class="valign-middle-content">
-                                                    <a class="button size-2 style-2" href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slug}")?>">
+                                                    <a class="button size-2 style-2" href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slugProd}")?>">
                                                         <span class="button-wrapper">
                                                             <span class="icon"><img src="{{URL::asset('public/img/icon-1.png')}}" alt=""></span>
                                                             <span class="text">Learn More</span>

@@ -38,7 +38,7 @@ class OrderController extends Controller
         if(!empty(Cart::content()))
         {
             
-            $this->insert(); 
+            $this->insert($request); 
             redirect()->to("memberarea")->send();
 
             $objDemo = new \stdClass();
@@ -62,7 +62,7 @@ class OrderController extends Controller
        
     }
 
-    private function insert(Request $request)
+    private function insert($request)
     {
         if(!empty(Cart::content()))
         {
