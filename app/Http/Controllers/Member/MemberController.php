@@ -41,4 +41,29 @@ class MemberController extends Controller
         $data["title"]   = "Order Detail";
         return view('members/orderdetail',$data);
     }
+
+    function profile_edit_process(Request $request)
+    {
+        
+    }
+
+    function change_password_process()
+    {
+
+    }
+
+    function change_email_process()
+    {
+
+    }
+
+    function add_address_book_process()
+    {
+
+    }
+
+    function delete_address_book_process()
+    {
+        
+    }
 }
