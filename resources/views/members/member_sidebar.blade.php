@@ -10,8 +10,8 @@
         </div>
 
         <div class="panel-body">
-            <p><strong><?=$user->name?></strong></p>
-            <p>Jl Puspa Blok no 12 Kelurahanan Sukadamai<br>Kecamatan Tanah Sareal<br>Bogor<br>Jawa Barat<br>12014<br>Indonesia</p>
+            <p><strong><?=$user->name?>Your Shipping Address :</strong></p>
+            <p></p>
         </div>
 
         <div class="panel-footer clearfix">
