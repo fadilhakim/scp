@@ -30,7 +30,7 @@ class OrderEmail extends Mailable
     public function build()
     {
         return $this->from('alhusna901@gmail.com')
-                    ->view('invoice.invoice-fancy-page-inline')
+                    ->view('mails.invoice-fancy-page-inline')
                     //->text('mails.demo_plain')
                     ->with(
                       [
