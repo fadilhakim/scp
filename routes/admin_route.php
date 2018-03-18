@@ -66,6 +66,17 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post("/admin/bank/update_process","Admin\BankController@bank_update_process");
     Route::post("/admin/bank/delete_process","Admin\BankController@bank_delete_process");
 
+     //Voucher
+     Route::get("/admin/voucher","Admin\VoucherController@index");
+
+     Route::post("/admin/voucher/insert","Admin\VocherController@modal_voucher_insert");
+     Route::post("/admin/voucher/update","Admin\VocherController@modal_voucher_update");
+     Route::post("/admin/voucher/delete","Admin\VocherController@modal_voucher_delete");
+ 
+     Route::post("/admin/voucher/insert_process","Admin\VocherController@voucher_insert_process");
+     Route::post("/admin/voucher/update_process","Admin\VocherController@voucher_update_process");
+     Route::post("/admin/voucher/delete_process","Admin\VocherController@voucher_delete_process");
+
     // Slider
     Route::get("/admin/slider","Admin\SliderController@index");
 

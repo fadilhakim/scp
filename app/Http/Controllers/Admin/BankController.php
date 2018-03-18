@@ -340,7 +340,7 @@ class BankController extends Controller
 
 
 
-        echo Alert::success("You successfully Delete Product");
+        echo Alert::success("You successfully Delete Bank");
 
         echo "<script> setTimeout(function(){ location.reload(); },2000); </script>";
 

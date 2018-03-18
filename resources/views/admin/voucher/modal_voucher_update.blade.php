@@ -1,20 +1,20 @@
-<div id="modal_brand_update" class="modal" tabindex="-1" role="dialog">
+<div id="modal_voucher_update" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-            <h5 class="modal-title text-white"> brand update </h5>
+            <h5 class="modal-title text-white"> voucher update </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
-            <form id="form-brand-update">
+            <form id="form-voucher-update">
             <div class="modal-body">
-                <div id="temp-brand"></div>
+                <div id="temp-voucher"></div>
                 <div class="form-group">
-                    <label>brand Name</label>
-                    <input type="text" value="{{ $brand->brand_name }}" name="brand_name" id="brand_name" class="form-control">
+                    <label>voucher Name</label>
+                    <input type="text" value="{{ $voucher->voucher_name }}" name="voucher_name" id="voucher_name" class="form-control">
                 </div>
-                <input type="hidden" name="brand_id" id="brand_id" value="{{ $brand->brand_id }}">
+                <input type="hidden" name="voucher_id" id="voucher_id" value="{{ $voucher->voucher_id }}">
                 {{ csrf_field() }}
             </div>
             <div class="modal-footer">
@@ -26,18 +26,18 @@
     </div>
 </div>
 <script>
-    $("#modal_brand_update").modal({
+    $("#modal_voucher_update").modal({
         show:true
     });
 
-    $("form#form-brand-update").submit(function(){
+    $("form#form-voucher-update").submit(function(){
         $.ajax({
             type:"POST",
-            url:"{{ url('admin/product/brand/update_process') }}",
+            url:"{{ url('admin/product/voucher/update_process') }}",
             data:$(this).serialize(),
             success:function(data)
             {
-                $("#temp-brand").html(data);
+                $("#temp-voucher").html(data);
             }
 
         });

@@ -1,18 +1,18 @@
-<div id="modal_brand_delete" class="modal" tabindex="-1" role="dialog">
+<div id="modal_voucher_delete" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-            <h5 class="modal-title text-white"> Delete brand </h5>
+            <h5 class="modal-title text-white"> Delete voucher </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
-            <form id="form-brand-delete">
+            <form id="form-voucher-delete">
             <div class="modal-body">
-                <div id="temp-brand"></div>
+                <div id="temp-voucher"></div>
                 
-                <p> Are Your Sure want to Delete this brand <b>"{{ $brand->brand_name }}"</b> ? </p>
-                <input type="hidden" name="brand_id" value="{{ $brand->brand_id }}">
+                <p> Are Your Sure want to Delete this voucher <b>"{{ $voucher->voucher_name }}"</b> ? </p>
+                <input type="hidden" name="voucher_id" value="{{ $voucher->voucher_id }}">
                 {{ csrf_field() }}
             </div>
             <div class="modal-footer">
@@ -24,18 +24,18 @@
     </div>
 </div>
 <script>
-    $("#modal_brand_delete").modal({
+    $("#modal_voucher_delete").modal({
         show:true
     });
 
-    $("form#form-brand-delete").submit(function(){
+    $("form#form-voucher-delete").submit(function(){
         $.ajax({
             type:"POST",
-            url:"{{ url('admin/product/brand/delete_process') }}",
+            url:"{{ url('admin/product/voucher/delete_process') }}",
             data:$(this).serialize(),
             success:function(data)
             {
-                $("#temp-brand").html(data);
+                $("#temp-voucher").html(data);
             }
 
         });

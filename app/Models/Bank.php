@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class bank extends Model
+class Bank extends Model
 {
     protected $table = "bank_tbl";
     public $primaryKey = "bank_id";
