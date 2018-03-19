@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2018 at 05:10 AM
+-- Generation Time: Mar 18, 2018 at 07:04 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -29,7 +29,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `voucher_tbl` (
-  `code_voucher` varchar(50) NOT NULL,
+  `voucher_id` int(11) NOT NULL,
+  `voucher_code` varchar(50) NOT NULL,
   `type` enum('cashback','discount') NOT NULL,
   `discount` decimal(10,0) NOT NULL,
   `cashback` int(11) NOT NULL,
@@ -49,8 +50,18 @@ CREATE TABLE `voucher_tbl` (
 -- Indexes for table `voucher_tbl`
 --
 ALTER TABLE `voucher_tbl`
-  ADD PRIMARY KEY (`code_voucher`),
-  ADD UNIQUE KEY `code_voucher` (`code_voucher`);
+  ADD PRIMARY KEY (`voucher_id`),
+  ADD UNIQUE KEY `code_voucher` (`voucher_code`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `voucher_tbl`
+--
+ALTER TABLE `voucher_tbl`
+  MODIFY `voucher_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

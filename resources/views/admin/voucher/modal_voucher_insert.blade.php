@@ -12,9 +12,36 @@
                 <div id="temp-voucher"></div>
                 
                 <div class="form-group">
-                    <label>voucher Name</label>
-                    <input type="text" name="voucher_name" id="voucher_name" class="form-control">
+                    <label>Voucher Code</label>
+                    <input type="text" name="voucher_code" id="voucher_code" class="form-control">
                 </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <label> Discount </label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <div class="input-group-text">
+                                <input type="radio" name="type" value="discount">
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" name="discount">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label> Cashback </label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <div class="input-group-text">
+                                <input type="radio" name="type" value="cashback">
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" name="cashback">
+                        </div>
+                    </div>
+                </div>
+                
                 {{ csrf_field() }}
             </div>
             <div class="modal-footer">

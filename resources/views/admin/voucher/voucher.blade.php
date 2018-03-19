@@ -4,7 +4,7 @@ function add_modal_voucher()
     var _token = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
         type:"POST",
-        url:"<?=url("admin/product/voucher/insert")?>",
+        url:"<?=url("admin/voucher/insert")?>",
         data:"_token="+_token,
         success:function(data)
         {
@@ -18,7 +18,7 @@ function update_modal_voucher(voucher_id)
     var _token = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
         type:"POST",
-        url:"<?=url("admin/product/voucher/update")?>",
+        url:"<?=url("admin/voucher/update")?>",
         data:"_token="+_token+"&voucher_id="+voucher_id,
         success:function(data)
         {
@@ -33,7 +33,7 @@ function delete_modal_voucher(voucher_id)
     
     $.ajax({
         type:"POST",
-        url:"<?=url("admin/product/voucher/delete")?>",
+        url:"<?=url("admin/voucher/delete")?>",
         data:"_token="+_token+"&voucher_id="+voucher_id,
         success:function(data)
         {
@@ -62,9 +62,11 @@ function delete_modal_voucher(voucher_id)
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>voucher</th>
-                                   
-                                   
+                                    <th>Voucher Code</th>
+                                    <th> Discount </th>
+                                    <th> Cashback </th>
+                                    <th> Issued Date </th>
+                                    <th> Expired Date </th>
                                     <th> Action </th>
                                 </tr>
                             </thead>
@@ -74,9 +76,11 @@ function delete_modal_voucher(voucher_id)
                                foreach ($voucher as $row){ ?>
                                 <tr>
                                     <th scope="row"><?php echo $i ?></th>
-                                    <td> {{ $row->voucher_name }} </td>
-                                    
-                                    
+                                    <td> {{ $row->voucher_code }} </td>
+                                    <td> {{ $row->discount }} </td>
+                                    <td> {{ $row->cashback }} </td>
+                                    <td> {{ $row->issued_date }} </td>
+                                    <td> {{ $row->expired_date }} </td>
                                     <td>
                                         <div class="dropdown float-left"  data-container="body" >
                                             <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu2"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
