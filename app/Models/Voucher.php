@@ -103,7 +103,7 @@ class Voucher extends Model
     }
 
 
-    function delete_bank($voucher_id)
+    function delete_voucher($voucher_id)
     {
         DB::table($this->table)->where($this->primaryKey, $voucher_id)->delete();
     }

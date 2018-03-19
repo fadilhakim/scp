@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <div id="temp-voucher"></div>
                 
-                <p> Are Your Sure want to Delete this voucher <b>"{{ $voucher->voucher_name }}"</b> ? </p>
+                <p> Are Your Sure want to Delete this voucher <b>"{{ $voucher->voucher_code }}"</b> ? </p>
                 <input type="hidden" name="voucher_id" value="{{ $voucher->voucher_id }}">
                 {{ csrf_field() }}
             </div>
@@ -31,7 +31,7 @@
     $("form#form-voucher-delete").submit(function(){
         $.ajax({
             type:"POST",
-            url:"{{ url('admin/product/voucher/delete_process') }}",
+            url:"{{ url('admin/voucher/delete_process') }}",
             data:$(this).serialize(),
             success:function(data)
             {

@@ -25,6 +25,7 @@
 <link rel="stylesheet" type="text/css" href="<?=asset(BASE_ADMIN_ASSET."assets/plugins/bootstrap/dist/css/bootstrap.min.css")?>">
 <!-- themify-icons line icon -->
 <link rel="stylesheet" type="text/css" href="<?=asset(BASE_ADMIN_ASSET."assets/icon/themify-icons/themify-icons.css")?>">
+<link href="<?=asset(BASE_ADMIN_ASSET."assets/css/jquery-ui.min.css")?>" rel="stylesheet" type="text/css" />
 <!-- ico font -->
 <link rel="stylesheet" type="text/css" href="<?=asset(BASE_ADMIN_ASSET."assets/icon/icofont/css/icofont.css")?>">
 <!-- flag icon framework css -->
