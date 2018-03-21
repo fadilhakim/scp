@@ -36,6 +36,7 @@
             $active_bank = '' ;
             $active_order = "";
             $active_voucher = "";
+            $active_midtrans = "";
 
             if($route == 'about'){
                 $active_about = 'active pcoded-trigger' ;
@@ -48,6 +49,10 @@
                 $active_users = 'active pcoded-trigger' ;
             }else if($route == 'contact'){
                 $active_contact = 'active' ;
+            }
+            else if($route == 'midtrans'){
+
+                $active_midtrans = 'active' ;
             }
             else if($route == 'dashboard'){
                 $active_dashboard = 'active pcoded-trigger' ;
@@ -118,6 +123,14 @@
                 <a href="<?=url("admin/voucher")?>">
                     <span class="pcoded-micon"><i class="ti-coupon"></i></span>
                     <span class="pcoded-mtext"> Voucher / Coupon </span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+
+             <li class="{{ $active_midtrans }}">
+                <a href="<?=url("admin/midtrans_setting")?>">
+                    <span class="pcoded-micon"><i class="ti-payment"></i></span>
+                    <span class="pcoded-mtext"> Midtrans Setting </span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>

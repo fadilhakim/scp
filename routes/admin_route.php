@@ -77,6 +77,10 @@ Route::group(['middleware' => ['admin']], function () {
      Route::post("/admin/voucher/update_process","Admin\VoucherController@voucher_update_process");
      Route::post("/admin/voucher/delete_process","Admin\VoucherController@voucher_delete_process");
 
+    //Midtrans Setting 
+    Route::get("/admin/midtrans_setting","Admin\MidtransController@index");
+    Route::post("/admin/midtrans_setting/update","Admin\MidtransController@update_process");
+
     // Slider
     Route::get("/admin/slider","Admin\SliderController@index");
 
