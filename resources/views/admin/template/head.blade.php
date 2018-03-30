@@ -45,6 +45,7 @@
 <!-- Datatables -->
 <script type="text/javascript" src="<?=asset(BASE_ADMIN_ASSET."assets/plugins/DataTables/datatables.min.js")?>"></script>
 <link rel="stylesheet" type="text/css" href="<?=asset("resources/assets/plugins/DataTables/datatables.min.css")?>">
+<link rel="stylesheet" type='text/css' href="<?=asset(BASE_ADMIN_ASSET."assets/plugins/jquery-ui/themes/base/jquery-ui.min.css")?>" > 
 
 <script type="text/javascript" src="<?=asset(BASE_ADMIN_ASSET."assets/plugins/jquery/dist/jquery.min.js")?>"></script>
 <script type="text/javascript" src="<?=asset(BASE_ADMIN_ASSET."assets/plugins/jquery-ui/jquery-ui.min.js")?>"></script>
