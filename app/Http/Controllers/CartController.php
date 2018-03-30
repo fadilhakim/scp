@@ -3,7 +3,10 @@ namespace App\Http\Controllers;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Voucher; // coupon
 use App\Libraries\Alert;
+use Validator;
+
 class CartController extends Controller
 {
     private $objCart;
@@ -12,6 +15,7 @@ class CartController extends Controller
     function __construct()
     {
         $this->objProduct = new Product();
+        $this->objVoucher = new Voucher();
     }
 
     function index()
@@ -26,6 +30,63 @@ class CartController extends Controller
         //$a = Cart::instance('shopping')->content();
         //dd($a);
       
+    }
+
+    function update_coupon(Request $request)
+    {
+        $coupon_code = $request->input("coupon_code");
+
+        $aa = Cart::content();
+        dd($aa);
+
+        $validator = Validator::make($request->all(), [
+            'coupon_code'   => 'required',
+        ]);
+        
+        // check coupon
+        $check_voucher = $this->objVoucher->check_voucher($coupon_code);
+
+        if(!$validator->fails() && !empty($check_voucher))
+        {
+           //fetch array coupon
+           $voucher_detail = $this->objVoucher->detail_voucher($coupon_code);
+
+            $grand_total = Cart::subtotal();
+            //insert coupon on session
+            session(['voucher' => $coupon_code]);
+            if($voucher_detail["type"] == "discount")
+            {
+                $final_total = $grand_total * ( $voucher_detail["discount"] / 100 );
+            }
+            else if($voucher_detail["type"] == "cashback")
+            {
+                $final_total = $grand_total - $voucher_detail["cashback"];
+            }
+            
+            // insert final total
+            session(["final_total" => $final_total]);
+
+            echo Alert::success("You successfully Add Coupon");
+            echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
+        }
+        else
+        {
+            $errors = $validator->errors();
+           
+            $err_text = "";
+            if(empty($check_voucher))
+            {
+                $err_text .= "<li> No Valid Coupon </li>";
+            }
+            foreach($errors->all() as $err) 
+            {
+                $err_text .=  "<li> $err </li>";
+            }
+
+            echo Alert::danger($err_text);
+        }
+
+        //dd($request->all());
     }
 
     function modal(Request $request)

@@ -32,7 +32,8 @@ class Voucher extends Model
     
     static function detail_voucher($voucher_id)
     {
-        $voucher = DB::table('voucher_tbl')->where('voucher_id',$voucher_id)->first();
+        $voucher = DB::table('voucher_tbl')->where('voucher_id',$voucher_id)
+        ->orWhere('voucher_code', $voucher_id)->first();
         return $voucher;
     }
 

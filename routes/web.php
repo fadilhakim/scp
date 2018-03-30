@@ -61,6 +61,7 @@ Route::post("cart/update","CartController@update");
 Route::get("cart/delete/{row_id}","CartController@delete");
 Route::get("cart/content","CartController@content");
 Route::get("cart/destroy","CartController@destroy");
+Route::post("cart/update_coupon","CartController@update_coupon");
 
 Route::group(['middleware' => ['auth']], function () {
     //Route::get('cart',"CartController@index"); // untuk sementara di comment
