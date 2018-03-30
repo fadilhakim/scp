@@ -179,13 +179,25 @@
                     </div>
                 </div>
             </div>
+            <?php if (session()->has('voucher')) { ?>
+            <div class="order-details-entry simple-article size-3 grey uppercase">
+                <div class="row">
+                    <div class="col-xs-6">
+                        Discount / Cashback
+                    </div>
+                    <div class="col-xs-6 col-xs-text-right">
+                        <div class="color"><?=session("potongan")?></div>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
             <div class="order-details-entry simple-article size-3 grey uppercase">
                 <div class="row">
                     <div class="col-xs-6">
                         order total
                     </div>
                     <div class="col-xs-6 col-xs-text-right">
-                        <div class="color">Rp. <?=Cart::total()?></div>
+                        <div class="color">Rp. <?=session("final_total")//Cart::total()?></div>
                     </div>
                 </div>
             </div>

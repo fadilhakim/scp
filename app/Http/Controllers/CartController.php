@@ -36,33 +36,40 @@ class CartController extends Controller
     {
         $coupon_code = $request->input("coupon_code");
 
-        $aa = Cart::content();
-        dd($aa);
+        // $aa = Cart::content();
+        // dd($aa);
 
         $validator = Validator::make($request->all(), [
             'coupon_code'   => 'required',
         ]);
-        
+
         // check coupon
         $check_voucher = $this->objVoucher->check_voucher($coupon_code);
+
+        //dd($check_voucher);
 
         if(!$validator->fails() && !empty($check_voucher))
         {
            //fetch array coupon
            $voucher_detail = $this->objVoucher->detail_voucher($coupon_code);
 
-            $grand_total = Cart::subtotal();
+            $grand_total = Cart::total();
             //insert coupon on session
             session(['voucher' => $coupon_code]);
-            if($voucher_detail["type"] == "discount")
+           
+            if($voucher_detail->type == "discount")
             {
-                $final_total = $grand_total * ( $voucher_detail["discount"] / 100 );
+                $final_total = $grand_total - ($grand_total * ( $voucher_detail->discount / 100 ));
+                session(["potongan"=>$grand_total * ( $voucher_detail->discount / 100)]);
             }
-            else if($voucher_detail["type"] == "cashback")
+            else if($voucher_detail->type == "cashback")
             {
-                $final_total = $grand_total - $voucher_detail["cashback"];
+                $final_total = $grand_total - $voucher_detail->cashback;
+                session(["potongan"=> $grand_total - $voucher_detail->cashback]);
             }
-            
+
+            //dd($grand_total." <br> ".$grand_total * ( $voucher_detail->discount / 100) ."<br>".$final_total);
+
             // insert final total
             session(["final_total" => $final_total]);
 
@@ -111,6 +118,9 @@ class CartController extends Controller
              //$a = Cart::instance('shopping')->add('192ao14', 'Product 14', 1, 9.99);
             $a = Cart::add($c);
 
+            // final_total
+            session(["final_total"=>Cart::subtotal()]);
+
             redirect()->to("cart")->send();
             //return view("cart/modal_info");
             //dd($a);
@@ -136,6 +146,9 @@ class CartController extends Controller
                 Cart::update($rowid1, $qty[$i]); // Will update the quantity
             }
 
+            // final_total
+            session(["final_total"=>Cart::subtotal()]);
+
             echo "<div class='alert alert-success'> You sucessfully updated cart </div>";
             echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
         }
@@ -160,6 +173,10 @@ class CartController extends Controller
             if(!empty($find))
             {
                 Cart::remove($rowid);
+
+                // final_total
+                session(["final_total"=>Cart::subtotal()]);
+
                 redirect()->to("cart")->send();
             }
             else

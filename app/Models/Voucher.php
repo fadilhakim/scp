@@ -114,7 +114,7 @@ class Voucher extends Model
         $today = date("Y-m-d");
 
         $voucher = DB::table('voucher_tbl')->where('voucher_code',$voucher_code)
-        ->where('expired_date', '<', $today)->first();
+        ->where('expired_date', '>', $today)->first();
         return $voucher;
     }
 }
