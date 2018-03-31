@@ -117,4 +117,6 @@ class Voucher extends Model
         ->where('expired_date', '>', $today)->first();
         return $voucher;
     }
+
+   
 }

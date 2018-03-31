@@ -4,7 +4,9 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Voucher; // coupon
+use App\Models\Order;
 use App\Libraries\Alert;
+use Auth;
 use Validator;
 
 class CartController extends Controller
@@ -34,6 +36,8 @@ class CartController extends Controller
 
     function update_coupon(Request $request)
     {
+        $this->objOrder = new Order();
+
         $coupon_code = $request->input("coupon_code");
 
         // $aa = Cart::content();
@@ -42,30 +46,34 @@ class CartController extends Controller
         $validator = Validator::make($request->all(), [
             'coupon_code'   => 'required',
         ]);
-
+        
+        $user = Auth::guard("user")->user();
+            
         // check coupon
         $check_voucher = $this->objVoucher->check_voucher($coupon_code);
+        $check_voucher_user = $this->objOrder->check_voucher_user($coupon_code,$user["user_id"]);
+        $cart_count = Cart::count();
 
-        //dd($check_voucher);
-
-        if(!$validator->fails() && !empty($check_voucher))
+        if(!$validator->fails() && !empty($check_voucher) && empty($check_voucher_user) && !empty($user) && $cart_count > 0)
         {
            //fetch array coupon
            $voucher_detail = $this->objVoucher->detail_voucher($coupon_code);
 
             $grand_total = Cart::total();
             //insert coupon on session
-            session(['voucher' => $coupon_code]);
+            session(['voucher_code' => $coupon_code]);
+            session(["voucher_type"=>$voucher_detail->type]);
            
             if($voucher_detail->type == "discount")
             {
                 $final_total = $grand_total - ($grand_total * ( $voucher_detail->discount / 100 ));
-                session(["potongan"=>$grand_total * ( $voucher_detail->discount / 100)]);
+                session(["voucher_nominal"=>$grand_total * ( $voucher_detail->discount / 100)]);
+                
             }
             else if($voucher_detail->type == "cashback")
             {
                 $final_total = $grand_total - $voucher_detail->cashback;
-                session(["potongan"=> $grand_total - $voucher_detail->cashback]);
+                session(["voucher_nominal"=> $grand_total - $voucher_detail->cashback]);
             }
 
             //dd($grand_total." <br> ".$grand_total * ( $voucher_detail->discount / 100) ."<br>".$final_total);
@@ -83,7 +91,19 @@ class CartController extends Controller
             $err_text = "";
             if(empty($check_voucher))
             {
-                $err_text .= "<li> No Valid Coupon </li>";
+                $err_text .= "<li> No Valid Coupon Code </li>";
+            }
+            if(!empty($check_voucher_user))
+            {
+                $err_text .= "<li> Coupon Code already used </li>";
+            }
+            if(empty($user))
+            {
+                $err_text .= "<li> You Must Login to used Coupon Code </li>";
+            }
+            if($cart_count <= 0)
+            {
+                $err_text .= "<li> You Must Order product first </li>";
             }
             foreach($errors->all() as $err) 
             {

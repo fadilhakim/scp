@@ -179,14 +179,14 @@
                     </div>
                 </div>
             </div>
-            <?php if (session()->has('voucher')) { ?>
+            <?php if (session()->has('voucher_code')) { ?>
             <div class="order-details-entry simple-article size-3 grey uppercase">
                 <div class="row">
                     <div class="col-xs-6">
                         Discount / Cashback
                     </div>
                     <div class="col-xs-6 col-xs-text-right">
-                        <div class="color"><?=session("potongan")?></div>
+                        <div class="color"><?=session("voucher_nominal")?></div>
                     </div>
                 </div>
             </div>
@@ -234,6 +234,7 @@
             data:$(this).serialize(),
             success:function(data)
             {
+               
                 $("#cart-info-temp").html(data);
             }
         }); 

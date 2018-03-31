@@ -52,6 +52,10 @@ class OrderController extends Controller
             // clear cart 
             Cart::destroy();
 
+            session()->forget('voucher_code');
+            session()->forget('voucher_nominal');
+            session()->forget('voucher_type');
+
             // untuk sementara redirect ke memberarea
             redirect()->to("memberarea")->send();
         }
@@ -73,13 +77,17 @@ class OrderController extends Controller
             $ip_address         = $request->ip();
             $user_agent         = $request->header('User-Agent');
 
-            $total      = Cart::total();
+            $total      = session("final_total");//Cart::total();
             $subtotal   = Cart::subtotal();
             $tax        = Cart::tax();
 
             $arr["created_at"]  = $datetime;
             $arr["ip_address"]  = $ip_address;
             $arr["user_agent"]  = $user_agent;
+
+            $arr["voucher_code"] = session("voucher_code");
+            $arr["voucher_type"] = session("voucher_type");
+            $arr["voucher_nominal"] = session("voucher_nominal");
 
             $arr["user_id"]     = $user->id;
             $arr["grand_total"] = floor($total);

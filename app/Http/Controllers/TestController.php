@@ -41,7 +41,11 @@ class TestController extends Controller
         //echo $aaaaaaaaaaaaaaaaa["aaa"];
         //$session = $request->session()->all();
         $user = Auth::guard("user")->user();
+
+        $user = session()->all();
+
         //echo $user->name;
+        print_r($user);
         dd($user);        
     }
 
