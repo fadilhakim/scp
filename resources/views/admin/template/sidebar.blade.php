@@ -113,7 +113,7 @@
 
             <li class="{{ $active_order }}">
                 <a href="<?=url("admin/order")?>">
-                    <span class="pcoded-micon"><i class="ti-briefcase"></i></span>
+                    <span class="pcoded-micon"><i class="icofont icofont-ui-cart"></i></span>
                     <span class="pcoded-mtext"> Order Management </span>
                     <span class="pcoded-mcaret"></span>
                 </a>
@@ -121,7 +121,7 @@
             
             <li class="{{ $active_voucher }}">
                 <a href="<?=url("admin/voucher")?>">
-                    <span class="pcoded-micon"><i class="ti-coupon"></i></span>
+                    <span class="pcoded-micon"><i class="icofont icofont-penalty-card"></i></span>
                     <span class="pcoded-mtext"> Voucher / Coupon </span>
                     <span class="pcoded-mcaret"></span>
                 </a>
@@ -129,7 +129,7 @@
 
              <li class="{{ $active_midtrans }}">
                 <a href="<?=url("admin/midtrans_setting")?>">
-                    <span class="pcoded-micon"><i class="ti-payment"></i></span>
+                    <span class="pcoded-micon"><i class="icofont icofont-bank-transfer"></i></span>
                     <span class="pcoded-mtext"> Midtrans Setting </span>
                     <span class="pcoded-mcaret"></span>
                 </a>

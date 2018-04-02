@@ -37,7 +37,7 @@
                                     </div>
                                     
                                     @include("$content")
-
+                                   
                                 </div>
                             </div>
                         </div>

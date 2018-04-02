@@ -31,10 +31,24 @@
                                     <div class="product-shortcode style-1 small">
                                         <div class="title">
                                             <div class="simple-article size-1 color col-xs-b5"><a href="#">Phone</a></div>
-                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/$id/$slug")?>">{{$rowPopular->product_title}}</a></div>
+                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/{$rowPopular->product_id}/{$rowPopular->product_category}/{$slug}")?>">{{$rowPopular->product_title}}</a></div>
                                         </div>
                                         <div class="preview">
-                                            <img src="{{URL::asset('/public/products/product-125.jpg')}}" alt="">
+                                            <?php 
+                                        
+                                                $popularFirstImg =  App\Models\Product::get_first_image($id) ;
+                                                
+                                                    if(!empty($popularFirstImg))
+                                                    {
+                                                        $getImagePop = $popularFirstImg->image_name;
+                                                    }
+                                                    else
+                                                    {
+                                                        $getImagePop = "";
+                                                    }
+                                            ?>
+                                            <img src="{{URL::asset('public/products/'.$id.'/'.$getImagePop )}}" alt="">
+                                            
                                             <div class="preview-buttons valign-middle">
                                                 <div class="valign-middle-content">
                                                     <a class="button size-2 style-2" href="<?=url("product/detail/{$rowPopular->product_id}/{$rowPopular->product_category}/{$slug}")?>">
@@ -138,7 +152,7 @@
                                                             <span class="text">Learn More</span>
                                                         </span>
                                                     </a>
-                                                    <a class="button size-2 style-3" href="<?=url("cart/add/$prodId/$slugProd")?>"">
+                                                    <a class="button size-2 style-3" href="<?=url("cart/add/$prodId/$slugProd")?>">
                                                         <span class="button-wrapper">
                                                             <span class="icon"><img src="{{URL::asset('public/img/icon-3.png')}}" alt=""></span>
                                                             <span class="text">Add To Cart</span>

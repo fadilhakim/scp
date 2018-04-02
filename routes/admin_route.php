@@ -28,7 +28,7 @@ Route::group(['middleware' => ['admin']], function () {
 
     // product
     Route::get("/admin/product","Admin\ProductController@index");
-    Route::get("/admin/product/detail","Admin\ProductController@detail");
+    Route::get("/admin/product/update/{id}","Admin\ProductController@detail");
     Route::get("/admin/product/category","Admin\CategoryController@index");
     Route::get("/admin/product/brand","Admin\BrandController@index");
     Route::post("/admin/product/subcategory","Admin\CategoryController@subcategory");

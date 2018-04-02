@@ -33,12 +33,15 @@ class ProductController extends Controller
         return view("admin/index",$data);
     }
 
-    function detail()
+    function detail($id)
     {
        
-        $data["title"] = "";
-        $data["content"] = "admin/product/detail";
-        
+        $data["title"] = "Complete Product Information";
+        $data["content"] = "admin/product/product_update";
+        $data["category"] = Product::all_category();
+        $data["product"] = Product::detail_product($id);
+        $data["mini_slide"] = Product::get_product_mini_slide($id);
+        $data["subcategory"] = $subcategory = Subcategory::all_subcategory();
         return view("admin/index",$data);
     }
 
@@ -220,8 +223,15 @@ class ProductController extends Controller
             }
 
             echo Alert::success("You successfully Insert new Product");
-            echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
-
+            
+            //echo "<script> setTimeout(function(){ location.reload(); },2000); </script>";
+            //return redirect('admin/bank_account');
+            $url  = url('/admin/product/update/'.$product_id);
+            echo '
+                <script>
+                    setTimeout(function(){ window.location.href = "'.$url.'"; },2000);
+                </script>
+            ';
 
         }else
         {

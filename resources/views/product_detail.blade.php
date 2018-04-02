@@ -190,75 +190,7 @@
                 </div>
 
                 <div class="tab-entry">
-                    <div class="h5">watch 38mm</div>
-                    <div class="empty-space col-xs-b15"></div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="product-description-entry row nopadding">
-                                <div class="col-xs-6">
-                                    <div class="h6">height:</div>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <div class="simple-article size-2">38.6mm</div>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="product-description-entry row nopadding">
-                                <div class="col-xs-6">
-                                    <div class="h6">width:</div>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <div class="simple-article size-2">33.3mm</div>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="product-description-entry row nopadding">
-                                <div class="col-xs-6">
-                                    <div class="h6">depth:</div>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <div class="simple-article size-2">10.5mm</div>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="product-description-entry row nopadding">
-                                <div class="col-xs-6">
-                                    <div class="h6">case:</div>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <div class="simple-article size-2">40g</div>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="product-description-entry row nopadding">
-                                <div class="col-xs-6">
-                                    <div class="h6">material:</div>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <div class="simple-article size-2">Stainless Steel</div>
-                                </div>
-                            </div>  
-                        </div>
-                    </div>
-                    <div class="empty-space col-xs-b30 col-sm-b60"></div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="simple-article size-2 text-center">
-                                <img src="{{URL::asset('/public/img/thumbnail-19.jpg')}}" alt="" />
-                                <p><br/>Stainless Steel</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="simple-article size-2 text-center">
-                                <img src="{{URL::asset('/public/img/thumbnail-20.jpg')}}" alt="" />
-                                <p><br/>Space Black Stainless Steel</p>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="empty-space col-xs-b30 col-sm-b60"></div>
                     <div class="h5">watch 42mm</div>
                     <div class="empty-space col-xs-b15"></div>

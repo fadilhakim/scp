@@ -54,34 +54,46 @@ function delete_modal_product(product_id)
                     <span class="clearfix"></span>
                   
                 </div>
-                <div class="card-block table-border-style">
+                <div class="card-block">
                     <div class="tmp-product"></div>
                     <div class="">
+               `    
                         <table id="product-tbl" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Product Image</th>
                                     <th>Product Title</th>
                                     <th>Price</th>
                                     <th>Stock</th>
-                                    <th>Weight</th>
                                     <th>Category</th>
-                                    <th>Availability </th>
-                                    <th>Status</th>
                                     <th> Action </th>
                                 </tr>
                             </thead>
                             <tbody>
-                               <?php $i=1; foreach ($product as $row){ ?>
+                               <?php $i=1; foreach ($product as $row){ 
+                                     $id = $row->product_id;
+                                     $category_id = $row->product_category;
+                                     $rowImg =  App\Models\Product::get_first_image($id) ;
+                                     $rowCategory =  App\Models\Product::get_category_by_id($category_id) ;
+                                     $popularFirstImg =  App\Models\Product::get_first_image($id) ;
+                                     if(!empty($rowImg)){
+                                         $firstImg = $rowImg->image_name;
+                                     }  
+                                ?>
                                 <tr>
                                     <th scope="row"><?php echo $i ?></th>
-                                    <td> <a href="<?=url("admin/product/detail/".$row->product_id)?>"> {{ $row->product_title }} </a> </td>
-                                    <td><?=number_format($row->price)?></td>
+                                    <td>
+                                     <?php if(!empty($rowImg)) { ?>
+                                        <img style="width:100%" src="{{URL::asset('public/products/'.$row->product_id.'/'.$firstImg)}}" alt="">
+                                    <?php } else { ?>
+                                        <img style="width:100%" src="{{URL::asset('public/products/no-image.png')}}" alt="">    
+                                    <?php } ?>
+                                    </td>
+                                    <td> <a href="<?=url("admin/product/update/".$row->product_id)?>"> {{ $row->product_title }} </a> </td>
+                                    <td>Rp. <?=number_format($row->price)?></td>
                                     <td> {{ $row->stock }} </td>
-                                    <td> {{ $row->weight }} g</td>
-                                    <td> {{ $row->product_category }}</td>
-                                    <td> {{ $row->product_availability }} </td>
-                                    <td> {{ $row->status }} </td>
+                                    <td> {{ $rowCategory->category_name}}</td>
                                     <td>
                                         <div class="dropdown"  data-container="body" >
                                             <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu2"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,7 +101,7 @@ function delete_modal_product(product_id)
                                             </button>
                                             <div align="right" class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
                                           
-                                            <button class="dropdown-item" type="button" onclick="update_modal_product(<?=$row->product_id?>)"> Update</button>
+                                            <a href="<?=url("admin/product/update/".$row->product_id)?>" class="dropdown-item"> Update</a>
                                             <button class="dropdown-item" type="button" onclick="delete_modal_product(<?=$row->product_id?>)"> Delete </button>
                                             
                                             </div>

@@ -37,12 +37,10 @@ class Product extends Model
     function __construct()
 
     {
-
-        
+  
 
     }
 
-    //
 
     static function all_product()
     {
@@ -50,16 +48,11 @@ class Product extends Model
         return $product;
     }
 
-    
-
     static function detail_product($id)
 
     {
-
         $product = DB::table('product_tbl')->where('product_id',$id)->first();
-
         return $product;
-
     }
 
 
@@ -75,9 +68,28 @@ class Product extends Model
         return $image;
     }
 
+
     static function get_first_image($id)
     {
         $image = DB::table('product_image_tbl')->where('product_id',$id)->first();
+        return $image;
+    }
+
+
+    static function get_image_by_field($product_id,$image_field)
+    {
+        $image = DB::table('product_image_tbl')
+        ->where('product_id',$product_id)
+        ->where('image_field',$image_field)
+        ->first();
+        return $image;
+    }
+
+    static function get_product_mini_slide($product_id)
+    {
+        $image = DB::table('product_mini_slide')
+        ->where('product_id',$product_id)
+        ->get();
         return $image;
     }
 
@@ -85,6 +97,30 @@ class Product extends Model
     {
         $product = DB::table('product_tbl')->where('product_title',$product_title)->get();
         return $product;
+    }
+
+    static function all_category()
+    {
+        $category = DB::table("category_tbl")->get();
+        return $category;
+    }
+
+    static function get_category_by_id($category_id)
+    {
+        $category = DB::table('category_tbl')->where('category_id',$category_id)->first();
+        return $category;
+    }
+
+    static function get_subCategory_by_id($subCategory_id)
+    {
+        $subcategory = DB::table('subcategory_tbl')->where('subcategory_id',$subCategory_id)->first();
+        return $subcategory;
+    }
+
+    static function get_brand_by_id($brand_id)
+    {
+        $subcategory = DB::table('brand_tbl')->where('brand_id',$brand_id)->first();
+        return $subcategory;
     }
 
     static function get_product_category($category)
