@@ -86,11 +86,13 @@
             <div class="col-sm-6 col-md-5 col-xs-b10 col-sm-b0">
             <form id="update-coupon" method="post"> 
                 <div class="single-line-form">
-                    <input class="simple-input" type="text" value="" placeholder="Enter your coupon code" />
+                    <input name="coupon_code" class="simple-input" type="text" value="" placeholder="Enter your coupon code" />
                     <div class="button size-2 style-3">
                         <span class="button-wrapper">
                             <span class="icon"><img src="img/icon-4.png" alt=""></span>
+                            {{ csrf_field() }}
                             <span class="text">Submit</span>
+                           
                         </span>
                         <input type="submit" value="">
                     </div>
@@ -177,13 +179,25 @@
                     </div>
                 </div>
             </div>
+            <?php if (session()->has('voucher_code')) { ?>
+            <div class="order-details-entry simple-article size-3 grey uppercase">
+                <div class="row">
+                    <div class="col-xs-6">
+                        Discount / Cashback
+                    </div>
+                    <div class="col-xs-6 col-xs-text-right">
+                        <div class="color"><?=session("voucher_nominal")?></div>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
             <div class="order-details-entry simple-article size-3 grey uppercase">
                 <div class="row">
                     <div class="col-xs-6">
                         order total
                     </div>
                     <div class="col-xs-6 col-xs-text-right">
-                        <div class="color">Rp. <?=Cart::total()?></div>
+                        <div class="color">Rp. <?=session("final_total")//Cart::total()?></div>
                     </div>
                 </div>
             </div>
@@ -212,5 +226,20 @@
            return false;
        });
     }); */
+
+    $("#update-coupon").submit(function(){
+        $.ajax({
+            type:"POST",
+            url:"<?=url("cart/update_coupon")?>",
+            data:$(this).serialize(),
+            success:function(data)
+            {
+               
+                $("#cart-info-temp").html(data);
+            }
+        }); 
+
+        return false;
+    });
 </script>
 @include('template/footer')

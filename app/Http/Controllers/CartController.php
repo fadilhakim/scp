@@ -3,7 +3,12 @@ namespace App\Http\Controllers;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Voucher; // coupon
+use App\Models\Order;
 use App\Libraries\Alert;
+use Auth;
+use Validator;
+
 class CartController extends Controller
 {
     private $objCart;
@@ -12,6 +17,7 @@ class CartController extends Controller
     function __construct()
     {
         $this->objProduct = new Product();
+        $this->objVoucher = new Voucher();
     }
 
     function index()
@@ -26,6 +32,88 @@ class CartController extends Controller
         //$a = Cart::instance('shopping')->content();
         //dd($a);
       
+    }
+
+    function update_coupon(Request $request)
+    {
+        $this->objOrder = new Order();
+
+        $coupon_code = $request->input("coupon_code");
+
+        // $aa = Cart::content();
+        // dd($aa);
+
+        $validator = Validator::make($request->all(), [
+            'coupon_code'   => 'required',
+        ]);
+        
+        $user = Auth::guard("user")->user();
+            
+        // check coupon
+        $check_voucher = $this->objVoucher->check_voucher($coupon_code);
+        $check_voucher_user = $this->objOrder->check_voucher_user($coupon_code,$user["user_id"]);
+        $cart_count = Cart::count();
+
+        if(!$validator->fails() && !empty($check_voucher) && empty($check_voucher_user) && !empty($user) && $cart_count > 0)
+        {
+           //fetch array coupon
+           $voucher_detail = $this->objVoucher->detail_voucher($coupon_code);
+
+            $grand_total = Cart::total();
+            //insert coupon on session
+            session(['voucher_code' => $coupon_code]);
+            session(["voucher_type"=>$voucher_detail->type]);
+           
+            if($voucher_detail->type == "discount")
+            {
+                $final_total = $grand_total - ($grand_total * ( $voucher_detail->discount / 100 ));
+                session(["voucher_nominal"=>$grand_total * ( $voucher_detail->discount / 100)]);
+                
+            }
+            else if($voucher_detail->type == "cashback")
+            {
+                $final_total = $grand_total - $voucher_detail->cashback;
+                session(["voucher_nominal"=> $grand_total - $voucher_detail->cashback]);
+            }
+
+            //dd($grand_total." <br> ".$grand_total * ( $voucher_detail->discount / 100) ."<br>".$final_total);
+
+            // insert final total
+            session(["final_total" => $final_total]);
+
+            echo Alert::success("You successfully Add Coupon");
+            echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
+        }
+        else
+        {
+            $errors = $validator->errors();
+           
+            $err_text = "";
+            if(empty($check_voucher))
+            {
+                $err_text .= "<li> No Valid Coupon Code </li>";
+            }
+            if(!empty($check_voucher_user))
+            {
+                $err_text .= "<li> Coupon Code already used </li>";
+            }
+            if(empty($user))
+            {
+                $err_text .= "<li> You Must Login to used Coupon Code </li>";
+            }
+            if($cart_count <= 0)
+            {
+                $err_text .= "<li> You Must Order product first </li>";
+            }
+            foreach($errors->all() as $err) 
+            {
+                $err_text .=  "<li> $err </li>";
+            }
+
+            echo Alert::danger($err_text);
+        }
+
+        //dd($request->all());
     }
 
     function modal(Request $request)
@@ -49,6 +137,9 @@ class CartController extends Controller
             $c["price"] = $product->price;
              //$a = Cart::instance('shopping')->add('192ao14', 'Product 14', 1, 9.99);
             $a = Cart::add($c);
+
+            // final_total
+            session(["final_total"=>Cart::subtotal()]);
 
             redirect()->to("cart")->send();
             //return view("cart/modal_info");
@@ -75,6 +166,9 @@ class CartController extends Controller
                 Cart::update($rowid1, $qty[$i]); // Will update the quantity
             }
 
+            // final_total
+            session(["final_total"=>Cart::subtotal()]);
+
             echo "<div class='alert alert-success'> You sucessfully updated cart </div>";
             echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
         }
@@ -99,6 +193,10 @@ class CartController extends Controller
             if(!empty($find))
             {
                 Cart::remove($rowid);
+
+                // final_total
+                session(["final_total"=>Cart::subtotal()]);
+
                 redirect()->to("cart")->send();
             }
             else

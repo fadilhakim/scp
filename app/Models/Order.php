@@ -64,6 +64,13 @@ class Order extends Model
       ]);
     }
 
+    function check_voucher_user($voucher_code,$user_id)
+    {
+        $voucher = DB::table('order_tbl')->where('voucher_code',$voucher_code)
+        ->where("user_id",$user_id)->first();
+        return $voucher;
+    }
+
     function insert_order($arr)
     {
         $user_id     = $arr["user_id"];
@@ -77,6 +84,10 @@ class Order extends Model
         $purpose_bank = $arr["purpose_bank"];
         $status       = $arr["status"]; // pending, confirm, shipping, cancel
         $user_addtr_id = $arr["user_addtr_id"];
+
+        $voucher_code = $arr["voucher_code"];
+        $voucher_type = $arr["voucher_type"];
+        $voucher_nominal = $arr["voucher_nominal"];
 
         $ip_address  = $arr["ip_address"];
         $user_agent = $arr["user_agent"];
@@ -94,6 +105,10 @@ class Order extends Model
         "purpose_bank" => $purpose_bank,
         "status"       => $status, // pending, confirm, shipping, cancel
         "user_addtr_id"=> $user_addtr_id,
+        
+        "voucher_code" => $voucher_code,
+        "voucher_type" => $voucher_type,
+        "voucher_nominal" => $voucher_nominal,
 
         "ip_address" => $ip_address,
         "user_agent" => $user_agent,

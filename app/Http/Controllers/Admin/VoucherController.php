@@ -79,7 +79,6 @@ class VoucherController extends Controller
 
         if(!$validator->fails() && $err_nomie)
         {
-            $discount = $discount / 100;
 
             $arr = array(
                 'voucher_code'  => $voucher_code, 
