@@ -6,8 +6,6 @@
                 <div class="card-header">
                 
                     <h5 class="col-md-10 pull-left"> Midtrans Setting </h5>
-                  
-                      
                     <span class="clearfix"></span>
                   
                 </div>
