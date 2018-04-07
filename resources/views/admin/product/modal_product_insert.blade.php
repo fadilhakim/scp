@@ -19,23 +19,7 @@
                     <label> Product Name : </label>
                     <input type="text" name="product_title" id="product_title" class="form-control" >
                 </div>
-                <label>Upload</label>
-                    <span class="clearfix"></span>
-                <div class="row">
-                    
-                    <div class="col-md-3">
-                        <input type="file" data-placeholder="" name="image1" data-size="sm" class="filestyle" data-text="Image1" data-btnClass="btn-primary">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="file" data-placeholder="" name="image2" data-size="sm" class="filestyle" data-text="Image2" data-btnClass="btn-primary">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="file" data-placeholder="" name="image3" data-size="sm" class="filestyle" data-text="Image3" data-btnClass="btn-primary">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="file" data-placeholder="" name="image4" data-size="sm" class="filestyle" data-text="Image4" data-btnClass="btn-primary">
-                    </div>
-                </div>
+               
 
                 <div class="row"> 
                     <div class="form-group col-md-4">
@@ -90,25 +74,6 @@
                         <input type="number" name="stock" id="stock" class="form-control">
                     </div>
                 </div> 
-
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <label> Status :</label>
-                        <br>
-                        <label for="checkshow"> <input id="checkshow" type="radio" name="status" value="show" checked="true" > Show </label>
-                        <label for="checkhidden"> <input id="checkhidden" type="radio" name="status" value="hidden" > Hidden </label>
-                    </div>
-
-                    <div class="form-group col-md-4">
-                        <label> Old Price :</label> 
-                        <input type="number" name="old_price" id="old_price" class="form-control">
-                    </div>
-
-                    <div class="form-group col-md-4"> 
-                        <label> Weight :</label>
-                        <input type="number" name="weight" id="weight" class="form-control">
-                    </div>
-                </div>
 
                 <div class="form-group">
                     <label> Product Short Description </label>

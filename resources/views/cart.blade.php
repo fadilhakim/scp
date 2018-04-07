@@ -36,10 +36,10 @@
         <table class="cart-table">
             <thead>
                 <tr>
-                    <th style="width: 95px;"></th>
-                    <th>product name</th>
-                    <th style="width: 150px;">price</th>
-                    <th style="width: 260px;">quantity</th>
+                    <th style="width: 195px;">product display</th>
+                    <th style="width: 210px;">product name</th>
+                    <th style="width: 210px;">price</th>
+                    <th style="width: 100px;">quantity</th>
                 
                     <th style="width: 150px;">total</th>
                     <th style="width: 70px;"></th>
@@ -54,10 +54,14 @@
                 <tr>
                     
                     <td data-title=" ">
-                        <a class="cart-entry-thumbnail" href="#"><img src="img/product-1.png" alt=""></a>
+                        <a class="cart-entry-thumbnail" href="#"><img src="{{URL::asset('public/products/'.$row->id.'/'.$row->options->image)}}" alt=""></a>
+                        
                     </td>
                     <td data-title=" ">  
-                    <h6 class="h6"><a href="#">{{ $row->name }}</a></h6></td>
+                        {{ $row->name }}
+                        
+                        
+                    </td>
                     <td data-title="Price: ">Rp. <?=number_format($row->price)?>
                     <input type="hidden" value="{{ $row->rowId }}" name="rowid-input[]" />
                     </td>
@@ -104,7 +108,7 @@
                     <a onclick="update_cart()" class="button size-2 style-2" >
                         <span class="button-wrapper">
                             <span class="icon"><img src="img/icon-2.png" alt=""></span>
-                            <span class="text">Update Cart</span>
+                            <span class="text" style="color:white">Update Cart</span>
                         </span>
                     </a>
                     <a onclick="return confirm('Are you sure want to checkout')" class="button size-2 style-3" href="{{url('checkout')}}">

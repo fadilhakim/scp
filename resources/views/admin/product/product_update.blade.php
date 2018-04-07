@@ -2,6 +2,10 @@
     $product_id = $product->product_id;
     $product_title = $product->product_title;
     $price = $product->price;
+
+    $stock = $product->stock;
+    $weight = $product->weight;
+
     $desc = $product->product_description;
     $product_availability = $product->product_availability;
     $category_id = $product->product_category;
@@ -40,32 +44,86 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" target="_blabk" href="#" aria-expanded="false">Images</a>
+                            <a class="nav-link" target="_blank" href="{{url('admin/product/update/images/'.$product_id)}}" aria-expanded="false">Images</a>
                         </li>
                     </ul>
                     
-                    <form action="{{ url('admin/product/insert_process') }}" method="post">
+                    <form action="{{ url('admin/product/update_process') }}" method="post" enctype="multipart/form-data">
                         <div class="tab-content tabs card-block">
                             <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="product_id" value="{{ $product->product_id}}">
+                            
                             <div class="tab-pane active" id="basicInformation" role="tabpanel" aria-expanded="true">
+                                @if (\Session::get('success'))
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Product Name : </label>
-                                    <div class="col-sm-10">
-                                        <input require class="form-control" name="product_title" value="<?php echo $product_title ?>" type="text">
+                                    <label class="col-sm-3 col-form-label">
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <button class="btn btn-success"><i class="icofont icofont-check-circled"></i>{{ \Session::get('success') }}</button>
+                                    </div>
+                                </div>
+                                @endif
+
+                                 @if (\Session::get('error'))
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <button class="btn btn-danger"><i class="icofont icofont-warning-alt"></i>{{ \Session::get('error') }}</button>
+                                    </div>
+                                </div>
+                                @endif
+
+                                @if ($errors->any())
+                                  
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                     
+                                @endif    
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Product Availability : </label>
+                                    <div class="col-sm-9">
+                                        <select name="product_availability" class="form-control">
+                                            <option selected value="<?php echo $product_availability ?>"><?php echo $product_availability ?></option>
+                                            <option value="Ready Stock"> Ready Stock </option>
+                                            <option value="Pre Order"> Pre Order </option>
+                                            <option value="Sales Stock"> Sales Stock </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row {{ $errors->has('product_title') ? 'has-danger' : ''}}">
+                                    <label class="col-sm-3 col-form-label">Product Name : </label>
+                                    <div class="col-sm-9">
+                                        <input require class="form-control {{ $errors->has('product_title') ? 'form-control-danger' : ''}}" name="product_title" value="<?php echo $product_title ?>" type="text">
+                                        {!! $errors->first('product_title', '<div class="col-form-label">:message</div>') !!}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row {{ $errors->has('price') ? 'has-danger' : ''}}">
+                                    <label class="col-sm-3 col-form-label">Product Price (IDR) : </label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control  {{ $errors->has('product_title') ? 'form-control-danger' : ''}}" name="price" value="<?php echo $price ?>" type="number">
+                                        {!! $errors->first('price', '<div class="col-form-label">:message</div>') !!}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Product Price (IDR) : </label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" name="price" placeholder="Rp. <?php echo $price ?>" type="number">
+                                    <label class="col-sm-3 col-form-label">Stock : </label>
+                                    <div class="col-sm-3">
+                                        <input class="form-control" name="stock" value="<?php echo $stock ?>" type="number">
+                                    </div>
+                                    <label class="col-sm-3 col-form-label">Weight (<strong>In Gram</strong>) : </label>
+                                    <div class="col-sm-3">
+                                        <input class="form-control" name="weight" value="<?php echo $weight ?>" type="number">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Product Short Description :</label>
-                                    <div class="col-sm-10">
-                                        <textarea rows="5" cols="5" class="form-control" name="product_description" placeholder="<?php echo $desc ?>"></textarea>
+                                    <label class="col-sm-3 col-form-label">Product Short Description :</label>
+                                    <div class="col-sm-9">
+                                        <textarea rows="5" cols="5" class="form-control" name="product_description" placeholder=""><?php echo $desc ?></textarea>
                                     </div>
                                 </div>
 
@@ -76,7 +134,7 @@
                                     <div class="col-sm-9">
                                         <select name="category" class="form-control">
                                         
-                                            <option value="<?php $rowCategory->category_id ?>" selected><?php echo $rowCategory->category_name ?></option>
+                                            <option value="<?php echo $rowCategory->category_id ?>" selected><?php echo $rowCategory->category_name ?></option>
                                             <?php if(!empty($category)){foreach($category as $row){ ?>
                                             <option value="<?=$row->category_id?>"> <?=$row->category_name?></option>
                                             <?php } } ?>
@@ -88,8 +146,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label"> Subcategory :</label>
                                     <div class="col-sm-9">
-                                        <select name="subcategory" class="form-control">
-                                            <option value="<?php $rowSubCategory->subcategory_id ?>" selected><?php echo $rowSubCategory->subcategory_name ?></option>
+                                        <select name="subcategory" class="form-control" selected>
+                                            <option value="<?php echo $rowSubCategory->subcategory_id ?>"><?php echo $rowSubCategory->subcategory_name ?></option>
                                             <?php if(!empty($subcategory)){foreach($subcategory as $row){ ?>
                                                 <option value="<?=$row->subcategory_id?>"><?=$row->subcategory_name?></option>
                                             <?php }} ?>
@@ -101,12 +159,12 @@
                                     <label class="col-sm-3 col-form-label"> Brand :</label>
                                     <div class="col-sm-9">
                                         <select name="brand" class="form-control">
-                                            <option value="<?php $rowBrand->brand_id ?>" selected><?php echo $rowBrand->brand_name ?></option>
+                                            <option value="<?php echo $rowBrand->brand_id ?>" selected><?php echo $rowBrand->brand_name ?></option>
                                             <?php if(!empty($brand)){foreach($brand as $row){ ?>
                                                 <option value="<?=$row->brand_id?>"><?=$row->brand_name?></option>
                                             <?php }} ?>
                                         </select>
-                                        </div>
+                                    </div>
                                 </div>
                                                 
                             </div>
@@ -128,11 +186,11 @@
                                         <div class="form-group">
                                             <label for="">Left Image</label><br>
                                             <?php if(!empty($product->product_detail_left_img)){ ?>
-                                                <img src="{{URL::asset('public/products/'.$product_id.'/'.$product->product_detail_left_img)}}" alt="">  
+                                                <img class="img-fluid" src="{{URL::asset('public/products/'.$product_id.'/'.$product->product_detail_left_img)}}" alt="">  
                                             <?php } else { ?>
                                                 <img src="{{URL::asset('public/products/no-image.png')}}" alt="">  
                                             <?php } ?>
-                                            
+                                            <input type="hidden" name="image_left_hide" value="<?php echo $product->product_detail_left_img ?>" class="form-control form-bg-primary">
                                             <input type="file" name="image_left" class="form-control form-bg-primary">
                                         </div>
 
@@ -142,22 +200,23 @@
                                         
                                         <div class="form-group">
                                             <h4 class="sub-title">Product Detail Right</h4>
-                                            <label>Subtitle Left :</label>
+                                            <label>Subtitle Right :</label>
                                             <input class="form-control" name="sub_title_right" value="<?php echo $product->product_title_right ?>" type="text">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Description Left :</label>
+                                            <label>Description Right :</label>
                                             <textarea rows="5" cols="5" class="form-control" name="desc_right" placeholder=""><?php echo $product->product_detail_right ?></textarea>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Left Image :</label><br>
+                                            <label for="">Right Image :</label><br>
                                             <?php if(!empty($product->product_detail_right_img)){ ?>
-                                                <img src="{{URL::asset('public/products/'.$product_id.'/'.$product->product_detail_right_img)}}" alt="">  
+                                                <img class="img-fluid" src="{{URL::asset('public/products/'.$product_id.'/'.$product->product_detail_right_img)}}" alt="">  
                                             <?php } else { ?>
                                                 <img src="{{URL::asset('public/products/no-image.png')}}" alt="">  
                                             <?php } ?>
+                                            <input type="hidden" name="image_right_hide" value="<?php echo $product->product_detail_right_img ?>" class="form-control form-bg-primary">
                                             <input type="file" name="image_right" class="form-control form-bg-primary">
                                         </div>
 
@@ -172,14 +231,15 @@
                                             <label>Product Title Bottom  :</label>
                                             <input class="form-control" name="sub_title_btm" value="<?php echo $product->product_title_btm ?>" type="text">
                                             <label>Product Description Bottom :</label><br>
-                                            <textarea class="form-control" name="sub_detail_btm" id=""><?php echo $product->product_detail_btm ?></textarea>
+                                            <textarea class="form-control" name="desc_btm" id=""><?php echo $product->product_detail_btm ?></textarea>
                                             <label for="">Bottom Image :</label><br>
                                             <?php if(!empty($product->product_detail_btm_img)){ ?>
                                                 <img src="{{URL::asset('public/products/'.$product_id.'/'.$product->product_detail_btm_img)}}" alt="">  
                                             <?php } else { ?>
                                                 <img src="{{URL::asset('public/products/no-image.png')}}" alt="">  
                                             <?php } ?>
-                                            <input type="file" name="image_right" class="form-control form-bg-primary">
+                                            <input type="hidden" name="image_btm_hide" value="<?php echo $product->product_detail_btm_img ?>" class="form-control form-bg-primary">
+                                            <input style="width:50%" type="file" name="image_btm" class="form-control form-bg-primary">
                                         </div>
                                     </div>
                                 </div>                  
@@ -190,10 +250,10 @@
 
                                 <div class="form-group col-sm-12">
                                     <label for="">Technical Specs</label>
-                                    <textarea id="editor2" name="product_tech" class="form-control"><?php echo $product->technical_specs ?></textarea>
+                                    <textarea id="product_tech" name="product_tech" class="form-control"><?= $product->technical_specs ?></textarea>
                                 </div>               
                                 <script>
-                                    CKEDITOR.replace( 'editor2' );                           
+                                    CKEDITOR.replace( 'product_tech' );                           
                                 </script>               
                             </div>
 
@@ -206,111 +266,7 @@
                         </div>
                     </form>                       
                         
-                        <div class="tab-content tabs card-block">                       
-
-                            <div class="tab-pane" id="images" role="tabpanel" aria-expanded="false">
-                                <?php foreach($rowImg as $img){ 
-
-                                    $firstImg = App\Models\Product::get_image_by_field($product_id,1) ;
-                                    $secImg = App\Models\Product::get_image_by_field($product_id,2) ;
-                                    $thirdImg = App\Models\Product::get_image_by_field($product_id,3) ;
-                                    $fourthImg = App\Models\Product::get_image_by_field($product_id,4) ;
-                                }?>
-
-                                <div class="row form-group">
-                                    <div class="col-lg-6 p-20">
-
-                                        <div class="p-20 z-depth-bottom-0 waves-effect" data-toggle="tooltip" data-placement="top" title=".z-depth-top-0">
-                                            <label for="">First Image <strong>(Thumbnail) :</strong></label><br>
-                                            
-                                            <?php if(!empty($firstImg)){ ?>
-                                                <img src="{{URL::asset('public/products/'.$product_id.'/'.$firstImg->image_name)}}" alt="">   
-                                            <?php } else { ?>
-                                                <img src="{{URL::asset('public/products/no-image.png')}}" alt="">  
-                                            <?php } ?>
-
-                                            <input type="file" name="image1" class="form-control form-bg-primary">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-6 p-20">
-                                        <div class="p-20 z-depth-bottom-0 waves-effect" data-toggle="tooltip" data-placement="top" title=".z-depth-top-0">
-
-                                            <label for="">Second Image :</label><br>
-                                            <?php if(!empty($secImg)){ ?>
-                                                <img src="{{URL::asset('public/products/'.$product_id.'/'.$secImg->image_name)}}" alt="">   
-                                            <?php } else { ?>
-                                                <img src="{{URL::asset('public/products/no-image.png')}}" alt="">  
-                                            <?php } ?>
-                                            
-                                            <input type="file" name="image2" class="form-control form-bg-primary">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 p-20">
-                                        <div class="p-20 z-depth-bottom-0 waves-effect" data-toggle="tooltip" data-placement="top" title=".z-depth-top-0">
-
-                                            <label for="">Third Image :</label><br>
-                                            <?php if(!empty($thirdImg)){ ?>
-                                                <img src="{{URL::asset('public/products/'.$product_id.'/'.$thirdImg->image_name)}}" alt="">   
-                                            <?php } else { ?>
-                                                <img src="{{URL::asset('public/products/no-image.png')}}" alt="">  
-                                            <?php } ?>
-                                            
-                                            <input type="file" name="image3" class="form-control form-bg-primary">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 p-20">
-                                        <div class="p-20 z-depth-bottom-0 waves-effect" data-toggle="tooltip" data-placement="top" title=".z-depth-top-0">
-
-                                            <label for="">Fourth Image :</label><br>
-                                            <?php if(!empty($fourthImg)){ ?>
-                                                <img src="{{URL::asset('public/products/'.$product_id.'/'.$fourthImg->image_name)}}" alt="">   
-                                            <?php } else { ?>
-                                                <img src="{{URL::asset('public/products/no-image.png')}}" alt="">  
-                                            <?php } ?>
-                                            
-                                            <input type="file" name="image4" class="form-control form-bg-primary">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12 p-20">
-                                    <h4 class="sub-title" style="padding-top:40px;">Product Mini Slide :</h4>
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Image Display</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php foreach($mini_slide as $rowSlide) {?>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>
-                                                                <img src="{{URL::asset('public/products_mini_slide/'.$rowSlide->image_name)}}" alt="">
-                                                            </td>
-                                                            <td>
-                                                                <a href="" class="btn btn-danger">Delete</a>
-                                                            </td>
-                                                        </tr>
-                                                    <?php } ?>
-                                                </tbody>
-                                            </table>
-                                        </div>         
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>                               
+                                           
                      
                 </div>
             </div>

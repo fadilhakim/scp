@@ -165,7 +165,7 @@
                                             <div class="simple-article size-4 dark">Rp {{$rowProduct->price}}</div>
                                         </div>
                                         <div class="description">
-                                            <div class="simple-article text size-2">{{$rowProduct->product_description}}</div>
+                                            <div class="simple-article text size-2"><?php echo $rowProduct->product_description ?></div>
                                             <div class="icons">
                                                 <a class="entry"><i class="fa fa-check" aria-hidden="true"></i></a>
                                                 <a class="entry open-popup" data-rel="3"><i class="fa fa-eye" aria-hidden="true"></i></a>

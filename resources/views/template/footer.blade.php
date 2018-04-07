@@ -22,18 +22,13 @@
                                         <a href="#">home</a>
                                         <a href="#">about us</a>
                                         <a href="#">products</a>
-                                        <a href="#">services</a>
-                                        <a href="#">blog</a>
-                                        <a href="#">gallery</a>
                                         <a href="#">contact</a>
                                     </div>
                                     <div class="col-xs-6">
                                         <a href="#">privacy policy</a>
-                                        <a href="#">warranty</a>
                                         <a href="#">login</a>
                                         <a href="#">registration</a>
                                         <a href="#">delivery</a>
-                                        <a href="#">pages</a>
                                         <a href="#">our stores</a>
                                     </div>
                                 </div>

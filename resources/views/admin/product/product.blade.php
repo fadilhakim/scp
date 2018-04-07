@@ -47,22 +47,25 @@ function delete_modal_product(product_id)
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                
-                    <h5 class="col-md-10 pull-left"> Product List </h5>
-                  
-                    <button onclick="add_modal_product()" class="btn btn-primary btn-sm"><i     class="icofont icofont-plus"></i> Add </button>
-                    <span class="clearfix"></span>
-                  
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="pull-left"> Product List </h5>
+                        </div>
+                        <div class="col-lg-4" style="text-align:right">
+                            <button onclick="add_modal_product()" class="btn btn-primary btn-sm pull-right"><i  class="icofont icofont-plus"></i> ADD NEW PRODUCT </button>
+                        </div>
+                      
+                    </div>
+      
                 </div>
                 <div class="card-block">
                     <div class="tmp-product"></div>
                     <div class="">
-               `    
                         <table id="product-tbl" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Product Image</th>
+                                    <th>Product Display</th>
                                     <th>Product Title</th>
                                     <th>Price</th>
                                     <th>Stock</th>
@@ -85,9 +88,11 @@ function delete_modal_product(product_id)
                                     <th scope="row"><?php echo $i ?></th>
                                     <td>
                                      <?php if(!empty($rowImg)) { ?>
-                                        <img style="width:100%" src="{{URL::asset('public/products/'.$row->product_id.'/'.$firstImg)}}" alt="">
+                                        <a href="{{URL::asset('public/products/'.$row->product_id.'/'.$firstImg)}}" data-toggle="lightbox" data-title="{{ $row->product_title }}" data-footer="{{ $rowCategory->category_name}}">
+                                            <img class="img-fluid" src="{{URL::asset('public/products/'.$row->product_id.'/'.$firstImg)}}" alt="">
+                                        </a>
                                     <?php } else { ?>
-                                        <img style="width:100%" src="{{URL::asset('public/products/no-image.png')}}" alt="">    
+                                        <img class="img-fluid" src="{{URL::asset('public/products/no-image.png')}}" alt="">    
                                     <?php } ?>
                                     </td>
                                     <td> <a href="<?=url("admin/product/update/".$row->product_id)?>"> {{ $row->product_title }} </a> </td>

@@ -35,6 +35,7 @@ class ProductController extends Controller
        	$data["related_product"] = Product::related_product($category);
         $data["image"] = Product::find_product_img($id);
         $data["category"] = Product::get_product_category($category);
+        $data["mini_slide"] = Product::get_mini_slide($id);
         $data["title"] = "Our Product";
         $data["content"] = "Product";
         return view("product_detail",$data);

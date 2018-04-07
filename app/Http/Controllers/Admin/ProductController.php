@@ -28,7 +28,7 @@ class ProductController extends Controller
     function index()
     {
         $data["product"] = Product::all_product();
-        $data["title"]   = "Product";
+        $data["title"]   = "Product's";
         $data['content'] = 'admin/product/product';
         return view("admin/index",$data);
     }
@@ -40,8 +40,19 @@ class ProductController extends Controller
         $data["content"] = "admin/product/product_update";
         $data["category"] = Product::all_category();
         $data["product"] = Product::detail_product($id);
-        $data["mini_slide"] = Product::get_product_mini_slide($id);
+        $data["brand"] = $brand = $this->objBrand->all_brand();
         $data["subcategory"] = $subcategory = Subcategory::all_subcategory();
+        return view("admin/index",$data);
+    }
+
+    function detail_images($id)
+    {
+       
+        $data["title"] = "Complete Product Information ";
+        $data["content"] = "admin/product/product_update_images";
+        $data["rowImg"] = Product::find_product_img($id);
+        $data["prodId"] = $id;
+        $data["mini_slide"] = Product::get_product_mini_slide($id);
         return view("admin/index",$data);
     }
 
@@ -81,26 +92,33 @@ class ProductController extends Controller
 
     function product_insert_process(Request $request)
     {
+
+        //basic information 
         $product_title      = $request->input("product_title");
         $product_description= $request->input("product_description"); 
         $product_availability= $request->input("product_availability"); 
         $brand_id           = $request->input("brand");
-        $status             = $request->input("status");
+        
         $category           = $request->input("category");
         $subcategory        = $request->input("subcategory");
-        $old_price          = $request->input("stock",0);
+       
         $price              = $request->input("price",0);
         $stock              = $request->input("stock",0);
-        $weight             = $request->input("weight",0);
 
+        //$weight             = $request->input("weight",0);
+        //$old_price          = $request->input("stock",0);
+        //$status             = $request->input("status");
+
+        
+        //data info
         $datetime           = date("Y-m-d H:i:s");
         $ip_address         = $request->ip();
         $user_agent         = $request->header('User-Agent');
         
-        $image1 = $request->file('image1');
-        $image2 = $request->file('image2');
-        $image3 = $request->file('image3');
-        $image4 = $request->file('image4');
+        // $image1 = $request->file('image1');
+        // $image2 = $request->file('image2');
+        // $image3 = $request->file('image3');
+        // $image4 = $request->file('image4');
    
         /* //Display File Name
         echo 'File Name: '.$file->getClientOriginalName();
@@ -127,14 +145,12 @@ class ProductController extends Controller
 
         $validator = Validator::make($request->all(), [
             'product_title'         => 'required|unique:product_tbl|max:255',
-            'product_description'   => 'required|min:10',
+            'product_description'   => 'min:10',
             'category'              => 'required',
             'subcategory'           => 'required',
             "brand"                 => "required",
             'price'                 => 'required|integer',
-            'old_price'             => 'nullable|integer',
-            'stock'                 => 'nullable|integer',
-            "weight"                => "nullable|integer"
+            'stock'                 => 'nullable|integer'
         ]);
 
         if(!$validator->fails())
@@ -143,89 +159,26 @@ class ProductController extends Controller
                 'product_title' => $product_title, 
                 'product_description' => $product_description,
                 "product_availability"=>$product_availability,
-                "status"=>$status,
                 "category"=>$category,
                 "subcategory"=>$subcategory,
                 "brand_id"=>$brand_id,
                 "price"=>$price,
-                "old_price"=>$old_price,
                 "stock"=>$stock,
-                "weight"=>$weight,
+
                 "created_at"=>$datetime,
                 "ip_address"=>$ip_address,
                 "user_agent"=>$user_agent
             );
-
+            
             $q = $this->objProduct->insert_product($arr);
 
+            // disini tadi posisi insert images
             $new_id = $q;
             $product_id = $new_id;
             $arr_image["product_id"] = $new_id;
-           
-            $arr_image["datetime"]   = $datetime;
-            $arr_image["user_agent"] = $user_agent;
-            $arr_image["ip_address"] = $ip_address;
-
-            if($request->hasFile("image1"))
-            {
-                $arr_image["image_field"] = "image1";
-                $new_image_name = str_replace(" ","-",strtolower($image1->getClientOriginalName()));
-                $arr_image["image_name"] = $new_image_name;
-
-                $this->objProduct->insert_product_image($arr_image);
-                
-                //Move Uploaded File
-                $destinationPath = "public/products/$product_id";
-                FolderHelper::create_folder_product($product_id);
-                $request->file("image1")->move($destinationPath,$new_image_name);
-                
-            }
-            if($request->hasFile("image2"))
-            {
-                $arr_image["image_field"] = "image2";
-                $new_image_name = str_replace(" ","-",strtolower($image2->getClientOriginalName()));
-                $arr_image["image_name"] = $new_image_name;
-                
-                $this->objProduct->insert_product_image($arr_image);
-
-                //Move Uploaded File
-                $destinationPath = "public/products/$product_id";
-                FolderHelper::create_folder_product($product_id);
-                $request->file("image2")->move($destinationPath,$new_image_name);
-            }
-            if($request->hasFile("image3"))
-            {
-                $arr_image["image_field"] = "image3";
-                $new_image_name = str_replace(" ","-",strtolower($image3->getClientOriginalName()));
-                $arr_image["image_name"] = $new_image_name;
-                
-                $this->objProduct->insert_product_image($arr_image);
-                
-
-                //Move Uploaded File
-               //Move Uploaded File
-               $destinationPath = "public/products/$product_id";
-               FolderHelper::create_folder_product($product_id);
-               $request->file("image3")->move($destinationPath,$new_image_name);
-            }
-            if($request->hasFile("image4"))
-            {
-                $arr_image["image_field"] = "image4";
-                $new_image_name = str_replace(" ","-",strtolower($image4->getClientOriginalName()));
-                $arr_image["image_name"] = $new_image_name;
-                $this->objProduct->insert_product_image($arr_image);
-
-                //Move Uploaded File
-               //Move Uploaded File
-               $destinationPath = "public/products/$product_id";
-               FolderHelper::create_folder_product($product_id);
-               $request->file("image4")->move($destinationPath,$new_image_name);
-            }
+            FolderHelper::create_folder_product($product_id);
 
             echo Alert::success("You successfully Insert new Product");
-            
-            //echo "<script> setTimeout(function(){ location.reload(); },2000); </script>";
-            //return redirect('admin/bank_account');
             $url  = url('/admin/product/update/'.$product_id);
             echo '
                 <script>
@@ -248,171 +201,236 @@ class ProductController extends Controller
 
     }
 
-    function product_update_process(Request $request)
-    {
-        $product_id         = $request->input("product_id");
-        $product_title      = $request->input("product_title");
-        $product_description= $request->input("product_description"); 
-        $product_availability= $request->input("product_availability"); 
-        $status             = $request->input("status");
-        $category           = $request->input("category");
-        $subcategory        = $request->input("subcategory");
-        $brand_id           = $request->input("brand");
-        $old_price          = $request->input("stock",0);
-        $price              = $request->input("price",0);
-        $stock              = $request->input("stock",0);
-        $weight             = $request->input("weight",0);
+    function product_update_image_process(Request $request){
 
+
+        $product_id         = $request->input('product_id');
         $datetime           = date("Y-m-d H:i:s");
         $ip_address         = $request->ip();
         $user_agent         = $request->header('User-Agent');
-       
-        $image1 = $request->file('image1');
-        $image2 = $request->file('image2');
-        $image3 = $request->file('image3');
-        $image4 = $request->file('image4');
+        
+        !empty($request->hasFile('image1')) ?  $image1 = $request->file('image1') :  $image1 = $request->input('image1_hide');
+        !empty($request->hasFile('image2')) ?  $image2 = $request->file('image2') :  $image2 = $request->input('image2_hide');
+        !empty($request->hasFile('image3')) ?  $image3 = $request->file('image3') :  $image3 = $request->input('image3_hide');
+        !empty($request->hasFile('image4')) ?  $image4 = $request->file('image4') :  $image4 = $request->input('image4_hide');
+        
 
-        $validator = Validator::make($request->all(), [
-            "product_id"            => "required|integer",
-            'product_title'         => 'required|max:255',
-            'product_description'   => 'required|min:10',
-            'category'              => 'required',
-            'subcategory'           => 'required',
-            "brand"                 => "required",
-            'price'                 => 'required|integer',
-            'old_price'             => 'nullable|integer',
-            'stock'                 => 'nullable|integer',
-            "weight"                => "nullable|integer"
-        ]);
-
-        if(!$validator->fails())
+        $arr = array(
+            "product_id"  => $product_id,
+            "ip_address"  => $ip_address,
+            "user_agent"  => $user_agent,
+            "created_at"  => $datetime
+        );
+        
+        
+        if(!empty($request->hasFile('image1')))
         {
-            $arr = array(
-                "product_id"    => $product_id,
-                'product_title' => $product_title, 
-                'product_description' => $product_description,
-                "product_availability"=>$product_availability,
-                "status"=>$status,
-                "category"=>$category,
-                "subcategory"=>$subcategory,
-                "brand"=>$brand_id, 
-                "price"=>$price,
-                "old_price"=>$old_price,
-                "stock"=>$stock,
-                "weight"=>$weight,
-                "created_at"=>$datetime,
-                "ip_address"=>$ip_address,
-                "user_agent"=>$user_agent
-            );
-
-            $this->objProduct->update_product($arr);
-
-            $arr_image["product_id"] = $product_id;
-
-            $arr_image["datetime"]   = $datetime;
-            $arr_image["user_agent"] = $user_agent;
-            $arr_image["ip_address"] = $ip_address;
-
-            if($request->hasFile("image1"))
+            
+            $new_image1 = str_replace(" ","-",strtolower($image1->getClientOriginalName()));
+            $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image1");
+            
+            if(!empty($check_photo1))
             {
-                $arr_image["image_field"] = "image1";
-                $new_image_name = str_replace(" ","-",strtolower($image1->getClientOriginalName()));
-                $arr_image["image_name"] = $new_image_name;
-                $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image1");
-                if(!empty($check_photo1))
-                {
-                    $this->objProduct->update_product_image($arr_image);
-                }
-                else
-                {
-                    $this->objProduct->insert_product_image($arr_image);
-                }
-
-                //Move Uploaded File
-                $destinationPath = "public/products/$product_id";
-                FolderHelper::create_folder_product($product_id);
-                $request->file("image1")->move($destinationPath,$new_image_name);
-                
+                $this->objProduct->update_product_image($product_id,$new_image1,"image1");
             }
-            if($request->hasFile("image2"))
+            else
             {
-                $arr_image["image_field"] = "image2";
-                $new_image_name = str_replace(" ","-",strtolower($image2->getClientOriginalName()));
-                $arr_image["image_name"] = $new_image_name;
-                $check_photo2 = $this->objProduct->detail_photo_product($product_id,"image2");
-                if(!empty($check_photo1))
-                {
-                    $this->objProduct->update_product_image($arr_image);
-                }
-                else
-                {
-                    $this->objProduct->insert_product_image($arr_image);
-                }
-
-                //Move Uploaded File
-                $destinationPath = "public/products/$product_id";
-                FolderHelper::create_folder_product($product_id);
-                $request->file("image2")->move($destinationPath,$new_image_name);
+                $this->objProduct->insert_product_image($arr,"image1",$new_image1);
             }
-            if($request->hasFile("image3"))
-            {
-                $arr_image["image_field"] = "image3";
-                $new_image_name = str_replace(" ","-",strtolower($image3->getClientOriginalName()));
-                $arr_image["image_name"] = $new_image_name;
-                $check_photo3 = $this->objProduct->detail_photo_product($product_id,"image3");
-                if(!empty($check_photo3))
-                {
-                    $this->objProduct->update_product_image($arr_image);
-                }
-                else
-                {
-                    $this->objProduct->insert_product_image($arr_image);
-                }
-
-                //Move Uploaded File
-               //Move Uploaded File
-               $destinationPath = "public/products/$product_id";
-               FolderHelper::create_folder_product($product_id);
-               $request->file("image3")->move($destinationPath,$new_image_name);
-            }
-            if($request->hasFile("image4"))
-            {
-                $arr_image["image_field"] = "image4";
-                $new_image_name = str_replace(" ","-",strtolower($image4->getClientOriginalName()));
-                $arr_image["image_name"] = $new_image_name;
-                $check_photo4 = $this->objProduct->detail_photo_product($product_id,"image4");
-                if(!empty($check_photo4))
-                {
-                    $this->objProduct->update_product_image($arr_image);
-                }
-                else
-                {
-                    $this->objProduct->insert_product_image($arr_image);
-                }
-
-                //Move Uploaded File
-               //Move Uploaded File
-               $destinationPath = "public/products/$product_id";
-               FolderHelper::create_folder_product($product_id);
-               $request->file("image4")->move($destinationPath,$new_image_name);
-            }
-
-            echo Alert::success("You successfully Update new Product");
-            echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
-
-
-        }else
-        {
-            $errors = $validator->errors();
-           
-            $err_text = "";
-            foreach($errors->all() as $err) 
-            {
-                $err_text .=  "<li> $err </li>";
-            }
-
-            echo Alert::danger($err_text);
+            
+            $destinationPath = "public/products/$product_id";
+            $request->file("image1")->move($destinationPath,$new_image1);
+            
         }
+
+        if(!empty($request->hasFile('image2')))
+        {
+            
+            $new_image2 = str_replace(" ","-",strtolower($image2->getClientOriginalName()));
+            $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image2");
+            
+            if(!empty($check_photo1))
+            {
+                $this->objProduct->update_product_image($product_id,$new_image2,"image2");
+            }
+            else
+            {
+                $this->objProduct->insert_product_image($arr,"image2",$new_image2);
+            }
+            
+            $destinationPath = "public/products/$product_id";
+            $request->file("image2")->move($destinationPath,$new_image2);
+        }
+
+        if(!empty($request->hasFile('image3')))
+        {
+            
+            $new_image3 = str_replace(" ","-",strtolower($image3->getClientOriginalName()));
+            $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image3");
+            
+            if(!empty($check_photo1))
+            {
+                $this->objProduct->update_product_image($product_id,$new_image3,"image3");
+            }
+            else
+            {
+                $this->objProduct->insert_product_image($arr,"image3",$new_image3);
+            }
+            
+            $destinationPath = "public/products/$product_id";
+            $request->file("image3")->move($destinationPath,$new_image3);
+        }
+
+        if(!empty($request->hasFile('image4')))
+        {
+            
+            $new_image4 = str_replace(" ","-",strtolower($image4->getClientOriginalName()));
+            $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image4");
+            
+            if(!empty($check_photo1))
+            {
+                $this->objProduct->update_product_image($product_id,$new_image4,"image4");
+            }
+            else
+            {
+                $this->objProduct->insert_product_image($arr,"image4",$new_image4);
+            }
+            
+            $destinationPath = "public/products/$product_id";
+            $request->file("image4")->move($destinationPath,$new_image4);
+        }
+
+    
+
+        $url  = url('/admin/product/update/images/'.$product_id);
+        echo '
+            <script>
+                setTimeout(function(){ window.location.href = "'.$url.'"; },500);
+            </script>
+        ';
+        
+
+    }
+
+    function product_update_process(Request $request)
+    {
+    
+      $product_id         = $request->input("product_id");
+      $product_availability  = $request->input("product_availability");
+      $product_title      = $request->input("product_title");
+      $price              = $request->input("price",0);
+      $stock              = $request->input("stock",0);
+      $weight             = $request->input("weight",0);  
+      $product_description= $request->input("product_description");
+      $category           = $request->input("category");
+      $subcategory        = $request->input("subcategory");
+      $brand              = $request->input("brand");
+
+      
+      $datetime           = date("Y-m-d H:i:s");
+      $ip_address         = $request->ip();
+      $user_agent         = $request->header('User-Agent');
+
+      //detail description and technical
+      $sub_title_left    = $request->input("sub_title_left");
+      $desc_left         = $request->input("desc_left");
+
+      if(!empty($request->file('image_left'))){
+            
+        $image_left     = $request->file('image_left');
+        $image_left     = str_replace(" ","-",strtolower($image_left->getClientOriginalName()));
+            
+            //Move Uploaded File
+        $destinationPath = "public/products/$product_id";
+        $request->file("image_left")->move($destinationPath,$image_left);
+
+      }else {
+         $image_left     = $request->input('image_left_hide');
+      }
+
+      $sub_title_right    = $request->input("sub_title_right");
+      $desc_right         = $request->input("desc_right");
+
+      if(!empty($request->file('image_right'))){
+         $image_right     = $request->file('image_right');
+         $image_right     = str_replace(" ","-",strtolower($image_right->getClientOriginalName()));
+         
+         //Move Uploaded File
+         $destinationPath = "public/products/$product_id";
+         $request->file("image_right")->move($destinationPath,$image_right);
+      }else {
+         $image_right     = $request->input('image_right_hide');
+      }
+
+      $sub_title_btm    = $request->input("sub_title_btm");
+      $desc_btm         = $request->input("desc_btm");
+
+      if(!empty($request->file('image_btm'))){
+        $image_btm     = $request->file('image_btm');
+        $image_btm = str_replace(" ","-",strtolower($image_btm->getClientOriginalName()));
+        
+        //Move Uploaded File
+        $destinationPath = "public/products/$product_id";
+        $request->file("image_btm")->move($destinationPath,$image_btm);
+      }else {
+         $image_btm     = $request->input('image_btm_hide');
+      }
+
+      $product_tech        = $request->input("product_tech");
+     
+      $validator = Validator::make($request->all(), [
+        "product_id"            => "required|integer",
+        'product_availability'  => 'required',
+        'product_title'         => 'required|max:255',
+        'price'                 => 'required|integer',
+        'stock'                 => 'nullable|integer',
+        "weight"                => "nullable|integer",
+        'product_description'   => 'nullable|min:10',
+        'category'              => 'required',
+        'subcategory'           => 'required',
+        "brand"                 => "required"
+      ]);
+
+        if($validator->fails()){
+            return back()->with('error', 'Whoops somethings wrong!')->withErrors($validator);
+        }
+        else {
+            $arr = array(
+                
+                    "product_id"    => $product_id,
+                    'product_title' => $product_title,
+                    'product_availability' => $product_availability,
+                    "price"         => $price,
+                    'stock'         => $stock,
+                    "weight"        => $weight,
+                    'product_description' => $product_description,
+                    "category"      => $category,
+                    'subcategory'   => $subcategory,
+                    "brand"         => $brand,
+                    "created_at"    => $datetime,
+                    "ip_address"    => $ip_address,
+                    "user_agent"    => $user_agent,
+
+                    'product_title_left'      => $sub_title_left,
+                    'product_detail_left'     => $desc_left,
+                    'product_detail_left_img' => $image_left,
+
+                    'product_title_right'      => $sub_title_right,
+                    'product_detail_right'     => $desc_right,
+                    'product_detail_right_img' => $image_right,
+
+                    'product_title_btm'      => $sub_title_btm,
+                    'product_detail_btm'     => $desc_btm,
+                    'product_detail_btm_img' => $image_btm,
+                    'technical_specs'        => $product_tech
+                            
+            );
+          // dd($arr);
+            $this->objProduct->update_product($arr);
+            return back()->with('success', 'You Sucessfully updated one product');
+        }
+
+
     }
 
     function product_delete_process(Request $request)
