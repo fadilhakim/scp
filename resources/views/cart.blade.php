@@ -165,7 +165,7 @@
                         Tax
                     </div>
                     <div class="col-xs-6 col-xs-text-right">
-                        <div class="color"><?=Cart::tax()?></div>
+                        <div class="color">Rp. <?=Cart::tax()?></div>
                     </div>
                 </div>
             </div>
@@ -186,7 +186,7 @@
                         Discount / Cashback
                     </div>
                     <div class="col-xs-6 col-xs-text-right">
-                        <div class="color"><?=session("voucher_nominal")?></div>
+                        <div class="color">Rp. <?=number_format(session("voucher_nominal"))?></div>
                     </div>
                 </div>
             </div>

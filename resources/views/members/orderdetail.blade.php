@@ -33,7 +33,7 @@
 							</a>  
 						</li>
 						<li class="active">
-									Detail Order
+								Detail Order
 						</li>
 					</ol>
 					<div menuitemname="Client Details" class="panel panel-default">
@@ -100,7 +100,7 @@
 											<td> &nbsp; </td>
 											<td> &nbsp; </td> 
 											<td> Discount </td>
-											<td> </td> 
+											<td>Rp. {{ number_format($order->voucher_nominal) }}</td> 
 										<tr>
 										<tr>	
 											<td> &nbsp; </td>
@@ -113,7 +113,7 @@
 
 							</table>
 							<center> <button id="pay-button" class="btn btn-success"> Pay Now </button> </center>
-							<pre><div id="result-json"><br></div></pre> 
+							<div id="result-json"></div>
 							<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-YKDC2_McraEgyHdj"></script>
 							<script type="text/javascript">
 							document.getElementById('pay-button').onclick = function(){

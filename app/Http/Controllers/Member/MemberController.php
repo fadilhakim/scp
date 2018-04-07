@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Member;
 //require_once "app/Libraries/Midtrans/Veritrans.php";
 
 use App\Models\Order;
+use App\Models\Product;
 use Auth;
 
 use App\Libraries\Midtrans\Veritrans\Veritrans_config;
@@ -19,6 +20,7 @@ class MemberController extends Controller
     function __construct()
     {
         $this->objOrder = new Order();
+        $this->objProduct = new Product();
     }
 
     function index()
@@ -39,7 +41,7 @@ class MemberController extends Controller
      
     function detail_order(Request $request)
     {
-        
+        $order_id = $request->segment(2);
 
         //Set Your server key
         Veritrans_config::$serverKey = "SB-Mid-server-Dm1CF_T9nindmKVXLmzp4kou";
@@ -53,30 +55,47 @@ class MemberController extends Controller
         // Enable 3D-Secure
         Veritrans_config::$is3ds = true;
 
+        $order_dt           = $this->objOrder-> get_order_byid($order_id); 
+        $order_detail_dt    = $this->objOrder->get_order_detail($order_id);
+
         // Required
         $transaction_details = array(
-        'order_id' => rand(),
-        'gross_amount' => 94000, // no decimal allowed for creditcard
+            'order_id' => $order_dt->order_id,
+            'gross_amount' => $order_dt->grand_total, // no decimal allowed for creditcard
         );
 
-        // Optional
-        $item1_details = array(
-        'id' => 'a1',
-        'price' => 18000,
-        'quantity' => 3,
-        'name' => "Apple"
-        );
+        foreach($order_detail_dt as $order_detail)
+        {
+            $product_dt = $this->objProduct->detail_product($order_detail->product_id);
+            $item_details[] =  array(
+                'id' => $order_detail->product_id,
+                'price' => $order_detail->price,
+                'quantity' => $order_detail->qty,
+                'name' => $product_dt->product_title
+            );
+        }    
 
-        // Optional
-        $item2_details = array(
-        'id' => 'a2',
-        'price' => 20000,
-        'quantity' => 2,
-        'name' => "Orange"
-        );
+        if(!empty($order_dt->voucher_nominal))
+        {
+            $dtid = $order_dt->voucher_code.date("Ymd").$order_dt->order_id;
+            $item_details[] =  array(
+                'id' => $dtid,
+                'price' => $order_dt->voucher_nominal * -1,
+                'quantity' => 1,
+                'name' => $order_dt->voucher_type
+            ); 
+        }
 
-        // Optional
-        $item_details = array ($item1_details, $item2_details);
+        if(!empty($order_dt->tax))
+        {
+            $dtid = "TAX".date("Ymd").$order_dt->order_id;
+            $item_details[] =  array(
+                'id' => $dtid,
+                'price' => $order_dt->tax * -1,
+                'quantity' => 1,
+                'name' => "TAX"
+            ); 
+        }
 
         // Optional
         $billing_address = array(

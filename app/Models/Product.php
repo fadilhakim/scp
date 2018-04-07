@@ -11,9 +11,7 @@ class Product extends Model
 {
 
     protected $table = "product_tbl";
-
     public $primaryKey = "product_id";
-
     public $incrementing = TRUE;
 
     //protected $keyType = "";
