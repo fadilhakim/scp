@@ -33,7 +33,7 @@
 							</a>  
 						</li>
 						<li class="active">
-									Detail Order
+								Detail Order
 						</li>
 					</ol>
 					<div menuitemname="Client Details" class="panel panel-default">
@@ -100,7 +100,7 @@
 											<td> &nbsp; </td>
 											<td> &nbsp; </td> 
 											<td> Discount </td>
-											<td> </td> 
+											<td>Rp. {{ number_format($order->voucher_nominal) }}</td> 
 										<tr>
 										<tr>	
 											<td> &nbsp; </td>
@@ -112,7 +112,28 @@
 								</tfoot>
 
 							</table>
-							<center> <button class="btn btn-success"> Pay Now </button> </center>
+							<center> <button id="pay-button" class="btn btn-success"> Pay Now </button> </center>
+							<div id="result-json"></div>
+							<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-YKDC2_McraEgyHdj"></script>
+							<script type="text/javascript">
+							document.getElementById('pay-button').onclick = function(){
+								// SnapToken acquired from previous step
+								snap.pay('<?=$snap_token?>', {
+								// Optional
+								onSuccess: function(result){
+									/* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+								},
+								// Optional
+								onPending: function(result){
+									/* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+								},
+								// Optional
+								onError: function(result){
+									/* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+								}
+								});
+							};
+							</script>
 						</div>
 					</div>
 			</div>
