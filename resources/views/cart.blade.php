@@ -54,7 +54,7 @@
                 <tr>
                     
                     <td data-title=" ">
-                        <a class="cart-entry-thumbnail" href="#"><img src="{{URL::asset('public/products/'.$row->id.'/'.$row->options->image)}}" alt=""></a>
+                        <a class="cart-entry-thumbnail" href="#"><img height="100" width="100" src="{{URL::asset('public/products/'.$row->id.'/'.$row->options->image)}}" alt=""></a>
                         
                     </td>
                     <td data-title=" ">  
@@ -198,7 +198,7 @@
             <div class="order-details-entry simple-article size-3 grey uppercase">
                 <div class="row">
                     <div class="col-xs-6">
-                        order total
+                        Order Total
                     </div>
                     <div class="col-xs-6 col-xs-text-right">
                         <div class="color">Rp. <?=session("final_total")//Cart::total()?></div>

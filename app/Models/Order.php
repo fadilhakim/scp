@@ -39,6 +39,8 @@ class Order extends Model
     // generate order code
     function generate_no_order($order_id)
     {
+        $order_id++; // tambah satu dulu
+
         $m = date("m");
         $d = date("d");
         
@@ -53,13 +55,18 @@ class Order extends Model
             $gen_zero .= "0";	
         }
         //			   4    2  2          4
-        return $no_order = "OSCP0".$m.$gen_zero.$order_id;   
+        return $no_order = "OSCP".$m.$gen_zero.$order_id;   
     }
 
     function get_last_order()
     {
-      $last_order = DB::table('order_tbl')->orderBy('created_at', 'desc')->first()->order_id;
-      if(empty($last_order))
+      $last_order = DB::table('order_tbl')->orderBy('created_at', 'desc')->first();
+     
+      if(!empty($last_order))
+      {
+        $last_order = $last_order->order_id;
+      }
+      else
       {
         $last_order = 1;
       }

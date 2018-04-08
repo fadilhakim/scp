@@ -143,7 +143,7 @@ class CartController extends Controller
             $a = Cart::add($c);
             //Cart::add($product->product_id,$product->product_title,1,$product->price);
             // final_total
-            session(["final_total"=>Cart::subtotal()]);
+            session(["final_total"=>Cart::total()]); // kok ::subtotal() ? 
 
             redirect()->to("cart")->send();
             //return view("cart/modal_info");
