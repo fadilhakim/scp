@@ -86,9 +86,9 @@ class OrderController extends Controller
             $arr["ip_address"]  = $ip_address;
             $arr["user_agent"]  = $user_agent;
 
-            $arr["voucher_code"] = session("voucher_code");
-            $arr["voucher_type"] = session("voucher_type");
-            $arr["voucher_nominal"] = session("voucher_nominal");
+            $arr["voucher_code"] = !empty(session("voucher_code")) ? session("voucher_code") : "";
+            $arr["voucher_type"] = !empty(session("voucher_type")) ? session("voucher_type") : "";
+            $arr["voucher_nominal"] = !empty(session("voucher_nominal")) ? session("voucher_nominal") : "";
 
             $arr["user_id"]     = $user->id;
             $arr["order_code"]  = $this->objOrder->generate_no_order($last_order_id);
