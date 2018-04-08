@@ -91,7 +91,7 @@ class MemberController extends Controller
             $dtid = "TAX".date("Ymd").$order_dt->order_id;
             $item_details[] =  array(
                 'id' => $dtid,
-                'price' => $order_dt->tax * -1,
+                'price' => $order_dt->tax,
                 'quantity' => 1,
                 'name' => "TAX"
             ); 

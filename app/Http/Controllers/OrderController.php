@@ -71,6 +71,7 @@ class OrderController extends Controller
     {
         if(!empty(Cart::content()))
         {
+            $last_order_id      = $this->objOrder->get_last_order()->order_code;
             $user               = Auth::guard("user")->user();
 
             $datetime           = date("Y-m-d H:i:s");
@@ -90,6 +91,7 @@ class OrderController extends Controller
             $arr["voucher_nominal"] = session("voucher_nominal");
 
             $arr["user_id"]     = $user->id;
+            $arr["order_code"]  = $this->objOrder->generate_no_order($last_order_id);
             $arr["grand_total"] = floor($total);
             $arr["subtotal"]    = $subtotal;
             //$arr["kurir"]       = "jne";

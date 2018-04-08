@@ -19,7 +19,7 @@ class Order extends Model
     // protected $connection = ""; // connection database name
     protected $fillable = [
 
-      'product_id','user_id',"ongkir","subtotal",
+      'product_id',"order_code",'user_id',"ongkir","subtotal",
       "kurir","total_berat","kurir_service","tax","purpose_bank",
       "user_addtr_id","status",
       "created_at","ip_address","user_agent"
@@ -34,6 +34,31 @@ class Order extends Model
     function test2()
     {
       echo "nonstatic function test activated";
+    }
+    
+    // generate order code
+    function generate_no_order($order_code)
+    {
+        $m = date("m");
+        $d = date("d");
+        
+        $stat 	   = strlen(100);
+        $sid_order = !empty($order_code) ? strlen($order_code) : 1;
+        
+        $zero       = $stat - $sid_order;
+        $gen_zero   = "";
+        for($i=1;$i<=$zero;$i++)
+        {
+            
+            $gen_zero .= "0";	
+        }
+        //			   4    2  2          4
+        return $no_order = "OSCP0".$m.$gen_zero.$order_code;   
+    }
+
+    function get_last_order()
+    {
+      return DB::table('order_tbl')->orderBy('created_at', 'desc')->first();
     }
 
     function get_order()
@@ -74,6 +99,7 @@ class Order extends Model
     function insert_order($arr)
     {
         $user_id     = $arr["user_id"];
+        $order_code  = $arr["order_code"];
         $grand_total = $arr["grand_total"]; 
         $ongkir      = $arr["ongkir"];
         $subtotal    = $arr["subtotal"];
@@ -95,6 +121,7 @@ class Order extends Model
 
       return DB::table("order_tbl")->insertGetId([
         "user_id"     => $user_id,
+        "order_code"  => $order_code,
         "grand_total" => $grand_total, 
         "ongkir"      => $ongkir ,
         "subtotal"    => $subtotal,
