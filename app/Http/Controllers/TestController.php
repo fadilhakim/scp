@@ -54,6 +54,12 @@ class TestController extends Controller
         return view("invoice/invoice-fancy-page-inline");
     }
 
+    function sess_destroy(Request $request)
+    {
+        $request->session()->flush();
+        echo "Last time destroy : ".date("Y-m-d H:i:s");
+    }
+
     function send_email()
     {
         $objDemo = new \stdClass();
