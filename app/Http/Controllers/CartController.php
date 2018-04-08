@@ -128,16 +128,20 @@ class CartController extends Controller
         $product_id = $request->segment(3);
        
         $product = $this->objProduct->detail_product($product_id);
-
+        $firstImg = $this->objProduct->get_first_image($product_id);
+        //dd($firstImg->image_name);
+        $img = $firstImg->image_name;
         if(!empty($product))
         {
             $c["id"] = $product->product_id;
             $c["name"] = $product->product_title;
             $c["qty"] = 1;
-            $c["price"] = $product->price;
-             //$a = Cart::instance('shopping')->add('192ao14', 'Product 14', 1, 9.99);
-            $a = Cart::add($c);
 
+            $c["price"] = $product->price;
+            $c["options"] = ['image' => $img];
+            //$a = Cart::instance('shopping')->add('192ao14', 'Product 14', 1, 9.99);
+            $a = Cart::add($c);
+            //Cart::add($product->product_id,$product->product_title,1,$product->price);
             // final_total
             session(["final_total"=>Cart::subtotal()]);
 

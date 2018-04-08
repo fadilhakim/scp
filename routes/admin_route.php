@@ -29,6 +29,7 @@ Route::group(['middleware' => ['admin']], function () {
     // product
     Route::get("/admin/product","Admin\ProductController@index");
     Route::get("/admin/product/update/{id}","Admin\ProductController@detail");
+    Route::get("/admin/product/update/images/{id}","Admin\ProductController@detail_images");
     Route::get("/admin/product/category","Admin\CategoryController@index");
     Route::get("/admin/product/brand","Admin\BrandController@index");
     Route::post("/admin/product/subcategory","Admin\CategoryController@subcategory");
@@ -44,6 +45,7 @@ Route::group(['middleware' => ['admin']], function () {
 
     Route::post("/admin/product/insert_process","Admin\ProductController@product_insert_process");
     Route::post("/admin/product/update_process","Admin\ProductController@product_update_process");
+    Route::post("/admin/product/update_image_process","Admin\ProductController@product_update_image_process");
     Route::post("/admin/product/delete_process","Admin\ProductController@product_delete_process");
     Route::post("/admin/product/category/insert_process","Admin\CategoryController@insert_category_process");
     Route::post("/admin/product/category/update_process","Admin\CategoryController@update_category_process");

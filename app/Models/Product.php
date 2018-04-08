@@ -103,6 +103,7 @@ class Product extends Model
         return $category;
     }
 
+
     static function get_category_by_id($category_id)
     {
         $category = DB::table('category_tbl')->where('category_id',$category_id)->first();
@@ -114,6 +115,13 @@ class Product extends Model
         $subcategory = DB::table('subcategory_tbl')->where('subcategory_id',$subCategory_id)->first();
         return $subcategory;
     }
+
+    static function get_subCategory_by_category_id($category_id)
+    {
+        $subcategory = DB::table('subcategory_tbl')->where('category_id',$category_id)->get();
+        return $subcategory;
+    }
+
 
     static function get_brand_by_id($brand_id)
     {
@@ -133,8 +141,31 @@ class Product extends Model
         return $popular;
     }
 
+    static function get_mini_slide($id)
+    {
+        $slide = DB::table('product_mini_slide')->where('product_id',$id)->get();
+        return $slide;
+    }
 
-    public function insert_product_image($arr)
+
+    
+    function update_product_image($product_id,$image_name,$image_field)
+
+    {
+
+        DB::table("product_image_tbl")
+
+        ->where('product_id', $product_id)
+
+        ->where('image_field', $image_field)
+
+        ->update([
+            "image_name"=> $image_name
+        ]);
+
+    }
+
+    public function insert_product_image($arr,$image_field,$image_name)
 
     {
 
@@ -142,43 +173,20 @@ class Product extends Model
 
             "product_id"=>$arr["product_id"],
 
-            "image_name"=>$arr["image_name"],
+            "image_name"=> $image_name,
 
-            "image_field"=>$arr["image_field"],
+            "image_field"=>$image_field,
 
             "ip_address"=>$arr["ip_address"],
 
             "user_agent"=>$arr["user_agent"],
 
-            "created_at"=>$arr["datetime"]
+            "created_at"=>$arr["created_at"]
 
         ]);
 
     }
 
-
-
-    function update_product_image($arr)
-
-    {
-
-        DB::table("product_image_tbl")
-
-        ->where('product_id', $arr["product_id"])
-
-        ->where('image_field', $arr["image_field"])
-
-        ->update([
-
-            "image_name"=>$arr["image_name"],
-
-            "ip_address"=>$arr["ip_address"],
-
-            "user_agent"=>$arr["user_agent"]
-
-        ]);
-
-    }
 
 
 
@@ -205,6 +213,7 @@ class Product extends Model
         ->first();
 
     }
+    
 
 
 
@@ -218,19 +227,15 @@ class Product extends Model
 
         $product_availability = $arr["product_availability"];
 
-        $status             = $arr["status"];
 
         $category           = $arr["category"];
 
         $subcategory        = $arr["subcategory"];
 
-        $old_price          = $arr["stock"];
 
         $price              = $arr["price"];
 
         $stock              = $arr["stock"];
-
-        $weight             = $arr["weight"];
 
         $brand              = $arr["brand_id"];
 
@@ -258,15 +263,9 @@ class Product extends Model
 
             "product_availability"=>$product_availability,
 
-            "status"=>$status,
-
             "price"=>$price,
 
-            "old_price"=>$old_price,
-
             "stock"=>$stock,
-
-            "weight"=>$weight,
 
             "created_at"=>$datetime,
 
@@ -279,14 +278,13 @@ class Product extends Model
     }
 
 
+    
 
     public function update_product($arr)
 
     {
 
         $product_id         = $arr["product_id"];
-
-
 
         $product_title      = $arr["product_title"];
 
@@ -296,13 +294,9 @@ class Product extends Model
 
         $brand              = $arr["brand"];
 
-        $status             = $arr["status"];
-
         $category           = $arr["category"];
 
         $subcategory        = $arr["subcategory"];
-
-        $old_price          = $arr["stock"];
 
         $price              = $arr["price"];
 
@@ -313,11 +307,23 @@ class Product extends Model
 
 
         $datetime           = $arr["created_at"];
-
         $ip_address         = $arr["ip_address"];
-
         $user_agent         = $arr["user_agent"];
 
+
+        $sub_title_left     = $arr["product_title_left"];
+        $desc_left          = $arr["product_detail_left"];
+        $image_left         = $arr["product_detail_left_img"];
+
+        $sub_title_right     = $arr["product_title_right"];
+        $desc_right          = $arr["product_detail_right"];
+        $image_right         = $arr["product_detail_right_img"];
+
+        $sub_title_btm     = $arr["product_title_btm"];
+        $desc_btm          = $arr["product_detail_btm"];
+        $image_btm         = $arr["product_detail_btm_img"];
+
+        $product_tech         = $arr["technical_specs"];
 
 
         return DB::table('product_tbl') ->where('product_id', $product_id)->update([
@@ -334,22 +340,39 @@ class Product extends Model
 
             "brand_id"=>$brand,
 
-            "status"=>$status,
-
             "price"=>$price,
-
-            "old_price"=>$old_price,
 
             "stock"=>$stock,
 
             "weight"=>$weight,
 
-           
-
             "ip_address"=>$ip_address,
 
-            "user_agent"=>$user_agent
+            "user_agent"=>$user_agent,
 
+            "product_title_left"=>$sub_title_left,
+            "product_detail_left"=>$desc_left,
+            "product_detail_left_img"=>$image_left,
+
+            "product_title_right"=>$sub_title_right,
+            "product_detail_right"=>$desc_right,
+            "product_detail_right_img"=>$image_right,
+
+            "product_title_btm"=>$sub_title_btm,
+            "product_detail_btm"=>$desc_btm,
+            "product_detail_btm_img"=>$image_btm,
+            "technical_specs"=>$product_tech
+        ]);
+
+    }
+
+
+    public function update_product_test($arr){
+        $product_id         = $arr["product_id"];
+        $product_title      = $arr["product_title"];
+
+        return DB::table('product_tbl') ->where('product_id', $product_id)->update([
+            'product_title' => $product_title
         ]);
 
     }

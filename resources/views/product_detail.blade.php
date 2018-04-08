@@ -4,8 +4,15 @@
      $price = $product->price;
      $desc = $product->product_description;
      $product_availability = $product->product_availability;
+     $id =  $product->product_id;
+     $slug = str_slug($product->product_title, '-');
+     
+     $title_left = $product->product_title_left;
+     $detail_left = $product->product_detail_left;
+     $left_img = $product->product_detail_left_img;
 //} ?>
 <div class="container">
+    <div class="empty-space col-md-b70"></div>
     <div class="breadcrumbs">
         <a href="{{url('/')}}">Home</a>
         <a href="{{url('product')}}">Product</a>
@@ -92,7 +99,7 @@
                     </div>
                     <div class="row m5 col-xs-b40">
                         <div class="col-sm-6 col-xs-b10 col-sm-b0">
-                            <a class="button size-2 style-2 block" href="#">
+                            <a class="button size-2 style-2 block" href="<?=url("cart/add/$id/$slug")?>">
                                 <span class="button-wrapper">
                                     <span class="icon"><img src="img/icon-2.png" alt=""></span>
                                     <span class="text">add to cart</span>
@@ -136,21 +143,21 @@
                     <div class="row">
                         <div class="col-sm-6 col-xs-b30 col-sm-b0">
                             <div class="simple-article">
-                                <img class="rounded-image" src="{{URL::asset('/public/img/thumbnail-15.jpg')}}" alt="" />
+                                <img class="rounded-image" src="{{URL::asset('/public/products/'.$id.'/'.$left_img)}}" alt="" />
                             </div>
                             <div class="empty-space col-xs-b25"></div>
-                            <div class="h5">Nullam et massa nulla</div>
+                            <div class="h5"><?= $title_left ?></div>
                             <div class="empty-space col-xs-b20"></div>
-                            <div class="simple-article size-2">Sed sodales sed orci molestie tristique. Nunc dictum, erat id molestie vestibulum, ex leo vestibulum justo, luctus tempor erat sem quis diam. Lorem ipsum dolor sit amet.</div>
+                            <div class="simple-article size-2"><?= $detail_left ?></div>
                         </div>
                         <div class="col-sm-6">
                             <div class="simple-article">
-                                <img class="rounded-image" src="{{URL::asset('/public/img/thumbnail-16.jpg')}}" alt="" />
+                                <img class="rounded-image" src="{{URL::asset('/public/products/'.$id.'/'.$product->product_detail_right_img)}}" alt="" />
                             </div>
                             <div class="empty-space col-xs-b25"></div>
-                            <div class="h5">Vivamus ut posuere nunc</div>
+                            <div class="h5"><?= $product->product_title_right ?></div>
                             <div class="empty-space col-xs-b20"></div>
-                            <div class="simple-article size-2">Sed sodales sed orci molestie tristique. Nunc dictum, erat id molestie vestibulum, ex leo vestibulum justo, luctus tempor erat sem quis diam. Lorem ipsum dolor sit amet.</div>
+                            <div class="simple-article size-2"><?= $product->product_detail_right ?></div>
                         </div>
                     </div>
 
@@ -158,109 +165,21 @@
 
                     <div class="left-right-entry clearfix align-right">
                         <div class="preview-wrapper">
-                            <img class="preview" src="{{URL::asset('/public/img/thumbnail-17.jpg')}}" alt="" />
+                            <img class="preview" src="{{URL::asset('/public/products/'.$id.'/'.$product->product_detail_btm_img)}}" alt="" />
                         </div>
                         <div class="description">
-                            <div class="h5">Aenean a tincidunt felis</div>
+                            <div class="h5"><?= $product->product_title_btm ?></div>
                             <div class="empty-space col-xs-b15"></div>
-                            <div class="simple-article size-2">Sed sodales sed orci molestie tristique. Nunc dictum, erat id molestie vestibulum, ex leo vestibulum justo, luctus tempor erat sem quis diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur vulputate elit.</div>
-                            <div class="empty-space col-xs-b30 col-sm-b45"></div>
-                            <div class="h5">Nulla sed arcu ipsum</div>
-                            <div class="empty-space col-xs-b15"></div>
-                            <div class="simple-article size-2">Nullam et massa nulla. Quisque nec magna ornare tellus consequat lacinia a quis sem. Vivamus ut posuere nunc. Praesent porttitor vitae augue in semper. Vestibulum non leo et nisi facilisis consequat. Ut volutpat augue faucibus, fermentum turpis convallis, lobortis augue.</div>
+                            <div class="simple-article size-2"><?= $product->product_detail_btm ?></div>
                         </div>
                     </div>
 
                     <div class="empty-space col-xs-b35 col-md-b70"></div>
-
-                    <div class="left-right-entry clearfix">
-                        <div class="preview-wrapper">
-                            <img class="preview" src="{{URL::asset('/public/img/thumbnail-18.jpg')}}" alt="" />
-                        </div>
-                        <div class="description">
-                            <div class="h5">Aenean a tincidunt felis</div>
-                            <div class="empty-space col-xs-b15"></div>
-                            <div class="simple-article size-2">Sed sodales sed orci molestie tristique. Nunc dictum, erat id molestie vestibulum, ex leo vestibulum justo, luctus tempor erat sem quis diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur vulputate elit.</div>
-                            <div class="empty-space col-xs-b30 col-sm-b45"></div>
-                            <div class="h5">Nulla sed arcu ipsum</div>
-                            <div class="empty-space col-xs-b15"></div>
-                            <div class="simple-article size-2">Nullam et massa nulla. Quisque nec magna ornare tellus consequat lacinia a quis sem. Vivamus ut posuere nunc. Praesent porttitor vitae augue in semper. Vestibulum non leo et nisi facilisis consequat. Ut volutpat augue faucibus, fermentum turpis convallis, lobortis augue.</div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="tab-entry">
-                    
-                    <div class="empty-space col-xs-b30 col-sm-b60"></div>
-                    <div class="h5">watch 42mm</div>
-                    <div class="empty-space col-xs-b15"></div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="product-description-entry row nopadding">
-                                <div class="col-xs-6">
-                                    <div class="h6">height:</div>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <div class="simple-article size-2">42.0mm</div>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="product-description-entry row nopadding">
-                                <div class="col-xs-6">
-                                    <div class="h6">width:</div>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <div class="simple-article size-2">35.9mm</div>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="product-description-entry row nopadding">
-                                <div class="col-xs-6">
-                                    <div class="h6">depth:</div>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <div class="simple-article size-2">10.5mm</div>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="product-description-entry row nopadding">
-                                <div class="col-xs-6">
-                                    <div class="h6">case:</div>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <div class="simple-article size-2">50g</div>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="product-description-entry row nopadding">
-                                <div class="col-xs-6">
-                                    <div class="h6">material:</div>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <div class="simple-article size-2">Space Black Stainless Steel</div>
-                                </div>
-                            </div>  
-                        </div>
-                    </div>
-                    <div class="empty-space col-xs-b30 col-sm-b60"></div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="simple-article size-2 text-center">
-                                <img src="{{URL::asset('/public/img/thumbnail-21.jpg')}}" alt="" />
-                                <p><br/>Stainless Steel</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="simple-article size-2 text-center">
-                                <img src="{{URL::asset('/public/img/thumbnail-22.jpg')}}" alt="" />
-                                <p><br/>Space Black Stainless Steel</p>
-                            </div>
-                        </div>
-                    </div>
+            
+                   <?php echo $product->technical_specs ?>
                 </div>
             </div>
 
@@ -270,46 +189,14 @@
                 <div class="swiper-button-prev style-1 hidden"></div>
                 <div class="swiper-button-next style-1 hidden"></div>
                 <div class="swiper-wrapper">
+                    <?php foreach($mini_slide as $rowMini) { ?>
                     <div class="swiper-slide">
                         <div class="banner-shortcode style-1">
-                            <div class="background" style="background-image: url({{URL::asset('/public/img/thumbnail-14.jpg')}});"></div>
-                            <div class="description valign-middle">
-                                <div class="valign-middle-content">
-                                    <div class="simple-article size-3 light fulltransparent">DON'T MISS!</div>
-                                    <div class="banner-title color">UP TO 70%</div>
-                                    <div class="h4 light">best android tv box</div>
-                                    <div class="empty-space col-xs-b25"></div>
-                                    <a class="button size-1 style-3" href="#">
-                                        <span class="button-wrapper">
-                                            <span class="icon"><img src="{{URL::asset('/public/img/icon-4.png')}}" alt=""></span>
-                                            <span class="text">learn more</span>
-                                        </span>
-                                    </a>
-                                </div>
-                                <div class="empty-space col-xs-b60 col-sm-b0"></div>
-                            </div>
+                            <div class="background" style="background-image: url({{URL::asset('/public/products/'.$rowMini->product_id.'/'.$rowMini->image_name)}});"></div>
+                         
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="banner-shortcode style-1">
-                            <div class="background" style="background-image: url({{URL::asset('/public/img/thumbnail-10.jpg')}});"></div>
-                            <div class="description valign-middle">
-                                <div class="valign-middle-content">
-                                    <div class="simple-article size-3 light fulltransparent">DON'T MISS!</div>
-                                    <div class="banner-title color">UP TO 70%</div>
-                                    <div class="h4 light">best android tv box</div>
-                                    <div class="empty-space col-xs-b25"></div>
-                                    <a class="button size-1 style-3" href="#">
-                                        <span class="button-wrapper">
-                                            <span class="icon"><img src="img/icon-4.png" alt=""></span>
-                                            <span class="text">learn more</span>
-                                        </span>
-                                    </a>
-                                </div>
-                                <div class="empty-space col-xs-b60 col-sm-b0"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -320,262 +207,29 @@
         </div>
         <div class="col-md-3 col-md-pull-9">
             <div class="h4 col-xs-b10">categories</div>
+            <?php 
+                 $getCategory =  App\Models\Product::all_category() ;
+            ?>
             <ul class="categories-menu transparent">
+            <?php foreach($getCategory as $rowCategory) { ?>
                 <li>
-                    <a href="#">laptops &amp; computers</a>
-                    <div class="toggle"></div>
-                    <ul>
-                        <li>
-                            <a href="#">laptops &amp; computers</a>
-                            <div class="toggle"></div>
-                            <ul>
-                                <li>
-                                    <a href="#">laptops &amp; computers</a>
-                                </li>
-                                <li>
-                                    <a href="#">video &amp; photo cameras</a>
-                                </li>
-                                <li>
-                                    <a href="#">smartphones</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">video &amp; photo cameras</a>
-                            <div class="toggle"></div>
-                            <ul>
-                                <li>
-                                    <a href="#">video &amp; photo cameras</a>
-                                </li>
-                                <li>
-                                    <a href="#">smartphones</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">smartphones</a>
-                        </li>
-                        <li>
-                            <a href="#">tv &amp; audio</a>
-                        </li>
-                        <li>
-                            <a href="#">gadgets</a>
-                        </li>
-                    </ul>
+                    <a href="#">{{ $rowCategory->category_name}}</a>
+                    <?php 
+                    $getSubCategory =  App\Models\Product::get_subCategory_by_category_id($rowCategory->category_id) ;
+                    if(!empty($getSubCategory)){ 
+                    ?>
+                        <div class="toggle"></div>
+                        <ul>
+                            <?php foreach($getSubCategory as $rowSubCategory) { ?>
+                            <li>
+                                <a href="#">{{$rowSubCategory->subcategory_name}}</a>
+                            </li>
+                            <?php } ?>
+                        </ul>
+                    <?php } ?>
+                    
                 </li>
-                <li>
-                    <a href="#">video &amp; photo cameras</a>
-                    <div class="toggle"></div>
-                    <ul>
-                        <li>
-                            <a href="#">laptops &amp; computers</a>
-                            <div class="toggle"></div>
-                            <ul>
-                                <li>
-                                    <a href="#">laptops &amp; computers</a>
-                                </li>
-                                <li>
-                                    <a href="#">video &amp; photo cameras</a>
-                                </li>
-                                <li>
-                                    <a href="#">smartphones</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">video &amp; photo cameras</a>
-                            <div class="toggle"></div>
-                            <ul>
-                                <li>
-                                    <a href="#">laptops &amp; computers</a>
-                                </li>
-                                <li>
-                                    <a href="#">smartphones</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">smartphones</a>
-                        </li>
-                        <li>
-                            <a href="#">tv &amp; audio</a>
-                        </li>
-                        <li>
-                            <a href="#">gadgets</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">smartphones</a>
-                    <div class="toggle"></div>
-                    <ul>
-                        <li>
-                            <a href="#">laptops &amp; computers</a>
-                            <div class="toggle"></div>
-                            <ul>
-                                <li>
-                                    <a href="#">laptops &amp; computers</a>
-                                </li>
-                                <li>
-                                    <a href="#">video &amp; photo cameras</a>
-                                </li>
-                                <li>
-                                    <a href="#">smartphones</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">video &amp; photo cameras</a>
-                            <div class="toggle"></div>
-                            <ul>
-                                <li>
-                                    <a href="#">video &amp; photo cameras</a>
-                                </li>
-                                <li>
-                                    <a href="#">smartphones</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">smartphones</a>
-                        </li>
-                        <li>
-                            <a href="#">tv &amp; audio</a>
-                        </li>
-                        <li>
-                            <a href="#">gadgets</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">tv &amp; audio</a>
-                    <div class="toggle"></div>
-                    <ul>
-                        <li>
-                            <a href="#">laptops &amp; computers</a>
-                            <div class="toggle"></div>
-                            <ul>
-                                <li>
-                                    <a href="#">laptops &amp; computers</a>
-                                </li>
-                                <li>
-                                    <a href="#">video &amp; photo cameras</a>
-                                </li>
-                                <li>
-                                    <a href="#">smartphones</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">video &amp; photo cameras</a>
-                            <div class="toggle"></div>
-                            <ul>
-                                <li>
-                                    <a href="#">video &amp; photo cameras</a>
-                                </li>
-                                <li>
-                                    <a href="#">smartphones</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">smartphones</a>
-                        </li>
-                        <li>
-                            <a href="#">tv &amp; audio</a>
-                        </li>
-                        <li>
-                            <a href="#">gadgets</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">gadgets</a>
-                    <div class="toggle"></div>
-                    <ul>
-                        <li>
-                            <a href="#">laptops &amp; computers</a>
-                            <div class="toggle"></div>
-                            <ul>
-                                <li>
-                                    <a href="#">laptops &amp; computers</a>
-                                </li>
-                                <li>
-                                    <a href="#">video &amp; photo cameras</a>
-                                </li>
-                                <li>
-                                    <a href="#">smartphones</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">video &amp; photo cameras</a>
-                            <div class="toggle"></div>
-                            <ul>
-                                <li>
-                                    <a href="#">video &amp; photo cameras</a>
-                                </li>
-                                <li>
-                                    <a href="#">smartphones</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">smartphones</a>
-                        </li>
-                        <li>
-                            <a href="#">tv &amp; audio</a>
-                        </li>
-                        <li>
-                            <a href="#">gadgets</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">car electronics</a>
-                    <div class="toggle"></div>
-                    <ul>
-                        <li>
-                            <a href="#">laptops &amp; computers</a>
-                            <div class="toggle"></div>
-                            <ul>
-                                <li>
-                                    <a href="#">laptops &amp; computers</a>
-                                </li>
-                                <li>
-                                    <a href="#">video &amp; photo cameras</a>
-                                </li>
-                                <li>
-                                    <a href="#">smartphones</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">video &amp; photo cameras</a>
-                            <div class="toggle"></div>
-                            <ul>
-                                <li>
-                                    <a href="#">video &amp; photo cameras</a>
-                                </li>
-                                <li>
-                                    <a href="#">smartphones</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">smartphones</a>
-                        </li>
-                        <li>
-                            <a href="#">tv &amp; audio</a>
-                        </li>
-                        <li>
-                            <a href="#">gadgets</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">accessories</a>
-                </li>
+            <?php } ?>
             </ul>
 
             <div class="empty-space col-xs-b25 col-sm-b50"></div>
@@ -633,28 +287,33 @@
         <div class="swiper-button-prev style-1"></div>
         <div class="swiper-button-next style-1"></div>
         <div class="swiper-wrapper">
-        	<?php foreach ($related_product as $rltedProd) { ?>
-             
+        	<?php foreach ($related_product as $rt) { ?>
+                <?php 
+                                        
+                    $firstImg =  App\Models\Product::get_first_image($rt->product_id) ;
+                    
+                    if(!empty($firstImg))
+                    {
+                        $getImage = $firstImg->image_name;
+                    }
+                    else
+                    {
+                        $getImage = "";
+                    }
+                ?>
                 <div class="swiper-slide">
                 <div class="product-shortcode style-1 small">
                     <div class="title">
-                        <div class="simple-article size-1 color col-xs-b5"><a href="#">ACCESSORIES</a></div>
-                        <div class="h6 animate-to-green"><a href="#">usb watch charger</a></div>
+                        <div class="h6 animate-to-green"><a href="#"><?= $rt->product_title ?></a></div>
                     </div>
                     <div class="preview">
-                        <img src="{{URL::asset('/public/img/product-49.jpg')}}" alt="">
+                        <img src="{{URL::asset('/public/products/'.$rt->product_id.'/'.$getImage)}}" alt="">
                         <div class="preview-buttons valign-middle">
                             <div class="valign-middle-content">
                                 <a class="button size-2 style-2" href="#">
                                     <span class="button-wrapper">
                                         <span class="icon"><img src="{{URL::asset('/public/img/icon-1.png')}}" alt=""></span>
                                         <span class="text">Learn More</span>
-                                    </span>
-                                </a>
-                                <a class="button size-2 style-3" href="#">
-                                    <span class="button-wrapper">
-                                        <span class="icon"><img src="{{URL::asset('/public/img/icon-3.png')}}" alt=""></span>
-                                        <span class="text">Add To Cart</span>
                                     </span>
                                 </a>
                             </div>
