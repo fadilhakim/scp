@@ -91,7 +91,8 @@ class RegisterController extends Controller
             $arr["password"]   = $password;
             $arr["no_telp"]    = "";
             $arr["remember_token"] = "";
-            $arr["status"]     = "special";
+            $arr["role"]       = "customer";
+            $arr["status"]     = "regular";
             $arr["created_at"] = $datetime;
             $arr["ip_address"] = $ip_address;
             $arr["user_agent"] = $user_agent;

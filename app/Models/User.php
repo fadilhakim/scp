@@ -50,6 +50,7 @@ class User extends Authenticatable
             "password"  =>$arr["password"],
             "no_telp"   =>$arr["no_telp"],
             "remember_token"=>$arr["remember_token"],
+            "role"      =>$arr["role"],
             "status"    =>$arr["status"],
             "created_at"=>$arr["created_at"],
             "ip_address"=>$arr["ip_address"],
