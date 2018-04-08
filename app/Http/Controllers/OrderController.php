@@ -71,7 +71,7 @@ class OrderController extends Controller
     {
         if(!empty(Cart::content()))
         {
-            $last_order_id      = $this->objOrder->get_last_order()->order_code;
+            $last_order_id      = $this->objOrder->get_last_order();
             $user               = Auth::guard("user")->user();
 
             $datetime           = date("Y-m-d H:i:s");
