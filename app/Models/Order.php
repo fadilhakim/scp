@@ -55,7 +55,7 @@ class Order extends Model
             $gen_zero .= "0";	
         }
         //			   4    2  2          4
-        return $no_order = "OSCP".$m.$gen_zero.$order_id;   
+        return $no_order = "OSCP".$m.$d.$gen_zero.$order_id;   
     }
 
     function get_last_order()

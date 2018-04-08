@@ -66,9 +66,13 @@
 									{
 										echo "<span class='label label-default'>Unpaid</span>";
 									}
+									if($row->status == "onprocess")
+									{
+										echo "<span class='label label-warning'>On Process </span>";
+									}
 									else if($row->status == "paid")
 									{
-										echo "<span class='label label-warning'>Paid</span>";
+										echo "<span class='label label-success'>Paid</span>";
 									}
 									else if($row->status == "shipping")
 									{

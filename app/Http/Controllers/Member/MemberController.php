@@ -60,8 +60,8 @@ class MemberController extends Controller
 
         // Required
         $transaction_details = array(
-            'order_id' => $order_dt->order_id,
-            'gross_amount' => $order_dt->grand_total, // no decimal allowed for creditcard
+            'order_id'      => $order_dt->order_code,
+            'gross_amount'  => $order_dt->grand_total, // no decimal allowed for creditcard
         );
 
         foreach($order_detail_dt as $order_detail)
@@ -139,8 +139,18 @@ class MemberController extends Controller
         'customer_details' => $customer_details,
         'item_details' => $item_details,
         );
+
+        try {
+            // Validate the value...
+            $snapToken = Veritrans_Snap::getSnapToken($transaction);
+        } catch (Exception $e) {
+            report($e);
+    
+            return false;
+        }
+     
+
         
-        $snapToken = Veritrans_Snap::getSnapToken($transaction);
        // echo "snapToken = ".$snapToken;
 
         $order_id = $request->segment(2);
