@@ -35,7 +35,7 @@ class User extends Authenticatable
         return DB::table("users")->get(); 
     }
 
-    function detail_user($user_id)
+    static function detail_user($user_id)
     {
         return DB::table("users")->where("id",$user_id)->first();
     }

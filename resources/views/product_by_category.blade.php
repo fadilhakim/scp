@@ -1,11 +1,5 @@
 @include('template/header')
-        <script>
-            function add_cart()
-            {
 
-            }
-
-        </script>
         <div class="container">
             <div class="empty-space col-xs-b15 col-sm-b30"></div>
             <div class="breadcrumbs">
@@ -15,71 +9,6 @@
             <div class="empty-space col-xs-b15 col-sm-b30"></div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="slider-wrapper">
-                        <div class="swiper-container arrows-align-top" data-breakpoints="1" data-xs-slides="1" data-sm-slides="3" data-md-slides="4" data-lt-slides="4" data-slides-per-view="5">
-                            <div class="h4 swiper-title">popular products</div>
-                            <div class="empty-space col-xs-b20"></div>
-                            <div class="swiper-button-prev style-1"></div>
-                            <div class="swiper-button-next style-1"></div>
-                            <div class="swiper-wrapper">
-                            <?php $i=1; foreach ($popular as $rowPopular){ 
-
-                                    $slug = str_slug($rowPopular->product_title, '-');
-                                    $id   = $rowPopular->product_id;
-                                ?>
-                                <div class="swiper-slide">
-                                    <div class="product-shortcode style-1 small">
-                                        <div class="title">
-                                            <div class="simple-article size-1 color col-xs-b5"><a href="#">Phone</a></div>
-                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/{$rowPopular->product_id}/{$rowPopular->product_category}/{$slug}")?>">{{$rowPopular->product_title}}</a></div>
-                                        </div>
-                                        <div class="preview">
-                                            <?php 
-                                        
-                                                $popularFirstImg =  App\Models\Product::get_first_image($id) ;
-                                                
-                                                    if(!empty($popularFirstImg))
-                                                    {
-                                                        $getImagePop = $popularFirstImg->image_name;
-                                                    }
-                                                    else
-                                                    {
-                                                        $getImagePop = "";
-                                                    }
-                                            ?>
-                                            <img src="{{URL::asset('public/products/'.$id.'/'.$getImagePop )}}" alt="">
-                                            
-                                            <div class="preview-buttons valign-middle">
-                                                <div class="valign-middle-content">
-                                                    <a class="button size-2 style-2" href="<?=url("product/detail/{$rowPopular->product_id}/{$rowPopular->product_category}/{$slug}")?>">
-                                                        <span class="button-wrapper">
-                                                            <span class="icon"><img src="{{URL::asset('/public/img/icon-1.png')}}" alt=""></span>
-                                                            <span class="text">Learn More</span>
-                                                        </span>
-                                                    </a>
-                                                    <a class="button size-2 style-3" href="<?=url("cart/add/$id/$slug")?>">
-                                                        <span class="button-wrapper">
-                                                            <span class="icon"><img src="{{URL::asset('/public/img/icon-3.png')}}" alt=""></span>
-                                                            <span class="text">Add To Cart</span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="price">
-                                            <div class="simple-article size-4 dark">Rp.{{ number_format($rowPopular->price) }}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                            </div>
-              
-                            <div class="swiper-pagination relative-pagination visible-xs"></div>
-                        </div>
-                    </div>
-
-                    <div class="empty-space col-xs-b20 col-sm-b35 col-md-b70"></div>
-
                     <div class="align-inline spacing-1">
                         <div class="h4">Smart Phone</div>
                     </div>
@@ -162,7 +91,7 @@
                                             </div>
                                         </div>
                                         <div class="price">
-                                            <div class="simple-article size-4 dark">Rp {{number_format($rowProduct->price)}}</div>
+                                            <div class="simple-article size-4 dark">Rp {{$rowProduct->price}}</div>
                                         </div>
                                         <div class="description">
                                             <div class="simple-article text size-2"><?php echo $rowProduct->product_description ?></div>

@@ -46,6 +46,12 @@ class Product extends Model
         return $product;
     }
 
+    static function get_product_by_popluar()
+    {
+        $product = DB::table("product_tbl")->where('popular','1')->get();
+        return $product;
+    }
+
     static function detail_product($id)
 
     {
@@ -135,6 +141,12 @@ class Product extends Model
         return $category;
     }
 
+    static function get_product_by_category($category)
+    {
+        $category = DB::table('product_tbl')->where('product_category',$category)->get();
+        return $category;
+    }
+
     static function get_popular_product()
     {
         $popular = DB::table('product_tbl')->where('popular','1')->get();
@@ -185,6 +197,17 @@ class Product extends Model
 
         ]);
 
+    }
+
+    public function insert_mini_slide($image,$product_id){
+
+        DB::table("product_mini_slide")->insert([
+
+            "product_id" => $product_id,
+
+            "image_name" => $image
+
+        ]);
     }
 
 

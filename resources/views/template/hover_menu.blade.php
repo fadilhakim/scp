@@ -41,52 +41,43 @@
                 <div class="megamenu">
                     <div class="links">
                         <p>Categories</p>
-                        <a class="active" href="#">Category 1</a>
-                        <a href="#">Category 2</a>
-                        <a href="#">Category 3</a>
-                        <a href="#">Category 4</a>
+                            <?php $category = App\Models\Product::all_category();
+                                foreach($category as $rowCat){ 
+                            ?>
+                            <a class="" href="#"><?php echo $rowCat->category_name; ?></a>
+                        <?php } ?>
+
                     </div>
                     <div class="content">
                         <div class="row nopadding">
+                            <?php $popular = App\Models\Product::get_product_by_popluar(); 
+                                 foreach($popular as $rowPopular){ 
+                            ?>
                             <div class="col-xs-6">
                                 <div class="product-shortcode style-5">
-                                    <div class="product-label green">best price</div>
-                                    <div class="icons">
-                                        <a class="entry"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                        <a class="entry open-popup" data-rel="3"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
+                                    <div class="product-label green">smart phone</div>
                                     <div class="preview">
                                         <div class="swiper-container" data-loop="1">
                                             <div class="swiper-button-prev style-1"></div>
                                             <div class="swiper-button-next style-1"></div>
                                             <div class="swiper-wrapper">
+                                            <?php $allImg = App\Models\Product::find_product_img($rowPopular->product_id); 
+                                                foreach($allImg as $rowImg) {
+                                            ?>
+
                                                 <div class="swiper-slide">
-                                                    <img src="{{URL::asset('public/img/product-59.jpg')}}"" alt="" />
+                                                    <img src="{{URL::asset('public/products/'.$rowImg->product_id.'/'.$rowImg->image_name)}}" alt="" />
                                                 </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{{URL::asset('public/img/product-61.jpg')}}" alt="" />
-                                                </div>
+                                            <?php } ?>        
                                             </div>
                                         </div> 
                                     </div>
                                     <div class="content-animate">
                                         <div class="title">
-                                            <div class="shortcode-rate-wrapper">
-                                                <div class="rate-wrapper align-inline">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                            <div class="h6 animate-to-green"><a href="product.html">modern beat nine</a></div>
-                                        </div>
-                                        <div class="description">
-                                            <div class="simple-article text size-2">Mollis nec consequat at In feugiat molestie tortor a malesuada</div>
+                                            <div class="h6 animate-to-green"><a href="{{url('product/detail/'.$rowPopular->product_id.'/'.$rowPopular->product_category.'/'.$rowPopular->product_title) }}"><?php echo $rowPopular->product_title ?></a></div>
                                         </div>
                                         <div class="price">
-                                            <div class="simple-article size-4 dark">Rp 630.00</div>
+                                            <div class="simple-article size-4 dark">Rp. <?php echo number_format($rowPopular->price) ?></div>
                                         </div>
                                     </div>
                                     <div class="preview-buttons">
@@ -94,79 +85,15 @@
                                             <a class="button size-2 style-2" href="product.html">
                                                 <span class="button-wrapper">
                                                     <span class="icon"><img src="img/icon-1.png" alt=""></span>
-                                                    <span class="text">Learn More</span>
-                                                </span>
-                                            </a>
-                                            <a class="button size-2 style-3" href="#">
-                                                <span class="button-wrapper">
-                                                    <span class="icon"><img src="img/icon-3.png" alt=""></span>
-                                                    <span class="text">Add To Cart</span>
+                                                    <span class="text">See Detail</span>
                                                 </span>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-6">
-                                <div class="product-shortcode style-5">
-                                    <div class="product-label green">best price</div>
-                                    <div class="icons">
-                                        <a class="entry"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                        <a class="entry open-popup" data-rel="3"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                
-                                    </div>
-                                    <div class="preview">
-                                        <div class="swiper-container" data-loop="1">
-                                            <div class="swiper-button-prev style-1"></div>
-                                            <div class="swiper-button-next style-1"></div>
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="{{URL::asset('public/img/product-61.jpg')}}" alt="" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="{URL::asset('public/img/product-62.jpg')}}" alt="" />
-                                                </div>
-                                            </div>
-                                        </div> 
-                                    </div>
-                                    <div class="content-animate">
-                                        <div class="title">
-                                            <div class="shortcode-rate-wrapper">
-                                                <div class="rate-wrapper align-inline">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                            <div class="h6 animate-to-green"><a href="product.html">modern beat nine</a></div>
-                                        </div>
-                                        <div class="description">
-                                            <div class="simple-article text size-2">Mollis nec consequat at In feugiat molestie tortor a malesuada</div>
-                                        </div>
-                                        <div class="price">
-                                            <div class="simple-article size-4 dark">Rp 630.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="preview-buttons">
-                                        <div class="buttons-wrapper">
-                                            <a class="button size-2 style-2" href="product.html">
-                                                <span class="button-wrapper">
-                                                    <span class="icon"><img src="img/icon-1.png" alt=""></span>
-                                                    <span class="text">Learn More</span>
-                                                </span>
-                                            </a>
-                                            <a class="button size-2 style-3" href="#">
-                                                <span class="button-wrapper">
-                                                    <span class="icon"><img src="img/icon-3.png" alt=""></span>
-                                                    <span class="text">Add To Cart</span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>  
-                            </div>
+
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

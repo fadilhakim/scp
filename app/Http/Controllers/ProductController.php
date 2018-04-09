@@ -41,6 +41,15 @@ class ProductController extends Controller
         return view("product_detail",$data);
     }
 
+    function getCategory($category)
+    {
+       
+        $data["category_product"] = Product::get_product_by_category();
+        $data["title"]   = "Product List";
+        $data['content'] = 'Product By Category';
+        return view("product_by_category",$data);
+    }
+
     function product_highlight($product_title,$id)
     {
 

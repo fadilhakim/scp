@@ -300,8 +300,6 @@ class ProductController extends Controller
             $request->file("image4")->move($destinationPath,$new_image4);
         }
 
-    
-
         $url  = url('/admin/product/update/images/'.$product_id);
         echo '
             <script>
@@ -311,7 +309,28 @@ class ProductController extends Controller
         
 
     }
+    
+    function product_insert_mini_slide(Request $request){
 
+        if(!empty($request->hasFile('image_slide')))
+        {
+            $product_id = $request->input('product_id');
+            $image = $request->file('image_slide');
+            $new_name = str_replace(" ","-",strtolower($image->getClientOriginalName()));
+            $this->objProduct->insert_mini_slide($new_name,$product_id);
+            
+            $destinationPath = "public/products/$product_id";
+            $request->file("image_slide")->move($destinationPath,$new_name);
+            
+        }
+
+        $url  = url('/admin/product/update/images/'.$product_id);
+        echo '
+            <script>
+                setTimeout(function(){ window.location.href = "'.$url.'"; },500);
+            </script>
+        ';
+    }
     function product_update_process(Request $request)
     {
     

@@ -3,7 +3,7 @@
 <div class="hl">
 
 
-<div class="block-entry fixed-background">
+<div class="block-entry fixed-background" style="background-image: url(img/background-24.jpg);">
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 </div>
 
 <div class="empty-space col-xs-b35 col-md-b70"></div>

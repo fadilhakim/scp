@@ -12,12 +12,64 @@
      $left_img = $product->product_detail_left_img;
 //} ?>
 <div class="container">
-    <div class="empty-space col-md-b70"></div>
-    <div class="breadcrumbs">
-        <a href="{{url('/')}}">Home</a>
-        <a href="{{url('product')}}">Product</a>
-        <a href="#">{{$category->category_name}}</a>
+    <div class="empty-space col-md-b30"></div>
+    <div class="row">
+        <div class="col-md-9">
+            <div class="breadcrumbs">
+                <a href="{{url('/')}}">Home</a>
+                <a href="{{url('product')}}">Product</a>
+                <a href="#">{{$category->category_name}}</a>
+            </div>
+        </div>
+        <style>
+            .opt li {
+                display:inline-block;
+            }
+            
+            .opt>li>a  {
+                border: 1px solid #b8cd06;
+                -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,.1);
+                box-shadow: 1px 1px 2px rgba(0,0,0,.1);
+                color: #000;
+                display:block;
+                padding: 5px 20px 7px 20px;
+                border-radius: 16px;
+                -webkit-border-radius: 16px;
+                margin-top: -20px;
+                font-size: 14px;
+            }
+
+
+            .opt .actived {
+                background-color: #b8cd06 !important;
+                -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,.1);
+                box-shadow: 1px 1px 2px rgba(0,0,0,.1);
+                color: #fff;
+                display:block;
+                padding: 5px 20px 7px 20px;
+                border-radius: 16px;
+                -webkit-border-radius: 16px;
+                margin-top: -20px;
+                font-size: 14px;
+            }
+        </style>
+        <?php 
+          
+            $route = Request::segment(2);
+            $opt = '' ;
+            if($route == 'detail'){
+                $opt = 'actived' ;
+            }
+        ?>
+        <div class="col-md-3 text-right">
+            <ul class="opt">
+                <li><a class="{{$opt}}" href="">Specs</a></li>
+                <li><a class="" target="_blank" href="{{url('product/highlight/'.$id.'/'.$slug)}}">Overview</a></li>
+                
+            </ul>
+        </div>
     </div>
+    
     <div class="empty-space col-xs-b15 col-sm-b30"></div>
     <div class="row">
         <div class="col-md-9 col-md-push-3">

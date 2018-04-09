@@ -110,7 +110,7 @@
                                             <tr>
                                                 <th scope="row">1</th>
                                                 <td>
-                                                    <img src="{{URL::asset('public/products_mini_slide/'.$rowSlide->image_name)}}" alt="">
+                                                    <img class="img-fluid" src="{{URL::asset('public/products/'.$prodId.'/'.$rowSlide->image_name)}}" alt="">
                                                 </td>
                                                 <td>
                                                     <a href="" class="btn btn-danger">Delete</a>
@@ -119,6 +119,17 @@
                                         <?php } ?>
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-lg-12 p-20" style="text-align:left">
+                                    <form action="{{ url('admin/product/insert_mini_slide') }}" method="post" enctype="multipart/form-data">
+                                        <label for="">Add Mini Slide</label><br>
+                                        <input type="hidden" name="product_id" value="<?php echo $prodId ?>">
+                                        <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+                                        <input type="file" style="width:50%" class="form-control form-bg-primary" name="image_slide" id="">
+                                        <button class="btn btn-primary"><i class="icofont icofont-check-circled"></i> Add Mini Slide</button>
+                                    </form>
+                                </div>
                             </div>         
                         </div>
                     </div>

@@ -71,7 +71,7 @@ function delete_modal_slider(slider_id)
                                     <tr>
                                         <th scope="row"><?php echo $i ?></th>
                                         <td> 
-                                        <img class="img-responsive" src="{{URL::asset('/public/sliders/'.$row->image_name)}}">
+                                        <img class="img-fluid" src="{{URL::asset('/public/sliders/'.$row->image_name)}}">
                                         </td>
                                         <td><?php echo $row->url_image; ?></td>
                                         <td><div class="dropdown show" data-container="body">

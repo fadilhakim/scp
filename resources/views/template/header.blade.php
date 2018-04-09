@@ -149,7 +149,7 @@
                 <div class="content-margins">
                     <div class="row">
                         <div class="col-xs-3 col-sm-1">
-                            <a id="logo" href="{{url('')}}"><img src="{{URL::asset('/public/dummy_logo.png')}}"" alt="" /></a>  
+                            <a id="logo" href="{{url('')}}"><img src="{{URL::asset('/public/dummy_logo.png')}}" alt="" /></a>  
                         </div>
                         <div class="col-xs-9 col-sm-11 text-right">
 
@@ -183,7 +183,7 @@
                     </div>
                 </div>
             </div>
-
+                        
         </header>
 
         <div class="header-empty-space"></div>
