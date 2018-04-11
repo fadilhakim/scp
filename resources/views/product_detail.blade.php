@@ -64,7 +64,7 @@
         <div class="col-md-3 text-right">
             <ul class="opt">
                 <li><a class="{{$opt}}" href="">Specs</a></li>
-                <li><a class="" target="_blank" href="{{url('product/highlight/'.$id.'/'.$slug)}}">Overview</a></li>
+                <li><a class=""  href="{{url('product/highlight/'.$id.'/'.$slug)}}">Overview</a></li>
                 
             </ul>
         </div>

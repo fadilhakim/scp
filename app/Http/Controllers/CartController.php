@@ -171,7 +171,7 @@ class CartController extends Controller
             }
 
             // final_total
-            session(["final_total"=>Cart::subtotal()]);
+            session(["final_total"=>Cart::total()]);
 
             echo "<div class='alert alert-success'> You sucessfully updated cart </div>";
             echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";

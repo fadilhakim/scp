@@ -183,7 +183,62 @@
                     </div>
                 </div>
             </div>
-                        
+            <style>
+                .opt  {
+                    width:100%;
+                    background-color:rgba(255,255,255,0.8);
+                    margin-top:-1px;
+                    padding-top:5px;
+                    padding-bottom:5px;
+                    text-align:right;
+                    padding-right:50px;
+                    height:40px;
+                }
+                
+                .opt>a  {
+                    color: #000;
+                    display:inline-block;
+                    padding: 5px 20px 7px 20px;
+                    border-radius: 16px;
+                    -webkit-border-radius: 16px;
+                    font-size: 14px;
+                    font-weight:500;
+
+                }
+
+
+                .opt .actived {
+                    background-color: #b8cd06 !important;
+                    -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,.1);
+                    box-shadow: 1px 1px 2px rgba(0,0,0,.1);
+                    color: #fff;
+                    display:block;
+                    padding: 5px 20px 7px 20px;
+                    border-radius: 16px;
+                    -webkit-border-radius: 16px;
+                    margin-top: -20px;
+                    font-size: 14px;
+                }
+            </style>
+            <?php 
+          
+                $route = Request::segment(2);
+                $id = Request::segment(3);
+                $opt = '' ;
+                if($route == 'detail'){
+                    $opt = 'actived' ;
+                }
+                if($route == 'highlight') {
+                $product = App\Models\Product::detail_product($id);
+                $category = $product->product_category;
+                $slug = str_slug($product->product_title, '-');
+            ?>
+            
+            <div class="opt header-bottom">
+                <a class="{{$opt}}" href="{{url('product/detail/'.$product->product_id.'/'.$category.'/'.$slug)}}">Specs</a>
+                <a class="" target="_blank" href="">Overview</a>
+            </div>
+            <?php } ?>           
         </header>
 
         <div class="header-empty-space"></div>

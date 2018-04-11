@@ -201,7 +201,7 @@
                         Order Total
                     </div>
                     <div class="col-xs-6 col-xs-text-right">
-                        <div class="color">Rp. <?=session("final_total")//Cart::total()?></div>
+                        <div class="color">Rp. <?=number_format(session("final_total"))//Cart::total()?></div>
                     </div>
                 </div>
             </div>

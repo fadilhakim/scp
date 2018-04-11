@@ -4,6 +4,28 @@
 		$objProduct = new App\Models\Product();
 		$objUser 	  = "";
 	?>
+	<script>
+		function after_snap_midtrans(response_text)
+		{
+
+			var _token = $('meta[name="csrf-token"]').attr('content');
+
+			$.ajax({
+				type:"POST",
+				url:"<?=url("midtrans/snap/finish")?>",
+				dataType:"json",
+				data:"response_text="+response_text+"&_token="+_token,
+				success:function(data)
+				{
+					alert(data.response);
+					alert(data.redirect);
+					//$("#result-json").html(data.redirect);
+					
+				}
+			})
+			
+		}
+	</script>
 	<div class="container">
 		<div class="empty-space col-xs-b15 col-sm-b30"></div>
 		<div class="row">
@@ -121,15 +143,21 @@
 								snap.pay('<?=$snap_token?>', {
 								// Optional
 								onSuccess: function(result){
-									/* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+									/* You may add your own js here, this is just example */ 
+									after_snap_midtrans("onprocess");
+									// document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
 								},
 								// Optional
 								onPending: function(result){
-									/* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+									/* You may add your own js here, this is just example */ 
+									// document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
 								},
 								// Optional
 								onError: function(result){
-									/* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+
+									alert("Midtrans Error , Try Again Later")
+									/* You may add your own js here, this is just example */ 
+									// document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
 								}
 								});
 							};
