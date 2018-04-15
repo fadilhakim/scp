@@ -20,6 +20,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get("/admin/slider","Admin\SliderController@index");
     // pages
     Route::get("/admin/about","Admin\PagesController@about");
+    Route::post('/admin/about/update', 'Admin\PagesController@about_update');
 
     //order
     Route::get("/admin/order","Admin\OrderController@index");

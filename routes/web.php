@@ -22,11 +22,9 @@ Route::get('/home2', function () {
     return view('home2');
 
 });
-Route::get('/about', function () {
+Route::get('/about', 'PagesController@about');
 
-    return view('about');
 
-});
 Route::get('/product', 'ProductController@index');
 Route::get('/product/category/{category}', 'ProductController@getCategory');
 Route::get('/product/detail/{id}/{product_category}/{product_title}', 'ProductController@detail');

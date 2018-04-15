@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Member;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\AddressBook;
 use Auth;
 
 use App\Libraries\Midtrans\Veritrans\Veritrans_config;
@@ -21,6 +22,7 @@ class MemberController extends Controller
     {
         $this->objOrder = new Order();
         $this->objProduct = new Product();
+        $this->objAddress = new AddressBook();
     }
 
     function index()
@@ -35,7 +37,16 @@ class MemberController extends Controller
 
     function account()
     {
+        $session =  Auth::guard("user")->user();
+        if(!empty($session))
+        {
+            $name_session = $session->name;
+            $userId = $session->id;
+        }
+
         $data["title"]   = "Account";
+        $data['user_id'] = "";
+        $data["address"] = $this->objAddress->get_address_by_user_id($userId);
         return view('members/account',$data);
     }
      

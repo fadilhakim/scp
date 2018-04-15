@@ -7,12 +7,23 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form-address-book-add">
+            <form id="form-address-book-add" method="post" action="{{ url('account/address_book/add_process') }}">
                
                 <div class="modal-body">
-
+                    <?php
+                        $session =  Auth::guard("user")->user();
+                        if(!empty($session))
+                        {
+                            $name_session = $session->name;
+                            $userId = $session->id; 
+                        }
+                    ?>
                     <div id="ab-temp"></div>
-                    <input type="hidden" name="user_id" value="">
+                    <input type="hidden" name="user_id" value="<?php echo  $userId ?>">
+                    <div class="form-group">
+                        <label> Address Name </label>
+                        <input type="text" name="address_name" id="contact_person" class="form-control">
+                    </div>
                     <div class="form-group">
                         <label> Contact Person </label>
                         <input type="text" name="contact_person" id="contact_person" class="form-control">
@@ -27,12 +38,14 @@
                             <label> Province </label>
                             <select name="provinsi" class="form-control">
                                 <option> -- select province -- </option>
+                                <option value="1" selected>Sumbar</option>
                             </select>
                         </div>
                         <div class="col-md-6 form-group">
                             <label> Kecamatan </label>
                             <select name="kecamatan" class="form-control">
                                 <option> -- select kecamatan --</option>
+                                <option value="tanah datar" selected>Tanah Datar</option>
                             </select> 
                         </div>
                     </div>
@@ -41,7 +54,8 @@
                         <div class="col-md-6 form-group">
                             <label> City </label>
                             <select name="kota" class="form-control">
-                                <option> -- Select City --</option>
+                                <option> -- Select City --</option>""
+                                <option value="1" selected>Padang</option>
                             </select>
                         </div>
                         <div class="col-md-6 form-group"> 
@@ -77,17 +91,26 @@
 </script>
 
 <script> 
-    $("#form-address-book-add").submit(function(){
+    $("form#form-address-book-add").submit(function(e){
+
+         var formData = new FormData($(this)[0]);
+        //formData.append("_token","{{ csrf_token() }}");
+        //alert($("#_token").val() +" = "+formData.get("_token"));
+
         $.ajax({
-            type:"POST",
+            type:"post",
             url:"{{ url('account/address_book/add_process') }}",
-            data:$(this).serialize(),
+            //data:$(this).serialize(),
+            data:formData,
+            cache: false,
+            processData: false,
+            contentType	: false,
             success:function(data)
             {
                 $("#ab-temp").html(data);
-            }
-        });
+            },
 
+        });
         return false;
     });
 
