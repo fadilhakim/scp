@@ -142,11 +142,11 @@ class LoginController extends Controller
         return redirect('/');
     }
     protected function activate($id){
-        $user = Sentinel::findById($id);
+        /*$user = Sentinel::findById($id);
 
         $activation = Activation::create($user);
-        $activation = Activation::complete($user, $activation->code);
-        Session::flash('message', trans('messages.activation'));
+        $activation = Activation::complete($user, $activation->code);*/
+        //Session::flash('message', trans('messages.activation'));
         Session::flash('status', 'success');
         return redirect('login');
     }
