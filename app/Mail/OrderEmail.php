@@ -29,13 +29,13 @@ class OrderEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('alhusna901@gmail.com')
-                    ->view('mails.invoice-fancy-page-inline')
+        return $this->from('devhouseid99@gmail.com')
+                    ->view('mails.invoice-fancy-page-inline');
                     //->text('mails.demo_plain')
-                    ->with(
+                    /* ->with(
                       [
                             'testVarOne' => '1',
                             'testVarTwo' => '2',
-                      ]);
+                      ]);*/
     }
 }

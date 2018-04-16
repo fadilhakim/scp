@@ -1,18 +1,13 @@
 <?php
 
   $due_intr = "24 hours";
-
   $create_date= date("d M, Y");
-
   $effectiveDate = strtotime("+".$due_intr, strtotime($create_date));
-
   $due_date = date("d M, Y",$effectiveDate);
 
   //$detail_user = $this->model_user->get_user_detail($user_sess["user_id"]);
 
 ?>
-
-
 
 <!DOCTYPE html>
 
@@ -28,11 +23,7 @@
     <header class="clearfix" style="padding-top:10px;padding-bottom:10px;padding-right:0;padding-left:0;margin-bottom:20px;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#AAAAAA;font-size:14px;" >
 
       <div id="logo" style="float:left;width:45%;margin-top:8px;" >
-
         <h1>Your Logo</h1>
-
-        
-
       </div>
 
       <div id="company" style="float:right;width:55%;text-align:right;" >
