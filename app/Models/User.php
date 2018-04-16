@@ -40,6 +40,22 @@ class User extends Authenticatable
         return DB::table("users")->where("id",$user_id)->first();
     }
 
+    static function detail_user_email($email)
+    {
+        return DB::table("users")->where("email",$email)->first();
+    }
+
+    function check_activation($email,$activation)
+    {
+        // $str = "SELECT * FROM users WHERE email = '$email' AND activation = '$activation' ";
+        return $q = DB::table("users")->where("email",$email)->where("activation",$activation)->first();
+    }
+
+    function activate($email)
+    {
+        return DB::table("users")->where("email",$email)->update(["activation"=>"ACTIVE"]);
+    }
+
     function register_user($arr)
     {
         return DB::table("users")->insert([
@@ -51,6 +67,8 @@ class User extends Authenticatable
             "no_telp"   =>$arr["no_telp"],
             "remember_token"=>$arr["remember_token"],
             "role"      =>$arr["role"],
+            "birthday"  =>$arr["birthday"],
+            "activation"=>$arr["activation"],
             "status"    =>$arr["status"],
             "created_at"=>$arr["created_at"],
             "ip_address"=>$arr["ip_address"],

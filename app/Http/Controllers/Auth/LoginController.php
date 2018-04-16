@@ -52,7 +52,6 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         //echo "<h1>  Login Page </h1> <hr>";
-        
     }
 
     function login_form()
@@ -67,6 +66,7 @@ class LoginController extends Controller
 
     public function login_process(Request $request)
     {
+        $objUser  = new User();
         $email    = $request->input("email");
         $password = $request->input("password");
 
@@ -79,7 +79,7 @@ class LoginController extends Controller
             return Redirect::back()->withErrors($validation)->withInput();
         }
 
-        if (Auth::guard('user')->attempt(['email' => $email, 'password' => $password]))
+        if (Auth::guard('user')->attempt(['email' => $email, 'password' => $password,"activation"=>"ACTIVE"]))
         {
            //dd("bisa gak sih ?");
             $user = Auth::guard('user')->user();// define session
@@ -87,22 +87,28 @@ class LoginController extends Controller
             return redirect('/');
             //header("location:".base_url(""));
         }else{
-            $request->session()->flash('message', "<div class='alert alert-danger'> Username or Password are invalid </div> ");
+
+            $check_user = $objUser->detail_user_email();
+
+            if($check_user["activation"] != "ACTIVE")
+            {
+                $request->session()->flash('message', "<div class='alert alert-danger'> Your Account is not Activated yet. 
+                Please Activate your account with click activation button that we already sent to your email </div> ");   
+            }
+            else
+            {
+                $request->session()->flash('message', "<div class='alert alert-danger'> Username or Password are invalid </div> ");
+            }
+
             return redirect('login');
             //header("location:".url("login"));
           
         }
-
-
-        
     }
 
     protected function login(Request $request)
     {
-
-
         try {
-
             // Validation
             $validation = Validator::make($request->all(), [
                 'email' => 'required|email',
@@ -114,9 +120,7 @@ class LoginController extends Controller
             }
             $remember = (Input::get('remember') == 'on') ? true : false;
             if ($user = Sentinel::authenticate($request->all(), $remember)) {
-                
-                   return redirect('dashboard'); 
-                
+                return redirect('dashboard');
             }
 
             return Redirect::back()->withErrors(['global' => 'Invalid password or this user does not exist' ]);

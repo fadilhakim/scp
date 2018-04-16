@@ -97,6 +97,7 @@ class RegisterController extends Controller
             $arr["username"]   = $username;
             $arr["password"]   = $password;
             $arr["activation"] = $activation;
+            $arr["birthday"]   = "1000-01-01";
             $arr["no_telp"]    = "";
             $arr["remember_token"] = Str::random(60);
             $arr["role"]       = "customer";
@@ -111,8 +112,9 @@ class RegisterController extends Controller
             // $objDemo->receiver   = 'Demo Two Value';
             $objEmail->activation_code = $activation;
             $objEmail->name            = $name;
+            $objEmail->url             = url("auth/activated/?a=$activation&e=$email");
 
-            Mail::to("alhusna901@gmail.com")->send(new ActivationEmail($objEmail));
+            Mail::to($email)->send(new ActivationEmail($objEmail));
 
             echo Alert::success("You successfully Register");
             echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
