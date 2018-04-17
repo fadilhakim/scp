@@ -10,8 +10,9 @@
         </div>
 
         <div class="panel-body">
-            <p><strong><?=$user->name?>Your Shipping Address :</strong></p>
-            <p></p>
+            <p><strong>Name :</strong><br><?=$user->name?></p>
+            <p><strong>Email :</strong><br><?=$user->email?></p>
+            <p><strong>Phone :</strong><br><?=$user->no_telp?></p>
         </div>
 
         <div class="panel-footer clearfix">
