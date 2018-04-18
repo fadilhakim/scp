@@ -47,7 +47,7 @@
                             <i class="ti-angle-down"></i>
                         </a>
                         <ul class="show-notification profile-notification">
-                            <li>
+                            <!-- <li>
                                 <a href="#!">
                                     <i class="ti-settings"></i> Settings
                                 </a>
@@ -57,7 +57,7 @@
                                     <i class="ti-user"></i> Profile
                                 </a>
                             </li>
-                            
+                             -->
                             <li>
                                 <a href="<?=url("admin/logout")?>">
                                     <i class="ti-layout-sidebar-left"></i> Logout

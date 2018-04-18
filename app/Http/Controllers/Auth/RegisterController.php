@@ -7,13 +7,18 @@ use App\Http\Controllers\Controller;
 use App\Libraries\Alert;
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+
+use App\Mail\ActivationEmail;
+use Illuminate\Support\Facades\Mail;
 
 use Redirect;
 use Sentinel;
 use Session;
 use Activation;
+
 
 class RegisterController extends Controller
 {
@@ -57,11 +62,13 @@ class RegisterController extends Controller
      */
     public function register_process(Request $request)
     {
+        $objEmail = new \stdClass();
         //dd($request->all());
         $name               = $request->input("name");
         $email              = $request->input("email");
         $username           = strstr($email, '@', true);
         $password           = bcrypt($request->input("password"));
+        $activation         = md5($email);
         $datetime           = date("Y-m-d H:i:s");
         $ip_address         = $request->ip();
         $user_agent         = $request->header('User-Agent');
@@ -89,16 +96,25 @@ class RegisterController extends Controller
             $arr["email"]      = $email;
             $arr["username"]   = $username;
             $arr["password"]   = $password;
+            $arr["activation"] = $activation;
+            $arr["birthday"]   = "1000-01-01";
             $arr["no_telp"]    = "";
-            $arr["remember_token"] = "";
+            $arr["remember_token"] = Str::random(60);
             $arr["role"]       = "customer";
             $arr["status"]     = "regular";
             $arr["created_at"] = $datetime;
             $arr["ip_address"] = $ip_address;
             $arr["user_agent"] = $user_agent;
-    
 
             $this->objUser->register_user($arr);
+            
+            // $objDemo->sender     = 'Demo One Value';
+            // $objDemo->receiver   = 'Demo Two Value';
+            $objEmail->activation_code = $activation;
+            $objEmail->name            = $name;
+            $objEmail->url             = url("auth/activated/?a=$activation&e=$email");
+
+            Mail::to($email)->send(new ActivationEmail($objEmail));
 
             echo Alert::success("You successfully Register");
             echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";

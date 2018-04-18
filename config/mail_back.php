@@ -1,20 +1,5 @@
 <?php
 
-/* return array(
-  "driver" => "smtp",
-  "host" => "smtp.mailtrap.io",
-  "port" => 2525,
-  "from" => array(
-      "address" => "noreply@yifang.id",
-      "name" => "NoReply"
-  ),
-  "username" => "c59a0546d37eda",
-  "password" => "1763f220f73b4f",
-  "sendmail" => "/usr/sbin/sendmail -bs",
-  "pretend" => false
-);*/
-
-
 return [
 
     /*
@@ -44,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 2525),
+    'port' => env('MAIL_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -71,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'noreply@yifang.id'),
-        'name' => env('MAIL_FROM_NAME', 'noreply'),
+        'address' => env('MAIL_FROM_ADDRESS', 'alhusna901@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
     /*
@@ -99,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME','c59a0546d37eda'),
+    'username' => env('MAIL_USERNAME'),
 
-    'password' => env('MAIL_PASSWORD','1763f220f73b4f'),
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------

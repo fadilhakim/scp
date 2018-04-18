@@ -56,10 +56,13 @@
         <?php 
           
             $route = Request::segment(2);
+
             $opt = '' ;
             if($route == 'detail'){
                 $opt = 'actived' ;
             }
+        ?>
+        <?php if(count($ringkasan_product)!== 0) {   
         ?>
         <div class="col-md-3 text-right">
             <ul class="opt">
@@ -68,6 +71,7 @@
                 
             </ul>
         </div>
+        <?php } ?>
     </div>
     
     <div class="empty-space col-xs-b15 col-sm-b30"></div>
@@ -130,9 +134,6 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="simple-article size-3 col-xs-b5">ITEM NO.: <span class="grey">127-#5238</span></div>
-                        </div>
-                        <div class="col-sm-6 col-sm-text-right">
                             <div class="simple-article size-3 col-xs-b20">AVAILABLE.: <span class="grey">{{$product_availability}}</span></div>
                         </div>
                     </div>
@@ -163,16 +164,49 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3">
-                            <div class="h6 detail-data-title size-2">share:</div>
+                        <div class="col-sm-9">
+                            <div class="h6 detail-data-title size-2">Find This Product In :</div>
                         </div>
                         <div class="col-sm-9">
+                            <style>
+                                .market {
+                                    height:35px; width:35px;
+                                    border-radius:35px;
+                                    display:inline-block;
+                                    margin-right:15px;
+                                    margin-top:15px;
+                                }
+                                .lazada {
+                                    background-image : url("{{URL::asset('/public/market_logo/lazada.png')}}")
+                                }
+
+                                .tokopedia {
+                                    background-image : url("{{URL::asset('/public/market_logo/tokopedia.png')}}")
+                                }
+                                .jdid {
+                                    background-image : url("{{URL::asset('/public/market_logo/jd_id.png')}}")
+                                }
+                                .blibli{
+                                    background-image : url("{{URL::asset('/public/market_logo/blibli.png')}}")
+                                }
+                                .bukalapak{
+                                    background-image : url("{{URL::asset('/public/market_logo/bukalapak.png')}}")
+                                }
+                                .shopee{
+                                    background-image : url("{{URL::asset('/public/market_logo/shopee.png')}}")
+                                }
+                            </style>
                             <div class="follow light">
-                                <a class="entry" href="#"><i class="fa fa-facebook"></i></a>
-                                <a class="entry" href="#"><i class="fa fa-twitter"></i></a>
-                                <a class="entry" href="#"><i class="fa fa-linkedin"></i></a>
-                                <a class="entry" href="#"><i class="fa fa-google-plus"></i></a>
-                                <a class="entry" href="#"><i class="fa fa-pinterest-p"></i></a>
+                                <?php foreach($market as $rowMarket) { ?>
+
+                                     <?php 
+                                        $getMarketName =  App\Models\MarketPlace::all_MarketPlace_by_market_id($rowMarket->market_id) ;     
+                                        $title = str_slug($getMarketName->market_name,"");
+                                     ?>
+                                       
+                                        <a class="market <?php echo $title; ?>" href="<?php echo $rowMarket->product_link ?>" title="<?php echo $title; ?>"> </a>
+                               
+                                <?php }  ?>
                             </div>
                         </div>
                     </div>

@@ -149,7 +149,7 @@
                                                     <a class="button size-2 style-2" href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slugProd}")?>">
                                                         <span class="button-wrapper">
                                                             <span class="icon"><img src="{{URL::asset('public/img/icon-1.png')}}" alt=""></span>
-                                                            <span class="text">Learn More</span>
+                                                            <span class="text">See Detail</span>
                                                         </span>
                                                     </a>
                                                     <a class="button size-2 style-3" href="<?=url("cart/add/$prodId/$slugProd")?>">
@@ -166,11 +166,11 @@
                                         </div>
                                         <div class="description">
                                             <div class="simple-article text size-2"><?php echo $rowProduct->product_description ?></div>
-                                            <div class="icons">
+                                            <!-- <div class="icons">
                                                 <a class="entry"><i class="fa fa-check" aria-hidden="true"></i></a>
                                                 <a class="entry open-popup" data-rel="3"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                 <a class="entry"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>  
                                 </div>

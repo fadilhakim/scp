@@ -7,19 +7,19 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class OrderEmail extends Mailable
+class ActivationEmail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $order;
+    public $activate;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($order)
+    public function __construct($activate)
     {
         //
-        $this->order = $order;
+        $this->activate = $activate;
     }
 
     /**
@@ -30,9 +30,10 @@ class OrderEmail extends Mailable
     public function build()
     {
         return $this->from('devhouseid99@gmail.com')
-                    ->view('mails.invoice-fancy-page-inline');
+                    ->subject("Activativate this please")
+                    ->view('mails.activation');
                     //->text('mails.demo_plain')
-                    /* ->with(
+                    /*->with(
                       [
                             'testVarOne' => '1',
                             'testVarTwo' => '2',

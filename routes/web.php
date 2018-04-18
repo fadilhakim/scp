@@ -28,7 +28,10 @@ Route::get('/about', 'PagesController@about');
 Route::get('/product', 'ProductController@index');
 Route::get('/product/category/{category}', 'ProductController@getCategory');
 Route::get('/product/detail/{id}/{product_category}/{product_title}', 'ProductController@detail');
-Route::get('/product/highlight/{id}/{product_title}', 'ProductController@product_highlight');
+
+//product highlight // ringkasan product
+
+Route::get('/product/highlight/{id}/{product_title}', 'RingkasanProductController@index');
 
 Route::get('/services', function () {
     return view('services');
@@ -52,6 +55,7 @@ Route::get('auth/request', [
 ]);
 Route::post("auth/login_process","Auth\LoginController@login_process");
 Route::post("auth/register_process","Auth\RegisterController@register_process");
+Route::get("auth/activated","Auth\ActivateController@activation_process");
 Route::get('/user_form_checkout', 'OrderController@user_form_checkout');
 
 Route::get('cart',"CartController@index"); 

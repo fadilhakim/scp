@@ -75,8 +75,7 @@
 <script>
 	$("#form-register").submit(function(e){
 		
-		e.preventDefault();
-		
+		//e.preventDefault();
 		$.ajax({
 				
 			type:"POST",

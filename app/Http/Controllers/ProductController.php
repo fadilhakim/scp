@@ -7,16 +7,21 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\MarketPlace;
+use App\Models\RingkasanProduct;
 
 use App\Libraries\Alert;
 
 class ProductController extends Controller
 {
     private $objProduct;
+    private $objMarket;
+
 
     function __construct()
     {
         $this->objProduct = new Product();
+        $this->objMarket = new MarketPlace();
     }
     //
     function index()
@@ -36,6 +41,8 @@ class ProductController extends Controller
         $data["image"] = Product::find_product_img($id);
         $data["category"] = Product::get_product_category($category);
         $data["mini_slide"] = Product::get_mini_slide($id);
+        $data["market"] = MarketPlace::get_market_by_id_product($id);
+        $data['ringkasan_product'] = RingkasanProduct::all_RingkasanProduct_by_product_id($id);
         $data["title"] = "Our Product";
         $data["content"] = "Product";
         return view("product_detail",$data);

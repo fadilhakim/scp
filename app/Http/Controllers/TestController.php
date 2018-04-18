@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Libraries\Autoload;
 
 use App\Mail\DemoEmail;
+use App\Mail\ActivationEmail;
 use Illuminate\Support\Facades\Mail;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -62,13 +63,21 @@ class TestController extends Controller
 
     function send_email()
     {
-        $objDemo = new \stdClass();
+       /*  $objDemo = new \stdClass();
         $objDemo->demo_one = 'Demo One Value';
         $objDemo->demo_two = 'Demo Two Value';
         $objDemo->sender   = 'SenderUserName';
         $objDemo->receiver = 'ReceiverUserName';
  
-        Mail::to("receiver@example.com")->send(new DemoEmail($objDemo));
+        Mail::to("alhusna901@gmail.com")->send(new DemoEmail($objDemo));*/
+
+        $objDemo = new \stdClass();
+        $objDemo->name = 'Aries Dimas Yudhistira';
+
+        return view("mails.activation")->with(['activate'=>$objDemo]);
+
+        //Mail::to("alhusna901@gmail.com")->send(new ActivationEmail($objDemo));
+        //return "success";
     }
 
     function dimas()

@@ -33,6 +33,8 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get("/admin/product/update/images/{id}","Admin\ProductController@detail_images");
     Route::get("/admin/product/category","Admin\CategoryController@index");
     Route::get("/admin/product/brand","Admin\BrandController@index");
+  
+
     Route::post("/admin/product/subcategory","Admin\CategoryController@subcategory");
     Route::post("/admin/product/insert","Admin\ProductController@modal_product_insert");
     Route::post("/admin/product/update","Admin\ProductController@modal_product_update");
@@ -58,7 +60,11 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post("/admin/product/brand/delete_process","Admin\BrandController@delete_brand_process");
     Route::post("/admin/product/subcategory/insert_process","Admin\CategoryController@insert_subcategory_process");
     Route::post("/admin/product/subcategory/delete_process","Admin\CategoryController@delete_subcategory_process");
-
+    
+    //product overview 
+    Route::get("/admin/product/product_overview/{id}","Admin\ProductController@ringkasan_product");
+    
+    
     //Bank
     Route::get("/admin/bank_account","Admin\BankController@index");
 
@@ -70,7 +76,15 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post("/admin/bank/update_process","Admin\BankController@bank_update_process");
     Route::post("/admin/bank/delete_process","Admin\BankController@bank_delete_process");
 
-     //Voucher
+    //Product MarketPlace
+    Route::get("/admin/marketplace","Admin\MarketPlaceController@index");
+    Route::post("/admin/marketplace/insert","Admin\MarketPlaceController@modal_MarketPlace_insert");
+    Route::post("/admin/marketplace/delete","Admin\MarketPlaceController@modal_MarketPlace_delete");
+
+    Route::post("/admin/marketplace/insert_process","Admin\MarketPlaceController@MarketPlace_insert_process");
+    Route::post("/admin/marketplace/delete_process","Admin\MarketPlaceController@MarketPlace_delete_process");
+
+    //Voucher
      Route::get("/admin/voucher","Admin\VoucherController@index");
 
      Route::post("/admin/voucher/insert","Admin\VoucherController@modal_voucher_insert");

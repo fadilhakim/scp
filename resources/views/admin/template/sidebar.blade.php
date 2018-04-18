@@ -37,6 +37,7 @@
             $active_order = "";
             $active_voucher = "";
             $active_midtrans = "";
+            $active_market_place = "";
 
             if($route == 'about'){
                 $active_about = 'active pcoded-trigger' ;
@@ -56,6 +57,9 @@
             }
             else if($route == 'dashboard'){
                 $active_dashboard = 'active pcoded-trigger' ;
+            }
+            else if($route == 'marketplace'){
+                $active_market_place = 'active pcoded-trigger' ;
             }
             else{
                 $active_home = 'active pcoded-trigger';
@@ -103,6 +107,16 @@
                    
                 </ul>
             </li>
+            
+            
+            <li class="{{ $active_market_place }}">
+                <a href="<?=url("admin/marketplace")?>">
+                    <span class="pcoded-micon"><i class="ti-shopping-cart-full"></i></span>
+                    <span class="pcoded-mtext">Market Place</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+
             <li class="{{ $active_users }}">
                 <a href="<?=url("admin/users")?>">
                     <span class="pcoded-micon"><i class="ti-user"></i></span>

@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Brand;
+use App\Models\RingkasanProduct;
 
 use App\Libraries\Alert;
 use App\Libraries\FolderHelper;
@@ -23,6 +24,7 @@ class ProductController extends Controller
     {
         $this->objProduct = new Product();
         $this->objBrand = new Brand();
+   
     }
     //
     function index()
@@ -462,5 +464,15 @@ class ProductController extends Controller
         echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
     }
 
+
+    //ringkasan product
+
+    function ringkasan_product($id)
+    {
+        $data["title"] = "Product Overview";
+        $data["content"] = "admin/product/product_overview";
+        $data["product_overview"] = RingkasanProduct::all_RingkasanProduct_by_product_id($id);
+        return view("admin/index",$data);
+    }
 
 }
