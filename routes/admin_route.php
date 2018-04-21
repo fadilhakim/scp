@@ -15,6 +15,13 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get("/admin/logout","Admin\AuthController@logout");
 
     // Admin
+    Route::get("/admin/admin_list","Admin\AdminController@index");
+    Route::post("/admin/admin_list/insert","Admin\AdminController@insert_modal");
+
+    // Role
+    Route::get("/admin/role","Admin\RoleController@index");
+
+    // Customer
     Route::get("/admin/users","Admin\UsersController@index");
 
     Route::get("/admin/slider","Admin\SliderController@index");

@@ -30,6 +30,8 @@
             $active_about_us = '' ;
             $active_home = '' ;
             $active_dashboard = '' ;
+            $active_admin = "";
+            $active_role  = "";
             $active_users = '' ;
             $active_contact = '' ;
             $active_product = '' ;
@@ -40,15 +42,34 @@
             $active_market_place = "";
 
             if($route == 'about'){
+
                 $active_about = 'active pcoded-trigger' ;
+
+            }
+            else if($route == 'admin'){
+
+                $active_admin = 'active pcoded-trigger' ;
+                
+            }
+            else if($route == 'role'){
+
+                $active_role = 'active pcoded-trigger' ;
+                
             }
             else if($route == 'product'){
+
                 $active_product = 'active pcoded-trigger' ;
+
             }else if($route == 'bank_account'){
+
                 $active_bank = 'active pcoded-trigger' ;
+
             }else if($route == 'users'){
+
                 $active_users = 'active pcoded-trigger' ;
+
             }else if($route == 'contact'){
+
                 $active_contact = 'active' ;
             }
             else if($route == 'midtrans'){
@@ -56,6 +77,7 @@
                 $active_midtrans = 'active' ;
             }
             else if($route == 'dashboard'){
+
                 $active_dashboard = 'active pcoded-trigger' ;
             }
             else if($route == 'marketplace'){
@@ -75,6 +97,21 @@
                 </a>
             </li>
 
+            <li class="{{ $active_admin }}">
+                <a href="<?=url("admin/admin_list")?>">
+                    <span class="pcoded-micon"><i class="ti-admin"></i></span>
+                    <span class="pcoded-mtext">Admin</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            
+            <li class="{{ $active_role }}">
+                <a href="<?=url("admin/role")?>">
+                    <span class="pcoded-micon"><i class="ti-role"></i></span>
+                    <span class="pcoded-mtext">Role</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
             
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
