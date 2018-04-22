@@ -25,8 +25,37 @@ class Role extends Model
         return DB::table("role_tbl")->get();
     }
 
+    function get_all_menu()
+    {
+        return array(
+            "admin","role","marketplace","customer",
+            "order","voucher","midtrans","bank","slider"
+        );
+    }
+
+    function get_role_except()
+    {
+        return DB::table("role_tbl")->where("role_id","<>",1)->get();
+    }
+
     function detail_role($role_id)
     {
         return DB::table("role_tbl")->where("role_id",$role_id)->first();
+    }
+
+    function insert_role($arr)
+    {
+        return DB::table("role_tbl")->insert([
+            "role_name"=>$arr["role_name"],
+            "privilege"=>$arr["privilege"]
+        ]); 
+    }
+
+    function update_role($arr)
+    {
+        return DB::table("role_tbl")->where("role_id",$arr["role_id"])->update([
+            "role_name"=>$arr["role_name"],
+            "privilege"=>$arr["privilege"]
+        ]); 
     }
 }

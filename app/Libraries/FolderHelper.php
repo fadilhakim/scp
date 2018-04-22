@@ -16,6 +16,14 @@
             }
         }
 
+        static function create_folder_admin()
+        {
+            if(!is_dir("public/admin"))
+            {
+                mkdir("public/admin",0777);
+            }
+        }
+
         static function change_folder_product()
         {
 

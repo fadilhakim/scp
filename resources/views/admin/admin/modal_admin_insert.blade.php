@@ -18,7 +18,16 @@
                 </div>
                 <div class="form-group">
                     <label> Email </label>
-                    <input name="name" class="form-control" placeholder="email" type="email">
+                    <input name="email" class="form-control" placeholder="email" type="email">
+                </div>
+                <div class="form-group">
+                    <label> Role </label>
+                   <select name="role_id" class="form-control">
+                        <option value="">-- select role --</option>
+                        <?php foreach($role as $row){ ?>
+                            <option value="<?=$row->role_id?>"><?=$row->role_name?></option>
+                        <?php } ?>
+                   </select>
                 </div>
                 <label>Photo</label>
                     <span class="clearfix"></span>
@@ -27,8 +36,6 @@
                         <input type="file" data-placeholder="" name="admin_photo" data-size="sm" class="filestyle" data-text="Upload" data-btnClass="btn-primary">
                     </div>
                 </div>
-
-              
 
                 <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
             </div>
@@ -56,7 +63,7 @@
 
         $.ajax({
             type:"post",
-            url:"{{ url('admin/admin/insert_process') }}",
+            url:"{{ url('admin/admin_list/insert_process') }}",
             //data:$(this).serialize(),
             data:formData,
             cache: false,

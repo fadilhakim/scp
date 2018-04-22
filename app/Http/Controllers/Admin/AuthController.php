@@ -15,7 +15,6 @@ use App\User;
 class AuthController extends Controller
 {
     use AuthenticatesUsers;
-    
     public function __construct()
     {
        
@@ -53,9 +52,30 @@ class AuthController extends Controller
            
             return redirect("admin/login");         
         }
+    }
 
-      
+    function activation()
+    {
+        $adminObj = new Admin();
+        
+        $activation = $request->input("a");
+        $email      = $request->input("e");
 
+        $check_activation = $this->adminObj->check_activation($email,$activation);
+
+        // check activation code
+        if(!empty($check_activation))
+        {
+            // activate 
+            $request->session()->flash('message', "<div class='alert alert-success'> 
+                <b> Your Account is Activated <b><br>
+                Congratulation ! , you already activated your account. now , please login
+                to access Admin Dashboard
+            </div>");
+            $this->adminObj->activate($email);
+        }
+        
+        return redirect('admin/login');
     }
 
     function session()

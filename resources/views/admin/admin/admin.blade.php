@@ -59,10 +59,19 @@
                                         <?=$role_detail->role_name?>
                                     </td>
                                     <td>
-                                       
+                                       <?php
+                                            if($row->status != "ACTIVE")
+                                            {
+                                                $row->status = "NOT ACTIVE";
+                                            }
+                                            echo $row->status;
+                                       ?>
                                     </td>
                                     <td>
-
+                                        <?php if($row->admin_id != 1){ ?>
+                                        <button id="edit-profile" class="btn btn-primary btn-sm"> Edit </button>
+                                        <button id="delete-profile" class="btn btn-danger btn-sm"> Delete </button>
+                                        <?php } ?>
                                     </td>
                                 </tr>
 
