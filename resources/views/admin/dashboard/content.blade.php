@@ -85,7 +85,9 @@
 
         <div class="col-lg-12">
             <div class="row">
-            <?php foreach($order as $orderRow){ ?>
+            <?php 
+            if(!empty($order)){
+                foreach($order as $orderRow){ ?>
                 <div class="col-lg-4">
                     
                     <div class="card card-border-primary">
@@ -93,7 +95,8 @@
                             <h5><?php echo $orderRow->order_code ?></h5>
                             <!-- <span class="label label-default f-right"> 28 January, 2015 </span> -->
                             <div class="f-right">
-                                <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light" type="button" id="dropdown6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $orderRow->status ?></button>
+                                <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light" type="button" id="dropdown6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php echo $orderRow->status ?></button>
                                 <!-- end of dropdown menu -->
                                 <span class="f-left m-r-5 text-inverse">Status : </span>
                             </div>
@@ -128,7 +131,8 @@
                     </div>
                     
                 </div>
-            <?php } ?>
+            <?php } 
+            }?>
             </div>
         </div>
     </div>

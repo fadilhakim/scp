@@ -13,8 +13,21 @@ Route::group(['middleware' => ['admin']], function () {
    
     // Auth
     Route::get("/admin/logout","Admin\AuthController@logout");
+    Route::get("/admin/activation","Admin\AuthController@activation");
 
     // Admin
+    Route::get("/admin/admin_list","Admin\AdminController@index");
+    Route::post("/admin/admin_list/insert","Admin\AdminController@insert_modal");
+    Route::post("/admin/admin_list/insert_process","Admin\AdminController@insert_process");
+    
+    // Role
+    Route::get("/admin/role","Admin\RoleController@index");
+    Route::post("/admin/role/insert","Admin\RoleController@insert_modal");
+    Route::post("/admin/role/update","Admin\RoleController@update_modal");
+    Route::post("/admin/role/insert_process","Admin\RoleController@insert_process");
+    Route::post("/admin/role/update_process","Admin\RoleController@update_process");
+
+    // Customer
     Route::get("/admin/users","Admin\UsersController@index");
 
     Route::get("/admin/slider","Admin\SliderController@index");

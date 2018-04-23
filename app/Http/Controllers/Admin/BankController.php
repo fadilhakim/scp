@@ -38,111 +38,55 @@ class BankController extends Controller
 
     }
 
-
-
     function modal_bank_insert()
-
     {
 
         return view("admin/bank/modal_bank_insert");
 
     }
 
-
-
     function bank_insert_process(Request $request)
-
     {
-
         // dd($request->file('bank_logo')->getClientOriginalName());
-
         $bank_name          = $request->input("bank_name");
-
         $bank_logo          = $request->file('bank_logo');
-
         $bank_acc_no        = $request->input("bank_acc_no"); 
-
         $bank_owner         = $request->input("bank_owner");
-
-        $new_image_name = str_replace(" ","-",strtolower($bank_logo->getClientOriginalName()));
-
-
+        $new_image_name     = str_replace(" ","-",strtolower($bank_logo->getClientOriginalName()));
 
         $validator = Validator::make($request->all(), [
-
             'bank_name'             => 'required|unique:bank_tbl|max:255',
-
             'bank_logo'             => 'required',
-
             'bank_acc_no'           => 'required',
-
             "bank_owner"            => "required",
-
         ]);
 
-
-
         if(!$validator->fails())
-
         {
-
             $arr = array(
-
                 'bank_name' => $bank_name, 
-
                 'bank_logo' => $new_image_name ,
-
                 "bank_acc_no"=>$bank_acc_no,
-
                 "bank_owner"=>$bank_owner,
-
             );
 
-
-
             $q = $this->objbank->insert_bank($arr);
-
-
-
             $new_id = $q;
-
             $bank_id = $new_id;
-
             $arr_image["bank_id"] = $new_id;
-
             if($request->hasFile("bank_logo"))
-
             {
-
-                
-
                 $arr_image["bank_logo"] = $new_image_name;
-
-
-
                 $this->objbank->update_bank_image($arr_image);
-
                 //dd($new_image_name);
-
                 //Move Uploaded File
-
                 $destinationPath = "public/banks";
-
                 //FolderHelper::create_folder_bank($bank_id);
-
                 $request->file("bank_logo")->move($destinationPath,$new_image_name);
-
-                
-
             }
 
             echo Alert::success("You successfully Insert new bank Account");
-
             echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
-
-
-
-
 
         }else
 
