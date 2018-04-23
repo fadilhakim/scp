@@ -28,9 +28,9 @@ class RingkasanProductController extends Controller
         return view("product_highlight",$data);
     }
 
-    function modal_RingkasanProduct_insert()
+    function modal_overview_insert()
     {
-        return view("admin/RingkasanProduct/modal_RingkasanProduct_insert");
+        return view("admin/product/modal_overview_insert");
     }
 
 

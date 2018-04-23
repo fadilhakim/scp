@@ -46,6 +46,10 @@
                         <li class="nav-item">
                             <a class="nav-link" target="_blank" href="{{url('admin/product/update/images/'.$product_id)}}" aria-expanded="false">Images</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="{{url('admin/product/product_overview/'.$product_id)}}" aria-expanded="false">Product Overview (Image's)</a>
+                        </li>
                     </ul>
                     
                     <form action="{{ url('admin/product/update_process') }}" method="post" enctype="multipart/form-data">

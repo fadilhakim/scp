@@ -1,10 +1,10 @@
 <script>
- function add_modal_slider()
+ function add_modal_overview()
 {
     var _token = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
         type:"POST",
-        url:"<?=url("admin/slider/insert")?>",
+        url:"<?=url("admin/overview/insert")?>",
         data:"_token="+_token,
         success:function(data)
         {

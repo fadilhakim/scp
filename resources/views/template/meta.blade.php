@@ -29,7 +29,7 @@
     <script src="{{ URL::asset('public/plugins/jqueryui/jquery-ui.min.js')}}"></script>
     <script src="{{ URL::asset('public/js/global.js') }}"></script>
 
-    <link rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="shortcut icon" href="{{ URL::asset('public/favicon.png') }}" />
 </head>
 <body>
 <div id="loader-wrapper"></div>

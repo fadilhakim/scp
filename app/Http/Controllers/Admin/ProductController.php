@@ -475,4 +475,9 @@ class ProductController extends Controller
         return view("admin/index",$data);
     }
 
+    function modal_ringkasan_product_insert()
+    {
+        return view("admin/product/modal_overview_insert");
+    }
+
 }
