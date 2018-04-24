@@ -39,15 +39,18 @@ class TestController extends Controller
     {
         //$request = new Request();
         echo "<h1> Session </h1><hr>";
-        //echo $aaaaaaaaaaaaaaaaa["aaa"];
+     
         //$session = $request->session()->all();
         $user = Auth::guard("user")->user();
 
         $user = session()->all();
 
+        $admin = Auth::guard("admin")->user();
+
         //echo $user->name;
         print_r($user);
         dd($user);        
+        echo "<hr> ";
     }
 
     function invoice()

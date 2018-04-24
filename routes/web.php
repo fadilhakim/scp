@@ -68,6 +68,10 @@ Route::post("cart/update_coupon","CartController@update_coupon");
 
 Route::post("midtrans/snap/finish","Midtrans\SnapController@finish");
 
+Route::get("compare","CompareController@index");
+Route::post("compare/modal","CompareController@compare_modal");
+Route::post("compare/process","CompareController@compare_process");
+
 Route::group(['middleware' => ['auth']], function () {
     //Route::get('cart',"CartController@index"); // untuk sementara di comment
 

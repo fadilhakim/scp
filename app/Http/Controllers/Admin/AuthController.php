@@ -10,11 +10,14 @@ use App\Http\Controllers\Controller;
 use App\Libraries\Alert;
 use Auth;
 use App\Admin_model\User_admin;
+use App\Models\Role; 
 use App\User;
 
 class AuthController extends Controller
 {
     use AuthenticatesUsers;
+
+
     public function __construct()
     {
        
@@ -42,9 +45,14 @@ class AuthController extends Controller
             return Redirect::back()->withErrors($validation)->withInput();
         }
 
-        if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password]))
+        if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password,"status"=>"ACTIVE"]))
         {
             $user = Auth::guard('admin')->user();// define session
+
+
+            
+            // Via the global helper...
+            session(['key' => 'value']);
            
             return redirect("admin/dashboard");
         }else{
@@ -82,8 +90,12 @@ class AuthController extends Controller
     {
         echo "<h1> Session </h1><hr>";
         $user = Auth::guard("admin")->user();
-        echo $user->name;
-        print_r($user->original);
+        $user = Auth::guard('admin')->user();// define session
+        //$user["key1"] = "val2";
+        //echo $user->key1;
+
+        dd($user);
+        //print_r($user->original);
     }
 
     function test(Request $request)
