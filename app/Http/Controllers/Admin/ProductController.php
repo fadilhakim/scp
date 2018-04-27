@@ -24,6 +24,7 @@ class ProductController extends Controller
     {
         $this->objProduct = new Product();
         $this->objBrand = new Brand();
+        $this->objRingkasanProduct = new RingkasanProduct();
    
     }
     //
@@ -471,13 +472,40 @@ class ProductController extends Controller
     {
         $data["title"] = "Product Overview";
         $data["content"] = "admin/product/product_overview";
+        $data["product"] = $this->objProduct->detail_product($id);
         $data["product_overview"] = RingkasanProduct::all_RingkasanProduct_by_product_id($id);
         return view("admin/index",$data);
     }
 
-    function modal_ringkasan_product_insert()
+    function modal_ringkasan_product_insert(Request $request)
     {
-        return view("admin/product/modal_overview_insert");
+        $product_id      = $request->input('product_id');
+        $data["product"] = $this->objProduct->detail_product($product_id);
+        return view("admin/product/modal_overview_insert",$data);
+    }
+
+    function modal_ringkasan_product_insert_process(Request $request){
+
+        
+
+        if(!empty($request->hasFile('product_image_overview')))
+        {
+            $product_id = $request->input('product_id');
+            $image = $request->file('product_image_overview');
+            $new_name = str_replace(" ","-",strtolower($image->getClientOriginalName()));
+            $this->objRingkasanProduct->insert_RingkasanProduct($new_name,$product_id);
+            
+            $destinationPath = "public/product_highlight/$product_id";
+            $request->file("product_image_overview")->move($destinationPath,$new_name);
+            
+        }
+
+        $url  = url('/admin/product/product_overview/'.$product_id);
+        echo '
+            <script>
+                setTimeout(function(){ window.location.href = "'.$url.'"; },500);
+            </script>
+        ';
     }
 
 }

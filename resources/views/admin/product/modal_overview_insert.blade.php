@@ -15,6 +15,9 @@
             <form id="form-product-insert">
             <div class="modal-body">
                 <div id="temp-product"></div>
+                <div>
+                    <input type="hidden" name="product_id" value="<?php echo $product->product_id ?>" class="form-control" >
+                </div>
                 <div class="form-group">
                     <label> Input Image : </label>
                     <input type="file" name="product_image_overview" class="form-control" >
@@ -43,7 +46,7 @@
 
         $.ajax({
             type:"post",
-            url:"{{ url('admin/product/insert_process') }}",
+            url:"{{ url('admin/product/insert_overview_process') }}",
             //data:$(this).serialize(),
             data:formData,
             cache: false,

@@ -54,13 +54,7 @@
                                                     <a class="button size-2 style-2" href="<?=url("product/detail/{$rowPopular->product_id}/{$rowPopular->product_category}/{$slug}")?>">
                                                         <span class="button-wrapper">
                                                             <span class="icon"><img src="{{URL::asset('/public/img/icon-1.png')}}" alt=""></span>
-                                                            <span class="text">Learn More</span>
-                                                        </span>
-                                                    </a>
-                                                    <a class="button size-2 style-3" href="<?=url("cart/add/$id/$slug")?>">
-                                                        <span class="button-wrapper">
-                                                            <span class="icon"><img src="{{URL::asset('/public/img/icon-3.png')}}" alt=""></span>
-                                                            <span class="text">Add To Cart</span>
+                                                            <span class="text">See Detail</span>
                                                         </span>
                                                     </a>
                                                 </div>
@@ -68,6 +62,12 @@
                                         </div>
                                         <div class="price">
                                             <div class="simple-article size-4 dark">Rp.{{ number_format($rowPopular->price) }}</div>
+                                        </div>
+                                        
+                                        <div class="price">
+                                            <label class="checkbox-entry">
+                                                <input type="checkbox"><span>Compare</span>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -152,12 +152,6 @@
                                                             <span class="text">See Detail</span>
                                                         </span>
                                                     </a>
-                                                    <a class="button size-2 style-3" href="<?=url("cart/add/$prodId/$slugProd")?>">
-                                                        <span class="button-wrapper">
-                                                            <span class="icon"><img src="{{URL::asset('public/img/icon-3.png')}}" alt=""></span>
-                                                            <span class="text">Add To Cart</span>
-                                                        </span>
-                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -172,6 +166,13 @@
                                                 <a class="entry"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                                             </div> -->
                                         </div>
+
+                                        <div class="price">
+                                            <label class="checkbox-entry">
+                                                <input type="checkbox"><span>Compare</span>
+                                            </label>
+                                        </div>
+                            
                                     </div>  
                                 </div>
                             <?php } ?>

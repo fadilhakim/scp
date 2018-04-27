@@ -1,7 +1,7 @@
 @include('template/header')
 <?php foreach($RingkasanProduct as $rowImage){ ?>
 
-    <div  class="block-entry" style="background-image:url({{URL::asset('public/product_highlight/'.$rowImage->image_name)}})">
+    <div  class="block-entry" style="background-image:url({{URL::asset('public/product_highlight/'.$rowImage->product_id.'/'.$rowImage->image_name)}})">
         <div class="container" style="height:500px;">
             <!-- <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">

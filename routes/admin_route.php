@@ -77,11 +77,11 @@ Route::group(['middleware' => ['admin']], function () {
     //product overview 
     Route::get("/admin/product/product_overview/{id}","Admin\ProductController@ringkasan_product");
     
-    Route::post("/admin/overview/insert","Admin\ProductController@modal_ringkasan_product_insert");
+    Route::post("/admin/overview/insert/{id}","Admin\ProductController@modal_ringkasan_product_insert");
     Route::post("/admin/overview/update","Admin\ProductController@modal_ringkasan_product_update");
     Route::post("/admin/overview/delete","Admin\ProductController@modal_ringkasan_product_delete");
 
-    Route::post("/admin/product/insert_product_overview_process","Admin\BankController@ringkasan_product_insert_process");
+    Route::post("/admin/product/insert_overview_process","Admin\ProductController@modal_ringkasan_product_insert_process");
     Route::post("/admin/product/update_overview_process","Admin\BankController@ringkasan_product_update_process");
     Route::post("/admin/product/delete_overview_process","Admin\BankController@ringkasan_product_delete_process");
 

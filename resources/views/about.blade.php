@@ -10,7 +10,6 @@
                 $right_desc      = $about->right_desc;
          
         ?>
-        <?php echo $aboutId ?>
         <div class="block-entry fixed-background" style="background-image: url({{URL::asset('/public/img/'.$headPic)}})">
             <div class="container">
                 <div class="row">

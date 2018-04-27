@@ -298,7 +298,7 @@ button.swiper-pagination-bullet {
   border-color: #fff;
 }
 .swiper-pagination-bullet-active {
-  border: 2px #b8cd06 solid;
+  border: 2px #c32924 solid;
   transform: scale(1.5);
   -webkit-transform: scale(1.5);
   -webkit-backface-visibility: hidden;

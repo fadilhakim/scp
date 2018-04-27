@@ -1,11 +1,11 @@
 <script>
- function add_modal_overview()
+ function add_modal_overview(product_id)
 {
     var _token = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
         type:"POST",
-        url:"<?=url("admin/overview/insert")?>",
-        data:"_token="+_token,
+        url:"<?=url("admin/overview/insert/{id}")?>",
+        data:"_token="+_token+"&product_id="+product_id,
         success:function(data)
         {
             $(".tmp-slider").html(data)
@@ -14,14 +14,14 @@
     //console.log("Allahu Akbar")
 }
 
-function update_modal_slider(slider_id)
+function update_modal_slider(product_id)
 {
 
     var _token = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
         type:"POST",
         url:"<?=url("admin/slider/update")?>",
-        data:"_token="+_token+"&slider_id="+slider_id,
+        data:"_token="+_token+"&product_id="+product_id,
         success:function(data)
         {
             $(".tmp-slider").html(data)
@@ -50,7 +50,7 @@ function delete_modal_slider(slider_id)
             <div class="card">
                 <div class="card-header">
                     <h5 class="col-md-10 pull-left">Product Image Over View</h5>
-                    <button onclick="add_modal_overview()" class="btn btn-primary btn-sm"><i     class="icofont icofont-plus"></i> Add Product Overview </button>
+                    <button onclick="add_modal_overview(<?=$product->product_id?>)" class="btn btn-primary btn-sm"><i     class="icofont icofont-plus"></i> Add Product Overview </button>
                     <span class="clearfix"></span>
                 </div>
                 <div class="card-block table-border-style">
@@ -70,7 +70,7 @@ function delete_modal_slider(slider_id)
                                     <tr>
                                         <th scope="row"><?php echo $i ?></th>
                                         <td> 
-                                            <img class="img-fluid" src="{{URL::asset('/public/product_highlight/'.$row->image_name)}}">
+                                            <img class="img-fluid" src="{{URL::asset('/public/product_highlight/'.$row->product_id.'/'.$row->image_name)}}">
                                         </td>
                                         <td><div class="dropdown show" data-container="body">
                                                 <button class="btn btn-primary btn-sm dropdown-toggle" role="button" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

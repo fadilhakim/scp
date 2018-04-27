@@ -160,7 +160,7 @@ body.mobile .fixed-background{background-attachment: scroll;}
 .simple-article.light{color: #fff; text-shadow: 1px 1px 1px rgba(0,0,0,.1);}
 .simple-article.light.transparent, .light.transparent{color: rgba(255,255,255,.8);}
 .simple-article.light.fulltransparent, .light.fulltransparent{color: rgba(255,255,255,.5);}
-.simple-article.color, .color{color: #b8cd06;}
+.simple-article.color, .color{color: #c32924;}
 
 .simple-article.size-1{font-size: 11px; line-height: 18px;}
 .simple-article.size-2{font-size: 13px; line-height: 20px;}
@@ -231,7 +231,7 @@ body.mobile .fixed-background{background-attachment: scroll;}
 .button.size-2 .text{padding: 17px 30px 15px 30px;}
 .button.style-1{background: #fff; color: #555;}
 .button.style-2{background: #343434; color: #fff;}
-.button.style-3{background: #b8cd06; color: #fff;}
+.button.style-3{background: #c32924; color: #fff;}
 .button.style-4{color: #fff;}
 .button.style-5{border: 1px #eee solid; color: #888; box-shadow: none; -webkit-box-shadow: none;}
 .button.facebook-button{background: #3b5998;}
@@ -320,7 +320,7 @@ form{position: relative;}
 .checkbox-entry span{position: relative; font-size: 11px; line-height: 20px; padding-left: 30px; display: block; color: #888; text-transform: uppercase;}
 .checkbox-entry:hover span{color: #555;}
 .checkbox-entry span:before{content: ""; position: absolute; left: 0; top: 0; width: 20px; height: 20px; border: 1px #eee solid; border-radius: 2px; -webkit-border-radius: 2px; background: url(../img/icon-6.png) 100px center no-repeat #fff;}
-.checkbox-entry input:checked+span:before{border-color: #b8cd06; background-color: #c32924; background-position: center center;}
+.checkbox-entry input:checked+span:before{ background-color: #c32924; background-position: center center;}
 .checkbox-entry.radio span:before{border-radius: 10px; -webkit-border-radius: 10px; background: none;}
 .checkbox-entry.radio input:checked+span:before{border-color: #b8cd06; background-color: #fff; border-width: 7px;}
 .checkbox-entry a:hover{text-decoration: underline;}
@@ -682,14 +682,14 @@ footer .follow{display: inline-block; vertical-align: bottom;}
 .product-preview-shortcode.light .sidebar .entry{background: transparent;}
 .product-preview-shortcode .sidebar .entry:last-child{margin-bottom: 0;}
 .product-preview-shortcode .sidebar .entry img{display: block; max-width: 100%; height: auto;}
-.product-preview-shortcode .sidebar .entry:hover{border-color: #b8cd06;}
-.product-preview-shortcode .sidebar .entry.active{border-color: #b8cd06; background: #b8cd06;}
+.product-preview-shortcode .sidebar .entry:hover{border-color:#c32924;}
+.product-preview-shortcode .sidebar .entry.active{border-color: #c32924; background: #c32924;}
 .product-preview-shortcode.light .sidebar .entry{border-color: rgba(255,255,255,.5);}
 .product-preview-shortcode.light .sidebar .entry:hover{border-color: #fff;}
 .product-preview-shortcode.light .sidebar .entry.active{border-color: #fff; background: #fff;}
 .product-preview-shortcode.light-green .sidebar .entry{border-color: rgba(255,255,255,.2);}
-.product-preview-shortcode.light-green .sidebar .entry:hover{border-color: #b8cd06;}
-.product-preview-shortcode.light-green .sidebar .entry.active{border-color: #b8cd06; background: #b8cd06;}
+.product-preview-shortcode.light-green .sidebar .entry:hover{border-color: #c32924;}
+.product-preview-shortcode.light-green .sidebar .entry.active{border-color: #c32924; background: #c32924;}
 /*Phones (<768px)*/
 @media (max-width: 767px) {
 	.slider-product-preview, .slider-product-preview.align-left{position: relative; left: auto; right: auto; top: auto; bottom: auto; height: 300px; margin: 0 auto; width: auto;}
