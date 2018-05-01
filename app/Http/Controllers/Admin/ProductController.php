@@ -111,12 +111,15 @@ class ProductController extends Controller
         //$old_price          = $request->input("stock",0);
         //$status             = $request->input("status");
 
-        
+        $type               = $request->input("type");
+        $color              = $request->input("color");
+        $dimensions         = $request->input("dimensions");
+
         //data info
         $datetime           = date("Y-m-d H:i:s");
         $ip_address         = $request->ip();
         $user_agent         = $request->header('User-Agent');
-        
+
         // $image1 = $request->file('image1');
         // $image2 = $request->file('image2');
         // $image3 = $request->file('image3');
@@ -158,6 +161,7 @@ class ProductController extends Controller
         if(!$validator->fails())
         {
             $arr = array(
+
                 'product_title' => $product_title, 
                 'product_description' => $product_description,
                 "product_availability"=>$product_availability,
@@ -167,16 +171,35 @@ class ProductController extends Controller
                 "price"=>$price,
                 "stock"=>$stock,
 
+
                 "created_at"=>$datetime,
                 "ip_address"=>$ip_address,
                 "user_agent"=>$user_agent
             );
+
+            $arr2 = array(
+                'type'      => $type, 
+                'color'     => $color,
+                "dimensions"=>$dimensions,
+                "bandwith"  =>$bandwith,
+                "display"   =>$display,
+                "sim_card"  =>$sim_card,
+                "radio"     =>$radio,
+                "micro_sd"  =>$micro_sd,
+                "bluetooth" =>$bluetooth,
+                "battery"   =>$battery,
+                "charger"   =>$charger,
+                "handsfree" =>$handsfree,
+            );
             
             $q = $this->objProduct->insert_product($arr);
+           
 
             // disini tadi posisi insert images
             $new_id = $q;
             $product_id = $new_id;
+            $arr2["product_id"] = $product_id;
+            $q2 = $this->objProduct->insert_specification($arr2);
             $arr_image["product_id"] = $new_id;
             FolderHelper::create_folder_product($product_id);
 
@@ -347,7 +370,6 @@ class ProductController extends Controller
       $subcategory        = $request->input("subcategory");
       $brand              = $request->input("brand");
 
-      
       $datetime           = date("Y-m-d H:i:s");
       $ip_address         = $request->ip();
       $user_agent         = $request->header('User-Agent');

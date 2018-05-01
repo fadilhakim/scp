@@ -178,161 +178,122 @@ class Product extends Model
     }
 
     public function insert_product_image($arr,$image_field,$image_name)
-
     {
-
         DB::table("product_image_tbl")->insert([
-
             "product_id"=>$arr["product_id"],
-
             "image_name"=> $image_name,
-
             "image_field"=>$image_field,
-
             "ip_address"=>$arr["ip_address"],
-
             "user_agent"=>$arr["user_agent"],
-
             "created_at"=>$arr["created_at"]
-
         ]);
-
     }
 
     public function insert_mini_slide($image,$product_id){
-
         DB::table("product_mini_slide")->insert([
-
             "product_id" => $product_id,
-
             "image_name" => $image
-
         ]);
     }
-
-
-
 
     public function list_photo_product($product_id)
-
     {
-
         return DB::table("product_image_tbl")->where("product_id",$product_id)->get();
-
     }
-
-
 
     public function detail_photo_product($product_id,$image_field)
-
     {
-
         return DB::table("product_image_tbl")
-
         ->where("product_id",$product_id)
-
         ->where("image_field",$image_field)
-
         ->first();
-
     }
-    
-
-
 
     public function insert_product($arr)
-
     {
-
-        $product_title      = $arr["product_title"];
-
-        $product_description= $arr["product_description"]; 
-
+        $product_title        = $arr["product_title"];
+        $product_description  = $arr["product_description"]; 
         $product_availability = $arr["product_availability"];
-
-
-        $category           = $arr["category"];
-
-        $subcategory        = $arr["subcategory"];
-
-
-        $price              = $arr["price"];
-
-        $stock              = $arr["stock"];
-
-        $brand              = $arr["brand_id"];
-
-
-
-        $datetime           = $arr["created_at"];
-
-        $ip_address         = $arr["ip_address"];
-
-        $user_agent         = $arr["user_agent"];
-
-
+        $category             = $arr["category"];
+        $subcategory          = $arr["subcategory"];
+        $price                = $arr["price"];
+        $stock                = $arr["stock"];
+        $brand                = $arr["brand_id"];
+        $datetime             = $arr["created_at"];
+        $ip_address           = $arr["ip_address"];
+        $user_agent           = $arr["user_agent"];
 
         return DB::table($this->table)->insertGetId([
-
             'product_title' => $product_title, 
-
             'product_description' => $product_description,
-
             "product_category"=>$category,
-
             "product_subcategory"=>$subcategory,
-
             "brand_id"=>$brand,
-
             "product_availability"=>$product_availability,
-
             "price"=>$price,
-
             "stock"=>$stock,
-
             "created_at"=>$datetime,
-
             "ip_address"=>$ip_address,
-
             "user_agent"=>$user_agent
-
         ]);
 
     }
 
+    function insert_specification($arr)
+    {
+        return DB::table("spesification_tbl")->insert([
+            "product_id"    =>$arr["product_id"],
+            "type"          =>$arr["type"],
+            "color"         =>$arr["color"],
+            "dimensions"    =>$arr["dimensions"],
+            "bandwith"      =>$arr["bandwith"],
+            "display"       =>$arr["display"],
+            "sim_card"      =>$arr["sim_card"],
+            "radio"         =>$arr["radio"],
+            "micro_sd"      =>$arr["micro_sd"],
+            "bluetooth"     =>$arr["bluetooth"],
+            "battery"       =>$arr["battery"],
+            "charger"       =>$arr["charger"],
+            "handsfree"     =>$arr["handsfree"]
+        ]);
+    }
 
-    
+    function update_specification($arr)
+    {
+        return DB::table("spesification_tbl")->where("product_id",$arr["product_id"])->update([
+           
+            "type"          =>$arr["type"],
+            "color"         =>$arr["color"],
+            "dimensions"    =>$arr["dimensions"],
+            "bandwith"      =>$arr["bandwith"],
+            "display"       =>$arr["display"],
+            "sim_card"      =>$arr["sim_card"],
+            "radio"         =>$arr["radio"],
+            "micro_sd"      =>$arr["micro_sd"],
+            "bluetooth"     =>$arr["bluetooth"],
+            "battery"       =>$arr["battery"],
+            "charger"       =>$arr["charger"],
+            "handsfree"     =>$arr["handsfree"]
+        ]);
+    }
 
     public function update_product($arr)
-
     {
 
-        $product_id         = $arr["product_id"];
-
-        $product_title      = $arr["product_title"];
-
-        $product_description= $arr["product_description"]; 
-
+        $product_id           = $arr["product_id"];
+        $product_title        = $arr["product_title"];
+        $product_description  = $arr["product_description"]; 
         $product_availability = $arr["product_availability"];
-
-        $brand              = $arr["brand"];
-
+        $brand                = $arr["brand"];
         $category           = $arr["category"];
-
         $subcategory        = $arr["subcategory"];
-
         $price              = $arr["price"];
-
         $stock              = $arr["stock"];
-
         $weight             = $arr["weight"];
-
-
 
         $datetime           = $arr["created_at"];
         $ip_address         = $arr["ip_address"];
         $user_agent         = $arr["user_agent"];
-
 
         $sub_title_left     = $arr["product_title_left"];
         $desc_left          = $arr["product_detail_left"];
@@ -342,35 +303,25 @@ class Product extends Model
         $desc_right          = $arr["product_detail_right"];
         $image_right         = $arr["product_detail_right_img"];
 
-        $sub_title_btm     = $arr["product_title_btm"];
-        $desc_btm          = $arr["product_detail_btm"];
-        $image_btm         = $arr["product_detail_btm_img"];
+        $sub_title_btm       = $arr["product_title_btm"];
+        $desc_btm            = $arr["product_detail_btm"];
+        $image_btm           = $arr["product_detail_btm_img"];
 
-        $product_tech         = $arr["technical_specs"];
+        $product_tech        = $arr["technical_specs"];
 
 
         return DB::table('product_tbl') ->where('product_id', $product_id)->update([
 
             'product_title' => $product_title, 
-
             'product_description' => $product_description,
-
             "product_category"=>$category,
-
             "product_subcategory"=>$subcategory,
-
             "product_availability"=>$product_availability,
-
             "brand_id"=>$brand,
-
             "price"=>$price,
-
             "stock"=>$stock,
-
             "weight"=>$weight,
-
             "ip_address"=>$ip_address,
-
             "user_agent"=>$user_agent,
 
             "product_title_left"=>$sub_title_left,
