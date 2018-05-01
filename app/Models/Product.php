@@ -30,15 +30,11 @@ class Product extends Model
 
     ];
 
-    
-
     function __construct()
-
     {
   
 
     }
-
 
     static function all_product()
     {
@@ -167,15 +163,11 @@ class Product extends Model
 
     
     function update_product_image($product_id,$image_name,$image_field)
-
     {
 
         DB::table("product_image_tbl")
-
         ->where('product_id', $product_id)
-
         ->where('image_field', $image_field)
-
         ->update([
             "image_name"=> $image_name
         ]);
@@ -244,9 +236,14 @@ class Product extends Model
 
     }
 
+    function get_specification($product_id)
+    {
+        return DB::table("specification_tbl")->where("product_id",$product_id)->first();
+    }
+
     function insert_specification($arr)
     {
-        return DB::table("spesification_tbl")->insert([
+        return DB::table("specification_tbl")->insert([
             "product_id"    =>$arr["product_id"],
             "type"          =>$arr["type"],
             "color"         =>$arr["color"],
@@ -265,7 +262,7 @@ class Product extends Model
 
     function update_specification($arr)
     {
-        return DB::table("spesification_tbl")->where("product_id",$arr["product_id"])->update([
+        return DB::table("specification_tbl")->where("product_id",$arr["product_id"])->update([
            
             "type"          =>$arr["type"],
             "color"         =>$arr["color"],
@@ -312,9 +309,7 @@ class Product extends Model
         $desc_btm            = $arr["product_detail_btm"];
         $image_btm           = $arr["product_detail_btm_img"];
 
-        $product_tech        = $arr["technical_specs"];
-
-
+        //$product_tech        = $arr["technical_specs"];
         return DB::table('product_tbl') ->where('product_id', $product_id)->update([
 
             'product_title' => $product_title, 
@@ -339,8 +334,8 @@ class Product extends Model
 
             "product_title_btm"=>$sub_title_btm,
             "product_detail_btm"=>$desc_btm,
-            "product_detail_btm_img"=>$image_btm,
-            "technical_specs"=>$product_tech
+            "product_detail_btm_img"=>$image_btm
+            //"technical_specs"=>$product_tech
         ]);
 
     }

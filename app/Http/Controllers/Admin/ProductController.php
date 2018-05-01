@@ -45,6 +45,8 @@ class ProductController extends Controller
         $data["content"] = "admin/product/product_update";
         $data["category"] = Product::all_category();
         $data["product"] = Product::detail_product($id);
+        $data["specification"] = $this->objProduct->get_specification($id);
+
         $data["brand"] = $brand = $this->objBrand->all_brand();
         $data["subcategory"] = $subcategory = Subcategory::all_subcategory();
         return view("admin/index",$data);
@@ -100,7 +102,7 @@ class ProductController extends Controller
 
         //basic information 
         $product_title      = $request->input("product_title");
-        $product_description= $request->input("product_description"); 
+        $product_description = $request->input("product_description"); 
         $product_availability= $request->input("product_availability"); 
         $brand_id           = $request->input("brand");
         
@@ -117,6 +119,15 @@ class ProductController extends Controller
         $type               = $request->input("type");
         $color              = $request->input("color");
         $dimensions         = $request->input("dimensions");
+        $bandwith           = $request->input("bandwith");
+        $display            = $request->input("display");
+        $sim_card           = $request->input("sim_card");
+        $radio              = $request->input("radio");
+        $micro_sd           = $request->input("micro_sd");
+        $bluetooth          = $request->input("bluetooth");
+        $battery            = $request->input("battery");
+        $charger            = $request->input("charger");
+        $handsfree          = $request->input("handsfree");
 
         //data info
         $datetime           = date("Y-m-d H:i:s");
@@ -372,6 +383,20 @@ class ProductController extends Controller
       $category           = $request->input("category");
       $subcategory        = $request->input("subcategory");
       $brand              = $request->input("brand");
+      
+      // specification_tbl
+      $type               = $request->input("type");
+      $color              = $request->input("color");
+      $dimensions         = $request->input("dimensions");
+      $bandwith           = $request->input("bandwith");
+      $display            = $request->input("display");
+      $sim_card           = $request->input("sim_card");
+      $radio              = $request->input("radio");
+      $micro_sd           = $request->input("micro_sd");
+      $bluetooth          = $request->input("bluetooth");
+      $battery            = $request->input("battery");
+      $charger            = $request->input("charger");
+      $handsfree          = $request->input("handsfree");
 
       $datetime           = date("Y-m-d H:i:s");
       $ip_address         = $request->ip();
@@ -443,36 +468,54 @@ class ProductController extends Controller
         else {
             $arr = array(
                 
-                    "product_id"    => $product_id,
-                    'product_title' => $product_title,
-                    'product_availability' => $product_availability,
-                    "price"         => $price,
-                    'stock'         => $stock,
-                    "weight"        => $weight,
-                    'product_description' => $product_description,
-                    "category"      => $category,
-                    'subcategory'   => $subcategory,
-                    "brand"         => $brand,
-                    "created_at"    => $datetime,
-                    "ip_address"    => $ip_address,
-                    "user_agent"    => $user_agent,
+                "product_id"    => $product_id,
+                'product_title' => $product_title,
+                'product_availability' => $product_availability,
+                "price"         => $price,
+                'stock'         => $stock,
+                "weight"        => $weight,
+                'product_description' => $product_description,
+                "category"      => $category,
+                'subcategory'   => $subcategory,
+                "brand"         => $brand,
+                "created_at"    => $datetime,
+                "ip_address"    => $ip_address,
+                "user_agent"    => $user_agent,
 
-                    'product_title_left'      => $sub_title_left,
-                    'product_detail_left'     => $desc_left,
-                    'product_detail_left_img' => $image_left,
+                'product_title_left'      => $sub_title_left,
+                'product_detail_left'     => $desc_left,
+                'product_detail_left_img' => $image_left,
 
-                    'product_title_right'      => $sub_title_right,
-                    'product_detail_right'     => $desc_right,
-                    'product_detail_right_img' => $image_right,
+                'product_title_right'      => $sub_title_right,
+                'product_detail_right'     => $desc_right,
+                'product_detail_right_img' => $image_right,
 
-                    'product_title_btm'      => $sub_title_btm,
-                    'product_detail_btm'     => $desc_btm,
-                    'product_detail_btm_img' => $image_btm,
-                    'technical_specs'        => $product_tech
+                'product_title_btm'      => $sub_title_btm,
+                'product_detail_btm'     => $desc_btm,
+                'product_detail_btm_img' => $image_btm,
+                // 'technical_specs'        => $product_tech
                             
             );
+
+            $arr2 = array(
+                'type'      => $type, 
+                'color'     => $color,
+                "dimensions"=>$dimensions,
+                "bandwith"  =>$bandwith,
+                "display"   =>$display,
+                "sim_card"  =>$sim_card,
+                "radio"     =>$radio,
+                "micro_sd"  =>$micro_sd,
+                "bluetooth" =>$bluetooth,
+                "battery"   =>$battery,
+                "charger"   =>$charger,
+                "handsfree" =>$handsfree,
+            );
+
           // dd($arr);
             $this->objProduct->update_product($arr);
+            $arr2["product_id"] = $product_id;
+            $q2 = $this->objProduct->update_specification($arr2);
             return back()->with('success', 'You Sucessfully updated one product');
         }
 

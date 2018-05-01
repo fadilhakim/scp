@@ -159,7 +159,7 @@
                                 </div>
                             </div>
                             <script>
-                               CKEDITOR.replace( 'editor1' ); 
+                               CKEDITOR.replace('editor1'); 
                               
                                                          
                             </script>
@@ -182,15 +182,15 @@
         backdrop: 'static'
     });
 
-    $("#editor1").keyup(function(){
-        var ec = CKEDITOR.instances.editor1.getData(); // CKEDITOR.instances.editor1.getData();
-        $("#editor1").val(ec);
-    });
+  
 
     $("form#form-product-insert").submit(function(e){
-
+        // var product_description = CKEDITOR.instances['#editor1'].getData();
+        var product_description =  CKEDITOR.instances.editor1.getData();
         var formData = new FormData($(this)[0]);
+
         formData.append("_token","{{ csrf_token() }}");
+        formData.append("product_description",product_description);
         //alert($("#_token").val() +" = "+formData.get("_token"));
 
         $.ajax({
@@ -201,6 +201,14 @@
             cache: false,
             processData: false,
             contentType	: false,
+            /* beforeSerialize:function($Form, options){
+                /* Before serialize 
+                for ( instance in CKEDITOR.instances ) {
+                    CKEDITOR.instances[instance].updateElement();
+                }
+                return true; 
+            },*/
+            // other options
             success:function(data)
             {
                 $("#temp-product").html(data);

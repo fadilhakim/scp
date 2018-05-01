@@ -16,6 +16,19 @@
     $rowSubCategory =  App\Models\Product::get_subCategory_by_id($subCategory_id) ;
     $rowBrand =  App\Models\Product::get_brand_by_id($brand_id) ;
     $rowImg = App\Models\Product::find_product_img($product_id) ;
+
+    $spec_type      = isset($specification->type) ? $specification->type : "";
+    $spec_color     = isset($specification->color) ? $specification->color : "";
+    $spec_dimensions= isset($specification->dimensions) ? $specification->dimensions : "";
+    $spec_bandwith  = isset($specification->bandwith) ? $specification->bandwith : "";
+    $spec_display   = isset($specification->display) ? $specification->display : "";
+    $spec_sim_card  = isset($specification->sim_card) ? $specification->sim_card : "";
+    $spec_radio     = isset($specification->radio) ? $specification->radio : "";
+    $spec_micro_sd  = isset($specification->micro_sd) ? $specification->micro_sd : "";
+    $spec_bluetooth = isset($specification->bluetooth) ? $specification->bluetooth : "";
+    $spec_battery   = isset($specification->battery) ? $specification->battery : "";
+    $spec_charger   = isset($specification->charger) ? $specification->charger : "";
+    $spec_handsfree = isset($specification->handsfree) ? $specification->handsfree : "";
 ?>
 
 
@@ -257,14 +270,77 @@
                             </div>
                             
                             <div class="tab-pane" id="tech" role="tabpanel" aria-expanded="false">
+                                <br>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label> Type </label>
+                                        <input type="text" name="type" class="form-control" value="<?=$spec_type?>">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label> Color </label>
+                                        <input type="text" name="color" class="form-control" value="<?=$spec_color?>">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label> Dimensions </label>
+                                        <input type="text" name="dimensions" class="form-control" value="<?=$spec_dimensions?>">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label> Bandwith </label>
+                                        <input type="text" name="bandwith" class="form-control" value="<?=$spec_bandwith?>">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label> Display </label>
+                                        <input type="text" name="display" class="form-control" value="<?=$spec_display?>">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label> Sim Card </label>
+                                        <input type="text" name="sim_card" class="form-control" value="<?=$spec_sim_card?>">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label> Radio </label>
+                                        <input type="text" name="radio" class="form-control" value="<?=$spec_radio?>">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label> Micro SD </label>
+                                        <input type="text" name="micro_sd" class="form-control" value="<?=$spec_micro_sd?>">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label> Bluetooth </label><br>
+                                        <?php
+                                            $byes_selected = "";
+                                            $bno_selected = "";
+                                            if($spec_bluetooth == "yes")
+                                            {
+                                                $byes_selected = "checked='checked'";
+                                            }else
+                                            {
+                                                $bno_selected = "checked='checked'";
+                                            }
+                                        ?>
+                                        <label><input type="radio" name="bluetooth" value="yes" <?=$byes_selected?>> Yes </label>
+                                        &nbsp;
+                                        <label><input type="radio" name="bluetooth" value="no" <?=$bno_selected?>> No </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label> Battery </label>
+                                        <input type="text" name="battery" class="form-control" value="<?=$spec_battery?>">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label> Charger </label>
+                                        <input type="text" name="charger" class="form-control" value="<?=$spec_charger?>">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label> Handsfree </label>
+                                        <input type="text" name="handsfree" class="form-control" value="<?=$spec_handsfree?>">
+                                    </div>
+                                </div>
 
-                                <div class="form-group col-sm-12">
-                                    <label for="">Technical Specs</label>
-                                    <textarea id="product_tech" name="product_tech" class="form-control"><?= $product->technical_specs ?></textarea>
-                                </div>               
-                                <script>
-                                    CKEDITOR.replace( 'product_tech' );                           
-                                </script>               
                             </div>
 
                              <div class="row">
