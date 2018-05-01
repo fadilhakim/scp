@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Brand;
 use App\Models\RingkasanProduct;
+use App\Models\MarketPlace;
 
 use App\Libraries\Alert;
 use App\Libraries\FolderHelper;
@@ -25,6 +26,7 @@ class ProductController extends Controller
         $this->objProduct = new Product();
         $this->objBrand = new Brand();
         $this->objRingkasanProduct = new RingkasanProduct();
+        $this->objMarketPlace = new MarketPlace();
    
     }
     //
@@ -507,5 +509,62 @@ class ProductController extends Controller
             </script>
         ';
     }
+
+
+    function market_link($id)
+    {
+        $data["title"] = "Market Link's";
+        $data["content"] = "admin/product/product_market_link";
+        $data["product"] = $this->objProduct->detail_product($id);
+        $data["product_overview"] = Product::get_product_market_id_by_product_id($id);
+        return view("admin/index",$data);
+    }
+
+    function modal_market_link_insert(Request $request)
+    {
+        $product_id      = $request->input('product_id');
+        $data["product"] = $this->objProduct->detail_product($product_id);
+        $data["market_place"] = $this->objMarketPlace->all_MarketPlace();
+        return view("admin/product/modal_market_link_insert",$data);
+    }
+
+    function modal_market_link_insert_process(Request $request)
+    {
+        $product_id         = $request->input('product_id');
+        $market_place       = $request->input('market_place_id');
+        $market_link        = $request->input('market_link');
+        
+        $arr = array(
+            "product_id"        => $product_id,
+            "market_place_id"   => $market_place,
+            "market_link"       => $market_link,
+       
+        );
+
+        $this->objMarketPlace->insert_market_place_link($arr);
+
+        
+        $url  = url('/admin/product/market_link/'.$product_id);
+        echo '
+            <script>
+                setTimeout(function(){ window.location.href = "'.$url.'"; },500);
+            </script>
+        ';
+
+    }
+
+    function market_link_delete_process($id,$prod_id)
+    {
+     
+        $this->objMarketPlace->delete_detail_market($id);
+
+        $url  = url('/admin/product/market_link/'.$prod_id);
+        echo '
+            <script>
+                setTimeout(function(){ window.location.href = "'.$url.'"; },500);
+            </script>
+        ';
+    }
+
 
 }

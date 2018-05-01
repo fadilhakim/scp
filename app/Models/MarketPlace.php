@@ -70,10 +70,28 @@ class MarketPlace extends Model
         DB::table('market_place_tbl')->where($this->primaryKey, $MarketPlace_id)->delete();
     }
 
+    function delete_detail_market($id)
+    {
+        DB::table('detail_product_market_palce_tbl')->where('id', $id)->delete();
+    }
+
     static function get_market_by_id_product($id)
     {
         $MarketPlace = DB::table('detail_product_market_palce_tbl')->where('product_id',$id)->get();
         return $MarketPlace;
+    }
+
+    public function insert_market_place_link($data)
+    {
+        $product_id         = $data["product_id"];
+        $market_place_id       = $data["market_place_id"]; 
+        $market_link        = $data["market_link"]; 
+
+        return DB::table('detail_product_market_palce_tbl')->insert([
+            'market_id' => $market_place_id, 
+            'product_id' => $product_id,
+            'product_link' => $market_link
+        ]);
     }
 
 }

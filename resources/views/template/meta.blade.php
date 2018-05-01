@@ -30,7 +30,10 @@
     <script src="{{ URL::asset('public/js/global.js') }}"></script>
 
     <link rel="shortcut icon" href="{{ URL::asset('public/favicon.png') }}" />
+
+    <?php echo view("template/js_head") ?>
 </head>
 <body>
 <div id="loader-wrapper"></div>
+<div class="generalTemp"></div>
 
