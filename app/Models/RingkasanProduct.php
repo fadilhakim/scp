@@ -35,15 +35,12 @@ class RingkasanProduct extends Model
         return $RingkasanProduct;
     }
 
-    public function insert_RingkasanProduct($data)
+    public function insert_RingkasanProduct($new_name,$product_id)
     {
-        $image_RingkasanProduct      = $data["image_name"];
-        $image_url      = $data["url_image"]; 
-        return DB::table('RingkasanProducts')->insert([
-            'image_name' => $image_RingkasanProduct, 
-            'url_image' => $image_url,
-            'updated_at' => date("Y-m-d H:i:s"),
-            'created_at' => date("Y-m-d H:i:s") 
+       
+        return DB::table('ringkasan_image')->insert([
+            'product_id' => $product_id, 
+            'image_name' => $new_name
         ]);
     }
 

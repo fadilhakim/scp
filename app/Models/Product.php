@@ -159,6 +159,11 @@ class Product extends Model
         return $slide;
     }
 
+    static function get_product_market_id_by_product_id($product_id)
+    {
+        $market = DB::table('detail_product_market_palce_tbl')->where('product_id',$product_id)->get();
+        return $market;
+    }
 
     
     function update_product_image($product_id,$image_name,$image_field)

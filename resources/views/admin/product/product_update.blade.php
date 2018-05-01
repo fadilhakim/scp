@@ -50,6 +50,10 @@
                         <li class="nav-item">
                             <a class="nav-link" target="_blank" href="{{url('admin/product/product_overview/'.$product_id)}}" aria-expanded="false">Product Overview (Image's)</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="{{url('admin/product/market_link/'.$product_id)}}" aria-expanded="false">Market Link's</a>
+                        </li>
                     </ul>
                     
                     <form action="{{ url('admin/product/update_process') }}" method="post" enctype="multipart/form-data">
@@ -170,6 +174,8 @@
                                         </select>
                                     </div>
                                 </div>
+
+                                
                                                 
                             </div>
 

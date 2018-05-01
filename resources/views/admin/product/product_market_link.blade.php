@@ -1,10 +1,10 @@
 <script>
- function add_modal_overview(product_id)
+ function add_modal_market_link(product_id)
 {
     var _token = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
         type:"POST",
-        url:"<?=url("admin/overview/insert/{id}")?>",
+        url:"<?=url("admin/market_link/insert/{id}")?>",
         data:"_token="+_token+"&product_id="+product_id,
         success:function(data)
         {
@@ -49,8 +49,10 @@ function delete_modal_slider(slider_id)
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="col-md-10 pull-left">Product Image Over View</h5>
-                    <button onclick="add_modal_overview(<?=$product->product_id?>)" class="btn btn-primary btn-sm"><i     class="icofont icofont-plus"></i> Add Product Overview </button>
+                    <h5 class="col-md-10 pull-left">
+                       Product name :  '<strong><?=$product->product_title?></strong>'
+                    </h5>
+                    <button onclick="add_modal_market_link(<?=$product->product_id?>)" class="btn btn-primary btn-sm"><i     class="icofont icofont-plus"></i> Add  </button>
                     <span class="clearfix"></span>
                 </div>
                 <div class="card-block table-border-style">
@@ -61,7 +63,8 @@ function delete_modal_slider(slider_id)
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Overview Image</th>
+                                        <th>Market Place</th>
+                                        <th>Link</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -69,20 +72,23 @@ function delete_modal_slider(slider_id)
                                  <?php $i = 0; foreach ($product_overview as $row) { $i++ ?>
                                     <tr>
                                         <th scope="row"><?php echo $i ?></th>
-                                        <td> 
-                                            <img class="img-fluid" src="{{URL::asset('/public/product_highlight/'.$row->product_id.'/'.$row->image_name)}}">
+                                        <td>
+                                         
+                                            <?php 
+                                                 $getMarketName =  App\Models\MarketPlace::detail_MarketPlace($row->market_id) ;
+                                            ?>
+                                            <img class="img-fluid" src="{{URL::asset('/public/market_logo/'.$getMarketName->market_logo)}}">
+                                            <?php echo $getMarketName->market_name ?>
+                                            
                                         </td>
-                                        <td><div class="dropdown show" data-container="body">
-                                                <button class="btn btn-primary btn-sm dropdown-toggle" role="button" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Setting
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2" align="right">
-                                              
-                                                <button class="dropdown-item" type="button" onclick="update_modal_overview(<?=$row->ringkasan_id?>)"> Update</button>
-                                                <button class="dropdown-item" type="button" onclick="delete_modal_overview(<?=$row->ringkasan_id?>)"> Delete </button>
-                                                
-                                                </div>
-                                            </div></td>
+                                        <td>
+                                            <a target="_blank" href=" <?php echo $row->product_link ?>"> <?php echo $row->product_link ?></a>
+                                        </td>
+                                        <td>
+                                            <a href="{{url('admin/market_link/delete/'.$row->id).'/'.$product->product_id}}" class="btn btn-danger" style="color:white" >
+                                                Delete
+                                            </a>
+                                        </td>
                                     </tr>
 
                                     <?php } ?>
