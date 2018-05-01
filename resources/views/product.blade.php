@@ -169,7 +169,7 @@
 
                                         <div class="price">
                                             <label class="checkbox-entry">
-                                                <input type="checkbox"><span>Compare</span>
+                                                <input onclick="showCompare(<?=$prodId?>)" type="checkbox" ><span>Compare</span>
                                             </label>
                                         </div>
                             

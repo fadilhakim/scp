@@ -69,6 +69,7 @@ Route::post("cart/update_coupon","CartController@update_coupon");
 Route::post("midtrans/snap/finish","Midtrans\SnapController@finish");
 
 Route::get("compare","CompareController@index");
+Route::get("compare_view","CompareController@view_session");
 Route::post("compare/modal","CompareController@compare_modal");
 Route::post("compare/process","CompareController@compare_process");
 

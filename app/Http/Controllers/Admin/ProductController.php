@@ -47,7 +47,12 @@ class ProductController extends Controller
         $data["product"] = Product::detail_product($id);
         $data["specification"] = $this->objProduct->get_specification($id);
 
-        $data["brand"] = $brand = $this->objBrand->all_brand();
+        $data["brand"] =  $this->objBrand->all_brand();
+        /* foreach($data["brand"] as $rw)
+        {
+            echo $rw->brand_name." <br>";
+        }*/
+        //exit;
         $data["subcategory"] = $subcategory = Subcategory::all_subcategory();
         return view("admin/index",$data);
     }

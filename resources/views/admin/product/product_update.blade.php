@@ -175,15 +175,23 @@
                                         </select>             
                                     </div>
                                 </div>
-
+                                <?php /* var_dump($brand); 
+                                foreach($brand as $rww)
+                                {
+                                    echo $rww->brand_name."<br>";
+                                }
+                                exit;*/ ?>                      
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label"> Brand :</label>
                                     <div class="col-sm-9">
                                         <select name="brand" class="form-control">
-                                            <option value="<?php echo $rowBrand->brand_id ?>" selected><?php echo $rowBrand->brand_name ?></option>
-                                            <?php if(!empty($brand)){foreach($brand as $row){ ?>
-                                                <option value="<?=$row->brand_id?>"><?=$row->brand_name?></option>
-                                            <?php }} ?>
+                                            <?php /* <option value="<?php echo $rowBrand->brand_id ?>" selected><?php echo $rowBrand->brand_name ?></option> */ ?>
+                                            <?php 
+
+                                            if(!empty($brand)){
+                                                foreach($brand as $row22){ ?>
+                                                <option value="<?=$row22->brand_id?>"><?=$row22->brand_name?></option>
+                                            <?php } }?>
                                         </select>
                                     </div>
                                 </div>
