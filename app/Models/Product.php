@@ -238,9 +238,10 @@ class Product extends Model
 
     function get_specification($product_id)
     {
+       
         return DB::table("specification_tbl")->where("product_id",$product_id)->first();
     }
-
+    
     function insert_specification($arr)
     {
         return DB::table("specification_tbl")->insert([

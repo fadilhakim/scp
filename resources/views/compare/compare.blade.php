@@ -1,5 +1,7 @@
 @include('template/header')
-       
+        <?php
+            $product_title1 = isset($product1->product_title ) ? $product1->product_title : ""
+        ?>
         <div class="empty-space col-xs-b35 col-md-b70"></div>
         <div class="container">
             <div class="row">
@@ -7,12 +9,14 @@
                 <div class="empty-space col-xs-b35 col-md-b70"></div>
                 <table class="table table-bordered">
                     <thead>
-                        <th> Compare 1 </th>
+                        <th></th>
+                        <th> <?=$product_title1?> </th>
                         <th> Compare 2 </th>
                         <th> Compare 3 </th>
                     </thead>
                     <tbody>
                         <tr>
+                            <td>Type</td>
                             <td></td>
                             <td></td>
                             <td></td>
