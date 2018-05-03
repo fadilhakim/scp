@@ -4,21 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Libraries\All;
+
+use Session;
 
 class CompareController extends Controller
 {
     private $objProduct;
+    private $all;
     //
     function __construct()
     {
         $this->objProduct = new Product();
+        $this->all = new All();
     }
 
     function index()
     {
         
         $compares = session("product_compare");
-       
+        $data["all"] = $this->all;
         if(!empty($compares))
         {
             if(!empty($compares[0]))
@@ -31,10 +36,12 @@ class CompareController extends Controller
             if(!empty($compares[1]))
             {
                 $data["compare2"] = $this->objProduct->get_specification($compares[1]);
+                $data["product2"] = $this->objProduct-> detail_product($compares[1]);
             }
             if(!empty($compares[2]))
             {
                 $data["compare3"] = $this->objProduct->get_specification($compares[2]);
+                $data["product3"] = $this->objProduct-> detail_product($compares[2]);
             }
         }
         else
@@ -109,6 +116,19 @@ class CompareController extends Controller
         // masukan data kedalam view 
         // spesification1, spesification2,  spesification3
 
-        header("location:".base_url("compare"));
+        return redirect("compare");
+    }
+
+    function delete($id)
+    {
+        //session_start();
+        $value = session('product_compare');
+        unset($value[$id]);
+        session()->forget("product_compare");
+        session('product_compare', $value); // Set the array again
+
+        //$request->session()->forget('key');
+        //print_r($_SESSION);
+        return redirect("compare");
     }
 }

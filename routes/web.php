@@ -24,6 +24,11 @@ Route::get('/home2', function () {
 });
 Route::get('/about', 'PagesController@about');
 
+Route::get("/foo",function(){
+    
+    echo "<h1> Hello Foo </h1>";
+});
+
 
 Route::get('/product', 'ProductController@index');
 Route::get('/product/category/{category}', 'ProductController@getCategory');
@@ -71,6 +76,7 @@ Route::post("midtrans/snap/finish","Midtrans\SnapController@finish");
 Route::get("compare","CompareController@index");
 Route::get("compare_view","CompareController@view_session");
 Route::post("compare/modal","CompareController@compare_modal");
+Route::get("compare/delete/{id}","CompareController@delete");
 Route::post("compare/process","CompareController@compare_process");
 
 Route::group(['middleware' => ['auth']], function () {
