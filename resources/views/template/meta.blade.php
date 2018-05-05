@@ -11,7 +11,7 @@
 
     <!-- fonts -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Questrial|Raleway:700,900" rel="stylesheet"> -->
-		<link href="{{ asset("public/fonts/fontawesome-webfont.ttf") }}" rel="stylesheet">
+		<!-- <link href="{{ asset("public/fonts/fontawesome-webfont.ttf") }}" rel="stylesheet"> -->
 
     <link href="{{ URL::asset('public/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('public/css/bootstrap.extension.css') }}" rel="stylesheet" type="text/css" />
