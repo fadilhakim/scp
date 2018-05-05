@@ -20,7 +20,7 @@
     <link href="{{ URL::asset('public/css/swiper.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('public/css/sumoselect.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('public/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/css/costum.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/stylesheets/screen.css') }}">
 
