@@ -25,8 +25,9 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::to('public/stylesheets/screen.css') }}">
 
     <script src="{{ URL::to('public/js/jquery-2.2.4.min.js') }}"></script>
-    <script src="{{ URL::to('public/plugins/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <script src="{{ URL::to('public/plugins/jqueryui/jquery-ui.min.js')}}"></script>
+    <script src="{{ URL::to('public/plugins/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    
     <script src="{{ URL::to('public/js/global.js') }}"></script>
 
     <link rel="shortcut icon" href="{{ URL::to('public/favicon.png') }}" />
