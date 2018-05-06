@@ -33,10 +33,10 @@
 <!-- Menu-Search css -->
 <link rel="stylesheet" type="text/css" href="<?=asset(BASE_ADMIN_ASSET."assets/pages/menu-search/css/component.css")?>">
 <!-- amchart css -->
-<link rel="stylesheet" type="text/css" href="<?=asset(BASE_ADMIN_ASSET."assets/pages/dashboard/amchart/css/amchart.css")?>">
-<!-- Horizontal Timeline -->
+<!-- <link rel="stylesheet" type="text/css" href="<?=asset(BASE_ADMIN_ASSET."assets/pages/dashboard/amchart/css/amchart.css")?>">
+ Horizontal Timeline 
 <link rel="stylesheet" type="text/css" href="<?=asset(BASE_ADMIN_ASSET."assets/pages/dashboard/horizontal-timeline/css/style.css")?>">
-<!-- Style.css -->
+ Style.css -->
 <link rel="stylesheet" type="text/css" href="<?=asset(BASE_ADMIN_ASSET."assets/css/style.css")?>">
 <!--color css-->
 <link rel="stylesheet" type="text/css" href="<?=asset(BASE_ADMIN_ASSET."assets/css/linearicons.css")?>" >
@@ -51,7 +51,7 @@
 
 <script type="text/javascript" src="<?=asset(BASE_ADMIN_ASSET."assets/plugins/jquery/dist/jquery.min.js")?>"></script>
 <script type="text/javascript" src="<?=asset(BASE_ADMIN_ASSET."assets/plugins/jquery-ui/jquery-ui.min.js")?>"></script>
-<script type="text/javascript" src="<?=asset(BASE_ADMIN_ASSET."assets/plugins/tether/dist/js/tether.min.js")?>"></script>
+<!-- <script type="text/javascript" src="<?=asset(BASE_ADMIN_ASSET."assets/plugins/tether/dist/js/tether.min.js")?>"></script>-->
 <script type="text/javascript" src="<?=asset(BASE_ADMIN_ASSET."assets/plugins/bootstrap/dist/js/bootstrap.min.js")?>"></script>
 <script type="text/javascript" src="<?=asset("resources/assets/plugins/DataTables/datatables.min.js")?>"></script>
 <script type="text/javascript" src="<?=asset("public/plugins/ckeditor/ckeditor.js")?>"></script>
