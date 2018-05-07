@@ -66,9 +66,73 @@
                 <table class="table table-bordered">
                     <thead>
                         <th></th>
-                        <th> <?=$product_title1?> <a href="<?=url("compare/delete/0")?>"> delete </a> </th>
-                        <th> <?=$product_title2?> <a href="<?=url("compare/delete/1")?>"> delete </a> </th>
-                        <th> <?=$product_title3?> <a href="<?=url("compare/delete/2")?>"> delete </a></th>
+                        <th> 
+                            <div align="center"  class="preview">
+                            <?php 
+                            if(!empty($product_id1)){    
+                                    $firstImg =  App\Models\Product::get_first_image($product1->product_id) ;
+                                    
+                                    if(!empty($firstImg))
+                                    {
+                                        $getImage = $firstImg->image_name;
+                                        $getImage = URL::asset('public/products/'.$product_id1.'/'.$getImage );
+                                    }
+                                    else
+                                    {
+                                        $getImagePop = url("public/products/default-image.png");
+                                    }
+                            ?>
+                                    <img src="{{ $getImagePop }}" alt=""><br>
+                                    
+                                    <div> <?=$product_title1?> </div> 
+                                    <a href="<?=url("compare/delete/0")?>"> delete </a> 
+                            <?php } ?>
+                            </div>
+                        </th>
+                        <th> 
+                            <div align="center"  class="preview">
+                            <?php 
+                            if(!empty($product_id2)){    
+                                    $firstImg =  App\Models\Product::get_first_image($product2->product_id) ;
+                                    
+                                    if(!empty($firstImg))
+                                    {
+                                        $getImage = $firstImg->image_name;
+                                        $getImage = URL::asset('public/products/'.$product_id2.'/'.$getImage );
+                                    }
+                                    else
+                                    {
+                                        $getImagePop = url("public/products/default-image.png");
+                                    }
+                            ?>
+                                    <img src="{{ $getImagePop }}" alt=""><br>
+                                    <div> <?=$product_title2?> </div> 
+                                    <a href="<?=url("compare/delete/1")?>"> delete </a> 
+                            <?php } ?>
+                            </div>
+                        </th>
+                        <th>
+                        <div align="center"  class="preview">
+                            <?php 
+                            if(!empty($product_id3)){    
+                                    $firstImg =  App\Models\Product::get_first_image($product3->product_id) ;
+                                    
+                                    if(!empty($firstImg))
+                                    {
+                                        $getImage = $firstImg->image_name;
+                                        $getImage = URL::asset('public/products/'.$product_id3.'/'.$getImage );
+                                    }
+                                    else
+                                    {
+                                        $getImagePop = url("public/products/default-image.png");
+                                    }
+                            ?>
+                                    <img src="{{ $getImagePop }}" alt=""><br>
+                                    <div> <?=$product_title3?> </div> 
+                                    <a href="<?=url("compare/delete/2")?>"> delete </a> 
+                            <?php } ?>
+                            </div>
+                        </th>
                     </thead>
                     <tbody>
                         <tr>

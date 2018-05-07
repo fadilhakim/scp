@@ -77,6 +77,7 @@ Route::get("compare","CompareController@index");
 Route::get("compare_view","CompareController@view_session");
 Route::post("compare/modal","CompareController@compare_modal");
 Route::get("compare/delete/{id}","CompareController@delete");
+Route::post("compare/deleteAjax","CompareController@deleteAjax");
 Route::post("compare/process","CompareController@compare_process");
 
 Route::group(['middleware' => ['auth']], function () {

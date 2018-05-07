@@ -87,7 +87,7 @@ class CompareController extends Controller
                 if($is_push)
                 {
                     $request->session()->push("product_compare",$product_id);
-                    $msg = "You successfully added new product to compare";
+                    $msg = "<div class='alert alert-success'> You successfully added new product to compare </div>";
                 }
             }
             else
@@ -99,13 +99,15 @@ class CompareController extends Controller
        
         //print_r($product_compare);
         // passing data ke view 
-        $data = array();
+        $data = array(
+            "msg"=>$msg
+        );
         return view("compare/compare_modal",$data);
     }
 
     function view_session(Request $request)
     {
-        echo "hei";
+      
         $product_compare = $request->session()->get('product_compare');
         print_r($product_compare);
     }
@@ -121,14 +123,26 @@ class CompareController extends Controller
 
     function delete($id)
     {
-        //session_start();
-        $value = session('product_compare');
-        unset($value[$id]);
-        session()->forget("product_compare");
-        session('product_compare', $value); // Set the array again
+       //session_start();
+       
+       $value = session('product_compare');
+       $key = array_search($id,$value);
+       unset($value[$key]);
+       session()->forget("product_compare");
+       session(["product_compare"=>$value]);
+       return redirect("compare");
+    }
 
-        //$request->session()->forget('key');
-        //print_r($_SESSION);
-        return redirect("compare");
+    function deleteAjax(Request $request)
+    {
+         //session_start();
+         $id = $request->input("product_id");
+         $value = session('product_compare');
+         $key = array_search($id,$value);
+         unset($value[$key]);
+         session()->forget("product_compare");
+         session(["product_compare"=>$value]);
+         print_r($value);
+         //$request->session()->push("product_compare",$product_id);
     }
 }

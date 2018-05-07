@@ -1,10 +1,6 @@
 @include('template/header')
         <script>
-            function add_cart()
-            {
-
-            }
-
+       
         </script>
         <div class="container">
             <div class="empty-space col-xs-b15 col-sm-b30"></div>
@@ -41,13 +37,14 @@
                                                     if(!empty($popularFirstImg))
                                                     {
                                                         $getImagePop = $popularFirstImg->image_name;
+                                                        $getImagePop = URL::asset('public/products/'.$id.'/'.$getImagePop );
                                                     }
                                                     else
                                                     {
-                                                        $getImagePop = "";
+                                                        $getImagePop = url("public/products/default-image.png");
                                                     }
                                             ?>
-                                            <img src="{{URL::asset('public/products/'.$id.'/'.$getImagePop )}}" alt="">
+                                            <img src="{{ $getImagePop }}" alt="">
                                             
                                             <div class="preview-buttons valign-middle">
                                                 <div class="valign-middle-content">
@@ -115,12 +112,23 @@
                     <div class="products-content">
                         <div class="products-wrapper">
                             <div class="row nopadding">
-                            <?php foreach($product as $rowProduct) {?>
+                            <?php 
+                            $product_compare = session("product_compare");
+                            
+                            foreach($product as $rowProduct) {?>
                                 <?php 
-                                
+                                $checked = ""; // refresh
                                 $slugProd = str_slug($rowProduct->product_title, '-'); 
                                 $prodId = $rowProduct->product_id;
-                                
+
+                                if(!empty($product_compare))
+                                {
+                                    if(in_array($prodId,$product_compare))
+                                    {
+                                        $checked = "checked=true";
+                                        //echo "<script> alert('hello there : ".$rowProduct->product_title."') </script>";
+                                    }
+                                }                                
                                 ?>
                                 <div class="col-sm-4 col-md-3">
                                     <div class="product-shortcode style-1">
@@ -136,13 +144,14 @@
                                             if(!empty($firstImg))
                                             {
                                                 $getImage = $firstImg->image_name;
+                                                $getImage = URL::asset('public/products/'.$prodId.'/'.$getImage );
                                             }
                                             else
                                             {
-                                                $getImage = "";
+                                                $getImagePop = url("public/products/default-image.png");
                                             }
                                             ?>
-                                            <img src="{{URL::asset('public/products/'.$prodId.'/'.$getImage )}}" alt="">
+                                            <img src="{{ $getImagePop }}" alt="">
                                             
                                             <div class="preview-buttons valign-middle">
                                                 <div class="valign-middle-content">
@@ -169,7 +178,7 @@
 
                                         <div class="price">
                                             <label class="checkbox-entry">
-                                                <input onclick="showCompare(<?=$prodId?>)" type="checkbox" ><span>Compare</span>
+                                                <input <?=$checked?> onclick="isCompareChecked(this,<?=$prodId?>)" name="compare[]" type="checkbox" ><span>Compare</span>
                                             </label>
                                         </div>
                             
