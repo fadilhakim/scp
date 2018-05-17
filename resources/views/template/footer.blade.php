@@ -58,7 +58,7 @@
                 <div class="footer-bottom">
                     <div class="row">
                         <div class="col-lg-8 col-xs-text-center col-lg-text-left col-xs-b20 col-lg-b0">
-                            <div class="copyright">&copy; 2018 All rights reserved. Development by <a href="http://www.sketchwebtstudio.com" target="_blank">Sketch Web Studio</a></div>
+                            <div class="copyright">&copy; 2018 All rights reserved.</div>
                             <div class="follow">
                                 <a class="entry" href="#"><i class="fa fa-facebook"></i></a>
                                 <a class="entry" href="#"><i class="fa fa-twitter"></i></a>
