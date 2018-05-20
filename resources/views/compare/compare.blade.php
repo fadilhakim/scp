@@ -124,10 +124,10 @@
                                     }
                                     else
                                     {
-                                        $getImagePop = url("public/products/default-image.png");
+                                        $getImage = url("public/products/default-image.png");
                                     }
                             ?>
-                                    <img src="{{ $getImagePop }}" alt=""><br>
+                                    <img src="{{ $getImage }}" alt=""><br>
                                     <div> <?=$product_title3?> </div> 
                                     <a href="<?=url("compare/delete/2")?>"> delete </a> 
                             <?php } ?>
