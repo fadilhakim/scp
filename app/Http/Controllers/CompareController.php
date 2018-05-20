@@ -124,10 +124,14 @@ class CompareController extends Controller
     function delete($id)
     {
        //session_start();
-       
+       echo $id;
        $value = session('product_compare');
-       $key = array_search($id,$value);
-       unset($value[$key]);
+       //$key = array_search($id,$value);
+       unset($value[$id]);
+
+       //print_r($value);
+       //exit;
+
        session()->forget("product_compare");
        session(["product_compare"=>$value]);
        return redirect("compare");

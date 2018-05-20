@@ -76,7 +76,7 @@
                 {{ csrf_field() }}
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary"> Compare </button>
+                <a href="<?=url("compare")?>" class="btn btn-primary"> Compare </a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
             </form>
