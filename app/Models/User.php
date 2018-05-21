@@ -66,7 +66,6 @@ class User extends Authenticatable
             "password"  =>$arr["password"],
             "no_telp"   =>$arr["no_telp"],
             "remember_token"=>$arr["remember_token"],
-            "role"      =>$arr["role"],
             "birthday"  =>$arr["birthday"],
             "activation"=>$arr["activation"],
             "status"    =>$arr["status"],
