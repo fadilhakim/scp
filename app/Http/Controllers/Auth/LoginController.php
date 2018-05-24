@@ -88,7 +88,7 @@ class LoginController extends Controller
             //header("location:".base_url(""));
         }else{
 
-            $check_user = $objUser->detail_user_email();
+            $check_user = $objUser->detail_user_email($email);
 
             if($check_user["activation"] != "ACTIVE")
             {
