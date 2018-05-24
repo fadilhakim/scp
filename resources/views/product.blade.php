@@ -38,6 +38,7 @@
                                                     {
                                                         $getImagePop = $popularFirstImg->image_name;
                                                         $getImagePop = URL::asset('public/products/'.$id.'/'.$getImagePop );
+                                                        
                                                     }
                                                     else
                                                     {
@@ -145,13 +146,14 @@
                                             {
                                                 $getImage = $firstImg->image_name;
                                                 $getImage = URL::asset('public/products/'.$prodId.'/'.$getImage );
+                                               
                                             }
                                             else
                                             {
                                                 $getImagePop = url("public/products/default-image.png");
                                             }
                                             ?>
-                                            <img src="{{ $getImagePop }}" alt="">
+                                            <img src="{{ $getImage }}" alt="">
                                             
                                             <div class="preview-buttons valign-middle">
                                                 <div class="valign-middle-content">

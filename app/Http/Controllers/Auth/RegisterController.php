@@ -100,7 +100,6 @@ class RegisterController extends Controller
             $arr["birthday"]   = "1000-01-01";
             $arr["no_telp"]    = "";
             $arr["remember_token"] = Str::random(60);
-            $arr["role"]       = "customer";
             $arr["status"]     = "regular";
             $arr["created_at"] = $datetime;
             $arr["ip_address"] = $ip_address;
