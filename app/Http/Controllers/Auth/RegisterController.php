@@ -115,7 +115,7 @@ class RegisterController extends Controller
 
             Mail::to($email)->send(new ActivationEmail($objEmail));
 
-            echo Alert::success("You successfully Register");
+            echo Alert::success("You successfully Register, Please confirm your email befor login. Thank you");
             echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
         }
     }
