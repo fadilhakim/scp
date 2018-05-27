@@ -105,8 +105,13 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <ul class="list list-unstyled">
-                                        <?php $costumer_name = App\Models\User::detail_user($orderRow->user_id)  ?>
-                                        <li>Costumer Name #: <?php echo $costumer_name->name ?></li>
+                                        <?php $costumer_name = App\Models\User::detail_user($orderRow->user_id) ;
+                                        if(empty($customer_name)) // kalau customer_name = kosong
+                                        {
+                                            $costumer_name = "";
+                                        }else { $customer_name = $customer_name->name; }
+                                        ?>
+                                        <li>Costumer Name #: <?php echo $costumer_name ?></li>
                                         <li>Issued on: <span class="text-semibold"><?php echo $orderRow->created_at ?></span></li>
                                     </ul>
                                 </div>

@@ -1,5 +1,5 @@
 <div id="add-address-book-modal" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
                 <h5 class="modal-title text-white"> Add Address Book </h5>
@@ -24,13 +24,15 @@
                         <label> Address Name </label>
                         <input type="text" name="address_name" id="contact_person" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <label> Contact Person </label>
-                        <input type="text" name="contact_person" id="contact_person" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label> No Handphone </label>
-                        <input type="text" name="no_hp" id="no_hp" class="form-control">
+                    <div class="row"> 
+                        <div class="col-md-6 form-group">
+                            <label> Contact Person </label>
+                            <input type="text" name="contact_person" id="contact_person" class="form-control">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label> No Handphone </label>
+                            <input type="text" name="no_hp" id="no_hp" class="form-control">
+                        </div>
                     </div>
                     {{ csrf_field() }}
                     <div class="row">
@@ -64,15 +66,16 @@
 
                         </div> 
                     </div>
-
-                    <div class="form-group">
-                        <label> Shipping Address </label>
-                        <textarea class="form-control" name="shipping_address"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label> Billing Address </label>
-                        <textarea class="form-control" name="billing_address"></textarea>
+                    
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label> Shipping Address </label>
+                            <textarea class="form-control" name="shipping_address"></textarea>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label> Billing Address </label>
+                            <textarea class="form-control" name="billing_address"></textarea>
+                        </div>
                     </div>
 
                     <button class="btn btn-primary" type="submit"> Added </button>

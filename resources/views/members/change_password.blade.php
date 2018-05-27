@@ -19,7 +19,7 @@
             {{ csrf_field() }}
             <div class="form-group"> 
                 <label>Confirm Password</label> 
-                <input type="passwordtext" name="confirm_new_password" id="confirm_new_password" class="form-control">
+                <input type="password" name="confirm_new_password" id="confirm_new_password" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary"> Change </button>
         </form>

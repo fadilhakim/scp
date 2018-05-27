@@ -50,7 +50,11 @@
                             </thead>
                             <tbody>
                                <?php foreach ($order as $row){ 
-                                    $user_detail = $objUser->detail_user($row->user_id);   
+                                    $user_detail = $objUser->detail_user($row->user_id); 
+                                    if(empty($user_detail))  // kalau data kosong
+                                    {
+                                        $user_detail = (object) array("name" => "");
+                                    }  
                                 ?>
                                 <tr>
                                     

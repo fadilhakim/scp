@@ -186,9 +186,11 @@ class MemberController extends Controller
 
     }
 
-    function change_email_process()
+    function change_email_process(Request $request)
     {
-
+        $old_password = $this->request("old_password");
+        $new_password = $this->request("new_password");
+         
     }
 
     function add_address_book_process()

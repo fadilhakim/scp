@@ -80,6 +80,11 @@ Route::get("compare/delete/{id}","CompareController@delete");
 Route::post("compare/deleteAjax","CompareController@deleteAjax");
 Route::post("compare/process","CompareController@compare_process");
 
+// rajaongkir zone
+Route::get("rajaongkir","RajaongkirController@index");
+Route::post("rajaongkir/list_city","RajaongkirController@dt_city");
+Route::post("rajaongkir/city_province","RajaongkirController@city_province");
+
 Route::group(['middleware' => ['auth']], function () {
     //Route::get('cart',"CartController@index"); // untuk sementara di comment
 

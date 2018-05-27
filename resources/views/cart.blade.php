@@ -125,7 +125,7 @@
     <div class="row">
         <div class="col-md-6 col-xs-b50 col-md-b0">
             <h4 class="h4 col-xs-b25">calculate shipping</h4>
-            <select class="SlectBox">
+            <select class="form-control">
                 <option disabled="disabled" selected="selected">Choose country for shipping</option>
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
@@ -135,11 +135,11 @@
             <div class="empty-space col-xs-b20"></div>
             <div class="row m10">
                 <div class="col-sm-6">
-                    <input class="simple-input" type="text" value="" placeholder="State / Country" />
+                    <input class="form-control" type="text" value="" placeholder="State / Country" />
                     <div class="empty-space col-xs-b20"></div>
                 </div>
                 <div class="col-sm-6">
-                    <input class="simple-input" type="text" value="" placeholder="Postcode / Zip" />
+                    <input class="form-control" type="text" value="" placeholder="Postcode / Zip" />
                     <div class="empty-space col-xs-b20"></div>
                 </div>
             </div>
