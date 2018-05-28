@@ -31,7 +31,6 @@
     $spec_handsfree = isset($specification->handsfree) ? $specification->handsfree : "";
 ?>
 
-
 <div class="page-body">
     <div class="row">
         <div class="col-lg-12">

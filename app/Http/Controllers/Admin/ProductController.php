@@ -500,7 +500,7 @@ class ProductController extends Controller
                 'product_detail_btm'     => $desc_btm,
                 'product_detail_btm_img' => $image_btm,
                 // 'technical_specs'        => $product_tech
-                            
+               
             );
 
             $arr2 = array(
@@ -521,7 +521,17 @@ class ProductController extends Controller
           // dd($arr);
             $this->objProduct->update_product($arr);
             $arr2["product_id"] = $product_id;
-            $q2 = $this->objProduct->update_specification($arr2);
+
+            // check kalau ada product spec
+            $check_spec = $this->objProduct->get_specification($product_id);
+            if(!empty($check_spec))
+            {
+                $q2 = $this->objProduct->update_specification($arr2);
+            }else 
+            {
+                $q2 = $this->objProduct->insert_specification($arr2);
+            }
+
             return back()->with('success', 'You Sucessfully updated one product');
         }
 

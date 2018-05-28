@@ -288,6 +288,7 @@ class Product extends Model
         $product_description  = $arr["product_description"]; 
         $product_availability = $arr["product_availability"];
         $brand                = $arr["brand"];
+
         $category           = $arr["category"];
         $subcategory        = $arr["subcategory"];
         $price              = $arr["price"];
@@ -309,6 +310,22 @@ class Product extends Model
         $sub_title_btm       = $arr["product_title_btm"];
         $desc_btm            = $arr["product_detail_btm"];
         $image_btm           = $arr["product_detail_btm_img"];
+
+        /*DB::table("specification_tbl")->where("product_id",$product_id)->update([
+            "type"          =>$arr["type"],
+            "color"         =>$arr["color"],
+            "dimensions"    =>$arr["dimensions"],
+            "bandwith"      =>$arr["bandwith"],
+            "display"       =>$arr["display"],
+            "sim_card"      =>$arr["sim_card"],
+            "radio"         =>$arr["radio"],
+            "micro_sd"      =>$arr["micro_sd"],
+            "bluetooth"     =>$arr["bluetooth"],
+            "battery"       =>$arr["battery"],
+            "charger"       =>$arr["charger"],
+            "handsfree"     =>$arr["handsfree"]
+
+        ]);*/
 
         //$product_tech        = $arr["technical_specs"];
         return DB::table('product_tbl') ->where('product_id', $product_id)->update([
