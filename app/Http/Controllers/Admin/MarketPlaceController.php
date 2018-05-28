@@ -44,8 +44,8 @@ class MarketPlaceController extends Controller
 
 
         $validator = Validator::make($request->all(), [
-            'market_name'  => 'required|max:255',
-            'market_logo' => 'required'
+            'market_name'      => 'required|max:255',
+            'market_logo'       => "required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:max_width=35,max_height=35"
         ]);
 
         if(!$validator->fails())
@@ -91,13 +91,14 @@ class MarketPlaceController extends Controller
 
     function MarketPlace_update_process(Request $request)
     {
-        $MarketPlace_id            = $request->input("id");
+        $MarketPlace_id       = $request->input("id");
         $old_image            = $request->input("old_image");
         $image_name           = $request->file("image_name");
         $image_url            = $request->input("url_image");
         
         $validator = Validator::make($request->all(), [
             'id'               => "required|integer",
+            'image_name'       => "dimensions:max_width=35,max_height=35"
         ]);
 
         if(!empty($image_name)){

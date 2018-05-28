@@ -20,7 +20,10 @@
                     <span class="clearfix"></span>
                 <div class="row">
                     <div class="col-md-3">
-                        <input type="file" data-placeholder="market logo" name="market_logo" data-size="sm" class="filestyle" data-text="Upload" data-btnClass="btn-primary">
+                        <input type="file" data-placeholder="market logo" name="market_logo" data-size="sm" class="filestyle " data-text="Upload" data-btnClass="btn-primary">        
+                    </div>
+                    <div class="col-md-6">
+                        <code>Please use image dimension for logo 35x35 pixel</code>
                     </div>
                 </div>
 

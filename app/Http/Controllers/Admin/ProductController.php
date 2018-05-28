@@ -459,6 +459,7 @@ class ProductController extends Controller
         'product_availability'  => 'required',
         'product_title'         => 'required|max:255',
         'price'                 => 'required|integer',
+        'price.integer'         => "Numbers only",
         'stock'                 => 'nullable|integer',
         "weight"                => "nullable|integer",
         'product_description'   => 'nullable|min:10',
