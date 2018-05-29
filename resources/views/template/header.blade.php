@@ -154,12 +154,9 @@
                         <div class="col-xs-9 col-sm-11 text-right">
 
                             @include('template/hover_menu')
-
-                            <div class="header-bottom-icon toggle-search"><i class="fa fa-search" aria-hidden="true"></i></div>
-                            <div class="header-bottom-icon visible-rd"><i class="fa fa-heart-o" aria-hidden="true"></i></div>
                             <div class="header-bottom-icon visible-rd">
                                 <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                <span class="cart-label">5</span>
+                                <span class="cart-label"><?=Cart::count()?></span>
                             </div>
                         </div>
                     </div>

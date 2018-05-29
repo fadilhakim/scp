@@ -147,7 +147,7 @@
             
             
             <li class="{{ $active_market_place }}">
-                <a href="<?=url("admin/marketplace")?>">
+                <a target="_blank" href="<?=url("admin/marketplace")?>">
                     <span class="pcoded-micon"><i class="ti-shopping-cart-full"></i></span>
                     <span class="pcoded-mtext">Market Place</span>
                     <span class="pcoded-mcaret"></span>

@@ -299,7 +299,7 @@
             <ul class="categories-menu transparent">
             <?php foreach($getCategory as $rowCategory) { ?>
                 <li>
-                    <a href="#">{{ $rowCategory->category_name}}</a>
+                    <a href="{{url('/product/category/'.$rowCategory->category_id)}}">{{ $rowCategory->category_name}}</a>
                     <?php 
                     $getSubCategory =  App\Models\Product::get_subCategory_by_category_id($rowCategory->category_id) ;
                     if(!empty($getSubCategory)){ 
