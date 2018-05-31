@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white">Insert New Product</h5>
+                <h5 class="modal-title text-white">Insert New Product (Basic Info)</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -25,9 +25,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="true"> Detail </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="specification-tab" data-toggle="tab" href="#specification" role="tab" aria-controls="specification" aria-selected="false">Specification</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="contact" aria-selected="false">Description</a>
                         </li>

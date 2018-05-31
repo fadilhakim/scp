@@ -121,18 +121,18 @@ class ProductController extends Controller
         //$old_price          = $request->input("stock",0);
         //$status             = $request->input("status");
 
-        $type               = $request->input("type");
-        $color              = $request->input("color");
-        $dimensions         = $request->input("dimensions");
-        $bandwith           = $request->input("bandwith");
-        $display            = $request->input("display");
-        $sim_card           = $request->input("sim_card");
-        $radio              = $request->input("radio");
-        $micro_sd           = $request->input("micro_sd");
-        $bluetooth          = $request->input("bluetooth");
-        $battery            = $request->input("battery");
-        $charger            = $request->input("charger");
-        $handsfree          = $request->input("handsfree");
+        // $type               = $request->input("type");
+        // $color              = $request->input("color");
+        // $dimensions         = $request->input("dimensions");
+        // $bandwith           = $request->input("bandwith");
+        // $display            = $request->input("display");
+        // $sim_card           = $request->input("sim_card");
+        // $radio              = $request->input("radio");
+        // $micro_sd           = $request->input("micro_sd");
+        // $bluetooth          = $request->input("bluetooth");
+        // $battery            = $request->input("battery");
+        // $charger            = $request->input("charger");
+        // $handsfree          = $request->input("handsfree");
 
         //data info
         $datetime           = date("Y-m-d H:i:s");
@@ -172,7 +172,7 @@ class ProductController extends Controller
             'product_description'   => 'min:10',
             'category'              => 'required',
             'subcategory'           => 'required',
-            "brand"                 => "required",
+            'brand'                 => "required",
             'price'                 => 'required|integer',
             'stock'                 => 'nullable|integer'
         ]);
@@ -196,20 +196,20 @@ class ProductController extends Controller
                 "user_agent"=>$user_agent
             );
 
-            $arr2 = array(
-                'type'      => $type, 
-                'color'     => $color,
-                "dimensions"=>$dimensions,
-                "bandwith"  =>$bandwith,
-                "display"   =>$display,
-                "sim_card"  =>$sim_card,
-                "radio"     =>$radio,
-                "micro_sd"  =>$micro_sd,
-                "bluetooth" =>$bluetooth,
-                "battery"   =>$battery,
-                "charger"   =>$charger,
-                "handsfree" =>$handsfree,
-            );
+            // $arr2 = array(
+            //     'type'      => $type, 
+            //     'color'     => $color,
+            //     "dimensions"=>$dimensions,
+            //     "bandwith"  =>$bandwith,
+            //     "display"   =>$display,
+            //     "sim_card"  =>$sim_card,
+            //     "radio"     =>$radio,
+            //     "micro_sd"  =>$micro_sd,
+            //     "bluetooth" =>$bluetooth,
+            //     "battery"   =>$battery,
+            //     "charger"   =>$charger,
+            //     "handsfree" =>$handsfree,
+            // );
             
             $q = $this->objProduct->insert_product($arr);
            
@@ -218,7 +218,7 @@ class ProductController extends Controller
             $new_id = $q;
             $product_id = $new_id;
             $arr2["product_id"] = $product_id;
-            $q2 = $this->objProduct->insert_specification($arr2);
+            // $q2 = $this->objProduct->insert_specification($arr2);
             $arr_image["product_id"] = $new_id;
             FolderHelper::create_folder_product($product_id);
 
