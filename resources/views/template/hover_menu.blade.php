@@ -26,11 +26,6 @@
         ?>
             <li class="{{ $active_home }}">
                 <a href="{{url('')}}">Home</a>
-                <div class="menu-toggle"></div>
-                <ul>
-                    <li class="active"><a href="{{url('')}}">Homepage 1</a></li>
-                    <li><a href="{{url('home2')}}">Homepage 2</a></li>
-                </ul>
             </li>
             <li class="">
                 <a href="{{url('about')}}">about us</a>
@@ -44,18 +39,22 @@
                             <?php $category = App\Models\Product::all_category();
                                 foreach($category as $rowCat){ 
                             ?>
-                            <a class="" href="#"><?php echo $rowCat->category_name; ?></a>
+                            <a class="" href="{{url('/product/category/'.$rowCat->category_id)}}"><?php echo $rowCat->category_name; ?></a>
                         <?php } ?>
 
                     </div>
                     <div class="content">
                         <div class="row nopadding">
-                            <?php $popular = App\Models\Product::get_product_by_popluar(); 
+                            <?php $popular = App\Models\Product::get_popular_product_limit(); 
                                  foreach($popular as $rowPopular){ 
                             ?>
                             <div class="col-xs-6">
                                 <div class="product-shortcode style-5">
-                                    <div class="product-label green">smart phone</div>
+                                <?php 
+                                    $catName = App\Models\Product::get_product_category($rowPopular->product_category);
+                                ?>
+                                
+                                    <div class="product-label green">{{$catName->category_name}}</div>
                                     <div class="preview">
                                         <div class="swiper-container" data-loop="1">
                                             <div class="swiper-button-prev style-1"></div>

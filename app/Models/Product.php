@@ -139,13 +139,20 @@ class Product extends Model
 
     static function get_product_by_category($category)
     {
-        $category = DB::table('product_tbl')->where('product_category',$category)->get();
-        return $category;
+        $product = DB::table('product_tbl')->where('product_category',$category)->paginate(16);
+        //dd($category);
+        return $product;
     }
 
     static function get_popular_product()
     {
         $popular = DB::table('product_tbl')->where('popular','1')->get();
+        return $popular;
+    }
+
+    static function get_popular_product_limit()
+    {
+        $popular = DB::table('product_tbl')->where('popular','1')->take(2)->get();
         return $popular;
     }
 

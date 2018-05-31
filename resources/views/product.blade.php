@@ -6,7 +6,7 @@
             <div class="empty-space col-xs-b15 col-sm-b30"></div>
             <div class="breadcrumbs">
                 <a href="{{url('/')}}">Home</a>
-                <a href="{{url('product')}}">Product</a>
+                <a href="{{url('product')}}">All Products</a>
             </div>
             <div class="empty-space col-xs-b15 col-sm-b30"></div>
             <div class="row">
@@ -26,7 +26,10 @@
                                 <div class="swiper-slide">
                                     <div class="product-shortcode style-1 small">
                                         <div class="title">
-                                            <div class="simple-article size-1 color col-xs-b5"><a href="#">Phone</a></div>
+                                        <?php 
+                                                $catName =  App\Models\Product::get_product_category($rowPopular->product_category) ;
+                                            ?>
+                                            <div class="simple-article size-1 color col-xs-b5"><a href="<?=url("product/category/{$rowPopular->product_category}")?>">{{$catName->category_name}}</a></div>
                                             <div class="h6 animate-to-green"><a href="<?=url("product/detail/{$rowPopular->product_id}/{$rowPopular->product_category}/{$slug}")?>">{{$rowPopular->product_title}}</a></div>
                                         </div>
                                         <div class="preview">
@@ -79,34 +82,27 @@
                     <div class="empty-space col-xs-b20 col-sm-b35 col-md-b70"></div>
 
                     <div class="align-inline spacing-1">
-                        <div class="h4">Smart Phone</div>
+                        <div class="h4">All Products</div>
                     </div>
                     <div class="align-inline spacing-1">
-                        <div class="simple-article size-1">SHOWING <b class="grey">15</b> OF <b class="grey">2 358</b> RESULTS</div>
+                        <div class="simple-article size-1">SHOWING <b class="grey">16</b> OF <b class="grey">358</b> RESULTS</div>
                     </div>
                     <!-- <div class="align-inline spacing-1 hidden-xs">
                         <a class="pagination toggle-products-view active"><img src="img/icon-14.png" alt="" /><img src="img/icon-15.png" alt="" /></a>
                         <a class="pagination toggle-products-view"><img src="img/icon-16.png" alt="" /><img src="img/icon-17.png" alt="" /></a>
                     </div> -->
                     <div class="align-inline spacing-1 filtration-cell-width-1">
-                        <select class="SlectBox small">
+                        <select class="SlectBox small" onchange="if (this[this.selectedIndex].value !== '0') document.location.href=this.value;">
                             <option disabled="disabled" selected="selected">Most popular products</option>
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
+                            <?php foreach($category as $ct){ ?>
+                                
+                                <option value="{{url('/product/category/'.$ct->category_id)}}">
+                                   {{$ct->category_name}}
+                               </option>
+                                 
+                            <?php } ?>
                         </select>
                     </div>
-                    <div class="align-inline spacing-1 filtration-cell-width-2">
-                        <select class="SlectBox small">
-                            <option disabled="disabled" selected="selected">Show 30</option>
-                            <option value="volvo">30</option>
-                            <option value="saab">50</option>
-                            <option value="mercedes">100</option>
-                            <option value="audi">200</option>
-                        </select>
-                    </div>
-
 
                     <div class="empty-space col-xs-b25 col-sm-b60"></div>
 
@@ -134,7 +130,10 @@
                                 <div class="col-sm-4 col-md-3">
                                     <div class="product-shortcode style-1">
                                         <div class="title">
-                                            <div class="simple-article size-1 color col-xs-b5"><a href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slugProd}")?>">SMART PHONES</a></div>
+                                            <?php 
+                                                $catName =  App\Models\Product::get_product_category($rowProduct->product_category) ;
+                                            ?>
+                                            <div class="simple-article size-1 color col-xs-b5"><a href="<?=url("product/category/{$rowProduct->product_category}")?>">{{$catName->category_name}}</a></div>
                                             <div class="h6 animate-to-green"><a href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slugProd}")?>">{{$rowProduct->product_title}}</a></div>
                                         </div>
                                         <div class="preview">
@@ -170,7 +169,7 @@
                                             <div class="simple-article size-4 dark">Rp {{number_format($rowProduct->price)}}</div>
                                         </div>
                                         <div class="description">
-                                            <div class="simple-article text size-2"><?php echo $rowProduct->product_description ?></div>
+                                            <div class="simple-article text size-2"><p><?php echo $rowProduct->product_description ?></p></div>
                                             <!-- <div class="icons">
                                                 <a class="entry"><i class="fa fa-check" aria-hidden="true"></i></a>
                                                 <a class="entry open-popup" data-rel="3"><i class="fa fa-eye" aria-hidden="true"></i></a>
@@ -199,7 +198,7 @@
 
             </div>
         </div>
-        <div class="footer-form-block">
+       <!-- <div class="footer-form-block">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 col-xs-b10 col-lg-b0">
@@ -226,5 +225,5 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 @include('template/footer')

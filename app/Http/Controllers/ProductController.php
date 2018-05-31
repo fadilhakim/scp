@@ -28,6 +28,7 @@ class ProductController extends Controller
     {
      	$data["product"] = Product::all_product();
         $data["popular"] = Product::get_popular_product();
+        $data["category"] = Product::all_category();
         $data["title"]   = "Product List";
         $data['content'] = 'admin/product/product';
         return view("product",$data);
@@ -51,7 +52,11 @@ class ProductController extends Controller
     function getCategory($category)
     {
        
-        $data["category_product"] = Product::get_product_by_category();
+        $data["category_product"] = Product::get_product_by_category($category);
+        $data["category_name"] = Product::get_product_category($category);
+        $data["category"] = Product::all_category();
+        $data["popular"] = Product::get_popular_product();
+        // dd($category);
         $data["title"]   = "Product List";
         $data['content'] = 'Product By Category';
         return view("product_by_category",$data);

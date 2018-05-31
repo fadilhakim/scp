@@ -5,56 +5,63 @@
             <div class="breadcrumbs">
                 <a href="{{url('/')}}">Home</a>
                 <a href="{{url('product')}}">Product</a>
+                <a href="{{url('product')}}">{{$category_name->category_name}}</a>
             </div>
             <div class="empty-space col-xs-b15 col-sm-b30"></div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="align-inline spacing-1">
-                        <div class="h4">Smart Phone</div>
+                        <div class="h4">{{$category_name->category_name}}</div>
                     </div>
                     <div class="align-inline spacing-1">
-                        <div class="simple-article size-1">SHOWING <b class="grey">15</b> OF <b class="grey">2 358</b> RESULTS</div>
+                        <div class="simple-article size-1">SHOWING <b class="grey">16</b> OF <b class="grey">358</b> RESULTS</div>
                     </div>
                     <!-- <div class="align-inline spacing-1 hidden-xs">
                         <a class="pagination toggle-products-view active"><img src="img/icon-14.png" alt="" /><img src="img/icon-15.png" alt="" /></a>
                         <a class="pagination toggle-products-view"><img src="img/icon-16.png" alt="" /><img src="img/icon-17.png" alt="" /></a>
                     </div> -->
                     <div class="align-inline spacing-1 filtration-cell-width-1">
-                        <select class="SlectBox small">
+                        <select class="SlectBox small" onchange="if (this[this.selectedIndex].value !== '0') document.location.href=this.value;">
                             <option disabled="disabled" selected="selected">Most popular products</option>
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
+                            <?php foreach($category as $ct){ ?>
+                                
+                                <option value="{{url('/product/category/'.$ct->category_id)}}">
+                                   {{$ct->category_name}}
+                               </option>
+                                 
+                            <?php } ?>
                         </select>
                     </div>
-                    <div class="align-inline spacing-1 filtration-cell-width-2">
-                        <select class="SlectBox small">
-                            <option disabled="disabled" selected="selected">Show 30</option>
-                            <option value="volvo">30</option>
-                            <option value="saab">50</option>
-                            <option value="mercedes">100</option>
-                            <option value="audi">200</option>
-                        </select>
-                    </div>
-
 
                     <div class="empty-space col-xs-b25 col-sm-b60"></div>
 
                     <div class="products-content">
                         <div class="products-wrapper">
                             <div class="row nopadding">
-                            <?php foreach($product as $rowProduct) {?>
+                            <?php foreach($category_product as $rowProduct) {?>
                                 <?php 
                                 
+                                $checked = ""; // refresh
                                 $slugProd = str_slug($rowProduct->product_title, '-'); 
                                 $prodId = $rowProduct->product_id;
+
+                                if(!empty($product_compare))
+                                {
+                                    if(in_array($prodId,$product_compare))
+                                    {
+                                        $checked = "checked=true";
+                                        //echo "<script> alert('hello there : ".$rowProduct->product_title."') </script>";
+                                    }
+                                }    
                                 
                                 ?>
                                 <div class="col-sm-4 col-md-3">
                                     <div class="product-shortcode style-1">
                                         <div class="title">
-                                            <div class="simple-article size-1 color col-xs-b5"><a href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slugProd}")?>">SMART PHONES</a></div>
+                                            <?php 
+                                                $catName =  App\Models\Product::get_product_category($rowProduct->product_category) ;
+                                            ?>
+                                            <div class="simple-article size-1 color col-xs-b5"><a href="<?=url("product/category/{$rowProduct->product_category}")?>">{{$catName->category_name}}</a></div>
                                             <div class="h6 animate-to-green"><a href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slugProd}")?>">{{$rowProduct->product_title}}</a></div>
                                         </div>
                                         <div class="preview">
@@ -65,42 +72,45 @@
                                             if(!empty($firstImg))
                                             {
                                                 $getImage = $firstImg->image_name;
+                                                $getImage = URL::asset('public/products/'.$prodId.'/'.$getImage );
+                                               
                                             }
                                             else
                                             {
-                                                $getImage = "";
+                                                $getImagePop = url("public/products/default-image.png");
                                             }
                                             ?>
-                                            <img src="{{URL::asset('public/products/'.$prodId.'/'.$getImage )}}" alt="">
+                                            <img src="{{ $getImage }}" alt="">
                                             
                                             <div class="preview-buttons valign-middle">
                                                 <div class="valign-middle-content">
                                                     <a class="button size-2 style-2" href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slugProd}")?>">
                                                         <span class="button-wrapper">
                                                             <span class="icon"><img src="{{URL::asset('public/img/icon-1.png')}}" alt=""></span>
-                                                            <span class="text">Learn More</span>
-                                                        </span>
-                                                    </a>
-                                                    <a class="button size-2 style-3" href="<?=url("cart/add/$prodId/$slugProd")?>">
-                                                        <span class="button-wrapper">
-                                                            <span class="icon"><img src="{{URL::asset('public/img/icon-3.png')}}" alt=""></span>
-                                                            <span class="text">Add To Cart</span>
+                                                            <span class="text">See Detail</span>
                                                         </span>
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="price">
-                                            <div class="simple-article size-4 dark">Rp {{$rowProduct->price}}</div>
+                                            <div class="simple-article size-4 dark">Rp {{number_format($rowProduct->price)}}</div>
                                         </div>
                                         <div class="description">
-                                            <div class="simple-article text size-2"><?php echo $rowProduct->product_description ?></div>
-                                            <div class="icons">
+                                            <div class="simple-article text size-2"><p><?php echo $rowProduct->product_description ?></p></div>
+                                            <!-- <div class="icons">
                                                 <a class="entry"><i class="fa fa-check" aria-hidden="true"></i></a>
                                                 <a class="entry open-popup" data-rel="3"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                 <a class="entry"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                                            </div>
+                                            </div> -->
                                         </div>
+
+                                        <div class="price">
+                                            <label class="checkbox-entry">
+                                                <input <?=$checked?> onclick="isCompareChecked(this,<?=$prodId?>)" name="compare[]" type="checkbox" ><span>Compare</span>
+                                            </label>
+                                        </div>
+                            
                                     </div>  
                                 </div>
                             <?php } ?>
@@ -109,14 +119,14 @@
                     </div>
                     <div class="empty-space col-xs-b35 col-sm-b0"></div>
                     <div class="row">
-                        {{$product->links()}}
+                        {{$category_product->links()}}
                     </div>
                     <div class="empty-space col-md-b70"></div>
                 </div>
 
             </div>
         </div>
-        <div class="footer-form-block">
+        <!-- <div class="footer-form-block">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 col-xs-b10 col-lg-b0">
@@ -144,4 +154,5 @@
                 </div>
             </div>
         </div>
+        -->
 @include('template/footer')
