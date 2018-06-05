@@ -7,7 +7,7 @@
             {
         
             if(!form.terms.checked) {
-                alert("Please indicate that you accept the Terms and Conditions");
+                alert("Please check Privacy policy agreement before you register");
                 form.terms.focus();
                 return false;
             }
