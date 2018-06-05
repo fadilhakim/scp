@@ -77,12 +77,12 @@
 
                             <div class="form-group col-md-4">
                                 <label> Product Price :</label>
-                                <input type="number" name="price" class="form-control" id="price" >
+                                <input type="number" min="0" name="price" class="form-control" id="price" >
                             </div> 
 
                             <div class="form-group col-md-4">
                                 <label> Stock :</label>
-                                <input type="number" name="stock" id="stock" class="form-control">
+                                <input type="number" min="0" name="stock" id="stock" class="form-control">
                             </div>
                             </div><!-- end row -->
                         

@@ -25,7 +25,7 @@
                     <div class="col-sm-7 col-xs-b10 col-sm-b0">
                         <div class="empty-space col-sm-b15"></div>
                         <label class="checkbox-entry">
-                            <input type="checkbox" /><span><a href="#">Privacy policy agreement</a></span>
+                            <input type="checkbox" required /><span><a href="#">Privacy policy agreement</a></span>
                         </label>
                     </div>
                     <div class="col-sm-5 text-right">

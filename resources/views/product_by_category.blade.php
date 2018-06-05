@@ -66,19 +66,22 @@
                                         </div>
                                         <div class="preview">
                                         <?php 
-                                        
-                                        $firstImg =  App\Models\Product::get_first_image($prodId) ;
-                                           
-                                            if(!empty($firstImg))
-                                            {
-                                                $getImage = $firstImg->image_name;
-                                                $getImage = URL::asset('public/products/'.$prodId.'/'.$getImage );
-                                               
+                                            if(!empty($prodId)){
+                                                $firstImg =  App\Models\Product::get_first_image($prodId) ;
+                                            
+                                                if(!empty($firstImg))
+                                                {
+                                                    $getImage = $firstImg->image_name;
+                                                    $getImage = URL::asset('public/products/'.$prodId.'/'.$getImage );
+                                                
+                                                }
+                                                else
+                                                {
+                                                    $getImage = url("public/products/default-image.png");
+                                                }
+
                                             }
-                                            else
-                                            {
-                                                $getImagePop = url("public/products/default-image.png");
-                                            }
+                                      
                                             ?>
                                             <img src="{{ $getImage }}" alt="">
                                             

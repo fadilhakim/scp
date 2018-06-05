@@ -1,7 +1,22 @@
 <div class="popup-content" data-rel="2">
     <div class="layer-close"></div>
     <div class="popup-container size-1">
-        <form id="form-register" method="post" action="{{ url('auth/register_process') }}"> 
+    <script type="text/javascript">
+
+            function checkForm(form)
+            {
+        
+            if(!form.terms.checked) {
+                alert("Please indicate that you accept the Terms and Conditions");
+                form.terms.focus();
+                return false;
+            }
+            return true;
+            }
+
+        </script>
+
+        <form id="form-register" method="post" onsubmit="return checkForm(this)" action="{{ url('auth/register_process') }}"> 
         <div class="popup-align">
             <h3 class="h3 text-center">Register</h3>
             <div class="empty-space col-xs-b30"></div>
@@ -22,7 +37,7 @@
                 <div class="col-sm-7 col-xs-b10 col-sm-b0">
                     <div class="empty-space col-sm-b15"></div>
                     <label class="checkbox-entry">
-                        <input type="checkbox" /><span><a href="#">Privacy policy agreement</a></span>
+                        <input name="terms" type="checkbox" /><span><a href="#">Privacy policy agreement</a></span>
                     </label>
                 </div>
                 <div class="col-sm-5 text-right">

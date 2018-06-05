@@ -70,7 +70,7 @@
                         <div class="quantity-select">
                            
                             <!-- <span class="number" id="number-id"><?=number_format($row->qty)?></span> -->
-                            <input style='text-align:center' type="number" id="qty-input" name="qty-input[]" value="<?=number_format($row->qty)?>" >
+                            <input style='text-align:center' min="0" type="number" id="qty-input" name="qty-input[]" value="<?=number_format($row->qty)?>" >
                            
                            
                         </div>

@@ -124,7 +124,7 @@
                                 <div class="form-group row {{ $errors->has('price') ? 'has-danger' : ''}}">
                                     <label class="col-sm-3 col-form-label">Product Price (IDR) : </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control  {{ $errors->has('product_title') ? 'form-control-danger' : ''}}" name="price" value="<?php echo $price ?>" type="number">
+                                        <input class="form-control  {{ $errors->has('product_title') ? 'form-control-danger' : ''}}" name="price" value="<?php echo $price ?>" min="0" type="number">
                                         {!! $errors->first('price', '<div class="col-form-label">:message</div>') !!}
                                     </div>
                                 </div>
@@ -132,11 +132,11 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Stock : </label>
                                     <div class="col-sm-3">
-                                        <input class="form-control" name="stock" value="<?php echo $stock ?>" type="number">
+                                        <input class="form-control" name="stock" value="<?php echo $stock ?>" type="number" min="0">
                                     </div>
                                     <label class="col-sm-3 col-form-label">Weight (<strong>In Gram</strong>) : </label>
                                     <div class="col-sm-3">
-                                        <input class="form-control" name="weight" value="<?php echo $weight ?>" type="number">
+                                        <input class="form-control" name="weight" value="<?php echo $weight ?>" type="number" min="0">
                                     </div>
                                 </div>
 
@@ -264,9 +264,9 @@
                                             <textarea class="form-control" name="desc_btm" id=""><?php echo $product->product_detail_btm ?></textarea>
                                             <label for="">Bottom Image :</label><br>
                                             <?php if(!empty($product->product_detail_btm_img)){ ?>
-                                                <img src="{{URL::asset('public/products/'.$product_id.'/'.$product->product_detail_btm_img)}}" alt="">  
+                                                <img class="img-fluid"  src="{{URL::asset('public/products/'.$product_id.'/'.$product->product_detail_btm_img)}}" alt="">  
                                             <?php } else { ?>
-                                                <img src="{{URL::asset('public/products/no-image.png')}}" alt="">  
+                                                <img class="img-fluid"  src="{{URL::asset('public/products/no-image.png')}}" alt="">  
                                             <?php } ?>
                                             <input type="hidden" name="image_btm_hide" value="<?php echo $product->product_detail_btm_img ?>" class="form-control form-bg-primary">
                                             <input style="width:50%" type="file" name="image_btm" class="form-control form-bg-primary">
