@@ -1,3 +1,24 @@
+<script>
+
+function delete_modal_user(user_id)
+{
+
+   // console.log("Allahu Akbar")
+    var _token = $('meta[name="csrf-token"]').attr('content');
+    
+    $.ajax({
+        type:"POST",
+        url:"<?=url("admin/users/delete")?>",
+        data:"_token="+_token+"&user_id="+user_id,
+        success:function(data)
+        {
+            $(".tmp-slider").html(data)
+        }
+    });
+}
+
+
+</script>
 <div class="page-body">
     <div class="row">
         <div class="col-lg-12">
@@ -11,6 +32,7 @@
                     </div>
                 </div>
                 <div class="card-block table-border-style">
+                <div class="tmp-slider"></div>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -46,7 +68,7 @@
                                         </select>
                                     </td>
                                     <td>
-
+                                        <button class="btn btn-danger" onclick="delete_modal_user(<?=$row->id?>)">Delete</button>
                                     </td>
                                 </tr>
 

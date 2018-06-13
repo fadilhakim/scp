@@ -29,6 +29,9 @@ Route::group(['middleware' => ['admin']], function () {
 
     // Customer
     Route::get("/admin/users","Admin\UsersController@index");
+    Route::post("/admin/users/delete","Admin\UsersController@modal_user_delete");
+    Route::post("/admin/users/delete_process","Admin\UsersController@user_delete_process");
+    
 
     Route::get("/admin/slider","Admin\SliderController@index");
     // pages

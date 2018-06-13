@@ -75,5 +75,10 @@ class User extends Authenticatable
 
         ]);
     }
+
+    function delete_user($id)
+    {
+        DB::table('users')->where("id", $id)->delete();
+    }
    
 }

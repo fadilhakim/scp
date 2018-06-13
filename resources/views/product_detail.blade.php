@@ -321,48 +321,16 @@
             <div class="empty-space col-xs-b25 col-sm-b50"></div>
 
             <div class="h4 col-xs-b25">Brands</div>
-            <label class="checkbox-entry">
-                <input type="checkbox"><span>LG</span>
+            <?php foreach($brands as $br) { ?>
+                <div class="empty-space col-xs-b10"></div>
+                <label class="checkbox-entry">
+                <input type="checkbox"><span><?php echo $br->brand_name ?></span>   
             </label>
-            <div class="empty-space col-xs-b10"></div>
-            <label class="checkbox-entry">
-                <input type="checkbox"><span>SAMSUNG</span>
-            </label>
-            <div class="empty-space col-xs-b10"></div>
-            <label class="checkbox-entry">
-                <input type="checkbox"><span>Apple</span>
-            </label>
-            <div class="empty-space col-xs-b10"></div>
-            <label class="checkbox-entry">
-                <input type="checkbox"><span>HTC</span>
-            </label>
-            <div class="empty-space col-xs-b10"></div>
-            <label class="checkbox-entry">
-                <input type="checkbox"><span>Google</span>
-            </label>
-
-            <div class="empty-space col-xs-b10"></div>
-            <label class="checkbox-entry">
-                <input type="checkbox"><span>Symbian</span>
-            </label>
-            <div class="empty-space col-xs-b10"></div>
-            <label class="checkbox-entry">
-                <input type="checkbox"><span>Blackberry OS</span>
-            </label>
-
+ 
+            <?php } ?>
+            
+ 
             <div class="empty-space col-xs-b25 col-sm-b50"></div>
-
-            <div class="h4 col-xs-b25">Popular Tags</div>
-            <div class="tags light clearfix">
-                <a class="tag">headphoness</a>
-                <a class="tag">accessories</a>
-                <a class="tag">new</a>
-                <a class="tag">cables</a>
-                <a class="tag">professional</a>
-            </div>
-
-            <div class="empty-space col-xs-b25 col-sm-b60"></div>
-
 
         </div>
     </div>

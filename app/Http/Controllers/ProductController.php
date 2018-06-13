@@ -41,6 +41,7 @@ class ProductController extends Controller
        	$data["related_product"] = Product::related_product($category);
         $data["image"] = Product::find_product_img($id);
         $data["category"] = Product::get_product_category($category);
+        $data["brands"] = Product::get_brands();
         $data["mini_slide"] = Product::get_mini_slide($id);
         $data["market"] = MarketPlace::get_market_by_id_product($id);
         $data['ringkasan_product'] = RingkasanProduct::all_RingkasanProduct_by_product_id($id);

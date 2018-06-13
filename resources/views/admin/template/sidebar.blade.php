@@ -4,90 +4,80 @@
 ?>
 <nav class="pcoded-navbar" >
     <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-    <div class="pcoded-inner-navbar main-menu">
+    <div class="pcoded-inner-navbar main-menu" style="overflow:scroll;">
         <div class="">
             <div class="main-menu-header">
-                <img class="img-80" src="<?=asset(BASE_ADMIN_ASSET."assets/images/user.png")?>" alt="User-Profile-Image">
+                <img class="img-50" src="<?=asset(BASE_ADMIN_ASSET."assets/images/user.png")?>" alt="User-Profile-Image">
                 <div class="user-details">
                     <span>{{ $name_session }}</span>
-                    <span id="more-details">UX Designer<i class="ti-angle-down"></i></span>
+                    <span id="more-details">Role : Admin</span>
                 </div>
-            </div>
-
-            <div class="main-menu-content">
-                <ul>
-                    <li class="more-details">
-                        <a href="user-profile.html"><i class="ti-user"></i>View Profile</a>
-                        <a href="#!"><i class="ti-settings"></i>Settings</a>
-                        <a href="#!"><i class="ti-layout-sidebar-left"></i>Logout</a>
-                    </li>
-                </ul>
             </div>
         </div>
         <div class="pcoded-navigatio-lavel">Menu</div>
-        <?php 
-            $route = Request::segment(2);
-            $active_about_us = '' ;
-            $active_home = '' ;
-            $active_dashboard = '' ;
-            $active_admin = "";
-            $active_role  = "";
-            $active_users = '' ;
-            $active_contact = '' ;
-            $active_product = '' ;
-            $active_bank = '' ;
-            $active_order = "";
-            $active_voucher = "";
-            $active_midtrans = "";
-            $active_market_place = "";
+            <?php 
+                $route = Request::segment(2);
+                $active_about_us = '' ;
+                $active_home = '' ;
+                $active_dashboard = '' ;
+                $active_admin = "";
+                $active_role  = "";
+                $active_users = '' ;
+                $active_contact = '' ;
+                $active_product = '' ;
+                $active_bank = '' ;
+                $active_order = "";
+                $active_voucher = "";
+                $active_midtrans = "";
+                $active_market_place = "";
 
-            if($route == 'about'){
+                if($route == 'about'){
 
-                $active_about = 'active pcoded-trigger' ;
+                    $active_about = 'active pcoded-trigger' ;
 
-            }
-            else if($route == 'admin'){
+                }
+                else if($route == 'admin'){
 
-                $active_admin = 'active pcoded-trigger' ;
-                
-            }
-            else if($route == 'role'){
+                    $active_admin = 'active pcoded-trigger' ;
+                    
+                }
+                else if($route == 'role'){
 
-                $active_role = 'active pcoded-trigger' ;
-                
-            }
-            else if($route == 'product'){
+                    $active_role = 'active pcoded-trigger' ;
+                    
+                }
+                else if($route == 'product'){
 
-                $active_product = 'active pcoded-trigger' ;
+                    $active_product = 'active pcoded-trigger' ;
 
-            }else if($route == 'bank_account'){
+                }else if($route == 'bank_account'){
 
-                $active_bank = 'active pcoded-trigger' ;
+                    $active_bank = 'active pcoded-trigger' ;
 
-            }else if($route == 'users'){
+                }else if($route == 'users'){
 
-                $active_users = 'active pcoded-trigger' ;
+                    $active_users = 'active pcoded-trigger' ;
 
-            }else if($route == 'contact'){
+                }else if($route == 'contact'){
 
-                $active_contact = 'active' ;
-            }
-            else if($route == 'midtrans'){
+                    $active_contact = 'active' ;
+                }
+                else if($route == 'midtrans'){
 
-                $active_midtrans = 'active' ;
-            }
-            else if($route == 'dashboard'){
+                    $active_midtrans = 'active' ;
+                }
+                else if($route == 'dashboard'){
 
-                $active_dashboard = 'active pcoded-trigger' ;
-            }
-            else if($route == 'marketplace'){
-                $active_market_place = 'active pcoded-trigger' ;
-            }
-            else{
-                $active_home = 'active pcoded-trigger';
-            }
+                    $active_dashboard = 'active pcoded-trigger' ;
+                }
+                else if($route == 'marketplace'){
+                    $active_market_place = 'active pcoded-trigger' ;
+                }
+                else{
+                    $active_home = 'active pcoded-trigger';
+                }
 
-        ?>
+            ?>
         <ul class="pcoded-item pcoded-left-item">
             <li class="{{ $active_dashboard }}">
                 <a href="<?=url("admin/dashboard")?>">
@@ -97,22 +87,30 @@
                 </a>
             </li>
 
-            <li class="{{ $active_admin }}">
-                <a href="<?=url("admin/admin_list")?>">
-                    <span class="pcoded-micon"><i class="ti-admin"></i></span>
+            <li class="pcoded-hasmenu {{ $active_admin }}">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-github"></i></span>
                     <span class="pcoded-mtext">Admin</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
+                <ul class="pcoded-submenu">
+                    <li>
+                        <a  href="<?=url("admin/admin_list")?>">
+                            <span class="pcoded-micon"><i class="ti-user"></i></span>
+                            <span class="pcoded-mtext">Admin List</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+
+                     <li class="{{ $active_voucher }}">
+                        <a href="<?=url("admin/role")?>">
+                            <span class="pcoded-micon"><i class="icofont icofont-penalty-card"></i></span>
+                            <span class="pcoded-mtext"> Admin Roles </span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                </ul>
             </li>
-            
-            <li class="{{ $active_role }}">
-                <a href="<?=url("admin/role")?>">
-                    <span class="pcoded-micon"><i class="ti-role"></i></span>
-                    <span class="pcoded-mtext">Role</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-            
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
@@ -141,18 +139,20 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
+
+                    <li class="{{ $active_market_place }}">
+                        <a target="_blank" href="<?=url("admin/marketplace")?>">
+                            <span class="pcoded-micon"><i class="ti-shopping-cart-full"></i></span>
+                            <span class="pcoded-mtext">Market Place</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
                    
                 </ul>
             </li>
             
             
-            <li class="{{ $active_market_place }}">
-                <a target="_blank" href="<?=url("admin/marketplace")?>">
-                    <span class="pcoded-micon"><i class="ti-shopping-cart-full"></i></span>
-                    <span class="pcoded-mtext">Market Place</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
+
 
             <li class="{{ $active_users }}">
                 <a href="<?=url("admin/users")?>">
@@ -178,21 +178,32 @@
                 </a>
             </li>
 
-             <li class="{{ $active_midtrans }}">
-                <a href="<?=url("admin/midtrans_setting")?>">
-                    <span class="pcoded-micon"><i class="icofont icofont-bank-transfer"></i></span>
-                    <span class="pcoded-mtext"> Midtrans Setting </span>
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-money"></i></span>
+                    <span class="pcoded-mtext">Bank & Payment</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
+                <ul class="pcoded-submenu">
+                    <li class="{{ $active_midtrans }}">
+                        <a href="<?=url("admin/midtrans_setting")?>">
+                            <span class="pcoded-micon"><i class="icofont icofont-bank-transfer"></i></span>
+                            <span class="pcoded-mtext"> Midtrans Setting </span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+
+                    <li class="{{ $active_bank }}">
+                        <a href="<?=url("admin/bank_account")?>">
+                            <span class="pcoded-micon"><i class="ti-money"></i></span>
+                            <span class="pcoded-mtext">Bank Account</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
-            <li class="{{ $active_bank }}">
-                <a href="<?=url("admin/bank_account")?>">
-                    <span class="pcoded-micon"><i class="ti-money"></i></span>
-                    <span class="pcoded-mtext">Bank Account</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
+            
 
             <li class="pcoded-hasmenu {{ $active_home }}" dropdown-icon="style1" subitem-icon="style6">
                 <a href="javascript:void(0)">

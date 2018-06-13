@@ -105,6 +105,12 @@ class Product extends Model
         return $category;
     }
 
+    static function get_brands()
+    {
+        $category = DB::table("brand_tbl")->get();
+        return $category;
+    }
+
 
     static function get_category_by_id($category_id)
     {
