@@ -1,11 +1,11 @@
 <?php 
 
-    namespace App\Libraries;
+  namespace App\Libraries;
 
 	class Rajaongkir{
         
         // devhouseid99
-		private $api_key = "b0a6d28c0936c29d27e63a7c9039dcf9";
+		static $api_key = "b0a6d28c0936c29d27e63a7c9039dcf9";
 		
 		static function general($url)
 		{
@@ -20,7 +20,7 @@
 			  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			  CURLOPT_CUSTOMREQUEST => "GET",
 			  CURLOPT_HTTPHEADER => array(
-				"key:".$this->api_key
+					"key:".self::$api_key
 			  ),
 			));
 			
@@ -39,27 +39,27 @@
 		
 		static function detail_province($id)
 		{
-			return $this->general("http://api.rajaongkir.com/starter/province?id=$id");
+			return self::general("http://api.rajaongkir.com/starter/province?id=$id");
 		}
 		
 		static function show_province()
 		{
-			return $this->general("http://api.rajaongkir.com/starter/province");	
+			return self::general("http://api.rajaongkir.com/starter/province");	
 		}
 		
 		static function detail_city($id_city,$id_province)
 		{
-			return $this->general("http://api.rajaongkir.com/starter/city?id=$id_city&province=$id_province");	
+			return self::general("http://api.rajaongkir.com/starter/city?id=$id_city&province=$id_province");	
 		}
 		
 		static function dt_city($id_city)
 		{
-			return $this->general("http://api.rajaongkir.com/starter/city?id=$id_city");
+			return self::general("http://api.rajaongkir.com/starter/city?id=$id_city");
 		}
 		
 		static function city_province($id_province)
 		{
-			return $this->general("http://api.rajaongkir.com/starter/city?province=$id_province");	
+			return self::general("http://api.rajaongkir.com/starter/city?province=$id_province");	
 			
 		}
 		
@@ -90,7 +90,7 @@
 			  CURLOPT_POSTFIELDS => $urlget,
 			  CURLOPT_HTTPHEADER => array(
 				"content-type: application/x-www-form-urlencoded",
-				"key: ".$this->api_key
+				"key: ".self::$api_key
 			  ),
 			));
 			

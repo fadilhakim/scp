@@ -9,6 +9,15 @@ class RajaongkirController extends Controller
 {
     //
 
+	function dt_province(Request $request)
+	{
+		$aa = Rajaongkir::show_province();
+        $aa = json_decode($aa,TRUE);
+        $aa = $aa["rajaongkir"]["results"];
+        
+        echo json_encode($aa);
+	}
+
     function dt_city(Request $request)
     {
         $id_city = $request->input("id_city",TRUE);
@@ -24,13 +33,18 @@ class RajaongkirController extends Controller
     function city_province(Request $request)
     {
         $id_province = $request->input("id_province");
-        $aa = Rajaongkir::city_province($id_province);
-        return $aa;	
+		$aa = Rajaongkir::city_province($id_province);
+		$aa = json_decode($aa,TRUE);
+        $aa = $aa["rajaongkir"]["results"];
+        
+        echo json_encode($aa);
     }
+
+	
 
     function list_city_province()
     {
-        $city_province = $this->city_province();
+        $city_province = Rajaongkir::city_province();
         $city_province = json_decode($city_province,TRUE);
         $city_province = $city_province["rajaongkir"]["results"];
         

@@ -1,3 +1,49 @@
+<script> 
+    function load_province()
+    {
+        var token = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            type:"POST",
+            url:"<?=url("rajaongkir/list_province")?>",
+            dataType:"json",
+            data:"_token="+token,
+            success:function(data)
+            {
+               
+                $('#provinsi').empty();
+                $('#provinsi').append($('<option>').text("-- Select Province --"));
+                $.each(data, function(i, obj){
+                    $('#provinsi').append($('<option>').text(obj.province).attr('value', obj.province_id));
+                });
+            }
+        })
+    }
+
+    function load_city_province()
+    {
+
+        var token = $('meta[name="csrf-token"]').attr('content');
+        var id_province = $("#provinsi").val();
+
+        $.ajax({
+            type: "POST",
+            url:"<?=url("rajaongkir/city_province")?>",
+            dataType:"json",
+            data:"_token="+token+"&id_province="+id_province,
+            success:function(data)
+            {
+                $('#city').empty();
+                $('#city').append($('<option>').text("-- Select City --"));
+                $.each(data, function(i, obj){
+                    $('#city').append($('<option>').text(obj.city_name).attr('value', obj.city_id));
+                });
+            }
+        })
+    }
+
+</script>
+
 <div id="add-address-book-modal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -38,26 +84,23 @@
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label> Province </label>
-                            <select name="provinsi" class="form-control">
+                            <select name="provinsi" id="provinsi" class="form-control">
                                 <option> -- select province -- </option>
-                                <option value="1" selected>Sumbar</option>
+                               
                             </select>
                         </div>
                         <div class="col-md-6 form-group">
                             <label> Kecamatan </label>
-                            <select name="kecamatan" class="form-control">
-                                <option> -- select kecamatan --</option>
-                                <option value="tanah datar" selected>Tanah Datar</option>
-                            </select> 
+                            <input type="text" name="kecamatan" class="form form-control">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label> City </label>
-                            <select name="kota" class="form-control">
+                            <select name="city" id="city" class="form-control">
                                 <option> -- Select City --</option>""
-                                <option value="1" selected>Padang</option>
+                                
                             </select>
                         </div>
                         <div class="col-md-6 form-group"> 
@@ -89,6 +132,14 @@
 <script>
     $("#add-address-book-modal").modal({
         show:true
+    });
+
+    $(document).ready(function(){
+        load_province();
+    });
+
+    $("#provinsi").change(function(){
+        load_city_province();
     })
 
 </script>

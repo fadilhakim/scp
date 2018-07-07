@@ -82,6 +82,7 @@ Route::post("compare/process","CompareController@compare_process");
 
 // rajaongkir zone
 Route::get("rajaongkir","RajaongkirController@index");
+Route::post("rajaongkir/list_province","RajaongkirController@dt_province");
 Route::post("rajaongkir/list_city","RajaongkirController@dt_city");
 Route::post("rajaongkir/city_province","RajaongkirController@city_province");
 
