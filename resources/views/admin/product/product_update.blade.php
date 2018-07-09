@@ -143,7 +143,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Product Short Description :</label>
                                     <div class="col-sm-9">
-                                        <textarea id="editor1" rows="5" cols="5" class="form-control" name="product_description" placeholder=""><?php echo $desc ?></textarea>
+                                        <textarea id="" rows="5" cols="5" class="form-control" name="product_description" placeholder=""><?php echo $desc ?></textarea>
                                         <script>
                                             CKEDITOR.replace('editor1');              
                                         </script>

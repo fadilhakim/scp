@@ -153,7 +153,7 @@
                             <br>
                             <div class="form-group">
                                     <label> Product Short Description </label>
-                                    <textarea id="editor1" name="product_description" class="form-control"></textarea>
+                                    <textarea id="" name="product_description" class="form-control"></textarea>
                                 </div>
                             </div>
                             <script>

@@ -40,17 +40,6 @@
                             <div class="empty-space col-xs-b20"></div>
                             <div class="tags clearfix">
                                 <a class="tag">headphoness</a>
-                                <a class="tag">accessories</a>
-                                <a class="tag">new</a>
-                                <a class="tag">wireless</a>
-                                <a class="tag">cables</a>
-                                <a class="tag">devices</a>
-                                <a class="tag">gadgets</a>
-                                <a class="tag">brands</a>
-                                <a class="tag">replacements</a>
-                                <a class="tag">cases</a>
-                                <a class="tag">cables</a>
-                                <a class="tag">professional</a>
                             </div>
                         </div>
                     </div>

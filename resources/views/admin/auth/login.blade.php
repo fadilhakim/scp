@@ -21,11 +21,8 @@
                             </div>
                             <div class="auth-box">
                                 <div class="row m-b-20">
-                                    <div class="col-md-3">
-                                        <h3 class="text-center txt-primary">CMS</h3>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <p class="text-inverse m-t-25 text-left">Don't have an account? <a href=""> Register </a> here for free!</p>
+                                    <div class="col-md-12">
+                                        <h3 class="text-center txt-primary">Yifang CMS</h3>
                                     </div>
                                 </div>
                                 <span class='clearfix'></span>
@@ -48,18 +45,6 @@
                                     <span class="md-line"></span>
                                 </div>
                                 <div class="row m-t-25 text-left">
-                                    <div class="col-sm-6 col-xs-12">
-                                        <div class="checkbox-fade fade-in-primary">
-                                            <label>
-                                                <input type="checkbox" value="">
-                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                                                <span class="text-inverse">Remember me</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-xs-12 forgot-phone text-right">
-                                        <a href="auth-reset-password.html" class="text-right f-w-600 text-inverse"> Forget Password?</a>
-                                    </div>
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">

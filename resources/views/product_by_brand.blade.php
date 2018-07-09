@@ -4,14 +4,14 @@
             <div class="empty-space col-xs-b15 col-sm-b30"></div>
             <div class="breadcrumbs">
                 <a href="{{url('/')}}">Home</a>
-                <a href="{{url('product')}}">Product</a>
-                <a href="{{url('product')}}">{{$category_name->category_name}}</a>
+                <a href="{{url('product')}}">Product Brand</a>
+                <a href="{{url('product')}}">{{$brand_name->brand_name}}</a>
             </div>
             <div class="empty-space col-xs-b15 col-sm-b30"></div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="align-inline spacing-1">
-                        <div class="h4">{{$category_name->category_name}}</div>
+                        <div class="h4">{{$brand_name->brand_name}}</div>
                     </div>
                     <div class="align-inline spacing-1">
                         <div class="simple-article size-1">SHOWING <b class="grey">16 </b>RESULTS</div>
@@ -38,7 +38,7 @@
                     <div class="products-content">
                         <div class="products-wrapper">
                             <div class="row nopadding">
-                            <?php foreach($category_product as $rowProduct) {?>
+                            <?php foreach($brand_product as $rowProduct) {?>
                                 <?php 
                                 
                                 $checked = ""; // refresh
@@ -122,7 +122,7 @@
                     </div>
                     <div class="empty-space col-xs-b35 col-sm-b0"></div>
                     <div class="row">
-                        {{$category_product->links()}}
+                        {{$brand_product->links()}}
                     </div>
                     <div class="empty-space col-md-b70"></div>
                 </div>

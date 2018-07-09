@@ -63,6 +63,10 @@ class TestController extends Controller
         $request->session()->flush();
         echo "Last time destroy : ".date("Y-m-d H:i:s");
     }
+    
+    function get_data(){
+
+    }
 
     function send_email()
     {

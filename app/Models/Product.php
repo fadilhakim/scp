@@ -143,9 +143,22 @@ class Product extends Model
         return $category;
     }
 
+    static function get_product_brand($category)
+    {
+        $category = DB::table('brand_tbl')->where('brand_id',$category)->first();
+        return $category;
+    }
+
     static function get_product_by_category($category)
     {
         $product = DB::table('product_tbl')->where('product_category',$category)->paginate(16);
+        //dd($category);
+        return $product;
+    }
+
+    static function get_product_by_brand($brand)
+    {
+        $product = DB::table('product_tbl')->where('brand_id',$brand)->paginate(16);
         //dd($category);
         return $product;
     }

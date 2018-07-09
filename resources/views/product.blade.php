@@ -10,7 +10,7 @@
             </div>
             <div class="empty-space col-xs-b15 col-sm-b30"></div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-9 col-md-push-3">
                     <div class="slider-wrapper">
                         <div class="swiper-container arrows-align-top" data-breakpoints="1" data-xs-slides="1" data-sm-slides="3" data-md-slides="4" data-lt-slides="4" data-slides-per-view="5">
                             <div class="h4 swiper-title">popular products</div>
@@ -85,7 +85,7 @@
                         <div class="h4">All Products</div>
                     </div>
                     <div class="align-inline spacing-1">
-                        <div class="simple-article size-1">SHOWING <b class="grey">16</b> OF <b class="grey">358</b> RESULTS</div>
+                        <div class="simple-article size-1">SHOWING <b class="grey">16 </b>RESULTS</div>
                     </div>
                     <!-- <div class="align-inline spacing-1 hidden-xs">
                         <a class="pagination toggle-products-view active"><img src="img/icon-14.png" alt="" /><img src="img/icon-15.png" alt="" /></a>
@@ -198,7 +198,46 @@
                     </div>
                     <div class="empty-space col-md-b70"></div>
                 </div>
+                <div class="col-md-3 col-md-pull-9">
+                    <div class="h4 col-xs-b10">categories</div>
+                    <?php 
+                         $getCategory =  App\Models\Product::all_category() ;
+                    ?>
+                    <ul class="categories-menu transparent">
+                    <?php foreach($getCategory as $rowCategory) { ?>
+                        <li>
+                            <a href="{{url('/product/category/'.$rowCategory->category_id)}}">{{ $rowCategory->category_name}}</a>
+                            <?php 
+                            $getSubCategory =  App\Models\Product::get_subCategory_by_category_id($rowCategory->category_id) ;
+                            if(!empty($getSubCategory)){ 
+                            ?>
+                                <div class="toggle"></div>
+                                <ul>
+                                    <?php foreach($getSubCategory as $rowSubCategory) { ?>
+                                    <li>
+                                        <a href="#">{{$rowSubCategory->subcategory_name}}</a>
+                                    </li>
+                                    <?php } ?>
+                                </ul>
+                            <?php } ?>
+                            
+                        </li>
+                    <?php } ?>
+                    </ul>
 
+                    <div class="empty-space col-xs-b25 col-sm-b50"></div>
+
+                    <div class="h4 col-xs-b25">Brands</div>
+                        <?php foreach($brands as $br) { ?>
+                            <ul class="categories-menu transparent">
+                                 <li>
+                                    <a href="{{url('/product/brand/'.$br->brand_id)}}"><?php echo $br->brand_name ?></a>   <div class="toggle"></div>
+                                </li>
+                            </ul>  
+                        </label>
+                    <?php } ?>
+
+                </div>
             </div>
         </div>
        <!-- <div class="footer-form-block">

@@ -503,7 +503,26 @@ class ProductController extends Controller
                
             );
 
-            $arr2 = array(
+
+            $validator_spec = Validator::make($request->all(), [
+                "type"                  => "nullable",
+                'color'                 => 'nullable',
+                'dimensions'            => 'nullable',
+                'bandwith'              => 'nullable',
+                'display'               => "nullable",
+                'sim_card'              => 'nullable',
+                "radio"                 => "nullable",
+                'micro_sd'              => 'nullable',
+                'bluetooth'             => 'nullable',
+                'charger'               => 'nullable',
+                "handsfree"             => "nullable"
+              ]);
+
+            if($validator_spec->fails()){
+                return back()->with('error', 'Whoops somethings wrong!')->withErrors($validator_spec);
+            } else {
+
+                $arr2 = array(
                 'type'      => $type, 
                 'color'     => $color,
                 "dimensions"=>$dimensions,
@@ -516,7 +535,10 @@ class ProductController extends Controller
                 "battery"   =>$battery,
                 "charger"   =>$charger,
                 "handsfree" =>$handsfree,
-            );
+                );
+            }
+
+            
 
           // dd($arr);
             $this->objProduct->update_product($arr);

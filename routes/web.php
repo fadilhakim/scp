@@ -32,6 +32,7 @@ Route::get("/foo",function(){
 
 Route::get('/product', 'ProductController@index');
 Route::get('/product/category/{category}', 'ProductController@getCategory');
+Route::get('/product/brand/{brand}', 'ProductController@getBrand');
 Route::get('/product/detail/{id}/{product_category}/{product_title}', 'ProductController@detail');
 
 //product highlight // ringkasan product

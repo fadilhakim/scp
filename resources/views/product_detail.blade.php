@@ -137,7 +137,10 @@
                             <div class="simple-article size-3 col-xs-b20">AVAILABLE.: <span class="grey">{{$product_availability}}</span></div>
                         </div>
                     </div>
-                    <div class="simple-article size-3 col-xs-b30">{{$desc}}</div>
+                    <div class="simple-article size-3 col-xs-b30">
+                        xx{{$desc}}
+
+                    </div>
                     <div class="row col-xs-b40">
                         <div class="col-sm-3">
                             <div class="h6 detail-data-title size-1">quantity:</div>
@@ -321,12 +324,13 @@
             <div class="empty-space col-xs-b25 col-sm-b50"></div>
 
             <div class="h4 col-xs-b25">Brands</div>
-            <?php foreach($brands as $br) { ?>
-                <div class="empty-space col-xs-b10"></div>
-                <label class="checkbox-entry">
-                <input type="checkbox"><span><?php echo $br->brand_name ?></span>   
-            </label>
- 
+                <?php foreach($brands as $br) { ?>
+                    <ul class="categories-menu transparent">
+                         <li>
+                            <a href="{{url('/product/brand/'.$br->brand_id)}}"><?php echo $br->brand_name ?></a>   <div class="toggle"></div>
+                        </li>
+                    </ul>  
+                </label>
             <?php } ?>
             
  
