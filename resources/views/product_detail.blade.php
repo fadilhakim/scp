@@ -138,7 +138,7 @@
                         </div>
                     </div>
                     <div class="simple-article size-3 col-xs-b30">
-                        xx{{$desc}}
+                        {{$desc}}
 
                     </div>
                     <div class="row col-xs-b40">

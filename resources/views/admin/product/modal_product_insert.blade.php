@@ -87,80 +87,14 @@
                             </div><!-- end row -->
                         
                         </div><!-- end tab pane -->
-                        <div class="tab-pane fade" id="specification" role="tabpanel" aria-labelledby="specification-tab">
-                            <br>
-                            <div class="row">
-                                <div class="form-group col-md-4">
-                                    <label> Type </label>
-                                    <input type="text" name="type" class="form-control">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label> Color </label>
-                                    <input type="text" name="color" class="form-control">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label> Dimensions </label>
-                                    <input type="text" name="dimensions" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-4">
-                                    <label> Bandwith </label>
-                                    <input type="text" name="bandwith" class="form-control">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label> Display </label>
-                                    <input type="text" name="display" class="form-control">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label> Sim Card </label>
-                                    <input type="text" name="sim_card" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-4">
-                                    <label> Radio </label>
-                                    <input type="text" name="radio" class="form-control">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label> Micro SD </label>
-                                    <input type="text" name="micro_sd" class="form-control">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label> Bluetooth </label><br>
-
-                                    <label><input type="radio" name="bluetooth" value="yes"> Yes </label>
-                                    &nbsp;
-                                    <label><input type="radio" name="bluetooth" value="no"> No </label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-4">
-                                    <label> Battery </label>
-                                    <input type="text" name="battery" class="form-control">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label> Charger </label>
-                                    <input type="text" name="charger" class="form-control">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label> Handsfree </label>
-                                    <input type="text" name="handsfree" class="form-control">
-                                </div>
-                            </div>
-                        </div>
                         <div class="tab-pane fade" id="description" role="tabpanel" aria-labelledby="description-tab">
                             <br>
                             <div class="form-group">
                                     <label> Product Short Description </label>
-                                    <textarea id="" name="product_description" class="form-control"></textarea>
+                                    <textarea name="product_description" class="form-control"></textarea>
                                 </div>
                             </div>
-                            <script>
-                               CKEDITOR.replace('editor1'); 
-                              
-                                                         
-                            </script>
+
                         </div>
                     </div>
                 
@@ -184,11 +118,11 @@
 
     $("form#form-product-insert").submit(function(e){
         // var product_description = CKEDITOR.instances['#editor1'].getData();
-        var product_description =  CKEDITOR.instances.editor1.getData();
+        //var product_description =  CKEDITOR.instances.editor1.getData();
         var formData = new FormData($(this)[0]);
 
         formData.append("_token","{{ csrf_token() }}");
-        formData.append("product_description",product_description);
+       // formData.append("product_description",product_description);
         //alert($("#_token").val() +" = "+formData.get("_token"));
 
         $.ajax({
