@@ -44,7 +44,7 @@ class AddressBookController extends Controller
         $no_hp              = $request->input("no_hp");
         $provinsi           = $request->input("provinsi");
         $kecamatan          = $request->input("kecamatan");
-        $kota               = $request->input("kota");
+        $kota               = $request->input("city");
         $kode_pos           = $request->input("kode_pos");
         $shipping_address   = $request->input("shipping_address");
         $billing_address    = $request->input("billing_address");
@@ -60,7 +60,7 @@ class AddressBookController extends Controller
             "no_hp"             =>"required",
             "provinsi"          =>"required",
             "kecamatan"         =>"required",
-            "kota"              =>"required",
+            "city"              =>"required",
             "kode_pos"          =>"required",
             "shipping_address"  =>"required",
             "billing_address"   =>"required"
