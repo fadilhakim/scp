@@ -7,6 +7,22 @@
                     <span class="clearfix"></span>
                   
                 </div>
+
+                @if (\Session::get('success'))
+                    <div class="form-group row">
+                        <div class="col-sm-9">
+                            <button class="btn btn-success"><i class="icofont icofont-check-circled"></i>{{ \Session::get('success') }}</button>
+                        </div>
+                    </div>
+                    @endif
+
+                     @if (\Session::get('error'))
+                    <div class="form-group row">
+                        <div class="col-sm-9">
+                            <button class="btn btn-danger"><i class="icofont icofont-warning-alt"></i>{{ \Session::get('error') }}</button>
+                        </div>
+                    </div>
+                    @endif
                 <div class="card-block">
                     <?php foreach($rowImg as $img){ 
 

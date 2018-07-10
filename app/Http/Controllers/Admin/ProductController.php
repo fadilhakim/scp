@@ -270,87 +270,122 @@ class ProductController extends Controller
         if(!empty($request->hasFile('image1')))
         {
             
-            $new_image1 = str_replace(" ","-",strtolower($image1->getClientOriginalName()));
-            $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image1");
-            
-            if(!empty($check_photo1))
-            {
-                $this->objProduct->update_product_image($product_id,$new_image1,"image1");
+            $validator = Validator::make($request->all(), [
+                'image1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:max_width=500,max_height=500',
+              ]);
+
+            if($validator->fails()){
+                return back()->with('error', 'Whoops somethings wrong! Image too big')->withErrors($validator);
             }
-            else
-            {
-                $this->objProduct->insert_product_image($arr,"image1",$new_image1);
+            else {
+                $new_image1 = str_replace(" ","-",strtolower($image1->getClientOriginalName()));
+                $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image1");
+                
+                if(!empty($check_photo1))
+                {
+                    $this->objProduct->update_product_image($product_id,$new_image1,"image1");
+                }
+                else
+                {
+                    $this->objProduct->insert_product_image($arr,"image1",$new_image1);
+                }
+                
+                $destinationPath = "public/products/$product_id";
+                $request->file("image1")->move($destinationPath,$new_image1);
             }
-            
-            $destinationPath = "public/products/$product_id";
-            $request->file("image1")->move($destinationPath,$new_image1);
-            
+      
         }
 
         if(!empty($request->hasFile('image2')))
         {
-            
-            $new_image2 = str_replace(" ","-",strtolower($image2->getClientOriginalName()));
-            $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image2");
-            
-            if(!empty($check_photo1))
-            {
-                $this->objProduct->update_product_image($product_id,$new_image2,"image2");
+
+            $validator = Validator::make($request->all(), [
+                'image2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:max_width=500,max_height=500',
+              ]);
+
+            if($validator->fails()){
+                return back()->with('error', 'Whoops somethings wrong! Image too big')->withErrors($validator);
             }
-            else
-            {
-                $this->objProduct->insert_product_image($arr,"image2",$new_image2);
+            else {
+                
+                $new_image2 = str_replace(" ","-",strtolower($image2->getClientOriginalName()));
+                $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image2");
+                
+                if(!empty($check_photo1))
+                {
+                    $this->objProduct->update_product_image($product_id,$new_image2,"image2");
+                }
+                else
+                {
+                    $this->objProduct->insert_product_image($arr,"image2",$new_image2);
+                }
+                
+                $destinationPath = "public/products/$product_id";
+                $request->file("image2")->move($destinationPath,$new_image2);
+
             }
-            
-            $destinationPath = "public/products/$product_id";
-            $request->file("image2")->move($destinationPath,$new_image2);
         }
 
         if(!empty($request->hasFile('image3')))
         {
-            
-            $new_image3 = str_replace(" ","-",strtolower($image3->getClientOriginalName()));
-            $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image3");
-            
-            if(!empty($check_photo1))
-            {
-                $this->objProduct->update_product_image($product_id,$new_image3,"image3");
+
+             $validator = Validator::make($request->all(), [
+                'image3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:max_width=500,max_height=500',
+              ]);
+
+            if($validator->fails()){
+                return back()->with('error', 'Whoops somethings wrong! Image too big')->withErrors($validator);
             }
-            else
-            {
-                $this->objProduct->insert_product_image($arr,"image3",$new_image3);
-            }
+            else {
             
-            $destinationPath = "public/products/$product_id";
-            $request->file("image3")->move($destinationPath,$new_image3);
+                $new_image3 = str_replace(" ","-",strtolower($image3->getClientOriginalName()));
+                $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image3");
+                
+                if(!empty($check_photo1))
+                {
+                    $this->objProduct->update_product_image($product_id,$new_image3,"image3");
+                }
+                else
+                {
+                    $this->objProduct->insert_product_image($arr,"image3",$new_image3);
+                }
+                
+                $destinationPath = "public/products/$product_id";
+                $request->file("image3")->move($destinationPath,$new_image3);
+            }
         }
 
         if(!empty($request->hasFile('image4')))
         {
-            
-            $new_image4 = str_replace(" ","-",strtolower($image4->getClientOriginalName()));
-            $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image4");
-            
-            if(!empty($check_photo1))
-            {
-                $this->objProduct->update_product_image($product_id,$new_image4,"image4");
+
+             $validator = Validator::make($request->all(), [
+                'image4' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:max_width=500,max_height=500',
+              ]);
+
+            if($validator->fails()){
+                return back()->with('error', 'Whoops somethings wrong! Image too big')->withErrors($validator);
             }
-            else
-            {
-                $this->objProduct->insert_product_image($arr,"image4",$new_image4);
+            else {
+
+                $new_image4 = str_replace(" ","-",strtolower($image4->getClientOriginalName()));
+                $check_photo1 = $this->objProduct->detail_photo_product($product_id,"image4");
+                
+                if(!empty($check_photo1))
+                {
+                    $this->objProduct->update_product_image($product_id,$new_image4,"image4");
+                }
+                else
+                {
+                    $this->objProduct->insert_product_image($arr,"image4",$new_image4);
+                }
+                
+                $destinationPath = "public/products/$product_id";
+                $request->file("image4")->move($destinationPath,$new_image4);
+
             }
-            
-            $destinationPath = "public/products/$product_id";
-            $request->file("image4")->move($destinationPath,$new_image4);
         }
 
-        $url  = url('/admin/product/update/images/'.$product_id);
-        echo '
-            <script>
-                setTimeout(function(){ window.location.href = "'.$url.'"; },500);
-            </script>
-        ';
-        
+         return back()->with('success', 'You Sucessfully update image');
 
     }
     
