@@ -129,8 +129,8 @@ class CartController extends Controller
        
         $product = $this->objProduct->detail_product($product_id);
         $firstImg = $this->objProduct->get_first_image($product_id);
-        //dd($firstImg->image_name);
-        $img = $firstImg->image_name;
+        //dd($firstImg);
+        $img = $firstImg !== null ? $firstImg->image_name : '';
         if(!empty($product))
         {
             $c["id"] = $product->product_id;
