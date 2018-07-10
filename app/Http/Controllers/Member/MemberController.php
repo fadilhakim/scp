@@ -73,6 +73,8 @@ class MemberController extends Controller
         $order_dt           = $this->objOrder-> get_order_byid($order_id); 
         $order_detail_dt    = $this->objOrder->get_order_detail($order_id);
 
+        //dd($order_detail_dt);
+
         // Required
         $transaction_details = array(
             'order_id'      => $order_dt->order_code,
@@ -82,12 +84,25 @@ class MemberController extends Controller
         foreach($order_detail_dt as $order_detail)
         {
             $product_dt = $this->objProduct->detail_product($order_detail->product_id);
-            $item_details[] =  array(
-                'id' => $order_detail->product_id,
-                'price' => $order_detail->price,
-                'quantity' => $order_detail->qty,
-                'name' => $product_dt->product_title
-            );
+            //dd($product_dt);
+            if($product_dt !== null)
+            {
+                $item_details[] =  array(
+                    'id' => $order_detail->product_id,
+                    'price' => $order_detail->price,
+                    'quantity' => $order_detail->qty,
+                    'name' => $product_dt->product_title
+                );
+            }else
+            {
+                $item_details[] =  array(
+                    'id' => "",
+                    'price' => "",
+                    'quantity' => "",
+                    'name' => ""
+                );
+            }
+           
         }    
 
         if(!empty($order_dt->voucher_nominal))
@@ -193,13 +208,4 @@ class MemberController extends Controller
          
     }
 
-    function add_address_book_process()
-    {
-
-    }
-
-    function delete_address_book_process()
-    {
-        
-    }
 }

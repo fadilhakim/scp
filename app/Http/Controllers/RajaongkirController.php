@@ -53,7 +53,6 @@ class RajaongkirController extends Controller
         foreach($city_province as $row)
         {
             echo "<option value='$row[city_id]'>$row[city_name]</option>";	
-            
         }
         
     }

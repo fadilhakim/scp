@@ -1,3 +1,4 @@
+
 <div class="container">
     
     <br>
@@ -17,14 +18,16 @@
                 </tr>
             </thead>
             <tbody>
-            <?php foreach ($address as $addressRow) { ?>
+            <?php foreach ($address as $addressRow) { 
+                    $user_addtr_id = $addressRow->user_addtr_id;
+                ?>
                 <tr>
                     <td><?php echo $addressRow->address_name ?></td>
                     <td><?php echo  $addressRow->shipping_address ?></td>
                     <td><?php echo  $addressRow->billing_address ?></td>
                     <td><?php echo  $addressRow->contact_person ?></td>
                     <td>
-                        <a href-"#" class="btn btn-warning">Edit</a>
+                        <a href-"#" class="btn btn-warning" onClick="update_user_address(<?=$user_addtr_id?>)">Edit</a>
                         <a href-"#" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
@@ -33,7 +36,22 @@
         </table>
     </div>
 </div>
+<script>
+    function update_user_address(user_addtr_id)
+    {
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type:"POST",
+            url:"<?=url("account/address_book/update")?>",
+            data:"_token="+_token+"&user_addtr_id="+user_addtr_id,
+            success:function(data)
+            {
+                $("#temp-address-book").html(data);
+            }
+        })
+    }
 
+</script>
 <script>
     $("#address-book-add-btn").click(function(){
         var _token = $('meta[name="csrf-token"]').attr('content');
