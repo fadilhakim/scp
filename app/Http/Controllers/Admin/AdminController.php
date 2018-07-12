@@ -122,5 +122,50 @@ class AdminController extends Controller
             echo Alert::danger($err_text);
        }
     }
+    function modal_admin_delete(Request $request){
 
+        $admin_id = $request->input("admin_id");
+        $data["admin"] = $this->objAdmin->get_admin_by_id($admin_id);
+        return view("admin/admin/modal_admin_delete",$data);
+
+    }
+
+    
+
+    function admin_delete_process (Request $request){
+
+        $admin_id = $request->input("admin_id");
+
+        $this->objAdmin->admin_delete($admin_id);
+        echo Alert::success("You successfully Delete Admin");
+        echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
+    }
+
+    function modal_admin_update(Request $request){
+
+        $admin_id = $request->input("admin_id");
+        $data["admin"] = $this->objAdmin->get_admin_by_id($admin_id);
+        $data["role"] = $this->objAdmin->get_role();
+        return view("admin/admin/modal_admin_update",$data);
+
+    }
+
+    function admin_update_process(Request $request){
+
+        $admin_id = $request->input("admin_id");
+        $admin_name = $request->input("admin_name");
+        $role_id = $request->input("role_id");
+        $status = $request->input("status");
+
+        $arr = array(
+          "admin_id"       => $admin_id,
+          "name"           => $admin_name,
+          "role_id"        => $role_id,
+          "status"         => $status
+        );
+
+        $this->objAdmin->admin_update($arr);
+        echo Alert::success("You successfully update Admin");
+        echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
+    }
 }

@@ -19,6 +19,12 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get("/admin/admin_list","Admin\AdminController@index");
     Route::post("/admin/admin_list/insert","Admin\AdminController@insert_modal");
     Route::post("/admin/admin_list/insert_process","Admin\AdminController@insert_process");
+
+    Route::post("/admin/admin_list/delete","Admin\AdminController@modal_admin_delete");
+    Route::post("/admin/admin_list/delete_process","Admin\AdminController@admin_delete_process");
+    
+    Route::post("/admin/admin_list/update","Admin\AdminController@modal_admin_update");
+    Route::post("/admin/admin_list/update_process","Admin\AdminController@admin_update_process");
     
     // Role
     Route::get("/admin/role","Admin\RoleController@index");
@@ -74,8 +80,16 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post("/admin/product/brand/insert_process","Admin\BrandController@insert_brand_process");
     Route::post("/admin/product/brand/update_process","Admin\BrandController@update_brand_process");
     Route::post("/admin/product/brand/delete_process","Admin\BrandController@delete_brand_process");
+    
     Route::post("/admin/product/subcategory/insert_process","Admin\CategoryController@insert_subcategory_process");
-    Route::post("/admin/product/subcategory/delete_process","Admin\CategoryController@delete_subcategory_process");
+
+    Route::post("/admin/product/subcategory/update_modal","Admin\CategoryController@update_subcategory_modal");
+
+    Route::post("/admin/product/subcategory/update_process","Admin\CategoryController@update_subcategory_process");
+
+    Route::post("/admin/product/subcategory/delete_modal","Admin\CategoryController@delete_subcategory_modal");
+
+    Route::post("/admin/product/subcategory/deletex_process","Admin\CategoryController@deletex_subcategory_process");
     
     //product overview 
     Route::get("/admin/product/product_overview/{id}","Admin\ProductController@ringkasan_product");
