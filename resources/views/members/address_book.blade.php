@@ -28,7 +28,7 @@
                     <td><?php echo  $addressRow->contact_person ?></td>
                     <td>
                         <a href-"#" class="btn btn-warning" onClick="update_user_address(<?=$user_addtr_id?>)">Edit</a>
-                        <a href-"#" class="btn btn-danger">Delete</a>
+                        <a href-"#" class="btn btn-danger" onClick="delete_user_address(<?=$user_addtr_id?>)">Delete</a>
                     </td>
                 </tr>
             <?php } ?>
@@ -43,6 +43,20 @@
         $.ajax({
             type:"POST",
             url:"<?=url("account/address_book/update")?>",
+            data:"_token="+_token+"&user_addtr_id="+user_addtr_id,
+            success:function(data)
+            {
+                $("#temp-address-book").html(data);
+            }
+        })
+    }
+
+    function delete_user_address(user_addtr_id)
+    {
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type:"POST",
+            url:"<?=url("account/address_book/delete")?>",
             data:"_token="+_token+"&user_addtr_id="+user_addtr_id,
             success:function(data)
             {

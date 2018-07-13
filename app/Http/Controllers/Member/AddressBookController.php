@@ -24,6 +24,35 @@ class AddressBookController extends Controller
         return view("members/address_book_add_modal");
     } 
 
+    function delete_address_book_modal(Request $request)
+    {
+        //dd($request->all());
+        $user_addtr_id = $request->input("user_addtr_id");
+        $data["user_addtr_id"] = $user_addtr_id;
+        $data["user_address"] =  $this->objAddress->address_book_detail($user_addtr_id);
+        
+        //dd($data);
+        return view("members/address_book_delete_modal",$data);
+    }
+
+    function delete_address_book_process(Request $request)
+    {
+        //dd($request->all());
+        $user_addtr_id = $request->input("user_addtr_id");
+        if(!empty($user_addtr_id))
+        {
+            $this->objAddress->address_book_delete($user_addtr_id);
+            echo Alert::success("You Successfully Delete this Address ");
+            echo '
+                <script>
+                    setTimeout(function(){ window.location.href = "'.$url.'"; },2000);
+                </script>
+            ';
+        }else{
+            
+        }
+    }
+
     function address_book_list()
     {
         // list untuk 1 user
@@ -93,6 +122,7 @@ class AddressBookController extends Controller
             $this->objAddress->insert_address($arr);
 
             $url  = url('memberarea/account');
+            echo Alert::success("You Successfully Add Address ");
             echo '
                 <script>
                     setTimeout(function(){ window.location.href = "'.$url.'"; },2000);
@@ -209,6 +239,7 @@ class AddressBookController extends Controller
             $this->objAddress->address_book_update($arr);
 
             $url  = url('memberarea/account');
+            echo Alert::success("You Successfully updated Address ");
             echo '
                 <script>
                     setTimeout(function(){ window.location.href = "'.$url.'"; },2000);

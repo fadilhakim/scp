@@ -27,19 +27,21 @@ class AddressBook extends Model
 
     function address_book_list()
     {
-        $address_book = DB::table($this->table)->get();
+        $address_book = DB::table($this->table)->where("view",1)->get();
         return $address_book;
     }
 
     function get_address_by_user_id($userId)
     {
-        $address_book = DB::table($this->table)->where('user_id',$userId)->get();
+        $address_book = DB::table($this->table)->where('user_id',$userId)
+        ->where("view",1)->get();
         return $address_book;
     }
 
     function address_book_detail($user_addtr_id)
     {
-        $address_book = DB::table($this->table)->where('user_addtr_id',$user_addtr_id)->first();
+        $address_book = DB::table($this->table)->where('user_addtr_id',$user_addtr_id)
+        ->where("view",1)->first();
         return $address_book;
     }
 
@@ -57,6 +59,7 @@ class AddressBook extends Model
             "shipping_address"  =>$arr["shipping_address"],
             "billing_address"   =>$arr["billing_address"],
             "updated_at"        =>$arr["created_at"],
+            "view"              =>1,
             "created_at"        =>$arr["created_at"],
             "user_agent"        =>$arr["user_agent"],
             "ip_address"        =>$arr["ip_address"]
@@ -80,6 +83,6 @@ class AddressBook extends Model
 
     function address_book_delete($user_addtr_id)
     {
-        DB::table($this->table)->where($this->primaryKey, $user_addtr_id)->delete();
+        DB::table($this->table)->where($this->primaryKey, $user_addtr_id)->update(["view"=>0]);
     }
 }

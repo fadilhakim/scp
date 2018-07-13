@@ -106,6 +106,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post("/account/address_book/add_process","Member\AddressBookController@add_address_book_process");
     Route::post("/account/address_book/update","Member\AddressBookController@update_address_book_modal");
     Route::post("/account/address_book/update_process","Member\AddressBookController@update_address_book_process");
+    Route::post("/account/address_book/delete","Member\AddressBookController@delete_address_book_modal");
+    Route::post("/account/address_book/delete_process","Member\AddressBookController@delete_address_book_process");
 
 });
 
