@@ -43,6 +43,12 @@ class Category extends Model
         return $subcategory;
     }
 
+    static function subcategory_detail($subcategory_id){
+
+        $subcategory = DB::table("subcategory_tbl")->where("subcategory_id",$subcategory_id)->first();
+        return $subcategory;
+    }
+
     static function category_detail($category_id)
     {
         $category = DB::table("category_tbl")->where("category_id",$category_id)->first();
@@ -82,9 +88,22 @@ class Category extends Model
         ]);
     }
 
+    static function update_subcategory($arr){
+
+        $subcategory_id = $arr["subcategory_id"];
+        return DB::table("subcategory_tbl")->where('subcategory_id', $subcategory_id)->update([
+            "subcategory_name"=>$arr["subcategory_name"]
+        ]);
+    }
+
     static function delete_category($category_id)
     {
         return DB::table("category_tbl")->where("category_id", $category_id)->delete();
+    }
+
+    static function delete_subcategory($subcategory_id)
+    {
+        return DB::table("subcategory_tbl")->where("subcategory_id", $subcategory_id)->delete();
     }
 
 }

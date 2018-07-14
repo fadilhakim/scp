@@ -30,6 +30,11 @@ class Admin extends Model
         return DB::table("admin_tbl")->get();
     }
 
+    function get_role()
+    {
+        return DB::table("role_tbl")->get();
+    }
+
     function insert_admin($arr)
     {
         return DB::table("admin_tbl")->insert([
@@ -63,6 +68,28 @@ class Admin extends Model
     function activate($email)
     {
         return DB::table("admin_tbl")->where("email",$email)->update(["status"=>"ACTIVE"]);
+    }
+
+    function get_admin_by_id($admin_id){
+          return $q = DB::table("admin_tbl")->where("admin_id",$admin_id)->first();
+    }
+
+    function admin_delete($admin_id)
+    {
+        DB::table("admin_tbl")->where("admin_id",$admin_id)->delete();
+
+        //DB::table($this->table)->where($this->primaryKey, $bank_id)->delete();
+    }
+
+    function admin_update($arr){
+
+        return DB::table("admin_tbl")->where("admin_id",$arr["admin_id"])->update([
+           
+            "name"          =>$arr["name"],
+            "role_id"          =>$arr["role_id"],
+            "status"          =>$arr["status"]
+
+        ]);
     }
 
   

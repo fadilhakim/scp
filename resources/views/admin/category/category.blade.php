@@ -56,6 +56,8 @@ function list_subcategory(category_id)
         }
     });
 }
+
+
 </script>
 <div class="page-body">
     <div class="row">

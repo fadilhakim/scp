@@ -12,7 +12,39 @@
             }
 
         })
+    };
+
+    function delete_modal_admin(admin_id)
+    {
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        
+        $.ajax({
+            type:"POST",
+            url:"<?=url("admin/admin_list/delete")?>",
+            data:"_token="+_token+"&admin_id="+admin_id,
+            success:function(data)
+            {
+                $(".tmp-admin").html(data)
+            }
+        });
     }
+
+    function update_modal_admin(admin_id)
+    {
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        
+        $.ajax({
+            type:"POST",
+            url:"<?=url("admin/admin_list/update")?>",
+            data:"_token="+_token+"&admin_id="+admin_id,
+            success:function(data)
+            {
+                $(".tmp-admin").html(data)
+            }
+        });
+    }  
+
+
 
 </script>
 
@@ -69,8 +101,8 @@
                                     </td>
                                     <td>
                                         <?php if($row->admin_id != 1){ ?>
-                                        <button id="edit-profile" class="btn btn-primary btn-sm"> Edit </button>
-                                        <button id="delete-profile" class="btn btn-danger btn-sm"> Delete </button>
+                                        <button onclick="update_modal_admin(<?=$row->admin_id?>)" id="edit-profile" class="btn btn-primary btn-sm"> Edit </button>
+                                        <a onclick="delete_modal_admin(<?=$row->admin_id?>)" class="btn btn-danger btn-sm"> Delete </a>
                                         <?php } ?>
                                     </td>
                                 </tr>

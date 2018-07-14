@@ -52,7 +52,6 @@ class Brand extends Model
         $brand_id = $arr["brand_id"];
         return DB::table("brand_tbl")->where('brand_id', $brand_id)->update([
             "brand_name"=>$arr["brand_name"],
-            "brand_image"=>$arr["brand_image"],
             "created_at"=>$arr["created_at"],
             "ip_address"=>$arr["ip_address"],
             "user_agent"=>$arr["user_agent"]
