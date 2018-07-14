@@ -39,27 +39,27 @@
 		
 		static function detail_province($id)
 		{
-			return self::general("http://api.rajaongkir.com/starter/province?id=$id");
+			return self::general("https://api.rajaongkir.com/starter/province?id=$id");
 		}
 		
 		static function show_province()
 		{
-			return self::general("http://api.rajaongkir.com/starter/province");	
+			return self::general("https://api.rajaongkir.com/starter/province");	
 		}
 		
 		static function detail_city($id_city,$id_province)
 		{
-			return self::general("http://api.rajaongkir.com/starter/city?id=$id_city&province=$id_province");	
+			return self::general("https://api.rajaongkir.com/starter/city?id=$id_city&province=$id_province");	
 		}
 		
 		static function dt_city($id_city)
 		{
-			return self::general("http://api.rajaongkir.com/starter/city?id=$id_city");
+			return self::general("https://api.rajaongkir.com/starter/city?id=$id_city");
 		}
 		
 		static function city_province($id_province)
 		{
-			return self::general("http://api.rajaongkir.com/starter/city?province=$id_province");	
+			return self::general("https://api.rajaongkir.com/starter/city?province=$id_province");	
 			
 		}
 		
@@ -80,7 +80,7 @@
 			$curl = curl_init();
 
 			curl_setopt_array($curl, array(
-			  CURLOPT_URL => "http://api.rajaongkir.com/starter/cost",
+			  CURLOPT_URL => "https://api.rajaongkir.com/starter/cost",
 			  CURLOPT_RETURNTRANSFER => true,
 			  CURLOPT_ENCODING => "",
 			  CURLOPT_MAXREDIRS => 10,
