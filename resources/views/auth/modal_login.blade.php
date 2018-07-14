@@ -30,18 +30,6 @@
 
                     <div class="row">
 
-                        <div class="col-sm-6 col-xs-b10 col-sm-b0">
-
-                            <div class="empty-space col-sm-b5"></div>
-
-                            <a class="simple-link">Forgot password?</a>
-
-                            <div class="empty-space col-xs-b5"></div>
-
-                            <a class="simple-link">register now</a>
-
-                        </div>
-
                         <div class="col-sm-6 text-right">
 
                             <button type="submit" class="button size-2 style-3" >
