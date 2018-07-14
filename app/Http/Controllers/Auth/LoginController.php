@@ -90,10 +90,13 @@ class LoginController extends Controller
 
             $check_user = $objUser->detail_user_email($email);
 
-            if($check_user->activation != "ACTIVE")
+            if(!empty($check_user))
             {
-                $request->session()->flash('message', "<div class='alert alert-danger'> Your Account is not Activated yet. 
-                Please Activate your account with click activation button that we already sent to your email </div> ");   
+                if($check_user->activation != "ACTIVE")
+                {
+                    $request->session()->flash('message', "<div class='alert alert-danger'> Your Account is not Activated yet. 
+                    Please Activate your account with click activation button that we already sent to your email </div> ");   
+                }
             }
             else
             {
