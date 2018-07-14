@@ -39,10 +39,12 @@ class AddressBookController extends Controller
     {
         //dd($request->all());
         $user_addtr_id = $request->input("user_addtr_id");
+       
         if(!empty($user_addtr_id))
         {
             $this->objAddress->address_book_delete($user_addtr_id);
             echo Alert::success("You Successfully Delete this Address ");
+            $url  = url('memberarea/account');
             echo '
                 <script>
                     setTimeout(function(){ window.location.href = "'.$url.'"; },2000);
