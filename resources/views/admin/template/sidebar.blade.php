@@ -29,6 +29,7 @@
                 $active_order = "";
                 $active_voucher = "";
                 $active_midtrans = "";
+                $active_shipping = "";
                 $active_market_place = "";
 
                 if($route == 'about'){
@@ -65,6 +66,10 @@
                 else if($route == 'midtrans'){
 
                     $active_midtrans = 'active' ;
+                }
+                else if($route == 'shipping'){
+
+                    $active_shipping = 'active' ;
                 }
                 else if($route == 'dashboard'){
 
@@ -203,7 +208,23 @@
                 </ul>
             </li>
 
-            
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-ship"></i></span>
+                    <span class="pcoded-mtext"> Shipping </span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="{{ $active_shipping }}">
+                        <a href="<?=url("admin/shipping/shipping_calculator")?>">
+                            <span class="pcoded-micon"><i class="icofont icofont-calculator"></i></span>
+                            <span class="pcoded-mtext"> Shipping Calculator </span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
 
             <li class="pcoded-hasmenu {{ $active_home }}" dropdown-icon="style1" subitem-icon="style6">
                 <a href="javascript:void(0)">

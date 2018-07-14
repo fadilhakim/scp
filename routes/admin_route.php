@@ -13,6 +13,7 @@ Route::group(['middleware' => ['admin']], function () {
     
     //shipping calculator
     Route::get("/admin/shipping/shipping_calculator","Admin\ShippingCalculator@index");
+    Route::post("/admin/shipping/calculate","Admin\ShippingCalculator@calculate");
 
     // Auth
     Route::get("/admin/logout","Admin\AuthController@logout");
