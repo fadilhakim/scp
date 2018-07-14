@@ -10,7 +10,10 @@ Route::post("/admin/login/process","Admin\AuthController@LoginProcess");
 Route::group(['middleware' => ['admin']], function () {
 
     Route::get("/admin/dashboard","Admin\DashboardController@index");
-   
+    
+    //shipping calculator
+    Route::get("/admin/shipping/shipping_calculator","Admin\ShippingCalculator@index");
+
     // Auth
     Route::get("/admin/logout","Admin\AuthController@logout");
     Route::get("/admin/activation","Admin\AuthController@activation");
