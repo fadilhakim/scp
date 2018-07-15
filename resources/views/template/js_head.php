@@ -24,7 +24,7 @@
             data:"_token="+_token+"&product_id="+product_id,
             success:function(data)
             {
-                $(".generalTemp").html(data);
+                $("#compareTemp").html(data);
             }
 
         })
@@ -40,7 +40,7 @@
             data:"_token="+_token+"&product_id="+product_id,
             success:function(data)
             {
-                $(".generalTemp").html(data);
+                $("#compareTemp").html(data);
             }
 
         })

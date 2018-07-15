@@ -36,5 +36,5 @@
 </head>
 <body>
 <div id="loader-wrapper"></div>
-<div class="generalTemp"></div>
+<div class="generalTemp row"></div>
 

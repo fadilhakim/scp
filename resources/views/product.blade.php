@@ -1,8 +1,7 @@
 @include('template/header')
-        <script>
-       
-        </script>
+        
         <div class="container">
+            <div id="compareTemp" class="row"></div>
             <div class="empty-space col-xs-b15 col-sm-b30"></div>
             <div class="breadcrumbs">
                 <a href="{{url('/')}}">Home</a>

@@ -59,6 +59,7 @@
             $compare_handsfree3 = isset($compare3->handsfree) ? $compare3->handsfree : "";
         ?>
         <div class="empty-space col-xs-b35 col-md-b70"></div>
+      
         <div class="container">
             <div class="row">
                 <h1> Compare </h1>

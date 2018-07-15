@@ -1,20 +1,42 @@
+<style>
+    #modal_compare{
+        width:100% !important;
+    }
+    #modal_compare .modal-dialog {
+        width:100%;
+        position:fixed;
+        bottom:0px;
+        margin:0px;
+    }
+
+    #modal_compare .modal-full{
+        width:100%;
+        margin:0;
+    }
+
+    #modal_compare .modal-content{
+       
+        min-height: 100%;
+        border-radius: 0;
+    }
+
+     #modal_compare .modal-header{
+      
+     }
+
+</style>
 <div id="modal_compare" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-full" role="document">
         <div class="modal-content ">
-            <div class="modal-header bg-primary">
+            <!-- <div class="modal-header bg-primary">
                 <h5 class="modal-title text-white"> Compare Product </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
+            </div> -->
             <form id="form-compare">
             <div class="modal-body">
-                <?php
-                    if(!empty($msg))
-                    {
-                        echo $msg;
-                    }
-                ?>
+              
                 <div class="row justify-content-md-center">
                 <?php
                     $sess_compare = session("product_compare");
@@ -46,9 +68,9 @@
                                             $getImage = url("public/products/default-image.png");
                                         }
                                         ?>
-                                        <img src="{{ $getImage }}" alt="">
+                                        <!-- <img src="{{ $getImage }}" alt=""> -->
                                         
-                                        <div class="preview-buttons valign-middle">
+                                        <!-- <div class="preview-buttons valign-middle">
                                             <div class="valign-middle-content">
                                                 <a class="button size-2 style-2" href="<?=url("product/detail/{$rowProduct->product_id}/{$rowProduct->product_category}/{$slugProd}")?>">
                                                     <span class="button-wrapper">
@@ -57,7 +79,7 @@
                                                     </span>
                                                 </a>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                     <div class="">
                                         <span><?=$rowProduct->product_title?></span>
