@@ -5,10 +5,16 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Libraries\Alert;
+use App\Libraries\Rajaongkir;
 
 use Validator;
 class ShippingCalculator extends Controller
 {
+    private $objRajaongkir;
+    function __construct()
+    {
+        $this->objRajaongkir = new Rajaongkir();
+    }
     //
     function index()
     {
@@ -53,6 +59,25 @@ class ShippingCalculator extends Controller
 
             $data = array();
             $data["all"] = $request->all();
+            $data["weight"] = $weight;
+            
+            $dt_city_origin = $this->objRajaongkir->detail_city($city_origin,$province_origin);
+            $dt_city_destination = $this->objRajaongkir->detail_city($city_destination,$province_destination);
+           
+            $data["city_origin"] =  json_decode($dt_city_origin,true);
+            $data["city_destination"] = json_decode($dt_city_destination,true);
+
+            $dt_cost             = $this->objRajaongkir->cost([
+                "origin" => $city_origin,
+                "destination"  => $city_destination,
+                "weight"    => $weight,
+                "courier"   => $courer
+            ]);
+
+            $data["cost"] = json_decode($dt_cost,true);
+
+            
+            //dd($data["cost"]);
             return view("admin/shipping_management/shipping_calculate_result",$data);
 
         }else

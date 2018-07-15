@@ -158,7 +158,9 @@
     </div>
     </form>
     <div class="row">
-        <div id="shipping-calculate-temp"></div>
+       
+            <div id="shipping-calculate-temp"></div>
+       
     </div>
 </div>
 
