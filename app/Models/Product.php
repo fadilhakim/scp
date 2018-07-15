@@ -320,6 +320,7 @@ class Product extends Model
         $price              = $arr["price"];
         $stock              = $arr["stock"];
         $weight             = $arr["weight"];
+        $product_total_free_ongkir = $arr["product_total_free_ongkir"];
 
         $datetime           = $arr["created_at"];
         $ip_address         = $arr["ip_address"];
@@ -365,6 +366,7 @@ class Product extends Model
             "price"=>$price,
             "stock"=>$stock,
             "weight"=>$weight,
+            "product_total_free_ongkir"=>$product_total_free_ongkir,
             "ip_address"=>$ip_address,
             "user_agent"=>$user_agent,
 

@@ -5,6 +5,7 @@
 
     $stock = $product->stock;
     $weight = $product->weight;
+    $product_total_free_ongkir = $product->product_total_free_ongkir;
 
     $desc = $product->product_description;
     $product_availability = $product->product_availability;
@@ -29,6 +30,7 @@
     $spec_battery   = isset($specification->battery) ? $specification->battery : "";
     $spec_charger   = isset($specification->charger) ? $specification->charger : "";
     $spec_handsfree = isset($specification->handsfree) ? $specification->handsfree : "";
+
 ?>
 
 <div class="page-body">
@@ -96,9 +98,9 @@
 
                                 @if ($errors->any())
                                   
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
                                      
                                 @endif    
                                 <div class="form-group row">
@@ -137,6 +139,14 @@
                                     <label class="col-sm-3 col-form-label">Weight (<strong>In Gram</strong>) : </label>
                                     <div class="col-sm-3">
                                         <input class="form-control" name="weight" value="<?php echo $weight ?>" type="number" min="0">
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label"> Product Total Free Ongkir : </label>
+                                    <div class="col-sm-3">
+                                        <input class="form-control" name="product_total_free_ongkir" value="<?php echo $product_total_free_ongkir ?>" type="number" min="0">
                                     </div>
                                 </div>
 

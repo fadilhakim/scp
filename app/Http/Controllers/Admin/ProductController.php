@@ -106,10 +106,10 @@ class ProductController extends Controller
     {
 
         //basic information 
-        $product_title      = $request->input("product_title");
-        $product_description = $request->input("product_description"); 
-        $product_availability= $request->input("product_availability"); 
-        $brand_id           = $request->input("brand");
+        $product_title      = $request->input("product_title","");
+        $product_description = $request->input("product_description",""); 
+        $product_availability= $request->input("product_availability",""); 
+        $brand_id           = $request->input("brand","");
         
         $category           = $request->input("category");
         $subcategory        = $request->input("subcategory");
@@ -121,18 +121,18 @@ class ProductController extends Controller
         //$old_price          = $request->input("stock",0);
         //$status             = $request->input("status");
 
-        $type               = $request->input("type");
-        $color              = $request->input("color");
-        $dimensions         = $request->input("dimensions");
-        $bandwith           = $request->input("bandwith");
-        $display            = $request->input("display");
-        $sim_card           = $request->input("sim_card");
-        $radio              = $request->input("radio");
-        $micro_sd           = $request->input("micro_sd");
-        $bluetooth          = $request->input("bluetooth");
-        $battery            = $request->input("battery");
-        $charger            = $request->input("charger");
-        $handsfree          = $request->input("handsfree");
+        $type               = $request->input("type","");
+        $color              = $request->input("color","");
+        $dimensions         = $request->input("dimensions","");
+        $bandwith           = $request->input("bandwith","");
+        $display            = $request->input("display","");
+        $sim_card           = $request->input("sim_card","");
+        $radio              = $request->input("radio","");
+        $micro_sd           = $request->input("micro_sd","");
+        $bluetooth          = $request->input("bluetooth","");
+        $battery            = $request->input("battery","");
+        $charger            = $request->input("charger","");
+        $handsfree          = $request->input("handsfree","");
 
         //data info
         $datetime           = date("Y-m-d H:i:s");
@@ -414,37 +414,38 @@ class ProductController extends Controller
     {
     
       $product_id         = $request->input("product_id");
-      $product_availability  = $request->input("product_availability");
-      $product_title      = $request->input("product_title");
+      $product_availability  = $request->input("product_availability","");
+      $product_title      = $request->input("product_title","");
       $price              = $request->input("price",0);
       $stock              = $request->input("stock",0);
       $weight             = $request->input("weight",0);  
-      $product_description= $request->input("product_description");
+      $product_total_free_ongkir = $request->input("product_total_free_ongkir",0);
+      $product_description= $request->input("product_description","");
       $category           = $request->input("category");
       $subcategory        = $request->input("subcategory");
       $brand              = $request->input("brand");
       
       // specification_tbl
-      $type               = $request->input("type");
-      $color              = $request->input("color");
-      $dimensions         = $request->input("dimensions");
-      $bandwith           = $request->input("bandwith");
-      $display            = $request->input("display");
-      $sim_card           = $request->input("sim_card");
-      $radio              = $request->input("radio");
-      $micro_sd           = $request->input("micro_sd");
-      $bluetooth          = $request->input("bluetooth");
-      $battery            = $request->input("battery");
-      $charger            = $request->input("charger");
-      $handsfree          = $request->input("handsfree");
+      $type               = $request->input("type","");
+      $color              = $request->input("color","");
+      $dimensions         = $request->input("dimensions","");
+      $bandwith           = $request->input("bandwith","");
+      $display            = $request->input("display","");
+      $sim_card           = $request->input("sim_card","");
+      $radio              = $request->input("radio","");
+      $micro_sd           = $request->input("micro_sd","");
+      $bluetooth          = $request->input("bluetooth","");
+      $battery            = $request->input("battery","");
+      $charger            = $request->input("charger","");
+      $handsfree          = $request->input("handsfree","");
 
       $datetime           = date("Y-m-d H:i:s");
       $ip_address         = $request->ip();
       $user_agent         = $request->header('User-Agent');
 
       //detail description and technical
-      $sub_title_left    = $request->input("sub_title_left");
-      $desc_left         = $request->input("desc_left");
+      $sub_title_left    = $request->input("sub_title_left","");
+      $desc_left         = $request->input("desc_left","");
 
       if(!empty($request->file('image_left'))){
             
@@ -473,8 +474,8 @@ class ProductController extends Controller
          $image_right     = $request->input('image_right_hide');
       }
 
-      $sub_title_btm    = $request->input("sub_title_btm");
-      $desc_btm         = $request->input("desc_btm");
+      $sub_title_btm    = $request->input("sub_title_btm","");
+      $desc_btm         = $request->input("desc_btm","");
 
       if(!empty($request->file('image_btm'))){
         $image_btm     = $request->file('image_btm');
@@ -487,7 +488,7 @@ class ProductController extends Controller
          $image_btm     = $request->input('image_btm_hide');
       }
 
-      $product_tech        = $request->input("product_tech");
+      $product_tech        = $request->input("product_tech","");
      
       $validator = Validator::make($request->all(), [
         "product_id"            => "required|integer",
@@ -515,6 +516,7 @@ class ProductController extends Controller
                 "price"         => $price,
                 'stock'         => $stock,
                 "weight"        => $weight,
+                "product_total_free_ongkir" => $product_total_free_ongkir,
                 'product_description' => $product_description,
                 "category"      => $category,
                 'subcategory'   => $subcategory,
