@@ -41,7 +41,10 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get("/admin/users","Admin\UsersController@index");
     Route::post("/admin/users/delete","Admin\UsersController@modal_user_delete");
     Route::post("/admin/users/delete_process","Admin\UsersController@user_delete_process");
-    
+    Route::post("/admin/users/change_status_modal","Admin\UsersController@modal_user_change_status");
+    Route::post("/admin/users/change_activation_modal","Admin\UsersController@modal_user_change_activation");
+    Route::post("/admin/users/change_status_process","Admin\UsersController@change_status_process");
+    Route::post("/admin/users/change_activation_process","Admin\UsersController@change_activation_process");
 
     Route::get("/admin/slider","Admin\SliderController@index");
     // pages

@@ -17,6 +17,36 @@ function delete_modal_user(user_id)
     });
 }
 
+function change_status_modal(status,user_id)
+{
+   
+    var _token = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+        type:"POST",
+        url:"<?=url("admin/users/change_status_modal")?>",
+        data:"_token="+_token+"&status="+status+"&user_id="+user_id,
+        success:function(data)
+        {
+            $(".tmp-slider").html(data)
+        }
+    });
+}
+
+function change_activation(activation,user_id)
+{
+   
+    var _token = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+        type:"POST",
+        url:"<?=url("admin/users/change_activation_modal")?>",
+        data:"_token="+_token+"&activation="+activation+"&user_id="+user_id,
+        success:function(data)
+        {
+            $(".tmp-slider").html(data)
+        }
+    });
+}
+
 
 </script>
 <div class="page-body">
@@ -42,8 +72,8 @@ function delete_modal_user(user_id)
                                     <th>Email</th>
                                    
                                     <th>Phone Number</th>
-                                    <th>User Type</th>
-                                    <th>Status</th>
+                                    <th>User Status</th>
+                                    <th>Activation</th>
                                     <th> Action </th>
                                 </tr>
                             </thead>
@@ -56,15 +86,16 @@ function delete_modal_user(user_id)
                                    
                                     <td><?=$row->no_telp?></td>
                                     <td>
-                                        <select class="form-control">
-                                            <option>Regular</option>
-                                            <option>Distributor</option>
+                                        <select class="form-control" onChange="change_status_modal(this.value,<?=$row->id?>)">
+                                            <option value='regular'>Regular</option>
+                                            <option value='reseller'>Distributor</option>
+                                            <option value='special'>Special</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select class="form-control">
-                                            <option>Active</option>
-                                            <option>unActive</option>
+                                        <select class="form-control" onChange="change_activation(this.value,<?=$row->id?>)">
+                                            <option value="active">Active</option>
+                                            <option value='unactive'>unActive</option>
                                         </select>
                                     </td>
                                     <td>
@@ -81,3 +112,4 @@ function delete_modal_user(user_id)
         </div>
     </div>
 </div>
+

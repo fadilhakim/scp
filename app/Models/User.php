@@ -80,5 +80,19 @@ class User extends Authenticatable
     {
         DB::table('users')->where("id", $id)->delete();
     }
+
+    function change_status_user($user_id,$status)
+    {
+        DB::table("users")->where("id",$user_id)->update([
+           "status"=>$status 
+        ]);
+    }
+
+    function change_activation_user($user_id,$activation)
+    {
+        DB::table("users")->where("id",$user_id)->update([
+            "activation"=>$activation 
+         ]);
+    }
    
 }

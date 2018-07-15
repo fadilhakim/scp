@@ -36,6 +36,46 @@ class UsersController extends Controller
         return view("admin/users/modal_user_delete",$data);
     }
 
+    function modal_user_change_status(Request $request)
+    {
+        $data["user_id"] = $request->input("user_id");
+        $data["status"]  = $request->input("status");
+        return view("admin/users/modal_user_change_status",$data);
+    }
+
+    function modal_user_change_activation(Request $request)
+    {
+        $data["user_id"] = $request->input("user_id");
+        $data["activation"]  = $request->input("activation");
+        return view("admin/users/modal_user_change_activation",$data);
+    }
+
+    function change_activation_process(Request $request)
+    {   
+        $user_id = $request->input("user_id");
+        $activation = $request->input("activation");
+
+        if(!empty($user_id))
+        {
+            $this->objUser->change_activation_user($user_id,$activation);
+            echo Alert::success("You successfully Change Activation User");
+            echo "<script> setTimeout(function(){ location.reload(); },2000); </script>";
+        }
+    }
+
+    function change_status_process(Request $request)
+    {
+        $user_id = $request->input("user_id");
+        $status = $request->input("status");
+
+        if(!empty($user_id))
+        {
+            $this->objUser->change_status_user($user_id,$status);
+            echo Alert::success("You successfully Change Status User");
+            echo "<script> setTimeout(function(){ location.reload(); },2000); </script>";
+        }
+    }   
+
     function user_delete_process(Request $request){
         
         $user_id = $request->input("user_id");
