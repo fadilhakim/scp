@@ -49,9 +49,16 @@ class Product extends Model
     }
 
     static function detail_product($id)
-
     {
         $product = DB::table('product_tbl')->where('product_id',$id)->first();
+        return $product;
+    }
+
+    function detail_product2($id)
+    {
+        $product = DB::table('product_tbl')->where('product_id',$id)->first();
+        
+      
         return $product;
     }
 

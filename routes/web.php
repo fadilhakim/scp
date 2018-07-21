@@ -66,6 +66,7 @@ Route::get('/user_form_checkout', 'OrderController@user_form_checkout');
 
 Route::get('cart',"CartController@index"); 
 Route::get("cart/add/{product_id}/{product_title}","CartController@add");
+Route::post("cart/add","CartController@add");
 Route::post("cart/update","CartController@update");
 Route::get("cart/delete/{row_id}","CartController@delete");
 Route::get("cart/content","CartController@content");

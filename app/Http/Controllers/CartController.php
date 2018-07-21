@@ -125,17 +125,21 @@ class CartController extends Controller
     {
 
         // data peoduct
-        $product_id = $request->segment(3);
-       
-        $product = $this->objProduct->detail_product($product_id);
+        
+        $product_id =  !empty($request->input("product_id")) ? $request->input("product_id") : $request->segment(3);
+        $qty        = !empty($request->input("qty")) ? $request->input("qty") : 1;        
+
+        $product = $this->objProduct->detail_product2($product_id);
         $firstImg = $this->objProduct->get_first_image($product_id);
-        //dd($firstImg);
+        
+       
         $img = $firstImg !== null ? $firstImg->image_name : '';
+       
         if(!empty($product))
         {
             $c["id"] = $product->product_id;
             $c["name"] = $product->product_title;
-            $c["qty"] = 1;
+            $c["qty"] = $qty;
 
             $c["price"] = $product->price;
             $c["options"] = ['image' => $img];
@@ -148,6 +152,9 @@ class CartController extends Controller
             redirect()->to("cart")->send();
             //return view("cart/modal_info");
             //dd($a);
+        }else
+        {
+            echo "what ? ";
         }
        
       
