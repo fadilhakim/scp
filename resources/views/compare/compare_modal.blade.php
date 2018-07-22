@@ -5,19 +5,22 @@
     #modal_compare .modal-dialog {
         width:100%;
         position:fixed;
-        bottom:0px;
-        margin:0px;
+       
     }
 
     #modal_compare .modal-full{
         width:100%;
         margin:0;
+
     }
 
     #modal_compare .modal-content{
        
         min-height: 100%;
         border-radius: 0;
+        width:100%;
+        bottom:0;
+       
     }
 
      #modal_compare .modal-header{
@@ -26,8 +29,8 @@
 
 </style>
 <div id="modal_compare" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-full" role="document">
-        <div class="modal-content ">
+    <div class="row" role="document">
+        <div class="modal-content" style='bottom:0'>
             <!-- <div class="modal-header bg-primary">
                 <h5 class="modal-title text-white"> Compare Product </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -68,7 +71,7 @@
                                             $getImage = url("public/products/default-image.png");
                                         }
                                         ?>
-                                        <!-- <img src="{{ $getImage }}" alt=""> -->
+                                         <img src="{{ $getImage }}" alt="" width='100' height='100' style='float:left'>
                                         
                                         <!-- <div class="preview-buttons valign-middle">
                                             <div class="valign-middle-content">

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Voucher; // coupon
 use App\Models\Order;
+use App\Models\AddressBook;
 use App\Libraries\Alert;
 use Auth;
 use Validator;
@@ -13,6 +14,7 @@ class CartController extends Controller
 {
     private $objCart;
     private $objProduct;
+    private $objUserAddress;
     //
     function __construct()
     {
@@ -20,9 +22,20 @@ class CartController extends Controller
         $this->objVoucher = new Voucher();
     }
 
-    function index()
+    function index(Request $request)
     {
-        return view('cart');
+        //print_r($request->session()->all());
+        $user_id = Auth::id();
+        
+        if(empty($user_id)){
+            dd($user_id);
+            redirect("login");
+        }
+
+        $this->objUserAddress = new AddressBook();
+        $data["user_address"] = $this->objUserAddress->get_address_by_user_id($user_id);
+        //dd($data);
+        return view('cart/cart',$data);
     }
 
     function content()
@@ -156,8 +169,6 @@ class CartController extends Controller
         {
             echo "what ? ";
         }
-       
-      
     }
 
     function update(Request $request)

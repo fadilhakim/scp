@@ -26,6 +26,7 @@ class AddressBookController extends Controller
 
     function delete_address_book_modal(Request $request)
     {
+        
         //dd($request->all());
         $user_addtr_id = $request->input("user_addtr_id");
         $data["user_addtr_id"] = $user_addtr_id;
@@ -39,12 +40,20 @@ class AddressBookController extends Controller
     {
         //dd($request->all());
         $user_addtr_id = $request->input("user_addtr_id");
-       
+        $from = !empty($request->input("from")) ? $request->input("from") : "";
+
         if(!empty($user_addtr_id))
         {
             $this->objAddress->address_book_delete($user_addtr_id);
             echo Alert::success("You Successfully Delete this Address ");
-            $url  = url('memberarea/account');
+            
+            if($from === "cart"){
+                $url  = url('cart');
+            }else{
+                $url  = url('memberarea/account');
+            }
+            
+
             echo '
                 <script>
                     setTimeout(function(){ window.location.href = "'.$url.'"; },2000);
@@ -62,6 +71,7 @@ class AddressBookController extends Controller
 
     function add_address_book_process(Request $request)
     {
+        $from = !empty($request->input("from")) ? $request->input("from") : "";
         /*
             "user_id",
             "contact_person",
@@ -123,7 +133,11 @@ class AddressBookController extends Controller
             
             $this->objAddress->insert_address($arr);
 
-            $url  = url('memberarea/account');
+            if($from === "cart"){
+                $url  = url('cart');
+            }else{
+                $url  = url('memberarea/account');
+            }
             echo Alert::success("You Successfully Add Address ");
             echo '
                 <script>
