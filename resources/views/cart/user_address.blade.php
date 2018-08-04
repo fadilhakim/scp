@@ -44,7 +44,7 @@
    
     <div id='cart-user-address-temp'></div>
     <br class='clearfix'>
-    <ul class="list-group" style='overflow-y:scroll; height:400px'>
+    <ul class="list-group" style='overflow-y:scroll; height:200px'>
         <?php
         //var_dump($user_address);
         foreach($user_address as $row){
@@ -65,3 +65,5 @@
         ?>
     </ul>
 </div> 
+
+<div class="empty-space col-sm-b35"></div>

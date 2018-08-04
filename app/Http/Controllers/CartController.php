@@ -28,7 +28,7 @@ class CartController extends Controller
         $user_id = Auth::id();
         
         if(empty($user_id)){
-            dd($user_id);
+            //dd($user_id);
             redirect("login");
         }
 
@@ -150,12 +150,14 @@ class CartController extends Controller
        
         if(!empty($product))
         {
+            $weight = $product->weight * $qty;
+
             $c["id"] = $product->product_id;
             $c["name"] = $product->product_title;
             $c["qty"] = $qty;
 
             $c["price"] = $product->price;
-            $c["options"] = ['image' => $img];
+            $c["options"] = ['image' => $img, "weight"=> $weight , "shipping"=>0];
             //$a = Cart::instance('shopping')->add('192ao14', 'Product 14', 1, 9.99);
             $a = Cart::add($c);
             //Cart::add($product->product_id,$product->product_title,1,$product->price);
@@ -175,19 +177,34 @@ class CartController extends Controller
     {
        
         $rowId = $request->input("rowid-input");
+        $productId = $request->input("productId-input");
         $qty   = $request->input("qty-input");
+
 
         $count = count($rowId);
         
-        if(!empty($rowId))
+        //dd($rowId);
+        //$dtRowCart = Cart::get($rowId[0]);
+        //dd($dtRowCart);
+
+        if(!empty($count))
         {
-            for($i=0; $i<=$count-1; $i++)
+
+            for($i=0; $i < $count; $i++)
             {
                 $rowid1 = $rowId[$i];
+            
+                //$dtRowCart = Cart::get($rowid1);
+                //print_r($dtRowCart);
 
-                Cart::update($rowid1, $qty[$i]); // Will update the quantity
+                $product = $this->objProduct->detail_product2($productId[$i]);
+                $weight = $qty[$i] * $product->weight;
+                $rowProduct = ["qty" => $qty[$i],  "options" => ["weight" => $weight] ];
+                Cart::update($rowid1, $rowProduct);
+                //Cart::update($rowid1, ["options" => ["weight" => $weight]]);
+                //Cart::update($rowid1, $qty[$i]); // Will update the quantity
             }
-
+           
             // final_total
             session(["final_total"=>Cart::total()]);
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\OrderEmail;
 use App\Models\Order;
+use App\Models\AddressBook;
 use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -17,6 +18,8 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     private $objOrder;
+    private $objUserAddress;
+
     function __construct()
     {
         $this->objOrder = new Order();
@@ -29,6 +32,17 @@ class OrderController extends Controller
       $this->$objOrder->test2();
       echo "<hr>";
       Order::test();
+    }
+
+    function shipping(){
+        
+        // data cart
+        $user_id = Auth::id();
+        $this->objUserAddress = new AddressBook();
+        $data["user_address"] = $this->objUserAddress->get_address_by_user_id($user_id);
+        //dd($data);
+        return view("shipping",$data);
+
     }
 
     function checkout(Request $request)

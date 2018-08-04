@@ -93,6 +93,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // members and order
     Route::get("checkout","OrderController@checkout");
+    Route::get("shipping","OrderController@shipping");
     Route::get('/memberarea', 'Member\MemberController@index');
     Route::get('/memberarea/account', 'Member\MemberController@account');
     Route::get('/detail_order/{id}', 'Member\MemberController@detail_order');

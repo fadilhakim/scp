@@ -2,6 +2,7 @@
 <script>
     function update_cart()
     {
+        alert("wait a minute ...");
         $.ajax({
             type:"POST",
             url:"<?= url("cart/update") ?>",
@@ -12,8 +13,7 @@
                 $("#cart-info-temp").html(data);
             }
         });
-
-    
+        //$("form#form-update-cart").submit();
     }
 </script>
 <div class="container">
@@ -45,7 +45,7 @@
                     <th style="width: 70px;"></th>
                 </tr>
             </thead>
-            <form id="form-update-cart" method="post">
+            <form onSubmit="update_cart()" id="form-update-cart" method="post">
             {{ csrf_field() }}
             <tbody>
                 <?php foreach(Cart::content() as $row){ 
@@ -64,6 +64,7 @@
                     </td>
                     <td data-title="Price: ">Rp. <?=number_format($row->price)?>
                     <input type="hidden" value="{{ $row->rowId }}" name="rowid-input[]" />
+                    <input type="hidden" value="{{ $row->id }}" name="productId-input[]" />
                     </td>
                     <td data-title="Quantity: ">
 
@@ -111,10 +112,16 @@
                             <span class="text" style="color:white">Update Cart</span>
                         </span>
                     </a>
-                    <a onclick="return confirm('Are you sure want to checkout')" class="button size-2 style-3" href="{{url('checkout')}}">
+                    <!-- <a onclick="return confirm('Are you sure want to checkout')" class="button size-2 style-3" href="{{url('checkout')}}">
                         <span class="button-wrapper">
                             <span class="icon"><img src="img/icon-4.png" alt=""></span>
                             <span class="text">proceed to checkout</span>
+                        </span>
+                    </a> -->
+                    <a class="button size-2 style-3" href="{{url('shipping')}}">
+                        <span class="button-wrapper">
+                            <span class="icon"><img src="img/icon-4.png" alt=""></span>
+                            <span class="text"> Shipping </span>
                         </span>
                     </a>
                 </div>
@@ -125,10 +132,13 @@
       <div class="row">
         <div class="col-md-6 col-xs-b50 col-md-b0">
            <!-- User addresss List  -->
+           <code>
            <?php 
-                $data["user_address"] = $user_address;
+                print_r(Cart::content());
+                //$data["user_address"] = $user_address;
            ?>
-           <?=view("cart/user_address",$data) ?>
+           </code>
+           <?php //view("cart/user_address",$data) ?>
         </div>
         <div class="col-md-6">
             <h4 class="h4">cart totals</h4>
