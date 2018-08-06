@@ -88,7 +88,7 @@ function change_activation(activation,user_id)
                                     <td>
                                         <select class="form-control" onChange="change_status_modal(this.value,<?=$row->id?>)">
                                             <option value='regular'>Regular</option>
-                                            <option value='reseller'>Distributor</option>
+                                            <option value='reseller'>Reseller</option>
                                             <option value='special'>Special</option>
                                         </select>
                                     </td>

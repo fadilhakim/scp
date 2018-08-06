@@ -138,6 +138,10 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post("/admin/product/insert_market_link_process","Admin\ProductController@modal_market_link_insert_process");
     Route::get("/admin/market_link/delete/{id}/{prod_id}","Admin\ProductController@market_link_delete_process");
 
+    // product review
+    Route::get('/admin/product_review',"Admin\ReviewController@index");
+
+    
 
 
     //Voucher
