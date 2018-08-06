@@ -122,34 +122,13 @@
         </div>
     
     <div class="empty-space col-xs-b35 col-md-b70"></div>
-    <div class="row">
+      <div class="row">
         <div class="col-md-6 col-xs-b50 col-md-b0">
-            <h4 class="h4 col-xs-b25">calculate shipping</h4>
-            <select class="form-control">
-                <option disabled="disabled" selected="selected">Choose country for shipping</option>
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
-            </select>
-            <div class="empty-space col-xs-b20"></div>
-            <div class="row m10">
-                <div class="col-sm-6">
-                    <input class="form-control" type="text" value="" placeholder="State / Country" />
-                    <div class="empty-space col-xs-b20"></div>
-                </div>
-                <div class="col-sm-6">
-                    <input class="form-control" type="text" value="" placeholder="Postcode / Zip" />
-                    <div class="empty-space col-xs-b20"></div>
-                </div>
-            </div>
-            <div class="button size-2 style-2">
-                <span class="button-wrapper">
-                    <span class="icon"><img src="img/icon-1.png" alt=""></span>
-                    <span class="text">update totals</span>
-                </span>
-                <input type="submit"/>
-            </div>
+           <!-- User addresss List  -->
+           <?php 
+                $data["user_address"] = $user_address;
+           ?>
+           <?=view("cart/user_address",$data) ?>
         </div>
         <div class="col-md-6">
             <h4 class="h4">cart totals</h4>
@@ -206,7 +185,7 @@
                 </div>
             </div>
         </div>
-    </div>
+      </div>
     <div class="empty-space col-xs-b35 col-md-b70"></div>
     <div class="empty-space col-xs-b35 col-md-b70"></div>
 </div>

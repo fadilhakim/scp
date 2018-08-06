@@ -11,6 +11,7 @@
      $detail_left = $product->product_detail_left;
      $left_img = $product->product_detail_left_img;
 //} ?>
+
 <div class="container">
     <div class="empty-space col-md-b30"></div>
     <div class="row">
@@ -141,31 +142,36 @@
                         {{$desc}}
 
                     </div>
+                    <form method="POST" action="<?=url("cart/add")?>"> 
                     <div class="row col-xs-b40">
                         <div class="col-sm-3">
                             <div class="h6 detail-data-title size-1">quantity:</div>
                         </div>
                         <div class="col-sm-9">
                             <div class="quantity-select">
-                                <span class="minus"></span>
+                                <span onclick="javascript:decrement()" class="minus"></span>
                                 <span class="number">1</span>
-                                <span class="plus"></span>
+                                <input type="hidden" name="product_id" class="product_id" value="<?=$product->product_id?>">
+                                <input type="hidden" name="qty" class="qty" value="1">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}" >
+                                <span onclick="javascript:increment()"class="plus"></span>
                             </div>
                         </div>
                     </div>
                     <div class="row m5 col-xs-b40">
                         <div class="col-sm-6 col-xs-b10 col-sm-b0">
-                            <a class="button size-2 style-2 block" href="<?=url("cart/add/$id/$slug")?>">
+                            <button class="button size-2 style-2 block">
                                 <span class="button-wrapper">
                                     <span class="icon"><img src="img/icon-2.png" alt=""></span>
                                     <span class="text">add to cart</span>
                                 </span>
-                            </a>
+                            </button>
                         </div>
                         <div class="col-sm-6">
                     
                         </div>
                     </div>
+                    </form>
                     <div class="row">
                         <div class="col-sm-9">
                             <div class="h6 detail-data-title size-2">Find This Product In :</div>
@@ -391,5 +397,29 @@
     <div class="empty-space col-md-b70"></div>
 
 </div>
+<script > 
+   
+    function increment(){
+        var num = $(".number").html();
+        num = Number(num);
+        num++;
+        $(".number").html(num);
+        $(".qty").val(num);
+    }
 
+    function decrement(){
+        var num = $(".number").html();
+        num = Number(num);
+        if(num > 1)
+        {
+            num--;
+        }else{
+            num = 1;
+        }
+       
+        $(".number").html(num);
+        $(".qty").val(num);
+    }
+
+</script> 
 @include('template/footer')
