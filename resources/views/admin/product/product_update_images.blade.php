@@ -40,7 +40,8 @@
                         <div class="col-lg-6 p-20">
                             
                             <div class="p-20 z-depth-bottom-0 waves-effect" data-toggle="tooltip" data-placement="top" title=".z-depth-top-0">
-                                <label for="">First Image <strong>(Thumbnail) :</strong></label><br>
+                                <label for="">First Image <strong>(Thumbnail) : 
+                                    <span style="color:red;">Image size 500x500 px</span></strong></label><br>
                                 
                                 <?php if(!empty($firstImg)){ ?>
                                     <img class="img-fluid" src="{{URL::asset('public/products/'.$prodId.'/'.$firstImg->image_name)}}" alt="">
@@ -57,7 +58,7 @@
                         <div class="col-lg-6 p-20">
                             <div class="p-20 z-depth-bottom-0 waves-effect" data-toggle="tooltip" data-placement="top" title=".z-depth-top-0">
 
-                                <label for="">Second Image :</label><br>
+                                <label for="">Second Image :<span style="color:red;">Image size 500x500 px</span></label><br>
                                 <?php if(!empty($secImg)){ ?>
                                     <img class="img-fluid" src="{{URL::asset('public/products/'.$prodId.'/'.$secImg->image_name)}}" alt="">
                                     <input type="hidden" name="image2_hide" class="form-control form-bg-primary" value="{{ $secImg->image_name}}">   
@@ -73,7 +74,7 @@
                         <div class="col-lg-6 p-20">
                             <div class="p-20 z-depth-bottom-0 waves-effect" data-toggle="tooltip" data-placement="top" title=".z-depth-top-0">
 
-                                <label for="">Third Image :</label><br>
+                                <label for="">Third Image :<span style="color:red;">Image size 500x500 px</span></label><br>
                                 <?php if(!empty($thirdImg)){ ?>
                                     <img class="img-fluid" src="{{URL::asset('public/products/'.$prodId.'/'.$thirdImg->image_name)}}" alt="">
                                     <input type="hidden" name="image3_hide" class="form-control form-bg-primary" value="{{ $thirdImg->image_name}}">   
@@ -89,7 +90,7 @@
                         <div class="col-lg-6 p-20">
                             <div class="p-20 z-depth-bottom-0 waves-effect" data-toggle="tooltip" data-placement="top" title=".z-depth-top-0">
 
-                                <label for="">Fourth Image :</label><br>
+                                <label for="">Fourth Image :<span style="color:red;">Image size 500x500 px</span></label><br>
                                 <?php if(!empty($fourthImg)){ ?>
                                     <img class="img-fluid" src="{{URL::asset('public/products/'.$prodId.'/'.$fourthImg->image_name)}}" alt="">
                                     <input type="hidden" name="image4_hide" class="form-control form-bg-primary" value="{{ $fourthImg->image_name}}">   
@@ -117,7 +118,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Image Display</th>
+                                            <th>Image Display <span style="color:red;">(Image size 870x320)</span></th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -139,7 +140,7 @@
                             <div class="row form-group">
                                 <div class="col-lg-12 p-20" style="text-align:left">
                                     <form action="{{ url('admin/product/insert_mini_slide') }}" method="post" enctype="multipart/form-data">
-                                        <label for="">Add Mini Slide</label><br>
+                                        <label for="">Add Mini Slide <span style="color:red;">(Image size 870x320)</span></label><br>
                                         <input type="hidden" name="product_id" value="<?php echo $prodId ?>">
                                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                                         <input type="file" style="width:50%" class="form-control form-bg-primary" name="image_slide" id="">

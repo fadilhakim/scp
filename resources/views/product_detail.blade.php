@@ -339,12 +339,27 @@
                 </label>
             <?php } ?>
             
- 
-            <div class="empty-space col-xs-b25 col-sm-b50"></div>
-
         </div>
     </div>
 
+    <!-- USER REVIEWS -->
+    <div class="simple-article size-3 grey uppercase col-xs-b5">User Reviews</div>
+    <div class="h3">here 3 Reviews</div>
+    <div class="comments-wrapper">
+        <?php foreach($product_review as $pr) { ?>
+        <div class="comment-entry">
+            <div class="comment-top">
+                <div class="content">
+                    <h6 class="h6 col-xs-b5">Review By : <?php echo $pr->user_id ?></h6>
+                </div>
+                <div class="simple-article size-2"><?php echo $pr->review_text ?></div>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+    <!-- END USER REVIEWS -->
+    
+    <div class="empty-space col-xs-b25 col-sm-b50"></div>
     <div class="swiper-container arrows-align-top" data-breakpoints="1" data-xs-slides="1" data-sm-slides="3" data-md-slides="4" data-lt-slides="4" data-slides-per-view="5">
         <div class="h4 swiper-title">Recommended Product</div>
         <div class="empty-space col-xs-b20"></div>

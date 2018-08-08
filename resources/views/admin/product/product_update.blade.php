@@ -227,7 +227,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Left Image</label><br>
+                                            <label for="">Left Image : </label><span style="color:red;">(Image size 400x400)</span><br>
                                             <?php if(!empty($product->product_detail_left_img)){ ?>
                                                 <img class="img-fluid" src="{{URL::asset('public/products/'.$product_id.'/'.$product->product_detail_left_img)}}" alt="">  
                                             <?php } else { ?>
@@ -253,7 +253,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Right Image :</label><br>
+                                            <label for="">Right Image : <span style="color:red;">(Image size 400x400)</span></label><br>
                                             <?php if(!empty($product->product_detail_right_img)){ ?>
                                                 <img class="img-fluid" src="{{URL::asset('public/products/'.$product_id.'/'.$product->product_detail_right_img)}}" alt="">  
                                             <?php } else { ?>
@@ -275,7 +275,7 @@
                                             <input class="form-control" name="sub_title_btm" value="<?php echo $product->product_title_btm ?>" type="text">
                                             <label>Product Description Bottom :</label><br>
                                             <textarea class="form-control" name="desc_btm" id=""><?php echo $product->product_detail_btm ?></textarea>
-                                            <label for="">Bottom Image :</label><br>
+                                            <label for="">Bottom Image : <span style="color:red;">(Image size 400x400)</span></label><br>
                                             <?php if(!empty($product->product_detail_btm_img)){ ?>
                                                 <img class="img-fluid"  src="{{URL::asset('public/products/'.$product_id.'/'.$product->product_detail_btm_img)}}" alt="">  
                                             <?php } else { ?>

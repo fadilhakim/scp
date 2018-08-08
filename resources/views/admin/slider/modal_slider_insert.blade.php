@@ -17,7 +17,7 @@
                     <input name="url_image" class="form-control" placeholder="slider url" type="text">
                 </div>
                 <label>Slider Image</label>
-                    <span class="clearfix"></span>
+                    <span style="color: red;" class="clearfix"> (W = 1500 H = 785)</span>
                 <div class="row">
                     <div class="col-md-3">
                         <input type="file" data-placeholder="image_name" name="image_name" data-size="sm" class="filestyle" data-text="Upload" data-btnClass="btn-primary">

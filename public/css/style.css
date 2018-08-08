@@ -1334,7 +1334,7 @@ body.loaded .big-slider-product .description, body.loaded .big-slider-product .p
 .comment-entry{position: relative; padding-left: 100px;}
 .comment-entry .testimonial-top{}
 .comment-entry .image{float: left; width: 50px; height: auto; border-radius: 25px; -webkit-border-radius: 25px;}
-.comment-entry .content{margin: 0 100px 23px 70px; padding-top: 5px;}
+.comment-entry .content{margin: 0 100px 23px 0px; padding-top: 5px;}
 .comment-entry .button{position: absolute; right: 0; top: 5px;}
 /*Phones (<768px)*/
 @media (max-width: 767px) {

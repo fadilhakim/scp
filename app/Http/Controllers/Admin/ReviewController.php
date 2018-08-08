@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Libraries\Alert;
 use Validator;
 
-class VoucherController extends Controller
+class ReviewController extends Controller
 {
     private $objReview;
     function __construct()
@@ -17,8 +17,10 @@ class VoucherController extends Controller
 
     function index()
     {
-     	$data["review"] = Product::get_all();
-        return view("product",$data);
+     	$data["review"] = Review::all_review()->get();
+        $data["title"]   = "Product Review";
+        $data['content'] = 'admin/review/review';
+        return view("/admin/index",$data);
     }
 
 

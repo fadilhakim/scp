@@ -87,9 +87,11 @@ function change_activation(activation,user_id)
                                     <td><?=$row->no_telp?></td>
                                     <td>
                                         <select class="form-control" onChange="change_status_modal(this.value,<?=$row->id?>)">
-                                            <option value='regular'>Regular</option>
-                                            <option value='reseller'>Reseller</option>
-                                            <option value='special'>Special</option>
+                                            <option value="<?= $row->status ?>" selected>
+                                                <?= $row->status ?>
+                                            </option>
+                                            <option value='regular'>regular</option>
+                                            <option value='reseller'>reseller</option>
                                         </select>
                                     </td>
                                     <td>

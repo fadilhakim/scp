@@ -82,7 +82,7 @@ function delete_modal_review(review_id)
                                         <?php echo $row->product_id; ?>
                                     </td>
                                     <td>
-                                        <?php echo $row->review_text; ?>
+                                        {{ str_limit($row->review_text, $limit = 30, $end = '...') }}
                                     </td>
 
                                     <td>

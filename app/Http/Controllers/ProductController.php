@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\MarketPlace;
 use App\Models\RingkasanProduct;
+use App\Models\Review;
 
 use App\Libraries\Alert;
 
@@ -46,6 +47,7 @@ class ProductController extends Controller
         $data["mini_slide"] = Product::get_mini_slide($id);
         $data["market"] = MarketPlace::get_market_by_id_product($id);
         $data['ringkasan_product'] = RingkasanProduct::all_RingkasanProduct_by_product_id($id);
+        $data['product_review'] = Review::get_all($id);
         $data["title"] = "Our Product";
         $data["content"] = "Product";
         return view("product_detail",$data);
