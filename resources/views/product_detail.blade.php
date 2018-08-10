@@ -342,7 +342,7 @@
 
     <?php  $session =  Auth::guard("user")->user(); ?>
     <?php  $countReview = $product_review->count(); ?>
-    <?php $userId = $session->id ?>
+    <?php  if(!empty($session)){$userId = $session->id;} else { $userId = '0'; } ?>
 
     <?php if($product_review->count() != 0) {?>
         <div class="simple-article size-3 grey uppercase col-xs-b5">User Reviews</div>
