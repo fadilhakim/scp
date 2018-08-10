@@ -396,7 +396,7 @@
 
     <?php } else { ?>
        
-       <div class="button size-2 style-3">
+       <div  class="button size-2 style-3 open-popup" data-rel="1">
             <span class="button-wrapper">
                 <span class="icon"><img src="{{URL::asset('/public/img/icon-4.png')}}" alt=""></span>
                 <span class="text">Login first to review</span>
