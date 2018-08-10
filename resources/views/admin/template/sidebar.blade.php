@@ -152,6 +152,14 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
+
+                    <li class="{{ $active_market_place }}">
+                        <a target="_blank" href="<?=url("admin/product_review")?>">
+                            <span class="pcoded-micon"><i class="ti-shopping-cart-full"></i></span>
+                            <span class="pcoded-mtext">Product Review</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
                    
                 </ul>
             </li>

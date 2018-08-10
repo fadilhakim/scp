@@ -47,6 +47,7 @@
                         <div class="row nopadding">
                             <?php $popular = App\Models\Product::get_popular_product_limit(); 
                                  foreach($popular as $rowPopular){ 
+                                 $slug = str_slug($rowPopular->product_title, '-');
                             ?>
                             <div class="col-xs-6">
                                 <div class="product-shortcode style-5">
@@ -81,7 +82,7 @@
                                     </div>
                                     <div class="preview-buttons">
                                         <div class="buttons-wrapper">
-                                            <a class="button size-2 style-2" href="product.html">
+                                            <a class="button size-2 style-2" href="<?=url("product/detail/{$rowPopular->product_id}/{$rowPopular->product_category}/{$slug}")?>">
                                                 <span class="button-wrapper">
                                                     <span class="icon"><img src="img/icon-1.png" alt=""></span>
                                                     <span class="text">See Detail</span>

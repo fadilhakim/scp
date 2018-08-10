@@ -13,7 +13,7 @@ function add_modal_review()
     });
 }
 
-function update_modal_review(review_id)
+function edit_modal_review(review_id)
 {
     var _token = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
@@ -59,7 +59,7 @@ function delete_modal_review(review_id)
                 <div class="card-block">
                     <div class="tmp-review"></div>
                     <div class="">
-                        <table id="review-tbl" class="table table-hover">
+                        <table id="review-tbl" class="table table-hover table-responsive">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -76,31 +76,34 @@ function delete_modal_review(review_id)
                                 <tr>
                                     <th scope="row"><?php echo $i ?></th>
                                     <td>
-                                        <?php echo $row->user_id; ?>
+                                        <?php $getUserName = App\Models\User::detail_user($row->user_id) ?>
+                                        <?php echo $getUserName->username; ?>
                                     </td>
                                     <td>  
-                                        <?php echo $row->product_id; ?>
+                                        <?php $getProductName = App\Models\Product::detail_product($row->product_id) ?>
+                                        <?php echo $getProductName->product_title; ?>
                                     </td>
                                     <td>
                                         {{ str_limit($row->review_text, $limit = 30, $end = '...') }}
                                     </td>
 
                                     <td>
-                                        <?php echo $row->status; ?>
+                                        <?php
+                                            if($row->status == 1){
+                                                echo "Show";
+                                            }
+                                            else {
+                                                echo "Hide";
+                                            }
+
+                                         ?>
                                     </td>
                                     <td>
-                                        <div class="dropdown"  data-container="body" >
-                                            <a href="" class="btn btn-primary btn-sm dropdown-toggle" >
-                                                Show
-                                            </a>
-                                            <div align="right" class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
-                                          
-                                            <a href="<?=url("admin/review/update/".$row->review_id)?>" class="dropdown-item"> Detail</a>
+                                        <button class="btn btn-warning" type="button" onclick="edit_modal_review(<?=$row->review_id?>)"> Edit 
+                                         </button>
 
-                                            <button class="dropdown-item" type="button" onclick="delete_modal_review(<?=$row->review_id?>)"> Delete </button>
-                                            
-                                            </div>
-                                        </div>
+                                         <button class="btn btn-danger" type="button button-delete" onclick="delete_modal_review(<?=$row->review_id?>)"> Delete 
+                                         </button>
                                     </td>
                                 </tr>
 

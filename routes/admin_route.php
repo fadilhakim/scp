@@ -140,8 +140,12 @@ Route::group(['middleware' => ['admin']], function () {
 
     // product review
     Route::get('/admin/product_review',"Admin\ReviewController@index");
-
+    Route::post("/admin/review/update","Admin\ReviewController@modal_review_update");
+    Route::post("/admin/review/update_process","Admin\ReviewController@modal_review_update_process");
+    Route::post("/admin/review/delete","Admin\ReviewController@modal_review_delete");
+    Route::post("/admin/review/delete_process","Admin\ReviewController@review_delete_process");
     
+    Route::post("/admin/review/submit","Admin\ReviewController@review_submit_process");
 
 
     //Voucher
