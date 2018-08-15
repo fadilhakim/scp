@@ -23,6 +23,7 @@ Route::get('/home2', function () {
 
 });
 Route::get('/about', 'PagesController@about');
+Route::get('/warranty', 'PagesController@warranty');
 
 Route::get("/foo",function(){
     

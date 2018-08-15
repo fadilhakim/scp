@@ -50,6 +50,9 @@ function delete_modal_subcategory(subcategory_id)
                     <label> Subcategory</label>
                     <div class="input-group">                        
                         <input type="text" name="subcategory_name" id="subcategory_name" class="form-control">
+
+                        <input value="{{ $category->category_id }}" type="hidden" name="category_id" id="category_id"> 
+                        {{ csrf_field() }}
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-primary btn-outline-secondary" type="button"> Add </button>
                         </div>
@@ -78,8 +81,7 @@ function delete_modal_subcategory(subcategory_id)
                         </tbody>
                     </table>
                     
-                    <input value="{{ $category->category_id }}" type="hidden" name="category_id" id="category_id"> 
-                    {{ csrf_field() }}
+                    
                     
                 </form>
                 

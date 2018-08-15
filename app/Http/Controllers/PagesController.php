@@ -26,4 +26,10 @@ class PagesController extends Controller
         return view('about',$data);
     }
 
+     function warranty()
+    {
+        
+        return view('warranty');
+    }
+
 }

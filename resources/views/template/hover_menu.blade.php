@@ -101,6 +101,9 @@
             <li class="{{$active_services}}">
                 <a href="{{url('services')}}">Services</a>
             </li>
+            <li class="{{$active_services}}">
+                <a href="{{url('warranty')}}">Warranty</a>
+            </li>
             <li class="{{$active_contact}}"><a href="{{url('contact')}}">contact</a></li>
         </ul>
         <div class="navigation-title">
