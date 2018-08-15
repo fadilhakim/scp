@@ -54,36 +54,34 @@ function delete_modal_subcategory(subcategory_id)
                         <input value="{{ $category->category_id }}" type="hidden" name="category_id" id="category_id"> 
                         {{ csrf_field() }}
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary btn-outline-secondary" type="button"> Add </button>
+                            <button type="submit" class="btn btn-primary btn-outline-secondary"> Add </button>
                         </div>
                     </div>
-                    
-                    <table id="subcategory-tbl" class="table table-bordered">
-                        <thead>
-                            <th> Subcategory </th>
-                            <th> Action </th>
-                        </thead>
-                        <tbody>
-                            <?php
-                            //var_dump($subcategory);
-                            foreach($subcategory as $row){
-                            ?>
-                            <tr>
-                                <td><?=$row->subcategory_name?></td> 
-                                <td>
-                                    <a href="#" onclick="update_modal_subcategory(<?=$row->subcategory_id?>)"> Edit</a>
-                                    <a href="#" onclick="delete_modal_subcategory(<?=$row->subcategory_id?>)"> <i class="icofont icofont-trash"></i> </a>
-                                </td>
-                            </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                    
-                    
-                    
+                            
                 </form>
+
+                <table id="subcategory-tbl" class="table table-bordered">
+                    <thead>
+                        <th> Subcategory </th>
+                        <th> Action </th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        //var_dump($subcategory);
+                        foreach($subcategory as $row){
+                        ?>
+                        <tr>
+                            <td><?=$row->subcategory_name?></td> 
+                            <td>
+                                <a href="#" onclick="update_modal_subcategory(<?=$row->subcategory_id?>)"> Edit</a>
+                                <a href="#" onclick="delete_modal_subcategory(<?=$row->subcategory_id?>)"> <i class="icofont icofont-trash"></i> </a>
+                            </td>
+                        </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
                 
             </div>
             
