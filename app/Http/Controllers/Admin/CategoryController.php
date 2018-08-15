@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Redirect;
 use Validator;
 use App\Libraries\Alert;
 use App\Models\Category;
@@ -170,8 +170,7 @@ class CategoryController extends Controller
 
             Category::insert_subcategory($arr);
 
-            echo Alert::success("You successfully Insert new Subcategory");
-            echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
+           return Redirect::back();
         }else
         {
             $errors = $validator->errors();

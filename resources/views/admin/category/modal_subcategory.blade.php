@@ -45,7 +45,7 @@ function delete_modal_subcategory(subcategory_id)
            
             <div class="modal-body">
                 <div class="tmp-subcategory"></div>
-                <form id="form-subcategory-insert" onsubmit="return false" method="post">
+                <form id="form-subcategory-insert" action="{{ url('admin/product/subcategory/insert_process') }}"  method="post">
                     <div id="temp-subcategory"></div>
                     <label> Subcategory</label>
                     <div class="input-group">                        
@@ -96,17 +96,17 @@ function delete_modal_subcategory(subcategory_id)
 
     $("#subcategory-tbl").DataTable();
 
-    $("form#form-subcategory-insert").submit(function(){
-        $.ajax({
-            type:"POST",
-            url:"{{ url('admin/product/subcategory/insert_process') }}",
-            data:$(this).serialize(),
-            success:function(data)
-            {
-                $("#temp-subcategory").html(data);
-            }
+    // $("form#form-subcategory-insert").submit(function(){
+    //     $.ajax({
+    //         type:"POST",
+    //         url:"{{ url('admin/product/subcategory/insert_process') }}",
+    //         data:$(this).serialize(),
+    //         success:function(data)
+    //         {
+    //             $("#temp-subcategory").html(data);
+    //         }
 
-        });
-        return false;
-    });
+    //     });
+    //     return false;
+    // });
 </script>
