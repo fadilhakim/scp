@@ -61,7 +61,7 @@ function delete_modal_slider(slider_id)
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Overview Image</th>
+                                        <th>Overview Image <span style="color:red;">(Image size 1600x800)</span></th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>

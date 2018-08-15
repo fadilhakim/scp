@@ -19,7 +19,7 @@
                     <input type="hidden" name="product_id" value="<?php echo $product->product_id ?>" class="form-control" >
                 </div>
                 <div class="form-group">
-                    <label> Input Image : </label>
+                    <label> Input Image : <span style="color:red;">(Image size 1600x800)</span></label>
                     <input type="file" name="product_image_overview" class="form-control" >
                 </div>
                 <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">

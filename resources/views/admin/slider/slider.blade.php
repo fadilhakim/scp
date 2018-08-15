@@ -61,7 +61,7 @@ function delete_modal_slider(slider_id)
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Slider Image</th>
+                                        <th>Slider Image (W = 1500 H = 785)</th>
                                         <th>Url</th>
                                         <th>Action</th>
                                     </tr>

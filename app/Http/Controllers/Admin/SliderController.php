@@ -44,7 +44,7 @@ class SliderController extends Controller
 
 
         $validator = Validator::make($request->all(), [
-            'image_name'  => 'required|unique:sliders|max:255'
+            'image_name'  => 'required|unique:sliders'
         ]);
 
         if(!$validator->fails())

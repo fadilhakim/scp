@@ -221,9 +221,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="empty-space col-xs-b35 col-md-b70"></div>
-
+            <div class="empty-space col-xs-b25 col-sm-b50"></div>
             <div class="tabs-block">
                 <div class="tabulation-menu-wrapper text-center">
                     <div class="tabulation-title simple-input">description</div>
@@ -277,8 +275,6 @@
                    <?php echo $product->technical_specs ?>
                 </div>
             </div>
-
-            <div class="empty-space col-xs-b35 col-md-b70"></div>
 
             <div class="swiper-container rounded">
                 <div class="swiper-button-prev style-1 hidden"></div>
@@ -339,12 +335,82 @@
                 </label>
             <?php } ?>
             
- 
-            <div class="empty-space col-xs-b25 col-sm-b50"></div>
-
         </div>
     </div>
 
+    <!-- USER REVIEWS -->
+
+    <?php  $session =  Auth::guard("user")->user(); ?>
+    <?php  $countReview = $product_review->count(); ?>
+    <?php  if(!empty($session)){$userId = $session->id;} else { $userId = '0'; } ?>
+
+    <?php if($product_review->count() != 0) {?>
+        <div class="simple-article size-3 grey uppercase col-xs-b5">User Reviews</div>
+        <div class="h3"><?php echo $countReview ?> Reviews on this product</div>
+
+        <div class="title-underline left"><span></span></div>
+        <div class="comments-wrapper">
+            <?php foreach($product_review as $pr) { ?>
+            <div class="comment-entry">
+                <div class="comment-top">
+                    <div class="content">
+                        <?php $getUserName = App\Models\User::detail_user($pr->user_id) ?>
+                        
+                        <h6 class="h6 col-xs-b5">Review By : <?php echo $getUserName->username; ?></h6>
+                    </div>
+                    <div class="simple-article size-2"><?php echo $pr->review_text ?></div>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+        <div class="empty-space col-xs-b25 col-sm-b50"></div>
+
+    <?php } else { ?>
+        <div class="simple-article size-3 grey uppercase col-xs-b5">User Reviews</div>
+        <div class="h3">No review yet</div>
+        <div class="title-underline left"><span></span></div>
+    <?php } ?>
+    <?php if(!empty($session)){ ?> 
+        
+        <form method="post" action="{{url('/admin/review/submit')}}">
+        <div class="row m10">
+            <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+            <div class="col-sm-12">
+                <input type="hidden" name="product_id" value="<?php echo $product->product_id; ?>">
+                <input type="hidden" name="user_id" value="<?php echo $userId; ?>">
+                <textarea class="simple-input" name="review_text" placeholder="Your Review"></textarea>
+                <div class="empty-space col-xs-b20"></div>
+            </div>
+            <div class="col-sm-12 text-right">
+                <div class="button size-2 style-3">
+                    <span class="button-wrapper">
+                        <span class="icon"><img src="{{URL::asset('/public/img/icon-4.png')}}" alt=""></span>
+                        <span class="text">submit</span>
+                    </span>
+                    <input type="submit">
+                </div>
+            </div>
+        </div>
+
+        </form>
+
+    <?php } else { ?>
+       
+       <div  class="button size-2 style-3 open-popup" data-rel="1">
+            <span class="button-wrapper">
+                <span class="icon"><img src="{{URL::asset('/public/img/icon-4.png')}}" alt=""></span>
+                <span class="text">Login first to review</span>
+            </span>
+            <input type="submit">
+        </div>
+        
+   <?php } ?>
+    <!-- END USER REVIEWS -->
+
+    
+
+    <div class="empty-space col-xs-b25 col-sm-b50"></div>
+    
     <div class="swiper-container arrows-align-top" data-breakpoints="1" data-xs-slides="1" data-sm-slides="3" data-md-slides="4" data-lt-slides="4" data-slides-per-view="5">
         <div class="h4 swiper-title">Recommended Product</div>
         <div class="empty-space col-xs-b20"></div>
@@ -383,17 +449,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="price">
-                        <div class="simple-article size-4 dark">Rp 10.630.00</div>
-                    </div>
                 </div>
                 </div>
             <?php } ?>
         </div>
         <div class="swiper-pagination relative-pagination visible-xs"></div>
     </div>
-
-    <div class="empty-space col-xs-b35 col-md-b70"></div>
     <div class="empty-space col-md-b70"></div>
 
 </div>
