@@ -59,23 +59,27 @@ class RajaongkirController extends Controller
 
     function detail_cost(Request $request)
     {
-        
+        //print_r($request->all()); exit;
         $origin 	 = $request->input("origin",TRUE);
         $destination = $request->input("destination",TRUE);
         $weight 	 = $request->input("weight",TRUE);
-        $courier 	 = $request->input("courier",TRUE);  
+		$courier 	 = $request->input("coureer",TRUE);  
+		
+		//print($weight);
         
         if($courier != "pick_up")
         {
         
             $dt = array("origin"=>$origin,"destination"=>$destination,"weight"=>$weight,"courier"=>$courier);
             
-            $result = Rajaongkir::cost($dt);
-            
+			$result = Rajaongkir::cost($dt);
+			//print_r($result);
+			//echo json_encode($request->all());
             if(!empty($result))
             {
                 $result = json_decode($result,TRUE);
-            
+				
+				//return $result;
                 $result = $result["rajaongkir"]["results"][0];
             }
             else
@@ -92,12 +96,17 @@ class RajaongkirController extends Controller
         //echo json_encode($result);
     }
 
-    function list_result_ongkir()
+    function list_result_ongkir(Request $request)
     {
         
-        $dt_cost = $this->detail_cost();
+		$dt_cost = $this->detail_cost($request); 
+		print_r($dt_cost);
+		
+		
         
-        $cost = $dt_cost["costs"];
+		$cost = $dt_cost["costs"];
+		//$cost = $dt_cost;
+		
         
         echo "<option value=''> -select layanan kurir-</option>";
         if(!empty($cost))
@@ -105,20 +114,20 @@ class RajaongkirController extends Controller
             
             foreach($cost as $row)
             {
-                $ongkir = $row["cost"][0]["value"];
-                $poles_ongkir = number_format($ongkir);
-                echo "<option value='$row[service]&$ongkir'>Rp. $poles_ongkir - $row[service] - $row[description]</option>";	
+                //$ongkir = $row["cost"][0]["value"];
+                //$poles_ongkir = number_format($ongkir);
+                echo "<option value='$row[service]'> $row[service] - $row[description]</option>";	
                 
             }
         }
-        else if($dt_cost["courier"] == "pick_up")
+        /* else if($dt_cost["coureer"] == "pick_up")
         {
             echo "<option value='0'> You Choose Pick Up </option>";
         }
         else
         {
-            echo "<option value=''> No Ongkir, please choose another kurir </option>";	
-        }
+            echo "<option value=''> No Ongkir, please choose another coureer </option>";	
+        }*/
         
     }
 

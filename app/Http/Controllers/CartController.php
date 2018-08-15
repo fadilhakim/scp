@@ -194,12 +194,12 @@ class CartController extends Controller
             {
                 $rowid1 = $rowId[$i];
             
-                //$dtRowCart = Cart::get($rowid1);
+                $dtRowCart = Cart::get($rowid1);
                 //print_r($dtRowCart);
 
                 $product = $this->objProduct->detail_product2($productId[$i]);
                 $weight = $qty[$i] * $product->weight;
-                $rowProduct = ["qty" => $qty[$i],  "options" => ["weight" => $weight] ];
+                $rowProduct = ["qty" => $qty[$i],  "options" => ["weight" => $weight, "shipping" => $dtRowCart->options->shipping ] ];
                 Cart::update($rowid1, $rowProduct);
                 //Cart::update($rowid1, ["options" => ["weight" => $weight]]);
                 //Cart::update($rowid1, $qty[$i]); // Will update the quantity

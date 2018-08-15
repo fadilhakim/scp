@@ -134,7 +134,7 @@
            <!-- User addresss List  -->
            <code>
            <?php 
-                print_r(Cart::content());
+               
                 //$data["user_address"] = $user_address;
            ?>
            </code>
@@ -162,16 +162,7 @@
                     </div>
                 </div>
             </div>
-            <div class="order-details-entry simple-article size-3 grey uppercase">
-                <div class="row">
-                    <div class="col-xs-6">
-                        shipping and handling
-                    </div>
-                    <div class="col-xs-6 col-xs-text-right">
-                        <div class="color">free shipping</div>
-                    </div>
-                </div>
-            </div>
+           
             <?php if (session()->has('voucher_code')) { ?>
             <div class="order-details-entry simple-article size-3 grey uppercase">
                 <div class="row">

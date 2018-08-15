@@ -24,6 +24,15 @@ class AddressBookController extends Controller
         return view("members/address_book_add_modal");
     } 
 
+    function detail_user_address(Request $request){
+
+        $user_addtr_id = $request->input("user_addtr_id");
+        $data["user_addtr_id"] = $user_addtr_id;
+        $data["user_address"] =  $this->objAddress->address_book_detail($user_addtr_id);
+
+        return json_encode($data);
+    }
+
     function delete_address_book_modal(Request $request)
     {
         

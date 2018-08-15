@@ -87,6 +87,8 @@ Route::get("rajaongkir","RajaongkirController@index");
 Route::post("rajaongkir/list_province","RajaongkirController@dt_province");
 Route::post("rajaongkir/list_city","RajaongkirController@dt_city");
 Route::post("rajaongkir/city_province","RajaongkirController@city_province");
+Route::post("rajaongkir/list_result_ongkir","RajaongkirController@list_result_ongkir");
+Route::post("rajaongkir/coureer_delivery","RajaongkirController@detail_cost");
 
 Route::group(['middleware' => ['auth']], function () {
     //Route::get('cart',"CartController@index"); // untuk sementara di comment
@@ -110,7 +112,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post("/account/address_book/update_process","Member\AddressBookController@update_address_book_process");
     Route::post("/account/address_book/delete","Member\AddressBookController@delete_address_book_modal");
     Route::post("/account/address_book/delete_process","Member\AddressBookController@delete_address_book_process");
-
+    Route::post("/account/address_book/detail","Member\AddressBookController@detail_user_address");
 });
 
 include "admin_route.php";

@@ -12,21 +12,24 @@
     function add_user_address(user_id){
         
         var _token = $('meta[name="csrf-token"]').attr('content');
-
+       
         $.ajax({
             type:"POST",
             url:"<?=url("account/address_book/add")?>",
             data:"user_id="+user_id+"&from=cart&_token="+_token,
             success:function(data){
+                
                 $("#cart-user-address-temp").html(data);
             }
         });
+
+        return false;
     }
 
     function delete_user_address(user_addtr_id){
         
         var _token = $('meta[name="csrf-token"]').attr('content');
-
+        
         $.ajax({
             type:"POST",
             url:"<?=url("account/address_book/delete")?>",
@@ -40,18 +43,22 @@
 </script>
 <div id="choose-address-list">
     <h4> Choose Address Book </h4><br>
-    <button class="btn btn-primary" onclick="add_user_address()"> Add Address </button>
+    <button type="button" class="btn btn-primary" onclick="add_user_address()"> Add Address </button>
    
     <div id='cart-user-address-temp'></div>
     <br class='clearfix'>
     <ul class="list-group" style='overflow-y:scroll; height:200px'>
+    <input type="hidden" id="weight" name="weight" value="2">
+    <input type="hidden" id="destination" name="destination" value="dest"> 
+    <input type="hidden" id="origin" name="origin" value="154" > <!-- 154 / jakarta selatan --> 
         <?php
         //var_dump($user_address);
         foreach($user_address as $row){
         ?>
         <li class="list-group-item">
             <div class="form-check" style="width:100%">
-                <input class="form-check-input" type="radio" name="user_address" id="exampleRadios<?=$row->user_addtr_id?>" value="<?=$row->user_addtr_id?>" checked>
+                <input class="form-check-input user-address-id" type="radio" name="user_address" id="exampleRadios<?=$row->user_addtr_id?>" value="<?=$row->user_addtr_id?>" checked>
+                
                 <label  style="width:100%"  class="form-check-label" for="exampleRadios<?=$row->user_addtr_id?>">
                     <b class='float-left'> <?=$row->address_name?> </b> <a onclick='delete_user_address(<?=$row->user_addtr_id?>)' class='float-right'> Delete </a>
                     <div class='clearfix'></div>
@@ -67,3 +74,23 @@
 </div> 
 
 <div class="empty-space col-sm-b35"></div>
+
+<script> 
+    $(".user-address-id").change(function(){
+        
+        var user_addtr_id = $(this).val();
+        // alert(" user_addtr_id : "+user_addtr_id);
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type:"POST",
+            url:"<?=url("account/address_book/detail")?>",
+            data:"user_addtr_id="+user_addtr_id+"&_token="+_token,
+            dataType:"JSON",
+            success:function(data){
+
+                $("#destination").val(data.user_address.kota);
+            }
+        })
+    })
+
+</script>
