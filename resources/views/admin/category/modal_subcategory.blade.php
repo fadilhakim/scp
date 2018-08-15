@@ -45,7 +45,7 @@ function delete_modal_subcategory(subcategory_id)
            
             <div class="modal-body">
                 <div class="tmp-subcategory"></div>
-                <form id="form-subcategory-insert">
+                <form id="form-subcategory-insert" onsubmit="return false" method="post">
                     <div id="temp-subcategory"></div>
                     <label> Subcategory</label>
                     <div class="input-group">                        
