@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Mail\OrderEmail;
 use App\Models\Order;
 use App\Models\AddressBook;
+use App\Models\Product;
+
 use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -19,10 +21,12 @@ class OrderController extends Controller
      */
     private $objOrder;
     private $objUserAddress;
+    private $objProduct;
 
     function __construct()
     {
         $this->objOrder = new Order();
+        $this->objProduct = new Product();
     }
 
     public function index()
@@ -35,13 +39,54 @@ class OrderController extends Controller
     }
 
     function shipping(){
-        
+
+        if( Cart::count() === 0){
+            return redirect('cart')->with('error', 'Your Cart is empty');
+        }
         // data cart
         $user_id = Auth::id();
         $this->objUserAddress = new AddressBook();
+        //$product  = Product::detail_product(28);
+        //$this->objOrder->test2();
         $data["user_address"] = $this->objUserAddress->get_address_by_user_id($user_id);
+        $data["choose_address_book"] = $this->objUserAddress->last_address_book($user_id);
+        //$data["Product"] = Product;
         //dd($data);
+        //dd($product);
         return view("shipping",$data);
+
+    }
+
+    function shipping_update(Request $request){
+        print_r($request->all());
+        /*
+            Array
+            (
+                [_token] => r6hfkVDM7pyS8nBJejSQ9XfbZDgWLmjoc67kFJ6k
+                [weight] => 2
+                [destination] => 154
+                [origin] => 154
+                [user_address] => 2
+                [coureer] => jne
+                [delivery_type] => -- Type of delivery --
+            )   
+
+            $rowProduct = ["qty" => $qty[$i],  "options" => ["weight" => $weight, "shipping" => $dtRowCart->options->shipping ] ];
+                Cart::update($rowid1, $rowProduct);
+        */
+
+
+            $weight        = $request->input("weight");
+            $destination   = $request->input("destination"); // berubah 
+            $origin        = $request->input("origin");
+            $user_address  = $request->input("user_address");
+            $coureer       = $request->input("coureer");  // berubah 
+            $delivery_type = $request->input("delivery_type"); //berubah
+
+            
+
+        
+
 
     }
 

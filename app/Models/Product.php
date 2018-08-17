@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 class Product extends Model
-
 {
 
     protected $table = "product_tbl";

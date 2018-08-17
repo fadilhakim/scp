@@ -59,7 +59,7 @@ class RajaongkirController extends Controller
 
     function detail_cost(Request $request)
     {
-        //print_r($request->all()); exit;
+        print_r($request->all()); 
         $origin 	 = $request->input("origin",TRUE);
         $destination = $request->input("destination",TRUE);
         $weight 	 = $request->input("weight",TRUE);
@@ -100,7 +100,7 @@ class RajaongkirController extends Controller
     {
         
 		$dt_cost = $this->detail_cost($request); 
-		print_r($dt_cost);
+		//print_r($dt_cost);
 		
 		
         

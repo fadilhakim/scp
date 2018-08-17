@@ -33,6 +33,11 @@
 
 <div class="container">
         <div id="cart-info-temp"></div>
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <table class="cart-table">
             <thead>
                 <tr>

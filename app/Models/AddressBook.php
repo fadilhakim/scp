@@ -25,6 +25,12 @@ class AddressBook extends Model
     ];
     //
 
+    function last_address_book($userId){
+        $address_book = DB::table($this->table)->where("user_id",$userId)->where("view",1)->orderBy("user_addtr_id","desc")->first();
+        //echo "aaaa";
+        return $address_book;
+    }
+
     function address_book_list()
     {
         $address_book = DB::table($this->table)->where("view",1)->get();

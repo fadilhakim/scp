@@ -62,7 +62,7 @@ Route::get('auth/request', [
 Route::post("auth/login_process","Auth\LoginController@login_process");
 Route::post("auth/register_process","Auth\RegisterController@register_process");
 Route::get("auth/activated","Auth\ActivateController@activation_process");
-Route::get('/user_form_checkout', 'OrderController@user_form_checkout');
+Route::post('/user_form_checkout', 'OrderController@user_form_checkout');
 
 Route::get('cart',"CartController@index"); 
 Route::get("cart/add/{product_id}/{product_title}","CartController@add");
@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth']], function () {
     // members and order
     Route::get("checkout","OrderController@checkout");
     Route::get("shipping","OrderController@shipping");
+    Route::post("shipping/update","OrderController@shipping_update");
     Route::get('/memberarea', 'Member\MemberController@index');
     Route::get('/memberarea/account', 'Member\MemberController@account');
     Route::get('/detail_order/{id}', 'Member\MemberController@detail_order');

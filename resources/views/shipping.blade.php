@@ -1,5 +1,8 @@
 @include('template/header')
-
+<?php 
+  use App\Models\Product;
+   // $this->objProduct = new Product();
+?>
 <script>
 
     function list_result_ongkir(){
@@ -16,6 +19,22 @@
         });
     }
 
+    function shipping_update(){
+        alert("<?=url("shipping/update")?>");
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type:"POST",
+            url:"<?=url("shipping/update")?>",
+            //dataType:"JSON",
+            data:"_token="+_token+"&"+$("#form-shipping").serialize(),
+            success:function(data){
+
+                alert(data);
+            }
+        });
+
+        return false;
+    }
     
 
 </script>
@@ -35,13 +54,15 @@
 
 <div class="empty-space col-xs-b35 col-md-b70"></div>
 
-<form action="post" id="form-shipping">
+
 <div class="container" >
     <div id='temp-form-shipping'>
       
     </div>
+    <form method="post" id="form-shipping" onSubmit="return shipping_update()">
     <div class="col-md-4">
            <?php 
+                $data["choose_address_book"] = $choose_address_book;
                 $data["user_address"] = $user_address;
            ?>
            <?php echo view("cart/user_address",$data) ?>
@@ -54,8 +75,7 @@
                     <option value=""> -- Select Courer -- </option>
                     <option value="jne"> JNE </option> 
                     <option value="tiki"> TIKI </option>
-                    <option value="pos"> POS </option>  
-                  
+                    <option value="pos"> POS </option>
                 </select>
            </div>
 
@@ -65,7 +85,10 @@
                     <option> -- Type of delivery -- </option>
                 </select>
            </div>
+           <button type="submit" class="btn btn-primary"> Shipping Update </button>
     </div>
+    </form> 
+
     <div class="col-md-8 table-responsive">
         <h3> Products </h3>
         <br>
@@ -86,6 +109,8 @@
             <tbody>
                 <?php foreach(Cart::content() as $row){ 
                     $subtotal = $row->price * $row->qty;    
+                    $product = Product::detail_product($row->id);
+                   
                 ?>
                 <tr>
                     
@@ -95,7 +120,11 @@
 
                     <td>{{ $row->options->weight }}</td>
                     <td>Rp. {{ $row->subtotal }}</td>
-                    <td>Rp.  {{ $row->options->shipping }} </td>
+                    <td>
+                        <?php if($row->qty <  $product->product_total_free_ongkir ){  ?>
+                        
+                        <?php }else{ echo "Free Ongkir"; } ?>
+                    </td>
                 </tr>
                 <?php
                 }
@@ -103,20 +132,74 @@
             </tbody>
         </table>
 
-        <div>
-        <h5> Totals </h5>
-
-        </div>
-
-        <code>
-            <?=Cart::content()?>
-        </code>
-        <hr>
-    
+        
+        <div class="col-md-10">
+            <h4 class="h5">cart totals</h4>
+            <div class="order-details-entry simple-article size-3 grey uppercase">
+                <div class="row">
+                    <div class="col-xs-6">
+                        Cart Total
+                    </div>
+                    <div class="col-xs-6 col-xs-text-right">
+                        <div class="color">Rp. <?=Cart::subtotal();?></div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-details-entry simple-article size-3 grey uppercase">
+                <div class="row">
+                    <div class="col-xs-6">
+                        Tax
+                    </div>
+                    <div class="col-xs-6 col-xs-text-right">
+                        <div class="color">Rp. <?=Cart::tax()?></div>
+                    </div>
+                </div>
+            </div>
+           
+            <?php if (session()->has('voucher_code')) { ?>
+            <div class="order-details-entry simple-article size-3 grey uppercase">
+                <div class="row">
+                    <div class="col-xs-6">
+                        Discount / Cashback
+                    </div>
+                    <div class="col-xs-6 col-xs-text-right">
+                        <div class="color">Rp. <?=number_format(session("voucher_nominal"))?></div>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+            <div class="order-details-entry simple-article size-3 grey uppercase">
+                <div class="row">
+                    <div class="col-xs-6">
+                        Shipping Cost
+                    </div>
+                    <div class="col-xs-6 col-xs-text-right">
+                        <div class="color">Rp. <?=session("shipping_cost")?></div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-details-entry simple-article size-3 grey uppercase">
+                <div class="row">
+                    <div class="col-xs-6">
+                        Order Total
+                    </div>
+                    <div class="col-xs-6 col-xs-text-right">
+                        <div class="color">Rp. <?=number_format(session("final_total"))//Cart::total()?></div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        
+        <div class='clearfix '></div> 
+        <div class="empty-space col-sm-b20"></div>
+        <button class='btn btn-primary float-right' onclick='checkout()'> Checkout </button>
+        
+        
+        
     </div>    
     
 </div>
-</form> 
+
 
 <div class="clear"></div>
 
@@ -138,6 +221,21 @@
             success:function(data){
 
                 $("#delivery_type").html(data);
+            }
+        });
+    }
+
+    function checkout(){
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type:"POST",
+            url:"<?=url("user_form_checkout")?>",
+            //dataType:"JSON",
+            data:"_token="+_token+"&",
+            success:function(data){
+
+                alert("hello checkout...");
+                //$("#delivery_type").html(data);
             }
         });
     }

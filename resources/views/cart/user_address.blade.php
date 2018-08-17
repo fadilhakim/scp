@@ -9,6 +9,9 @@
 }
 </style>
 <script>
+    
+   
+
     function add_user_address(user_id){
         
         var _token = $('meta[name="csrf-token"]').attr('content');
@@ -48,16 +51,27 @@
     <div id='cart-user-address-temp'></div>
     <br class='clearfix'>
     <ul class="list-group" style='overflow-y:scroll; height:200px'>
-    <input type="hidden" id="weight" name="weight" value="2">
-    <input type="hidden" id="destination" name="destination" value="dest"> 
+    <input type="hidden" id="weight" name="weight" value="<?=session("total_weight")?>"> <!-- total dari cart -->
+    <input type="hidden" id="destination" name="destination" value=""> 
     <input type="hidden" id="origin" name="origin" value="154" > <!-- 154 / jakarta selatan --> 
         <?php
         //var_dump($user_address);
         foreach($user_address as $row){
+            
+            //$user_address_choose = $this->objUserAddress->last_address_book();
+            
+            $checked = "";
+            if($row->user_addtr_id === $choose_address_book->user_addtr_id){
+                //echo "<script> alert('ahoi')</script>";
+                $checked = "checked=true";
+            }
         ?>
         <li class="list-group-item">
             <div class="form-check" style="width:100%">
-                <input class="form-check-input user-address-id" type="radio" name="user_address" id="exampleRadios<?=$row->user_addtr_id?>" value="<?=$row->user_addtr_id?>" checked>
+                <input class="form-check-input user-address-id" type="radio" 
+                name="user_address" id="exampleRadios<?=$row->user_addtr_id?>" 
+                value="<?=$row->user_addtr_id?>" 
+                <?=$checked?> >
                 
                 <label  style="width:100%"  class="form-check-label" for="exampleRadios<?=$row->user_addtr_id?>">
                     <b class='float-left'> <?=$row->address_name?> </b> <a onclick='delete_user_address(<?=$row->user_addtr_id?>)' class='float-right'> Delete </a>
@@ -76,6 +90,9 @@
 <div class="empty-space col-sm-b35"></div>
 
 <script> 
+    var dest =  $("input[name='user_address']:checked").val();
+    $("#destination").val(dest);
+
     $(".user-address-id").change(function(){
         
         var user_addtr_id = $(this).val();
