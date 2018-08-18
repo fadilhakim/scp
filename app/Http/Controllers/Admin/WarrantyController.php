@@ -36,11 +36,11 @@ class WarrantyController extends Controller
 
     function modal_warranty_update_process(Request $request)
     {
-        $warranty_id            = $request->input("warranty_id");
+        $id            = $request->input("id");
         $status               = $request->input("status");
    
         $arr = array(
-                    "warranty_id"     => $warranty_id,
+                    "id"     => $id,
                     'status'        => $status
                 );
         $this->objWarranty->update_warranty($arr);

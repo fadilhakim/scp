@@ -20,6 +20,58 @@
                             
                             <input name="model" readonly class="form-control" placeholder="Model Product" type="text" value="{{$warranty->model}}">
                         </div>
+
+                         <div class="col-md-6"> 
+                            <label> No Imei 1</label>
+                            
+                            <input name="no_imei_1" readonly class="form-control" placeholder="Model Product" type="text" value="{{$warranty->no_imei_1}}">
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6"> 
+                            <label> Buy Date</label>
+                            
+                            <input name="model" readonly class="form-control" placeholder="Model Product" type="text" value="{{$warranty->buy_date}}">
+                        </div>
+
+                         <div class="col-md-6"> 
+                            <label> No Imei 2</label>
+                            
+                            <input name="no_imei_1" readonly class="form-control" placeholder="Model Product" type="text" value="{{$warranty->no_imei_2}}">
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6"> 
+                            <label> Customer Name</label>
+                            
+                            <input name="model" readonly class="form-control" placeholder="Model Product" type="text" value="{{$warranty->customer_name}}">
+                        </div>
+
+                         <div class="col-md-6"> 
+                            <label> Customer Phone</label>
+                            
+                            <input name="no_imei_1" readonly class="form-control" placeholder="Model Product" type="text" value="{{$warranty->customer_phone}}">
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6"> 
+                            <label> Customer Email</label>
+                            
+                            <input name="model" readonly class="form-control" placeholder="Model Product" type="text" value="{{$warranty->customer_email}}">
+                        </div>
+
+                         <div class="col-md-6"> 
+                            <label>Customer Address </label>
+                            
+                            <textarea class="form-control" readonly>{{$warranty->no_imei_1}}</textarea>
+                        </div>
+
                     </div>
                     
                     <div class="row">

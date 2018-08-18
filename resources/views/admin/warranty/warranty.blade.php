@@ -102,7 +102,7 @@ function delete_modal_warranty(warranty_id)
                                         @endif    
                                     </td>
                                     <td>
-                                        <button class="btn btn-warning" type="button" onclick="edit_modal_warranty(<?=$row->id?>)"> Edit 
+                                        <button class="btn btn-warning" type="button" onclick="edit_modal_warranty(<?=$row->id?>)"> Edit / Detail
                                          </button>
 
                                          <button class="btn btn-danger" type="button button-delete" onclick="delete_modal_warranty(<?=$row->id?>)"> Delete 

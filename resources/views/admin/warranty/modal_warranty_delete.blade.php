@@ -1,18 +1,18 @@
-<div id="modal_review_delete" class="modal" tabindex="-1" role="dialog">
+<div id="modal_warranty_delete" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-            <h5 class="modal-title text-white"> Delete review  </h5>
+            <h5 class="modal-title text-white"> Delete warranty  </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
-            <form id="form-review-delete">
+            <form id="form-warranty-delete">
             <div class="modal-body">
-                <div id="temp-review"></div>
+                <div id="temp-warranty"></div>
                 
-                <p> Are Your Sure want to Delete this review ? </p>
-                <input type="hidden" name="review_id" value="{{ $review->review_id }}">
+                <p> Are Your Sure want to Delete this warranty ? </p>
+                <input type="hidden" name="id" value="{{ $warranty->id }}">
                 {{ csrf_field() }}
             </div>
             <div class="modal-footer">
@@ -24,19 +24,19 @@
     </div>
 </div>
 <script>
-    $("#modal_review_delete").modal({
+    $("#modal_warranty_delete").modal({
         sshow:true,
         backdrop: 'static'
     });
 
-    $("form#form-review-delete").submit(function(){
+    $("form#form-warranty-delete").submit(function(){
         $.ajax({
             type:"POST",
-            url:"{{ url('admin/review/delete_process') }}",
+            url:"{{ url('admin/warranty/delete_process') }}",
             data:$(this).serialize(),
             success:function(data)
             {
-                $("#temp-review").html(data);
+                $("#temp-warranty").html(data);
             }
 
         });
