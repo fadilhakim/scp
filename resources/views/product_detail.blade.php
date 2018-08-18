@@ -378,6 +378,7 @@
             <div class="col-sm-12">
                 <input type="hidden" name="product_id" value="<?php echo $product->product_id; ?>">
                 <input type="hidden" name="user_id" value="<?php echo $userId; ?>">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" >
                 <textarea class="simple-input" name="review_text" placeholder="Your Review"></textarea>
                 <div class="empty-space col-xs-b20"></div>
             </div>

@@ -69,19 +69,30 @@ class WarrantyController extends Controller
 
     function warranty_submit_process(Request $request)
     {
-        $product_id           = $request->input("product_id");
-        $user_id              = $request->input("user_id");
-        $warranty_text          = $request->input("warranty_text");
-        $status               = 0;
+        $model                = $request->input("model");
+        $buy_date             = $request->input("buy_date");
+        $no_imei_1            = $request->input("no_imei_1");
+        $no_imei_2            = $request->input("no_imei_2");
+        $customer_email       = $request->input("customer_email");
+        $customer_name        = $request->input("customer_name");
+        $customer_phone       = $request->input("customer_phone");
+        $customer_address       = $request->input("customer_address");
+        $status               = "on progress";
 
         $arr = array(
-                    "product_id"    => $product_id,
-                    "warranty_text"   => $warranty_text,
-                    'status'        => $status,
-                    "user_id"       => $user_id
-                );
-        $this->objWarranty->insert_warranty_user($arr);
+            "model"      => $model,
+            "buy_date"   => $buy_date,
+            'no_imei_1'  => $no_imei_1,
+            "no_imei_2"  => $no_imei_2,
+            "customer_email"  => $customer_email,
+            "customer_name"  => $customer_name,
+            "customer_phone"  => $customer_phone,
+            "customer_address"  => $customer_address,
+            "status"  => $status,
+        );
 
+        $this->objWarranty->insert_warranty_user($arr);
+        echo "<script> confirm('thank you for you submit'); </script>";
         return Redirect::back();
         
     }
