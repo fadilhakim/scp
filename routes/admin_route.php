@@ -151,7 +151,7 @@ Route::group(['middleware' => ['admin']], function () {
     // product warranty
     Route::get('/admin/product_warranty',"Admin\WarrantyController@index");
     Route::post("/admin/warranty/update","Admin\WarrantyController@modal_warranty_update");
-    Route::post("/admin/warranty/update_process","Admin\warrantyController@modal_warranty_update_process");
+    Route::post("/admin/warranty/update_process","Admin\WarrantyController@modal_warranty_update_process");
     Route::post("/admin/warranty/delete","Admin\WarrantyController@modal_warranty_delete");
     Route::post("/admin/warranty/delete_process","Admin\WarrantyController@warranty_delete_process");
     
