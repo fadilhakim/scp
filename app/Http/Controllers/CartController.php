@@ -20,6 +20,7 @@ class CartController extends Controller
     {
         $this->objProduct = new Product();
         $this->objVoucher = new Voucher();
+        //$this->$objUserAddress = new AddressBook();
     }
 
     function index(Request $request)
@@ -28,12 +29,13 @@ class CartController extends Controller
         $user_id = Auth::id();
         
         if(empty($user_id)){
-            dd($user_id);
+            //dd($user_id);
             redirect("login");
         }
 
         $this->objUserAddress = new AddressBook();
         $data["user_address"] = $this->objUserAddress->get_address_by_user_id($user_id);
+        $data["choose_address_book"] = $this->objUserAddress->last_address_book($user_id); 
         //dd($data);
         return view('cart/cart',$data);
     }
@@ -144,22 +146,32 @@ class CartController extends Controller
 
         $product = $this->objProduct->detail_product2($product_id);
         $firstImg = $this->objProduct->get_first_image($product_id);
-        
+        // product_total_free_ongkir
        
         $img = $firstImg !== null ? $firstImg->image_name : '';
        
         if(!empty($product))
         {
+            
+            
+            $weight = $product->weight * $qty;
+            // kalau melebihi ini , free ongkir. artinya weight = 0
+            if($qty >= $product->product_total_free_ongkir){
+                $weight = 0;
+            }
+
             $c["id"] = $product->product_id;
             $c["name"] = $product->product_title;
             $c["qty"] = $qty;
 
             $c["price"] = $product->price;
-            $c["options"] = ['image' => $img];
+            $c["options"] = ['image' => $img, "weight"=> $weight , "shipping"=>0];
             //$a = Cart::instance('shopping')->add('192ao14', 'Product 14', 1, 9.99);
             $a = Cart::add($c);
             //Cart::add($product->product_id,$product->product_title,1,$product->price);
             // final_total
+            $total_weight = session("total_weight") + $weight;
+            session(["total_weight"=>$total_weight]);
             session(["final_total"=>Cart::total()]); // kok ::subtotal() ? 
 
             redirect()->to("cart")->send();
@@ -175,20 +187,42 @@ class CartController extends Controller
     {
        
         $rowId = $request->input("rowid-input");
+        $productId = $request->input("productId-input");
         $qty   = $request->input("qty-input");
+
 
         $count = count($rowId);
         
-        if(!empty($rowId))
+        //dd($rowId);
+        //$dtRowCart = Cart::get($rowId[0]);
+        //dd($dtRowCart);
+
+        if(!empty($count))
         {
-            for($i=0; $i<=$count-1; $i++)
+            $total_weight = 0;
+            for($i=0; $i < $count; $i++)
             {
                 $rowid1 = $rowId[$i];
+            
+                $dtRowCart = Cart::get($rowid1);
+                //print_r($dtRowCart);
 
-                Cart::update($rowid1, $qty[$i]); // Will update the quantity
+                $product = $this->objProduct->detail_product2($productId[$i]);
+                // kalau melebihi ini , free ongkir. artinya weight = 0
+                $weight = $product->weight;
+                if($qty[$i] >= $product->product_total_free_ongkir){
+                    $weight = 0;
+                }
+                $weight = $qty[$i] * $weight;
+                $rowProduct = ["qty" => $qty[$i],  "options" => ["weight" => $weight, "shipping" => $dtRowCart->options->shipping ] ];
+                Cart::update($rowid1, $rowProduct);
+                //Cart::update($rowid1, ["options" => ["weight" => $weight]]);
+                //Cart::update($rowid1, $qty[$i]); // Will update the quantity
+                $total_weight += $weight;
             }
-
+           
             // final_total
+            session(["total_weight"=>$total_weight]);
             session(["final_total"=>Cart::total()]);
 
             echo "<div class='alert alert-success'> You sucessfully updated cart </div>";
