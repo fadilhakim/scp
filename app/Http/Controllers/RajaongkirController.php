@@ -59,7 +59,7 @@ class RajaongkirController extends Controller
 
     function detail_cost(Request $request)
     {
-        print_r($request->all()); 
+        //print_r($request->all()); 
         $origin 	 = $request->input("origin",TRUE);
         $destination = $request->input("destination",TRUE);
         $weight 	 = $request->input("weight",TRUE);
@@ -114,9 +114,9 @@ class RajaongkirController extends Controller
             
             foreach($cost as $row)
             {
-                //$ongkir = $row["cost"][0]["value"];
-                //$poles_ongkir = number_format($ongkir);
-                echo "<option value='$row[service]'> $row[service] - $row[description]</option>";	
+                $ongkir = $row["cost"][0]["value"];
+                $poles_ongkir = number_format($ongkir);
+                echo "<option value='$row[service]'> $row[service] - $row[description] - $poles_ongkir </option>";	
                 
             }
         }

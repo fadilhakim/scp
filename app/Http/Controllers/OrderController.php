@@ -11,6 +11,7 @@ use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Auth;
+use Validator;
 
 class OrderController extends Controller
 {
@@ -58,7 +59,7 @@ class OrderController extends Controller
     }
 
     function shipping_update(Request $request){
-        print_r($request->all());
+        //print_r($request->all());
         /*
             Array
             (
@@ -82,22 +83,44 @@ class OrderController extends Controller
             $user_address  = $request->input("user_address");
             $coureer       = $request->input("coureer");  // berubah 
             $delivery_type = $request->input("delivery_type"); //berubah
-
             
+            // validasi 
+            $validator = Validator::make($request->all(), [
+                'weight'        => 'required',
+                'destination'   => "required",
+                'origin'        => 'required',
+                'user_address'  => 'required',
+                'coureer'       => 'required',
+                'delivery_type' => 'required'
+            ]);
+    
+            if(!$validator->fails())
+            {
+                 // ubah session('shipping_cost') dengan detail_cost() rajaongkir
 
-        
-
-
+            }else{
+                
+            }
+           
     }
 
     function checkout(Request $request)
     {
-        //return view("checkout");
-      
-        if(!empty(Cart::content()))
+        $validator = Validator::make($request->all(), [
+            'weight'        => 'required',
+            'destination'   => "required",
+            'origin'        => 'required',
+            'user_address'  => 'required',
+            'coureer'       => 'required',
+            'delivery_type' => 'required'
+        ]);
+
+        // check destination , coureer , delivery type terpilih atau tidak
+        if(!empty(Cart::content()) && !$validator->fails())
         {
-            
+            // INSERT KE Order_tbl
             $this->insert($request); 
+
             //redirect()->to("memberarea")->send();
             $user              = Auth::guard("user")->user();
 
@@ -114,6 +137,8 @@ class OrderController extends Controller
             session()->forget('voucher_code');
             session()->forget('voucher_nominal');
             session()->forget('voucher_type');
+            session()->forget("total_weight");
+            session()->forget("shipping_cost");
             session()->forget("final_total");
 
             // hapus semua bentuk session
@@ -124,7 +149,7 @@ class OrderController extends Controller
         }
         else
         {
-            // untuk sementara redirect ke memberarea
+            // untuk sementara redirect ke cart
             redirect()->to("cart")->send();
         }
        
@@ -134,6 +159,9 @@ class OrderController extends Controller
     {
         if(!empty(Cart::content()))
         {
+            $coureer            = $request->input("coureer");
+
+
             $last_order_id      = $this->objOrder->get_last_order();
             $user               = Auth::guard("user")->user();
 
@@ -156,15 +184,15 @@ class OrderController extends Controller
             $arr["user_id"]     = $user->id;
             $arr["order_code"]  = $this->objOrder->generate_no_order($last_order_id);
             $arr["grand_total"] = floor($total);
+            $arr["ongkir"]      = session("shipping_cost"); 
             $arr["subtotal"]    = $subtotal;
             //$arr["kurir"]       = "jne";
-            $arr["total_berat"] = 0;
-            $arr["kurir_service"] = "";
+            $arr["total_berat"]   = session("total_weight");
+            $arr["kurir_service"] = ""; // post
             $arr["tax"]           = $tax;
             $arr["purpose_bank"]  = "";
             $arr["status"]        = "unpaid";
-            $arr["user_addtr_id"] = 0;
-            $arr["ongkir"]        = 0;
+            $arr["user_addtr_id"] = 0; //post
 
             $q = $this->objOrder->insert_order($arr);
             $order_id = $q;
