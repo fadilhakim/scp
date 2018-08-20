@@ -90,6 +90,7 @@
 <div class="empty-space col-sm-b35"></div>
 
 <script> 
+
     var dest =  $("input[name='user_address']:checked").val();
     $("#destination").val(dest);
 

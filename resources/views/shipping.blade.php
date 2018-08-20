@@ -20,7 +20,7 @@
     }
 
     function shipping_update(){
-        alert("<?=url("shipping/update")?>");
+        //alert("<?=url("shipping/update")?>");
         var _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type:"POST",
@@ -206,6 +206,12 @@
 <div class="empty-space col-sm-b35"></div>
 
 <script>
+    $("input[name='user_address']").change(function(){
+        //var dest = $("input[name='user_address']:checked").val();
+        detail_cost();
+        //alert("value :"+dest)
+    });
+
     function detail_cost(){
 
         var coureer = $("#coureer").val();
@@ -234,7 +240,7 @@
             data:"_token="+_token+"&",
             success:function(data){
 
-                alert("hello checkout...");
+                alert(data);
                 //$("#delivery_type").html(data);
             }
         });
