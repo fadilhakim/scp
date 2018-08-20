@@ -59,7 +59,8 @@ class OrderController extends Controller
     }
 
     function shipping_update(Request $request){
-        //print_r($request->all());
+        // print_r($request->all());
+        // dd();
         /*
             Array
             (
@@ -75,15 +76,15 @@ class OrderController extends Controller
             $rowProduct = ["qty" => $qty[$i],  "options" => ["weight" => $weight, "shipping" => $dtRowCart->options->shipping ] ];
                 Cart::update($rowid1, $rowProduct);
         */
-
-
             $weight        = $request->input("weight");
             $destination   = $request->input("destination"); // berubah 
             $origin        = $request->input("origin");
             $user_address  = $request->input("user_address");
             $coureer       = $request->input("coureer");  // berubah 
             $delivery_type = $request->input("delivery_type"); //berubah
-            
+            $dt = explode("&",$delivery_type);
+            $delivery_type = $dt[0];
+            $shipping_cost = $dt[1];
             // validasi 
             $validator = Validator::make($request->all(), [
                 'weight'        => 'required',
@@ -97,6 +98,12 @@ class OrderController extends Controller
             if(!$validator->fails())
             {
                  // ubah session('shipping_cost') dengan detail_cost() rajaongkir
+                 $final_total = session("final_total") + $shipping_cost; 
+                 session(["delivery_type"=>$delivery_type]);
+                 session(["shipping_cost"=>$shipping_cost]);
+                 session(["final_total"=>$final_total]);
+
+                 echo "You Successfully Updated Shipping Cost";
 
             }else{
                 
@@ -106,17 +113,17 @@ class OrderController extends Controller
 
     function checkout(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        /*$validator = Validator::make($request->all(), [
             'weight'        => 'required',
             'destination'   => "required",
             'origin'        => 'required',
             'user_address'  => 'required',
             'coureer'       => 'required',
             'delivery_type' => 'required'
-        ]);
+        ]);*/
 
         // check destination , coureer , delivery type terpilih atau tidak
-        if(!empty(Cart::content()) && !$validator->fails())
+        if(!empty(Cart::content()) /*&& !$validator->fails()*/)
         {
             // INSERT KE Order_tbl
             $this->insert($request); 
@@ -149,8 +156,9 @@ class OrderController extends Controller
         }
         else
         {
+            echo "fails....";
             // untuk sementara redirect ke cart
-            redirect()->to("cart")->send();
+            //redirect()->to("cart")->send();
         }
        
     }

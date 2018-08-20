@@ -116,7 +116,7 @@ class RajaongkirController extends Controller
             {
                 $ongkir = $row["cost"][0]["value"];
                 $poles_ongkir = number_format($ongkir);
-                echo "<option value='$row[service]'> $row[service] - $row[description] - $poles_ongkir </option>";	
+                echo "<option value='$row[service]&$ongkir'> $row[service] - $row[description] - $poles_ongkir </option>";	
                 
             }
         }
