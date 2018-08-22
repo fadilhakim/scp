@@ -5,11 +5,7 @@
         		<div class="card-header">
                     <h5>About us content</h5>
                     <p>All this content will be automatic align center in front/user side</p>
-                    <div class="card-header-right">
-                        <i class="icofont icofont-rounded-down"></i>
-                        <i class="icofont icofont-refresh"></i>
-                        <i class="icofont icofont-close-circled"></i>
-                    </div>
+                    
                 </div>
                 <div class="card-block">
                     <h4 class="sub-title">Basic Inputs</h4>

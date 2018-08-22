@@ -22,11 +22,7 @@ function modal_update_slider(slide_id)
                 <div class="card-header">
  <!--                    <h5>Home Page content</h5> -->
                     <p>All this content will be automatic align center in front/user side</p>
-                    <div class="card-header-right">
-                        <i class="icofont icofont-rounded-down"></i>
-                        <i class="icofont icofont-refresh"></i>
-                        <i class="icofont icofont-close-circled"></i>
-                    </div>
+                
                 </div>
                 <div class="card-block">
                     <h4 class="sub-title">Add New Image Slider</h4>
@@ -59,11 +55,7 @@ function modal_update_slider(slide_id)
                 <div class="card">
                 <div class="card-header">
                     <h5>Costumers Table</h5>
-                    <div class="card-header-right">
-                        <i class="icofont icofont-rounded-down"></i>
-                        <i class="icofont icofont-refresh"></i>
-                        <i class="icofont icofont-close-circled"></i>
-                    </div>
+                   
                 </div>
                 <div class="card-block table-border-style">
                     <div class="table-responsive">
