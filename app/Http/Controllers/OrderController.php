@@ -133,9 +133,11 @@ class OrderController extends Controller
         //echo $shipping_cost;
         $final_total   = session("final_total");
         $coureer       = session("coureer");
+        $user_address  = session("user_address");
        
         if(!empty($delivery_type) && 
-        !empty($final_total) && !empty($coureer)){
+        !empty($final_total) && !empty($coureer) && 
+        !empty($user_address)){
             $valid = true;
         }
 
@@ -148,13 +150,13 @@ class OrderController extends Controller
             //redirect()->to("memberarea")->send();
             $user              = Auth::guard("user")->user();
 
-            $objDemo = new \stdClass();
+            //$objDemo = new \stdClass();
             /* $objDemo->demo_one = 'Demo One Value';
             $objDemo->demo_two = 'Demo Two Value';
             $objDemo->sender   = 'SenderUserName';
             $objDemo->receiver = 'ReceiverUserName';*/
              // send email 
-            Mail::to([$user->email])->send(new OrderEmail($objDemo));
+            //Mail::to([$user->email])->send(new OrderEmail($objDemo));
             // clear cart 
             Cart::destroy();
 
@@ -170,15 +172,30 @@ class OrderController extends Controller
 
             // untuk sementara redirect ke memberarea
             //redirect()->to("memberarea")->send();
-            return redirect()->route('detail_order',['id' => $order_id]);
+            return redirect("detail_order/$order_id");
             //echo "success";
         }
         else
         {
+            $err_text = "";
+            if(empty($user_address)){
+                $err_text .= " You must choose User Address ,";
+            }
+            if(empty($delivery_type)){
+                $err_text .= " You must choose Type of Delivery ,";
+            }
+            if(empty($coureer)){
+                $err_text .= " You must choose Coureer ,";
+            }
+            if(empty(Cart::content())){
+                $err_text .= " You must choose the Product ,";
+            }
+        
             //echo "error";
             // untuk sementara redirect ke cart
-            //redirect()->to("cart")->send();
-            return abort(404);
+            $err_el = " $err_text ";
+            return redirect("shipping")->with("msg_shipping",$err_el);
+            //return abort(404);
         }
        
     }

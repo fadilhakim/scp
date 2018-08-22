@@ -57,7 +57,20 @@
 
 <div class="container" >
     <div id='temp-form-shipping'>
-      
+    @if (session('msg_shipping'))
+        <div class='alert alert-danger'>
+        <div><b> Error : </b></div>
+        <?php
+            $exp = explode(",",session('msg_shipping'));
+            foreach($exp as $row)
+            {
+                echo "<div> $row </div>";
+            }
+        ?>
+        <div> Note :
+        you must Click Shipping Update button to calculating the Shipping cost </div>
+        </div>
+    @endif
     </div>
     <form method="post" id="form-shipping" onSubmit="return shipping_update()">
     <div class="col-md-4">
