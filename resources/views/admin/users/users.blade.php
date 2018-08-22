@@ -55,11 +55,6 @@ function change_activation(activation,user_id)
             <div class="card">
                 <div class="card-header">
                     <h5>Costumers Table</h5>
-                    <div class="card-header-right">
-                        <i class="icofont icofont-rounded-down"></i>
-                        <i class="icofont icofont-refresh"></i>
-                        <i class="icofont icofont-close-circled"></i>
-                    </div>
                 </div>
                 <div class="card-block table-border-style">
                 <div class="tmp-slider"></div>
