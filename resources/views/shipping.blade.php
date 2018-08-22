@@ -67,6 +67,8 @@
                 echo "<div> $row </div>";
             }
         ?>
+        <div> Note :
+        you must Click Shipping Update button to calculating the Shipping cost </div>
         </div>
     @endif
     </div>
