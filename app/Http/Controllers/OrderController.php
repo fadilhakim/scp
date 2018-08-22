@@ -170,7 +170,7 @@ class OrderController extends Controller
 
             // untuk sementara redirect ke memberarea
             //redirect()->to("memberarea")->send();
-            return redirect()->route('detail_order', ['id' => $order_id]);
+            return redirect()->route('detail_order',['id' => $order_id]);
             //echo "success";
         }
         else
