@@ -62,7 +62,7 @@ class MemberController extends Controller
         Veritrans_config::$serverKey = "SB-Mid-server-Dm1CF_T9nindmKVXLmzp4kou";
       
         // Uncomment for production environment
-        // Veritrans_Config::$isProduction = true;
+        //Veritrans_Config::$isProduction = true;
 
         // Enable sanitization
         Veritrans_config::$isSanitized = true;

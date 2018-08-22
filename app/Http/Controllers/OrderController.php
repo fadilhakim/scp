@@ -102,11 +102,16 @@ class OrderController extends Controller
                  session(["delivery_type"=>$delivery_type]);
                  session(["shipping_cost"=>$shipping_cost]);
                  session(["final_total"=>$final_total]);
-
-                 echo "You Successfully Updated Shipping Cost";
+                 session(["coureer"=>$coureer]);
+                 session(["user_address"=>$user_address]);
+                
+                 echo "<div class='alert alert-success'> You Successfully Updated Shipping Cost </div>";
+                 echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
 
             }else{
                 
+                 
+
             }
            
     }
@@ -121,12 +126,24 @@ class OrderController extends Controller
             'coureer'       => 'required',
             'delivery_type' => 'required'
         ]);*/
+        $valid = false;
+
+        $delivery_type = session("delivery_type");
+        //$shipping_cost = session("shipping_cost");
+        //echo $shipping_cost;
+        $final_total   = session("final_total");
+        $coureer       = session("coureer");
+       
+        if(!empty($delivery_type) && 
+        !empty($final_total) && !empty($coureer)){
+            $valid = true;
+        }
 
         // check destination , coureer , delivery type terpilih atau tidak
-        if(!empty(Cart::content()) /*&& !$validator->fails()*/)
+        if(!empty(Cart::content()) && $valid)
         {
             // INSERT KE Order_tbl
-            $this->insert($request); 
+            $order_id = $this->insert($request); 
 
             //redirect()->to("memberarea")->send();
             $user              = Auth::guard("user")->user();
@@ -152,13 +169,16 @@ class OrderController extends Controller
             //$request->session()->flush();
 
             // untuk sementara redirect ke memberarea
-            redirect()->to("memberarea")->send();
+            //redirect()->to("memberarea")->send();
+            return redirect()->route('detail_order', ['id' => $order_id]);
+            //echo "success";
         }
         else
         {
-            echo "fails....";
+            //echo "error";
             // untuk sementara redirect ke cart
             //redirect()->to("cart")->send();
+            return abort(404);
         }
        
     }
@@ -167,7 +187,7 @@ class OrderController extends Controller
     {
         if(!empty(Cart::content()))
         {
-            $coureer            = $request->input("coureer");
+            $coureer            = session("coureer");
 
 
             $last_order_id      = $this->objOrder->get_last_order();
@@ -196,11 +216,11 @@ class OrderController extends Controller
             $arr["subtotal"]    = $subtotal;
             //$arr["kurir"]       = "jne";
             $arr["total_berat"]   = session("total_weight");
-            $arr["kurir_service"] = ""; // post
+            $arr["kurir_service"] = session("delivery_type"); // post
             $arr["tax"]           = $tax;
             $arr["purpose_bank"]  = "";
             $arr["status"]        = "unpaid";
-            $arr["user_addtr_id"] = 0; //post
+            $arr["user_addtr_id"] = session("user_address");
 
             $q = $this->objOrder->insert_order($arr);
             $order_id = $q;
@@ -217,6 +237,10 @@ class OrderController extends Controller
                 
                 $this->objOrder->insert_order_detail($arr);
             }
+            
+            return $order_id;
+            //echo "<div class='alert alert-success'> You Successfully Chec </div>";
+            //echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
         }
         /* if(!empty(Cart::content()))
         {

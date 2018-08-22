@@ -10,8 +10,6 @@
 </style>
 <script>
     
-   
-
     function add_user_address(user_id){
         
         var _token = $('meta[name="csrf-token"]').attr('content');
@@ -50,8 +48,14 @@
    
     <div id='cart-user-address-temp'></div>
     <br class='clearfix'>
+    <?php  
+        $total_weight = session("total_weight");
+        if($total_weight === 0){
+            $total_weight = 1;
+        }
+    ?>
     <ul class="list-group" style='overflow-y:scroll; height:200px'>
-    <input type="hidden" id="weight" name="weight" value="<?=session("total_weight")?>"> <!-- total dari cart -->
+    <input type="hidden" id="weight" name="weight" value="<?=$total_weight?>"> <!-- total dari cart -->
     <input type="hidden" id="destination" name="destination" value=""> 
     <input type="hidden" id="origin" name="origin" value="154" > <!-- 154 / jakarta selatan --> 
         <?php

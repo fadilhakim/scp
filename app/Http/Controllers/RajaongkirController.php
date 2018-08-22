@@ -100,6 +100,7 @@ class RajaongkirController extends Controller
     {
         
 		$dt_cost = $this->detail_cost($request); 
+		$weight = $request->input("weight");
 		//print_r($dt_cost);
 		
 		
@@ -114,8 +115,14 @@ class RajaongkirController extends Controller
             
             foreach($cost as $row)
             {
-                $ongkir = $row["cost"][0]["value"];
-                $poles_ongkir = number_format($ongkir);
+				$ongkir = $row["cost"][0]["value"];
+				if($weight == 1){
+					$ongkir = 0;
+					$poles_ongkir = "FREE SHIPPING"; 
+				}else{
+					$poles_ongkir = number_format($ongkir);
+				}
+               
                 echo "<option value='$row[service]&$ongkir'> $row[service] - $row[description] - $poles_ongkir </option>";	
                 
             }

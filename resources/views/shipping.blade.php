@@ -29,7 +29,7 @@
             data:"_token="+_token+"&"+$("#form-shipping").serialize(),
             success:function(data){
 
-                alert(data);
+                $("#temp-form-shipping").html(data);
             }
         });
 
@@ -190,9 +190,10 @@
             </div>
         </div> 
         
+        
         <div class='clearfix '></div> 
         <div class="empty-space col-sm-b20"></div>
-        <button class='btn btn-primary float-right' onclick='checkout()'> Checkout </button>
+        <a href="<?=url("checkout")?>" class='btn btn-primary float-right' > Checkout </a>
         
         
         
@@ -231,20 +232,26 @@
         });
     }
 
-    function checkout(){
+    /*function checkout(){
         var _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type:"POST",
             url:"<?=url("user_form_checkout")?>",
             //dataType:"JSON",
             data:"_token="+_token+"&",
-            success:function(data){
+            success:function(data){ 
+                let dt = "";
+                $("#temp-form-shipping").html(data);
 
-                alert(data);
-                //$("#delivery_type").html(data);
+                if(data === "success"){
+
+                }else{
+
+                }
+               //$("#temp-form-shipping").html(data);
             }
         });
-    }
+    }*/
 
 </script>
 
