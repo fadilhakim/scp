@@ -133,9 +133,11 @@ class OrderController extends Controller
         //echo $shipping_cost;
         $final_total   = session("final_total");
         $coureer       = session("coureer");
+        $user_address  = session("user_address");
        
         if(!empty($delivery_type) && 
-        !empty($final_total) && !empty($coureer)){
+        !empty($final_total) && !empty($coureer) && 
+        !empty($user_address)){
             $valid = true;
         }
 
@@ -176,6 +178,9 @@ class OrderController extends Controller
         else
         {
             $err_text = "";
+            if(empty($user_address)){
+                $err_text .= " You must choose User Address ,";
+            }
             if(empty($delivery_type)){
                 $err_text .= " You must choose Type of Delivery ,";
             }
