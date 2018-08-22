@@ -10,7 +10,7 @@ use App\Models\User;
 use Auth;
 
 use App\Libraries\Midtrans\Veritrans\Veritrans_config;
-use App\Libraries\Midtrans\Veritrans\Veritrans_snap;
+use App\Libraries\Midtrans\Veritrans\Veritrans_Snap;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
