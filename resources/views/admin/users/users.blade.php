@@ -72,8 +72,8 @@ function change_activation(activation,user_id)
                                     <th>Email</th>
                                    
                                     <th>Phone Number</th>
+                                    <th>User Type</th>
                                     <th>User Status</th>
-                                    <th>Activation</th>
                                     <th> Action </th>
                                 </tr>
                             </thead>
@@ -96,8 +96,13 @@ function change_activation(activation,user_id)
                                     </td>
                                     <td>
                                         <select class="form-control" onChange="change_activation(this.value,<?=$row->id?>)">
-                                            <option value="active">Active</option>
-                                            <option value='unactive'>unActive</option>
+                                            <?php if($row->activation == 'ACTIVE'){?>
+                                            <option value="<?php echo $row->activation ?>"><?php echo $row->activation ?></option>
+                                            <?php } else {?>
+                                                <option value="<?php echo $row->activation ?>">UnActive</option>
+                                            <?php } ?>
+                                            <option value="ACTIVE">ACTIVE</option>
+                                            <option value='unactive'>unACTIVE</option>
                                         </select>
                                     </td>
                                     <td>

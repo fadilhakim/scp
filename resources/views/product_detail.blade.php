@@ -270,7 +270,7 @@
                     <div class="empty-space col-xs-b35 col-md-b70"></div>
                 </div>
 
-                <div class="tab-entry">
+                <div class="tab-entry visible">
             
                    <?php echo $product->technical_specs ?>
                 </div>
