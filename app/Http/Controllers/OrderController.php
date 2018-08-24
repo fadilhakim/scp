@@ -150,13 +150,13 @@ class OrderController extends Controller
             //redirect()->to("memberarea")->send();
             $user              = Auth::guard("user")->user();
 
-            //$objDemo = new \stdClass();
+            $objDemo = new \stdClass();
             /* $objDemo->demo_one = 'Demo One Value';
             $objDemo->demo_two = 'Demo Two Value';
             $objDemo->sender   = 'SenderUserName';
             $objDemo->receiver = 'ReceiverUserName';*/
              // send email 
-            //Mail::to([$user->email])->send(new OrderEmail($objDemo));
+            Mail::to([$user->email])->send(new OrderEmail($objDemo));
             // clear cart 
             Cart::destroy();
 
