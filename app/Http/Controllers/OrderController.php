@@ -166,6 +166,7 @@ class OrderController extends Controller
             session()->forget("total_weight");
             session()->forget("shipping_cost");
             session()->forget("final_total");
+            session()->forget("user_address");
 
             // hapus semua bentuk session
             //$request->session()->flush();
