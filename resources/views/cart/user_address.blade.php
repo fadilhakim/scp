@@ -78,10 +78,8 @@
                 <?=$checked?> >
                 
                 <label  style="width:100%"  class="form-check-label" for="exampleRadios<?=$row->user_addtr_id?>">
-                    <b class='float-left'> <?=$row->address_name?> </b> <a onclick='delete_user_address(<?=$row->user_addtr_id?>)' class='float-right'> Delete </a>
-                    <div class='clearfix'></div>
-                    <div> <?=$row->shipping_address?> </div>
-                    <div>Kode Pos :  <?=$row->kode_pos?> - No.HP : <?=$row->no_hp?>   </div>
+                    <b class='float-left'> <?=$row->address_name?></b> 
+                    <a onclick='delete_user_address(<?=$row->user_addtr_id?>)' class='float-right'> Delete </a>
                 </label>
             </div>
         </li>
