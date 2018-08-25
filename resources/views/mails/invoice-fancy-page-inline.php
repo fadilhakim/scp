@@ -30,9 +30,9 @@
         <br>
         <!-- <h2 class="name" style="font-size:1.4em;font-weight:normal;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;" ><?=""?></h2> -->
 
-        <div><?="Company Address"?></div>
-        <div><?="Phone Number"?></div>
-        <div><?="Company Email"?></div>
+        <div><?="Company Address : ---- "?></div>
+        <div><?="Phone Number : -----"?></div>
+        <div><?="Company Email : -----"?></div>
         <br><br>
       </div>
 
@@ -47,13 +47,13 @@
 
         <div id="client" style="padding-left:6px;border-left-width:6px;border-left-style:solid;border-left-color:#0087C3;float:left;width:45%;" >
 
-          <div class="to" style="color:#777777;" >INVOICE TO:</div>
+         <!--  <div class="to" style="color:#777777;" >INVOICE TO:</div>
 
           <h2 class="name" style="font-size:1.4em;font-weight:normal;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;" ><?= ""//$detail_user["contact_person"]?></h2>
 
           <div class="address">796 Silver Harbour, TX 79273, US</div>
 
-          <div class="email"><a href="mailto:john@example.com" style="color:#0087C3;text-decoration:none;" ><?=""//$user_sess["email"]?></a></div>
+          <div class="email"><a href="mailto:john@example.com" style="color:#0087C3;text-decoration:none;" ><?=""//$user_sess["email"]?></a></div> -->
 
         </div>
 
@@ -75,7 +75,7 @@
 
           <tr>
 
-            <th class="" style="padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;background-color:#EEEEEE;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;text-align:center;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#FFFFFF;white-space:nowrap;font-weight:normal;" >IMAGE</th>
+           <!--  <th class="" style="padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;background-color:#EEEEEE;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;text-align:center;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#FFFFFF;white-space:nowrap;font-weight:normal;" >IMAGE</th> -->
 
             <th class="desc" style="padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;background-color:#EEEEEE;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#FFFFFF;white-space:nowrap;font-weight:normal;text-align:left;" >PRODUCT NAME</th>
 
@@ -103,9 +103,9 @@
 
           <tr>
 
-            <td class="" style="padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;background-color:#EEEEEE;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#FFFFFF;text-align:right;" >
+           <!--  <td class="" style="padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;background-color:#EEEEEE;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#FFFFFF;text-align:right;" >
 
-            <img width="100" height="100" /></td>
+            <img width="100" height="100" /></td> -->
 
             <td class="desc" style="padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;background-color:#EEEEEE;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#FFFFFF;text-align:left;" > <?=$items->name?></td>
 
@@ -207,7 +207,7 @@
 
         <div>NOTICE:</div>
 
-        <div class="notice" style="font-size:1.2em;" >A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+        <div class="notice" style="font-size:1.2em;" >--</div>
 
       </div>
 
