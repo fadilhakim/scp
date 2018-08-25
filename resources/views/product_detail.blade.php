@@ -268,7 +268,9 @@
 
                 <div class="tab-entry visible">
                  
-                    <?php $spec =  App\Models\Product::get_specification_by_product_id($product->product_id); ?>
+                <?php $spec =  App\Models\Product::get_specification_by_product_id($product->product_id); 
+                    if(!empty($spec)){
+                ?>
                    <table class="table table-bordered">
                         <tr>
                             <td><strong>Type :</strong></td>
@@ -307,6 +309,9 @@
                             <td>{{$spec->handsfree}}</td>
                         </tr>
                     </table>
+                <?php } else { ?>
+                    <h2 style="text-align: center;">No Information yet</h2>
+                <?php } ?>
                 </div>
             </div>
 
