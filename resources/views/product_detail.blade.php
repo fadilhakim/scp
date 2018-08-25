@@ -254,8 +254,6 @@
                         </div>
                     </div>
 
-                    <div class="empty-space col-xs-b35 col-md-b70"></div>
-
                     <div class="left-right-entry clearfix align-right">
                         <div class="preview-wrapper">
                             <img class="preview" src="{{URL::asset('/public/products/'.$id.'/'.$product->product_detail_btm_img)}}" alt="" />
@@ -266,20 +264,49 @@
                             <div class="simple-article size-2"><?= $product->product_detail_btm ?></div>
                         </div>
                     </div>
-
-                    <div class="empty-space col-xs-b35 col-md-b70"></div>
                 </div>
 
                 <div class="tab-entry visible">
-            
+                 
+                    <?php $spec =  App\Models\Product::get_specification_by_product_id($product->product_id); ?>
                    <table class="table table-bordered">
-                    <thead>
-                        <th>Kolom 1 </th>
-                    </thead>
-                    <tbody>
-                        <td>Isi</td>
-                    </tbody>
-                </table>
+                        <tr>
+                            <td><strong>Type :</strong></td>
+                            <td>{{$spec->type}}</td>
+                            <td><strong>Color : </strong></td>
+                            <td>{{$spec->color}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dimension :</strong></td>
+                            <td>{{$spec->dimensions}}</td>
+                            <td><strong>Bandwith : </strong></td>
+                            <td>{{$spec->bandwith}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Display :</strong></td>
+                            <td>{{$spec->display}}</td>
+                            <td><strong>Sim Card : </strong></td>
+                            <td>{{$spec->sim_card}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Radio :</strong></td>
+                            <td>{{$spec->radio}}</td>
+                            <td><strong>Micro SD : </strong></td>
+                            <td>{{$spec->micro_sd}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bluetooth :</strong></td>
+                            <td>{{$spec->bluetooth}}</td>
+                            <td><strong>Battery : </strong></td>
+                            <td>{{$spec->battery}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Charger :</strong></td>
+                            <td>{{$spec->charger}}</td>
+                            <td><strong>Handsfree : </strong></td>
+                            <td>{{$spec->handsfree}}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 

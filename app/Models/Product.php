@@ -193,6 +193,11 @@ class Product extends Model
         return $market;
     }
 
+    static function get_specification_by_product_id($product_id){
+        $spec = DB::table('specification_tbl')->where('product_id',$product_id)->first();
+        return $spec;
+    }
+
     
     function update_product_image($product_id,$image_name,$image_field)
     {
