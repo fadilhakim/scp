@@ -5,7 +5,7 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-3 col-xs-b30 col-md-b0">
                             <!-- <img src="{{ URL::asset('public/img/logo-1.png')}}" alt="" /> -->
-                            <h6 class="h6 light">About Us</h6>
+                            <h6 class="h6 light" style="color:#fff !important;">About Us</h6>
                             <div class="empty-space col-xs-b20"></div>
                             <div class="simple-article size-2 light fulltransparent">Integer posuere orci sit amet feugiat pellent que. Suspendisse vel tempor justo, sit amet posuere orci dapibus auctor</div>
                             <div class="empty-space col-xs-b20"></div>
@@ -14,29 +14,27 @@
                             <div class="footer-contact"><i class="fa fa-map-marker" aria-hidden="true"></i> address: <a href="#">1st, Jakarta, Indonesia</a></div>
                         </div>
                         <div class="col-sm-6 col-md-3 col-xs-b30 col-md-b0">
-                            <h6 class="h6 light">queck links</h6>
+                            <h6 class="h6 light" style="color:#fff !important;">Quick links</h6>
                             <div class="empty-space col-xs-b20"></div>
                             <div class="footer-column-links">
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <a href="#">home</a>
-                                        <a href="#">about us</a>
-                                        <a href="#">products</a>
-                                        <a href="#">contact</a>
+                                        <a href="{{url('')}}">home</a>
+                                        <a href="{{url('about')}}">about us</a>
+                                        <a href="{{url('product')}}">products</a>
+                                        <a href="{{url('contact')}}">contact</a>
                                     </div>
                                     <div class="col-xs-6">
                                         <a href="#">privacy policy</a>
-                                        <a href="#">login</a>
-                                        <a href="#">registration</a>
-                                        <a href="#">delivery</a>
-                                        <a href="#">our stores</a>
+                                        <a href="{{url('login')}}">login</a>
+                                        <a href="#" class="open-popup" data-rel="2">registration</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="clear visible-sm"></div>
                         <div class="col-sm-6 col-md-6">
-                            <h6 class="h6 light">popular tags</h6>
+                            <h6 class="h6 light" style="color:#fff !important;">popular tags</h6>
                             <div class="empty-space col-xs-b20"></div>
                             <div class="tags clearfix">
                                 <a class="tag">headphoness</a>

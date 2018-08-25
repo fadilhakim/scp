@@ -148,6 +148,24 @@
                                     <div class="col-sm-3">
                                         <input class="form-control" name="product_total_free_ongkir" value="<?php echo $product_total_free_ongkir ?>" type="number" min="0">
                                     </div>
+
+                                    <label class="col-sm-3 col-form-label"> <strong>Featured Product ?</strong></label>
+                                    <div class="col-sm-3">
+                                        <select name="popular" class="form-control">
+                                         
+                                            <?php $isi = ""; 
+                                                if($product->popular == 0){
+                                                    $isi = 'NO';
+                                                }else 
+                                                { 
+                                                    $isi= 'YES';
+                                                } 
+                                            ?>
+                                            <option selected value="{{$product->popular}}">{{$isi}}</option>
+                                            <option value="1">YES</option>
+                                            <option value="0">NO</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div class="form-group row">
@@ -197,9 +215,9 @@
                                     <label class="col-sm-3 col-form-label"> Brand :</label>
                                     <div class="col-sm-9">
                                         <select name="brand" class="form-control">
-                                            <?php /* <option value="<?php echo $rowBrand->brand_id ?>" selected><?php echo $rowBrand->brand_name ?></option> */ ?>
+                                             <option value="<?php echo $rowBrand->brand_id ?>">     <?php echo $rowBrand->brand_name ?>
+                                            </option>
                                             <?php 
-
                                             if(!empty($brand)){
                                                 foreach($brand as $row22){ ?>
                                                 <option value="<?=$row22->brand_id?>"><?=$row22->brand_name?></option>

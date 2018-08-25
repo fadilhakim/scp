@@ -92,12 +92,12 @@ function change_activation(activation,user_id)
                                     <td>
                                         <select class="form-control" onChange="change_activation(this.value,<?=$row->id?>)">
                                             <?php if($row->activation == 'ACTIVE'){?>
-                                            <option style="color:green; font-weight: bold;" value="<?php echo $row->activation ?>">
+                                            <option disabled selected style="color:green; font-weight: bold;" value="<?php echo $row->activation ?>">
                                                 <?php echo $row->activation ?>
                                                 
                                             </option>
                                             <?php } else {?>
-                                                <option style="color:red; font-weight: bold;" value="<?php echo $row->activation ?>">
+                                                <option disabled selected style="color:red; font-weight: bold;" value="<?php echo $row->activation ?>">
                                                 UnActive
                                                 </option>
                                             <?php } ?>

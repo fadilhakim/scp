@@ -320,7 +320,7 @@ class Product extends Model
         $product_description  = $arr["product_description"]; 
         $product_availability = $arr["product_availability"];
         $brand                = $arr["brand"];
-
+        $popular                = $arr["popular"];
         $category           = $arr["category"];
         $subcategory        = $arr["subcategory"];
         $price              = $arr["price"];
@@ -369,6 +369,7 @@ class Product extends Model
             "product_subcategory"=>$subcategory,
             "product_availability"=>$product_availability,
             "brand_id"=>$brand,
+            "popular" => $popular,
             "price"=>$price,
             "stock"=>$stock,
             "weight"=>$weight,

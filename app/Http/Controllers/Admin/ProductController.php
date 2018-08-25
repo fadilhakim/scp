@@ -424,7 +424,7 @@ class ProductController extends Controller
       $category           = $request->input("category");
       $subcategory        = $request->input("subcategory");
       $brand              = $request->input("brand");
-      
+      $popular            = $request->input('popular');
       // specification_tbl
       $type               = $request->input("type","");
       $color              = $request->input("color","");
@@ -521,6 +521,7 @@ class ProductController extends Controller
                 "category"      => $category,
                 'subcategory'   => $subcategory,
                 "brand"         => $brand,
+                "popular"         => $popular,
                 "created_at"    => $datetime,
                 "ip_address"    => $ip_address,
                 "user_agent"    => $user_agent,

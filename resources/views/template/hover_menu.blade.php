@@ -9,6 +9,7 @@
             $active_services = '' ;
             $active_contact = '' ;
             $active_product = '' ;
+            $active_warranty = '' ;
 
             if($route == 'about'){
                 $active_about = 'active' ;
@@ -19,7 +20,10 @@
                 $active_services = 'active' ;
             }else if($route == 'contact'){
                 $active_contact = 'active' ;
-            }else{
+            }else if($route == 'warranty'){
+                $active_warranty = 'active' ;
+            }
+            else{
                 $active_home = 'active';
             }
 
@@ -101,7 +105,7 @@
             <li class="{{$active_services}}">
                 <a href="{{url('services')}}">Services</a>
             </li>
-            <li class="{{$active_services}}">
+            <li class="{{$active_warranty}}">
                 <a href="{{url('warranty')}}">Warranty</a>
             </li>
             <li class="{{$active_contact}}"><a href="{{url('contact')}}">contact</a></li>
