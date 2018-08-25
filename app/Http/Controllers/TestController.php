@@ -55,7 +55,9 @@ class TestController extends Controller
 
     function invoice()
     {
-        return view("invoice/invoice-fancy-page-inline");
+        //dd("hei");
+        return view("mails/invoice-fancy-page-inline");
+        //return view("invoice/boamat");
     }
 
     function sess_destroy(Request $request)
