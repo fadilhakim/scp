@@ -21,7 +21,7 @@
                 </div>
                 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label> Discount </label>
                         <div class="input-group">
                             <div class="input-group-addon">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <label> Cashback </label>
                         <div class="input-group">
                             <div class="input-group-addon">
@@ -46,7 +46,7 @@
                             </div>
                             <input type="number" class="form-control cashback" name="cashback" disabled>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <span class="clearfix"></span>
                 <div class="row">

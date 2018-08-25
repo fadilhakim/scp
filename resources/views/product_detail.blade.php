@@ -272,7 +272,14 @@
 
                 <div class="tab-entry visible">
             
-                   <?php echo $product->technical_specs ?>
+                   <table class="table table-bordered">
+                    <thead>
+                        <th>Kolom 1 </th>
+                    </thead>
+                    <tbody>
+                        <td>Isi</td>
+                    </tbody>
+                </table>
                 </div>
             </div>
 

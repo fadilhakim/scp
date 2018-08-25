@@ -96,7 +96,7 @@
             <div class="col-sm-6 col-md-5 col-xs-b10 col-sm-b0">
             <form id="update-coupon" method="post"> 
                 <div class="single-line-form">
-                  <!--   <input name="coupon_code" class="simple-input" type="text" value="" placeholder="Enter your coupon code" />
+                    <input name="coupon_code" class="simple-input" type="text" value="" placeholder="Enter your coupon code" />
                     <div class="button size-2 style-3">
                         <span class="button-wrapper">
                             <span class="icon"><img src="img/icon-4.png" alt=""></span>
@@ -105,7 +105,7 @@
                            
                         </span>
                         <input type="submit" value="">
-                    </div> -->
+                    </div>
                 </div>
             </form>
             </div>

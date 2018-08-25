@@ -37,7 +37,8 @@ class User extends Authenticatable
 
     static function detail_user($user_id)
     {
-        return DB::table("users")->where("id",$user_id)->first();
+        $kalong =  DB::table("users")->where("id",$user_id)->first();
+        return $kalong;
     }
 
     static function detail_user_email($email)

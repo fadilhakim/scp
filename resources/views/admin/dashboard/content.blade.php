@@ -106,12 +106,9 @@
                                 <div class="col-sm-6">
                                     <ul class="list list-unstyled">
                                         <?php $costumer_name = App\Models\User::detail_user($orderRow->user_id) ;
-                                        if(empty($customer_name)) // kalau customer_name = kosong
-                                        {
-                                            $costumer_name = "";
-                                        }else { $customer_name = $customer_name->name; }
-                                        ?>
-                                        <li>Costumer Name #: <?php echo $costumer_name ?></li>
+                                        $pelanggan = $costumer_name->name;
+                                       ?>
+                                       <li>Customer Name : {{$pelanggan }} </li>
                                         <li>Issued on: <span class="text-semibold"><?php echo $orderRow->created_at ?></span></li>
                                     </ul>
                                 </div>
@@ -124,11 +121,9 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <div class="task-list-table">
-                                <p class="task-due"><strong> Due : </strong><strong class="label label-success">23 hours</strong></p>
-                            </div>
+                           
                             <div class="task-board m-0">
-                                <a href="{{url('admin/order/detail/'.$orderRow->order_id)}}" class="btn btn-info btn-mini b-none"><i class="icofont icofont-eye-alt m-0"></i></a>
+                                <a href="{{url('admin/order/detail/'.$orderRow->order_id)}}" class="btn btn-info btn-mini b-none">See Detail &nbsp; <i class="icofont icofont-eye-alt m-0"></i></a>
                             </div>
                             <!-- end of pull-right class -->
                         </div>
