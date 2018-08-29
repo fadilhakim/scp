@@ -32,7 +32,23 @@
     $spec_handsfree = isset($specification->handsfree) ? $specification->handsfree : "";
 
 ?>
+<script>
+    function loadSubcategory(category){
 
+        category_id = category.value;
+        //alert(category_id);
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+
+            type:"POST",
+            url:"<?=url("admin/product/subcategorylist")?>",
+            data:"_token="+_token+"&category_id="+category_id,
+            success:function(data){
+                $("#subcategory").html(data);
+            }
+        })
+    }
+</script>
 <div class="page-body">
     <div class="row">
         <div class="col-lg-12">
@@ -183,7 +199,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Product Category :</label>
                                     <div class="col-sm-9">
-                                        <select name="category" class="form-control">
+                                        <select name="category" id="category" class="form-control" onchange="loadSubcategory(this)">
                                         
                                             <option value="<?php echo $rowCategory->category_id ?>" selected><?php echo $rowCategory->category_name ?></option>
                                             <?php if(!empty($category)){foreach($category as $row){ ?>
@@ -197,7 +213,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label"> Subcategory :</label>
                                     <div class="col-sm-9">
-                                        <select name="subcategory" class="form-control" selected>
+                                        <select name="subcategory" id="subcategory" class="form-control" selected>
                                             <option value="<?php echo $rowSubCategory->subcategory_id ?>"><?php echo $rowSubCategory->subcategory_name ?></option>
                                             <?php if(!empty($subcategory)){foreach($subcategory as $row){ ?>
                                                 <option value="<?=$row->subcategory_id?>"><?=$row->subcategory_name?></option>
