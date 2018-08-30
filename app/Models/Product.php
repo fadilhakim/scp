@@ -177,7 +177,7 @@ class Product extends Model
 
     static function get_popular_product_limit()
     {
-        $popular = DB::table('product_tbl')->where('popular','1')->take(2)->get();
+        $popular = DB::table('product_tbl')->where('popular','1')->take(3)->get();
         return $popular;
     }
 

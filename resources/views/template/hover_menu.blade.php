@@ -37,6 +37,23 @@
             <li class="megamenu-wrapper {{$active_product}}">
                 <a href="{{url('product')}}">products</a>
                 <!-- <div class="menu-toggle"></div> -->
+                <style type="text/css">
+                    .megamenu {
+                        height: 450px;
+                    }
+                    .product-shortcode.style-5 .preview img {
+                        height: 200px;
+                        object-fit: contain;
+                    }
+                    .product-shortcode.style-5 {
+                        border-left: 1px #fff solid;
+                       border-right: 1px #fff solid;
+                    }
+                    .animate-to-green {
+                        height: 34px;
+                        overflow: hidden;
+                    }
+                </style>
                 <div class="megamenu">
                     <div class="links">
                         <p>Categories</p>
@@ -53,7 +70,7 @@
                                  foreach($popular as $rowPopular){ 
                                  $slug = str_slug($rowPopular->product_title, '-');
                             ?>
-                            <div class="col-xs-6">
+                            <div class="col-xs-4">
                                 <div class="product-shortcode style-5">
                                 <?php 
                                     $catName = App\Models\Product::get_product_category($rowPopular->product_category);

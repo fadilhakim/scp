@@ -21,6 +21,17 @@ class CategoryController extends Controller
         return view("admin/index",$data);
     }
 
+    function subcategoryList(Request $request){
+        $category_id = $request->input("category_id");
+
+        $subcategory = Category::list_subcategory($category_id);
+
+        echo "<option value=''>- Select subcategory -</option>";
+        foreach($subcategory as $row){
+            echo "<option value='".$row->subcategory_id."'>".$row->subcategory_name."</option>";
+        }
+    }
+
     function subcategory(Request $request)
     {
         $category_id = $request->input("category_id");

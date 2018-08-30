@@ -207,13 +207,9 @@
         <div class='clearfix '></div> 
         <div class="empty-space col-sm-b20"></div>
         <a href="<?=url("checkout")?>" class='btn btn-primary float-right' > Checkout </a>
-        
-        
-        
-    </div>    
     
+    </div>    
 </div>
-
 
 <div class="clear"></div>
 

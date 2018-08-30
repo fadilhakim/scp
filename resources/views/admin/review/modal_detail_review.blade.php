@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-            <h5 class="modal-title text-white"> Review Edit </h5>
+            <h5 class="modal-title text-white"> Review Edits </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col-md-6"> 
                         <label> Review Comment</label>
-                        <textarea name="review_text" class="form-control"><?php echo $review->review_text ?></textarea>
+                        <textarea style="min-height: 340px" name="review_text" class="form-control"><?php echo $review->review_text ?></textarea>
                     </div>
                 </div>
 

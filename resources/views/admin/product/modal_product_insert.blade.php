@@ -1,5 +1,24 @@
 
 <script src="<?=asset("resources/assets/plugins/bootstrap-filestyle/src/bootstrap-filestyle.min.js")?>" ></script>
+<script>
+    function loadSubcategory(category){
+
+        category_id = category.value;
+        //alert(category_id);
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+
+            type:"POST",
+            url:"<?=url("admin/product/subcategorylist")?>",
+            data:"_token="+_token+"&category_id="+category_id,
+            success:function(data){
+                $("#subcategory").html(data);
+            }
+        })
+    }
+
+</script>
+
 <div id="modal_product_insert" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -36,7 +55,7 @@
                             <div class="row"> 
                             <div class="form-group col-md-4">
                                 <label>Category :</label>
-                                <select name="category" class="form-control">
+                                <select name="category" class="form-control" onchange="loadSubcategory(this)">
                                     <option value="">-- Select Category--</option>
                                     <?php if(!empty($category)){foreach($category as $row){ ?>
                                     <option value="<?=$row->category_id?>"> <?=$row->category_name?></option>
@@ -46,11 +65,11 @@
 
                             <div class="form-group col-md-4">
                                 <label> Subcategory :</label>
-                                <select name="subcategory" class="form-control">
-                                    <option value="">-- Select Subcategory--</option>
-                                    <?php if(!empty($subcategory)){foreach($subcategory as $row){ ?>
+                                <select name="subcategory" id="subcategory"  class="form-control">
+                                    <!-- <option value="">-- Select Subcategory--</option>-->
+                                    <?php /*if(!empty($subcategory)){foreach($subcategory as $row){ ?>
                                         <option value="<?=$row->subcategory_id?>"><?=$row->subcategory_name?></option>
-                                    <?php }} ?>
+                                    <?php }}*/ ?>
                                 </select>
                             </div>
 

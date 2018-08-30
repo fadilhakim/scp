@@ -1,4 +1,21 @@
 <script src="<?=asset("resources/assets/plugins/bootstrap-filestyle/src/bootstrap-filestyle.min.js")?>" ></script>
+<script>
+    function loadSubcategory(category){
+
+        category_id = category.value;
+        //alert(category_id);
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+
+            type:"POST",
+            url:"<?=url("admin/product/subcategorylist")?>",
+            data:"_token="+_token+"&category_id="+category_id,
+            success:function(data){
+                $("#subcategory").html(data);
+            }
+        })
+    }
+</script>
 <div id="modal_product_update" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -34,7 +51,7 @@
                 <div class="row"> 
                     <div class="form-group col-md-4">
                         <label> Category</label>
-                        <select name="category" class="form-control">
+                        <select name="category" class="form-control"  onchange="loadSubcategory(this)">
                             <option value="">-- Select Category--</option>
                             <?php if(!empty($category)){foreach($category as $row){ 
                                 if($product->product_category == $row->category_id){ $selected = "selected=selected"; }else{ $selected=""; }    
