@@ -26,43 +26,75 @@
             </div>
         </div>
 
+        <style type="text/css">
+            
+            .banner-shortcode.style-5 .valign-middle {
+                min-height: 135px;
+            }
+             @media only screen and (max-width: 1023px) {
+
+                .banner-shortcode.style-5 .valign-middle {
+                    margin-bottom: 30px;
+                }
+             }
+
+        </style>
         <div class="grey-background">
             <div class="empty-space col-xs-b30"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="banner-shortcode style-5 rounded-image" style="background-image: url({{ URL::asset('public/img/background-16.jpg')}});)">
-                            <div class="valign-middle">
-                                <div class="valign-middle-content">
-                                    <div class="simple-article size-3 light transparent uppercase col-xs-b5">street collection</div>
-                                    <h4 class="h4 light col-xs-b5"><a href="#">noise is not a problem</a></h4>
-                                    <div class="simple-article size-5 light transparent uppercase">starting from <span class="color">$95.00</span></div>
+                    
+                        <div class="col-md-3">
+                            <a href="http://yifang.id/product/detail/58/1/strawberry-armee">
+                            <div class="banner-shortcode style-5 rounded-image" style="background-image: url({{ URL::asset('public/img/r1.jpg')}});)">
+                                <div class="valign-middle">
+                                    
                                 </div>
                             </div>
+                            </a>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="banner-shortcode style-5 rounded-image" style="background-image: url({{ URL::asset('public/img/background-16.jpg')}});)">
-                            <div class="valign-middle">
-                                <div class="valign-middle-content">
-                                    <div class="simple-article size-3 light transparent uppercase col-xs-b5">street collection</div>
-                                    <h4 class="h4 light col-xs-b5"><a href="#">noise is not a problem</a></h4>
-                                    <div class="simple-article size-5 light transparent uppercase">starting from <span class="color">$95.00</span></div>
+                    
+
+                   
+                        <div class="col-md-3">
+                            <a href="http://yifang.id/product/detail/57/1/fs-strawberry-piatto">
+                            <div class="banner-shortcode style-5 rounded-image" style="background-image: url({{ URL::asset('public/img/r2.jpg')}});)">
+                                <div class="valign-middle">
+                                    <div class="valign-middle-content">
+                                        
+                                    </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="banner-shortcode style-5 rounded-image" style="background-image: url({{ URL::asset('public/img/background-16.jpg')}});)">
-                            <div class="valign-middle">
-                                <div class="valign-middle-content">
-                                    <div class="simple-article size-3 light transparent uppercase col-xs-b5">street collection</div>
-                                    <h4 class="h4 light col-xs-b5"><a href="#">noise is not a problem</a></h4>
-                                    <div class="simple-article size-5 light transparent uppercase">starting from <span class="color">$95.00</span></div>
+                    
+                   
+                        <div class="col-md-3">
+                            <a href="http://yifang.id/product/detail/55/7/banana">
+                            <div class="banner-shortcode style-5 rounded-image" style="background-image: url({{ URL::asset('public/img/r3.jpg')}});)">
+                                <div class="valign-middle">
+                                    <div class="valign-middle-content">
+                                       
+                                    </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
-                    </div>
+                    
+
+                    
+                        <div class="col-md-3">
+                            <a href="http://yifang.id/product/detail/59/1/strawberry-blade">
+                            <div class="banner-shortcode style-5 rounded-image" style="background-image: url({{ URL::asset('public/img/r4.jpg')}});)">
+                                <div class="valign-middle">
+                                    <div class="valign-middle-content">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                    
                 </div>
             </div>
             <div class="empty-space col-xs-b30"></div>
