@@ -9,7 +9,8 @@
             </div>
             <div class="empty-space col-xs-b15 col-sm-b30"></div>
             <div class="row">
-                <div class="col-md-12">
+
+                <div class="col-md-9 col-md-push-3">
                     <div class="align-inline spacing-1">
                         <div class="h4">{{$brand_name->brand_name}}</div>
                     </div>
@@ -125,6 +126,46 @@
                         {{$brand_product->links()}}
                     </div>
                     <div class="empty-space col-md-b70"></div>
+                </div>
+                <div class="col-md-3 col-md-pull-9">
+                    <div class="h4 col-xs-b10">categories</div>
+                    <?php 
+                         $getCategory =  App\Models\Product::all_category() ;
+                    ?>
+                    <ul class="categories-menu transparent">
+                    <?php foreach($getCategory as $rowCategory) { ?>
+                        <li>
+                            <a href="{{url('/product/category/'.$rowCategory->category_id)}}">{{ $rowCategory->category_name}}</a>
+                            <?php 
+                            $getSubCategory =  App\Models\Product::get_subCategory_by_category_id($rowCategory->category_id) ;
+                            if(!empty($getSubCategory)){ 
+                            ?>
+                                <div class="toggle"></div>
+                                <ul>
+                                    <?php foreach($getSubCategory as $rowSubCategory) { ?>
+                                    <li>
+                                        <a href="#">{{$rowSubCategory->subcategory_name}}</a>
+                                    </li>
+                                    <?php } ?>
+                                </ul>
+                            <?php } ?>
+                            
+                        </li>
+                    <?php } ?>
+                    </ul>
+
+                    <div class="empty-space col-xs-b25 col-sm-b50"></div>
+
+                    <div class="h4 col-xs-b25">Brands</div>
+                        <?php foreach($brands as $br) { ?>
+                            <ul class="categories-menu transparent">
+                                 <li>
+                                    <a href="{{url('/product/brand/'.$br->brand_id)}}"><?php echo $br->brand_name ?></a>   <div class="toggle"></div>
+                                </li>
+                            </ul>  
+                        </label>
+                    <?php } ?>
+
                 </div>
 
             </div>

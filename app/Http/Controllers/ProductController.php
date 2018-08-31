@@ -60,6 +60,7 @@ class ProductController extends Controller
         $data["category_name"] = Product::get_product_category($category);
         $data["category"] = Product::all_category();
         $data["popular"] = Product::get_popular_product();
+        $data["brands"] = Product::get_brands();
         // dd($category);
         $data["title"]   = "Product List";
         $data['content'] = 'Product By Category';
@@ -73,6 +74,7 @@ class ProductController extends Controller
         $data["brand_name"] = Product::get_product_brand($brand);
         $data["category"] = Product::all_category();
         $data["popular"] = Product::get_popular_product();
+        $data["brands"] = Product::get_brands();
         // dd($category);
         $data["title"]   = "Product List";
         $data['content'] = 'Product By Brand';
