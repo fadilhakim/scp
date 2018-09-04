@@ -37,7 +37,7 @@ class Product extends Model
 
     static function all_product()
     {
-        $product = DB::table("product_tbl")->paginate(16);
+        $product = DB::table("product_tbl")->paginate(10);
         return $product;
     }
 

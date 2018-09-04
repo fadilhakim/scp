@@ -15,7 +15,7 @@
                         <div class="h4">{{$brand_name->brand_name}}</div>
                     </div>
                     <div class="align-inline spacing-1">
-                        <div class="simple-article size-1">SHOWING <b class="grey">16 </b>RESULTS</div>
+                        <div class="simple-article size-1">SHOWING <b class="grey">{{ $brand_product->total() }} </b> RESULTS</div>
                     </div>
                     <!-- <div class="align-inline spacing-1 hidden-xs">
                         <a class="pagination toggle-products-view active"><img src="img/icon-14.png" alt="" /><img src="img/icon-15.png" alt="" /></a>
