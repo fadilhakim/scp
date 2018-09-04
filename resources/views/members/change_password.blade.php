@@ -7,6 +7,7 @@
 </ul>
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane show active" id="password" role="tabpanel" aria-labelledby="password-tab">
+        <div id="change-password-respond"></div>
         <form id="change-password-form" class="container">
             <div class="form-group">
                 <label> Old Password </label>
@@ -30,11 +31,11 @@
       $("#change-password-form").submit(function(){
         $.ajax({
             type:"POST",
-            url:"<?=''?>",
+            url:"<?=url('account/change_password_process')?>",
             data:$(this).serialize(),
             success:function(data)
             {
-                
+                $("#change-password-respond").html(data);
             }
         });
 

@@ -232,23 +232,57 @@ class MemberController extends Controller
             $data["phone_no"] = $phone_no; 
 
             $this->objUser->change_profile($data);
-            
             echo Alert::success("You Successfully update your profile");
 
         }
 
     }
 
-    function change_password_process()
+    function change_password_process(Request $request)
     {
+        $session =  Auth::guard("user")->user();
+        $email = $session->email;
+
+        $old_password = $request->input("old_password");
+        $new_password = $request->input("new_password");
+        $renew_password = $request->input("renew_password");
+
+        $validator = Validator::make($request->all(), [
+            'old_password'           => 'required',
+            'new_password'           => 'required|email',
+            'confirm_new_password'   => 'required' 
+        ]);
+
+        if ($validator->fails()) {
+            // return redirect('post/create')
+            //             ->withErrors($validator)
+            //             ->withInput();
+            //print("fail");
+            $errors = $validator->errors();
+            $err_text = "";
+            foreach($errors->all() as $err) 
+            {
+                $err_text .=  "<li> $err </li>";
+            }
+
+            echo Alert::danger($err_text);
+        }else{
+            // jika password dari database salah 
+
+            $data["email"] = $email;
+            $data["password"] = $password;
+            
+            $this->objUser->change_password($data);
+            echo Alert::success("You Successfully update your profile");
+
+        }
+
 
     }
 
     function change_email_process(Request $request)
     {
-        $old_password = $this->request("old_password");
-        $new_password = $this->request("new_password");
-         
+       
     }
 
 }

@@ -109,5 +109,16 @@ class User extends Authenticatable
         ]);
         
     }
+
+    function change_password($data){
+        $email          = $data["email"];
+        $password       = $data["password"];
+        $hash_password = Hash::make($password);
+
+        return DB::table("users")->where("email",$email)->update([
+            "password"  => $hash_password,
+        ]);
+
+    }
    
 }
