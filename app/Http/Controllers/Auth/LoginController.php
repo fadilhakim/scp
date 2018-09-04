@@ -76,7 +76,8 @@ class LoginController extends Controller
         ]);
 
         if ($validation->fails()) {
-            return Redirect::back()->withErrors($validation)->withInput();
+            //("harusnya bisa loh");
+            return redirect("login")->withErrors($validation)->withInput();
         }
 
         if (Auth::guard('user')->attempt(['email' => $email, 'password' => $password,"activation"=>"ACTIVE"]))

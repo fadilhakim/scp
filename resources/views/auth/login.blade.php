@@ -1,7 +1,7 @@
 @include('template/header')
 <div class="container">
     <!-- <div class="empty-space col-xs-b10 col-sm-b20 col-md-b100"></div> -->
-    <center >
+    <center>
         <div class="popup-container size-1">
             <div class="popup-align">
                 <h3 class="h3 text-center">Log in</h3>
@@ -9,12 +9,15 @@
                     <div class="empty-space col-xs-b30">
                         <div id='temp-login'></div>
                     </div>
-                    <div>{!! Session::get("message") !!}</div>
-                    <div>@if ($errors->any())
-                         <div class='alert alert-danger'> 
-                         {!! implode('', $errors->all('<div>:message</div>')) !!}
-                         </div>
-                    @endif</div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <input name="email" class="simple-input" type="text" value="" placeholder="Your email" />
                     {{ csrf_field() }}
                     <div class="empty-space col-xs-b10 col-sm-b20"></div>
