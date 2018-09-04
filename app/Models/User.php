@@ -95,5 +95,19 @@ class User extends Authenticatable
             "activation"=>$activation 
          ]);
     }
+
+    function change_profile($data){
+
+        $name       = $data["name"];
+        $email      = $data["email"];
+        $phone_no   = $data["phone_no"];
+        
+        return DB::table("users")->where("email",$email)->update([
+            "name"      =>$name,
+            "email"     =>$email,
+            "no_telp"   =>$phone_no
+        ]);
+        
+    }
    
 }

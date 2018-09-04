@@ -8,7 +8,9 @@ use App\Models\Product;
 use App\Models\AddressBook;
 use App\Models\User;
 use Auth;
+use Validator;
 
+use App\Libraries\Alert;
 use App\Libraries\Midtrans\Veritrans\Veritrans_config;
 use App\Libraries\Midtrans\Veritrans\Veritrans_Snap;
 
@@ -193,7 +195,48 @@ class MemberController extends Controller
 
     function profile_edit_process(Request $request)
     {
-        
+        // print_r($request->all());
+        /*
+            Array ( [name] => Aries Dimas Yudhistira 
+            [_token] => dprilMj9JBbWCwfzrT3Za8oAnxNiW4DLDINTux7V 
+            [email] => alhusna901@gmail.com 
+            [phone_no] => ) 
+        */
+        $name     = $request->input("name",true);
+        $email    = $request->input("email",true);
+        $phone_no = $request->input("phone_no",true);
+
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required|max:255',
+            'email'    => 'required|email',
+            'phone_no' => 'required' 
+        ]);
+
+        if ($validator->fails()) {
+            // return redirect('post/create')
+            //             ->withErrors($validator)
+            //             ->withInput();
+            //print("fail");
+            $errors = $validator->errors();
+            $err_text = "";
+            foreach($errors->all() as $err) 
+            {
+                $err_text .=  "<li> $err </li>";
+            }
+
+            echo Alert::danger($err_text);
+        }else{
+
+            $data["name"] = $name;
+            $data["email"] = $email;
+            $data["phone_no"] = $phone_no; 
+
+            $this->objUser->change_profile($data);
+            
+            echo Alert::success("You Successfully update your profile");
+
+        }
+
     }
 
     function change_password_process()
