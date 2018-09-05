@@ -10,12 +10,15 @@ use App\Models\User;
 use Auth;
 use Validator;
 
+
 use App\Libraries\Alert;
 use App\Libraries\Midtrans\Veritrans\Veritrans_config;
 use App\Libraries\Midtrans\Veritrans\Veritrans_Snap;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+
 
 class MemberController extends Controller
 {
@@ -245,12 +248,12 @@ class MemberController extends Controller
 
         $old_password = $request->input("old_password");
         $new_password = $request->input("new_password");
-        $renew_password = $request->input("renew_password");
+        $new_password_confirmation = $request->input("new_password_confirmation");
 
         $validator = Validator::make($request->all(), [
-            'old_password'           => 'required',
-            'new_password'           => 'required|email',
-            'confirm_new_password'   => 'required' 
+            'old_password'               => 'required',
+            'new_password'               => 'required|confirmed',
+            'new_password_confirmation'  => 'required' 
         ]);
 
         if ($validator->fails()) {
@@ -268,12 +271,21 @@ class MemberController extends Controller
             echo Alert::danger($err_text);
         }else{
             // jika password dari database salah 
+            $data["email"]        = $email;
+            $data["password"]     = Hash::make($new_password);
+            $data["old_password"] = $old_password; //Hash::make($old_password);
 
-            $data["email"] = $email;
-            $data["password"] = $password;
-            
-            $this->objUser->change_password($data);
-            echo Alert::success("You Successfully update your profile");
+            //dd(Hash::make($old_password));
+
+            $checkPass = $this->objUser->check_user_password($data); 
+
+            if($checkPass){
+                $this->objUser->change_password($data);
+                echo Alert::success("You Successfully update your Password");
+            }else{
+
+                echo Alert::danger("Your password is wrong");
+            }
 
         }
 

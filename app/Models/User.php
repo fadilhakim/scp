@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -113,11 +114,31 @@ class User extends Authenticatable
     function change_password($data){
         $email          = $data["email"];
         $password       = $data["password"];
-        $hash_password = Hash::make($password);
+        //$hash_password = Hash::make($password);
 
         return DB::table("users")->where("email",$email)->update([
-            "password"  => $hash_password,
+            "password"  => $password,
         ]);
+
+    }
+
+    function check_user_password($data){
+
+        $email    = $data["email"];
+        $password = $data["old_password"];
+
+        $userData = DB::table("users")->where(
+        [
+            "email"=>$email,
+
+        ])->first();
+
+        if(Hash::check($password,$userData->password)){
+            return true;
+        }
+        else{
+            return false;
+        }
 
     }
    

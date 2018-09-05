@@ -8,19 +8,19 @@
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane show active" id="password" role="tabpanel" aria-labelledby="password-tab">
         <div id="change-password-respond"></div>
-        <form id="change-password-form" class="container">
+        <form id="change-password-form" class="container" autocomplete="off">
             <div class="form-group">
                 <label> Old Password </label>
-                <input type="password" name="old_password" id="old_password" class="form-control">  
+                <input onready="this.value = ''" autocomplete="off" placeholder="" type="password" name="old_password" id="old_password" class="form-control">  
             </div> 
             <div class="form-group">
                 <label> New Password </label>
-                <input type="password" name="new_password" id="new_password" class="form-control">
+                <input onready="this.value = ''" autocomplete="off" placeholder="" type="password" name="new_password" id="new_password" class="form-control">
             </div>
             {{ csrf_field() }}
             <div class="form-group"> 
                 <label>Confirm Password</label> 
-                <input type="password" name="confirm_new_password" id="confirm_new_password" class="form-control">
+                <input onready="this.value = ''" autocomplete="off" placeholder="" type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary"> Change </button>
         </form>
