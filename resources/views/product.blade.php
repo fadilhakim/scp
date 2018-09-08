@@ -28,8 +28,14 @@
                                         <?php 
                                                 $catName =  App\Models\Product::get_product_category($rowPopular->product_category) ;
                                             ?>
-                                            <div class="simple-article size-1 color col-xs-b5"><a href="<?=url("product/category/{$rowPopular->product_category}")?>">{{$catName->category_name}}</a></div>
-                                            <div class="h6 animate-to-green"><a href="<?=url("product/detail/{$rowPopular->product_id}/{$rowPopular->product_category}/{$slug}")?>">{{$rowPopular->product_title}}</a></div>
+                                            <div class="simple-article size-1 color col-xs-b5">
+                                                <a href="<?=url("product/category/{$rowPopular->product_category}")?>">{{$catName->category_name}}
+                                                </a>
+                                            </div>
+                                            <div class="h6 animate-to-green">
+                                                <a href="<?=url("product/detail/{$rowPopular->product_id}/{$rowPopular->product_category}/{$slug}")?>">{{$rowPopular->product_title}}
+                                                </a>
+                                            </div>
                                         </div>
                                         <div class="preview">
                                             <?php 

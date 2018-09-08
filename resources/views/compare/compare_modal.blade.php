@@ -55,7 +55,14 @@
                 ?>
                             <div class="">
                                 <div class="product-shortcode style-1">
-                                    
+                                    <style type="text/css">
+                                        
+                                        .preview {
+                                            min-height: 10px;
+                                            overflow: hidden;
+                                            text-align: center;
+                                        } 
+                                    </style>
                                     <div class="preview">
                                     <?php 
                                     
@@ -71,7 +78,7 @@
                                             $getImage = url("public/products/default-image.png");
                                         }
                                         ?>
-                                         <img src="{{ $getImage }}" alt="" width='100' height='100' style='float:left'>
+                                         <img src="{{ $getImage }}" alt="" width='100' height='100'>
                                         
                                         <!-- <div class="preview-buttons valign-middle">
                                             <div class="valign-middle-content">

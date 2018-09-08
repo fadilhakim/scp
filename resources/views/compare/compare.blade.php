@@ -68,6 +68,9 @@
                     <thead>
                         <th></th>
                         <th> 
+                            <style type="text/css">
+                               
+                            </style>
                             <div align="center"  class="preview">
                             <?php 
                             if(!empty($product_id1)){    
