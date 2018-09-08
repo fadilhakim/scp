@@ -234,6 +234,10 @@ class MemberController extends Controller
             $data["email"] = $email;
             $data["phone_no"] = $phone_no; 
 
+            session(["user"=>["name" => $name]]);
+            session(["user"=>["email" => $email]]);
+            session(["user"=>["phone_no" => $phone_no]]);
+
             $this->objUser->change_profile($data);
             echo Alert::success("You Successfully update your profile");
 

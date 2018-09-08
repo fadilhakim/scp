@@ -12,6 +12,7 @@ use App\Models\Role;
 use App\Libraries\Alert;
 use App\Libraries\FolderHelper;
 use Validator;
+use Auth;
 
 use App\Mail\AdminActivateEmail;
 use Illuminate\Support\Facades\Mail;
@@ -168,4 +169,116 @@ class AdminController extends Controller
         echo Alert::success("You successfully update Admin");
         echo "<script> setTimeout(function(){ location.reload(); },3000); </script>";
     }
+
+    // method post 
+    function profile(){
+        // this active admin 
+        //echo "iam here"; 
+        $data["title"]   = "Admin";
+        $data['content'] = 'admin/admin/admin_profile';
+        return view('admin/index',$data);
+    }
+
+    function profile_process(Request $request)
+    {
+        // print_r($request->all()); 
+        $admin_id = $request->input("admin_id",true);
+        $name     = $request->input("name",true);
+        $email    = $request->input("email",true);
+        //$phone_no = $request->input("phone_no",true);
+
+        $validator = Validator::make($request->all(), [
+            'admin_id' => 'required',
+            'name'     => 'required|max:255',
+            'email'    => 'required|email',
+            //'phone_no' => 'required' 
+        ]);
+
+        if ($validator->fails()) {
+            // return redirect('post/create')
+            //             ->withErrors($validator)
+            //             ->withInput();
+            //print("fail");
+            $errors = $validator->errors();
+            $err_text = "";
+            foreach($errors->all() as $err) 
+            {
+                $err_text .=  "<li> $err </li>";
+            }
+
+            echo Alert::danger($err_text);
+        }else{
+
+            $data["admin_id"] = $admin_id;
+            $data["name"]     = $name;
+            $data["email"]    = $email;
+
+            session(["admin"=>["name" => $name]]);
+            session(["admin"=>["email" => $email]]);
+            //session(["admin"=>["phone_no" => $phone_no]]);
+            //$data["phone_no"] = $phone_no; 
+
+            $this->objAdmin->change_profile($data);
+            echo Alert::success("You Successfully update your profile");
+
+        }
+
+    }
+
+    function change_password_process(Request $request)
+    {
+        $session =  Auth::guard("admin")->user();
+        $email = $session->email;
+
+        $old_password = $request->input("old_password");
+        $new_password = $request->input("new_password");
+        $new_password_confirmation = $request->input("new_password_confirmation");
+
+        $validator = Validator::make($request->all(), [
+            'old_password'               => 'required',
+            'new_password'               => 'required|confirmed',
+            'new_password_confirmation'  => 'required' 
+        ]);
+
+        if ($validator->fails()) {
+            // return redirect('post/create')
+            //             ->withErrors($validator)
+            //             ->withInput();
+            //print("fail");
+            $errors = $validator->errors();
+            $err_text = "";
+            foreach($errors->all() as $err) 
+            {
+                $err_text .=  "<li> $err </li>";
+            }
+
+            echo Alert::danger($err_text);
+        }else{
+            // jika password dari database salah 
+            $data["email"]        = $email;
+            $data["password"]     = Hash::make($new_password);
+            $data["old_password"] = $old_password; //Hash::make($old_password);
+
+            //dd(Hash::make($old_password));
+
+            $checkPass = $this->objAdmin->check_admin_password($data); 
+
+            if($checkPass){
+                $this->objAdmin->change_password($data);
+                echo Alert::success("You Successfully update your Password");
+            }else{
+
+                echo Alert::danger("Your password is wrong");
+            }
+
+        }
+
+
+    }
+
+    /*
+    
+
+    
+    */
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 use DB;
 
 class Admin extends Model
@@ -90,6 +91,51 @@ class Admin extends Model
             "status"          =>$arr["status"]
 
         ]);
+    }
+
+    function change_profile($data){
+
+        $name       = $data["name"];
+        $email      = $data["email"];
+        $admin_id   = $data["admin_id"];
+        
+        return DB::table("admin_tbl")->where("admin_id",$admin_id)->update([
+            //"admin_id"  =>$admin_id,
+            "name"      =>$name,
+            "email"     =>$email
+        ]);
+        
+    }
+
+    function change_password($data){
+        $email          = $data["email"];
+        $password       = $data["password"];
+        //$hash_password = Hash::make($password);
+
+        return DB::table("admin_tbl")->where("email",$email)->update([
+            "password"  => $password,
+        ]);
+
+    }
+
+    function check_admin_password($data){
+
+        $email    = $data["email"];
+        $password = $data["old_password"];
+
+        $userData = DB::table("admin_tbl")->where(
+        [
+            "email"=>$email,
+
+        ])->first();
+
+        if(Hash::check($password,$userData->password)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 
   

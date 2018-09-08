@@ -2,6 +2,19 @@
    $session =  Auth::guard("admin")->user();
    $name_session = $session->name;
 ?>
+<script>
+    profile(){
+        $.ajax({
+            type:"POST",
+            url:"<?=url("profile/update")?>",
+            data:"",
+            success:function(data){
+
+            }
+        })
+    }
+
+</script>
 <nav class="navbar header-navbar pcoded-header" >
     <div class="navbar-wrapper">
         <div class="navbar-logo" data-navbar-theme="theme4">
@@ -58,7 +71,13 @@
                                 </a>
                             </li>
                              -->
+                             <li>
+                                <a href="<?=url("admin/profile")?>">
+                                    <i class="ti-layout-sidebar-left"></i> Profile
+                                </a>
+                             </li>
                             <li>
+                                
                                 <a href="<?=url("admin/logout")?>">
                                     <i class="ti-layout-sidebar-left"></i> Logout
                                 </a>

@@ -23,7 +23,7 @@ class TestController extends Controller
     public $autoObj;
     function __construct()
     {
-
+        //dd("hei");
     }
 
     public function index()
@@ -32,6 +32,7 @@ class TestController extends Controller
         echo asset("");
         echo "<br>";
         echo url("");
+        echo csrf_token();
         //echo URL::asset("");
     }
 

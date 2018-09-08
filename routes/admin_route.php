@@ -18,6 +18,11 @@ Route::group(['middleware' => ['admin']], function () {
     // Auth
     Route::get("/admin/logout","Admin\AuthController@logout");
     Route::get("/admin/activation","Admin\AuthController@activation");
+    
+    // Admin profile 
+    Route::get("/admin/profile","Admin\AdminController@profile"); 
+    Route::post("/admin/profile/update","Admin\AdminController@profile_process");
+    Route::post("/admin/profile/change_password","Admin\AdminController@change_password_process");
 
     // Admin
     Route::get("/admin/admin_list","Admin\AdminController@index");
@@ -185,5 +190,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post("/admin/slider/update_process","Admin\SliderController@slider_update_process");
     Route::post("/admin/slider/delete_process","Admin\SliderController@slider_delete_process");
 // Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'AdminController@dashboard']);
+
+    Route::get("/admin/test","TestController@index");
 });
 
