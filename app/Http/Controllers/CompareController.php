@@ -24,25 +24,35 @@ class CompareController extends Controller
         
         $compares = session("product_compare");
         $data["all"] = $this->all;
+
+        // check dolo , lebih atau enggak
         if(!empty($compares))
         {
-            if(!empty($compares[0]))
-            {
-                //echo $compares[0]; exit;
-                $data["compare1"] = $this->objProduct->get_specification($compares[0]);
-                $data["product1"] = $this->objProduct-> detail_product($compares[0]);
-                //var_dump($data["compare1"]);exit;
+            if(count($compares) < 3){
+                if(!empty($compares[0]))
+                {
+                    //echo $compares[0]; exit;
+                    $data["compare1"] = $this->objProduct->get_specification($compares[0]);
+                    $data["product1"] = $this->objProduct-> detail_product($compares[0]);
+                    //var_dump($data["compare1"]);exit;
+                }
+                if(!empty($compares[1]))
+                {
+                    $data["compare2"] = $this->objProduct->get_specification($compares[1]);
+                    $data["product2"] = $this->objProduct-> detail_product($compares[1]);
+                }
+                if(!empty($compares[2]))
+                {
+                    $data["compare3"] = $this->objProduct->get_specification($compares[2]);
+                    $data["product3"] = $this->objProduct-> detail_product($compares[2]);
+                }
+            }else{
+
+                // kalau lebih dari 3 
+                return view("compare/compare_modal_alert");
+
             }
-            if(!empty($compares[1]))
-            {
-                $data["compare2"] = $this->objProduct->get_specification($compares[1]);
-                $data["product2"] = $this->objProduct-> detail_product($compares[1]);
-            }
-            if(!empty($compares[2]))
-            {
-                $data["compare3"] = $this->objProduct->get_specification($compares[2]);
-                $data["product3"] = $this->objProduct-> detail_product($compares[2]);
-            }
+            
         }
         else
         {
@@ -72,6 +82,7 @@ class CompareController extends Controller
         {
             $product_compare = $request->session()->get('product_compare');
             $is_push = true;
+            //echo "<script> alert(' hello ') </script>";
             if(count($product_compare) < 3)
             {
                 foreach($product_compare as $row)
@@ -88,21 +99,30 @@ class CompareController extends Controller
                 {
                     $request->session()->push("product_compare",$product_id);
                     $msg = "<div class='alert alert-success'> You successfully added new product to compare </div>";
+                    //print_r($product_compare);
+                    // passing data ke view 
+                    $data = array(
+                        "msg"=>$msg
+                    );
+                    return view("compare/compare_modal",$data);
                 }
             }
             else
             {
+                // passing data ke view 
                 $msg = "<div class='alert alert-danger'> You already have 3 products to compare </div>";
+                $data = array(
+                    "msg"=>$msg,
+                    "data"=>session()->all()
+                );
+                return view("compare/compare_modal_alert",$data);
             }
         }
        
        
-        //print_r($product_compare);
-        // passing data ke view 
-        $data = array(
-            "msg"=>$msg
-        );
-        return view("compare/compare_modal",$data);
+        
+
+        //return view("compare/compare_modal",$data);
     }
 
     function view_session(Request $request)
