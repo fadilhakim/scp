@@ -273,9 +273,19 @@
             </div>
         </div>
 
+        <div class="popup-content video-popup">
+            <div class="layer-close"></div>
+            <div class="popup-container size-4">
+                <div class="embed-responsive embed-responsive-16by9 popup-iframe">
+                    
+                </div>
+                <div class="button-close"></div>
+            </div>
+        </div>
+
     </div>
 
-   
+    
     <script src="{{ URL::asset('public/js/swiper.jquery.min.js') }}"></script>
     <!-- styled select -->
     <script src="{{ URL::asset('public/js/jquery.sumoselect.min.js') }}"></script>
@@ -286,7 +296,7 @@
     <script src="{{ URL::asset('public/js/jquery.throttle.js') }}"></script>
 
     <!--Start of Tawk.to Script-->
-   <!-- <script type="text/javascript">
+   <script type="text/javascript">
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
         (function(){
         var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -296,7 +306,7 @@
         s1.setAttribute('crossorigin','*');
         s0.parentNode.insertBefore(s1,s0);
         })();
-    </script> -->
+    </script>
         <!--End of Tawk.to Script-->
 </body>
 </html>

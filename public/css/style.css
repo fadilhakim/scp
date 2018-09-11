@@ -1109,7 +1109,7 @@ span.pagination{border: none;}
 .blog-shortcode.style-1 .preview img{display: block; width: 100%; height: auto;}
 .blog-shortcode.style-1 .description{background: #fff; padding: 25px 20px;}
 /*shortcode 2*/
-.blog-shortcode.style-2 .preview{display: block; max-width: 270px; margin-bottom: 15px; position: relative;}
+.blog-shortcode.style-2 .preview{display: block; /*max-width: 270px;*/ margin-bottom: 15px; position: relative;}
 .blog-shortcode.style-2 .preview img{display: block; max-width: 100%; height: auto;}
 .blog-shortcode.style-2 .title{margin-bottom: 10px;}
 /*shortcode 3*/
