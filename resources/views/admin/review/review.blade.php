@@ -90,10 +90,10 @@ function delete_modal_review(review_id)
                                     <td>
                                         <?php
                                             if($row->status == 1){
-                                                echo "Show";
+                                                echo "unverified";
                                             }
                                             else {
-                                                echo "Hide";
+                                                echo "verified";
                                             }
 
                                          ?>
