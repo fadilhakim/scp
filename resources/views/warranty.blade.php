@@ -15,7 +15,7 @@
                                 
                                 <input required placeholder="Buy Date" type="text" name="buy_date" class="date-input simple-input col-xs-b20"/>
                                 <span style="position: absolute; right: 106px; top:5px;" class="input-group-btn">
-                                  <button class="date-button btn btn-default" type="button"> <strong style="">Pick Date</strong> </button>
+                                  <button style="width: 125px; margin-left: -36px;" class="date-button btn btn-default" type="button"><img class="" style="" src="{{URL::asset('public/img/calendar.jpg')}}" alt=""> <strong style="">Pick Date</strong> </button>
                                 </span>
                                  
                                 <div id="date-picker"> </div>
