@@ -31,6 +31,13 @@ class Bank extends Model
         $bank = DB::table("bank_tbl")->get();
         return $bank;
     }
+
+    static function first_bank()
+    {
+       
+        $bank = DB::table("bank_tbl")->first();
+        return $bank;
+    }
     
     static function detail_bank($bank_id)
     {

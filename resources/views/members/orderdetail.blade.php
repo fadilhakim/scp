@@ -61,22 +61,27 @@
 					<div menuitemname="Client Details" class="panel panel-default">
 						<div class="panel-heading">
 								<h3 class="panel-title">
-										<i class="fa fa-cart-arrow-down"></i>&nbsp;Detail Order : #{{ Request::segment(2) }}
+										<i class="fa fa-cart-arrow-down"></i>&nbsp;Detail Order : #{{ $order->order_code }}
 								</h3>
 						</div>
 						<div class="panel-body">
 
 							<div class="col-md-5">
-							 	<h5> Client Information </h5>
-								lorem ipsum sit dolor amet 	lorem ipsum sit dolor amet 	lorem ipsum sit dolor amet 	lorem ipsum sit dolor amet
-
+							 	<h5> <strong>Client Information</strong> </h5>
+							 	<?php $getUser =  App\Models\User::detail_user($order->user_id) ; ?>
+							 	<span>Buyer Name : {{$getUser->name}} </span> <br>
+							 	<span>Email : {{$getUser->email}} </span>
+							 	<span>Phone Number : {{$getUser->no_telp}} </span>
 							</div>
 							<div class="col-md-1">
 
 							</div>
+
 							<div class="col-md-5">
-								<h5> Order Information </h5> 
-								lorem ipsum sit dolor amet	lorem ipsum sit dolor amet	lorem ipsum sit dolor amet	lorem ipsum sit dolor amet	lorem ipsum sit dolor amet
+								<h5> <strong>Order Information</strong> </h5> 
+								<span>Order Code : {{$order->order_code}} </span> <br>
+							 	<span>Date : {{$order->created_at}} </span>
+							 	<span>Courir : {{$order->kurir}} </span>
 
 							</div>
 							<span class="clearfix"></span>
@@ -134,7 +139,27 @@
 								</tfoot>
 
 							</table>
-							<center> <button id="pay-button" class="btn btn-success"> Pay Now </button> </center>
+							<h3>Please select transfer method below :</h3>
+							<div class="col-md-5" style="border: 1px solid #ccc; border-radius: 4px;padding-bottom: 20px;">
+								<?php $getBank =  App\Models\Bank::first_bank() ; ?>
+							 	<h5 style="padding-top: 20px"> Bank Transfer to  </h5>
+							 	{{$getBank->bank_name}} <br>
+							 	<img style="height: 51px;" src="{{ URL::asset('public/banks/'.$getBank->bank_logo)}}" alt="" /><br>
+							 	Acc No : {{$getBank->bank_acc_no}}<br>
+							 	Acc Name : {{$getBank->bank_owner}}<br>
+							 </div>
+							<div class="col-md-1">
+								<center><h5 style="padding-top: 60px;">Or</h5></center>
+							</div>
+
+							<div class="col-md-5" style="border: 1px solid #ccc; border-radius: 4px;padding-bottom: 20px;">
+								<center>
+								<a style="display: block;" class="entry"><img style="height: 135px;" src="{{ URL::asset('public/img/midtrans-black.png')}}" alt="" /></a>
+								 <button id="pay-button" class="btn btn-success"> Pay Now </button>
+								 </center>
+							</div>
+
+							<center> </center>
 							<div id="result-json"></div>
 							<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-YKDC2_McraEgyHdj"></script>
 							<script type="text/javascript">

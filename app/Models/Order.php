@@ -95,6 +95,7 @@ class Order extends Model
       return DB::table("order_tbl")->where("user_id",$user_id)->get();
     }
 
+
     function change_status($arr)
     {
       return DB::table("order_tbl")->where("order_id",$arr["order_id"])->update([
